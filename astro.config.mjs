@@ -9,4 +9,5 @@ import partytown from "@astrojs/partytown";
 export default defineConfig({
   site: "https://thriving-marzipan-3293ea.netlify.app",
   integrations: [mdx(), sitemap(), react(), tailwind(), partytown()],
+  server: { port: 53000 },
 });
