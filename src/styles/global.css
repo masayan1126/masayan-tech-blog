@@ -3,28 +3,46 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+
+/* ダークモード用 */
+.dark body {
+    background-color: #252525;
+    color: #EBEBEB;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark p{
+    color: #EBEBEB;
+}
+
+.dark hr {
+    border-color: #474747;
+}
+  
+.dark .nav-links a {
+    color: #EBEBEB;
+}
+
 body {
-	font-family: Verdana, sans-serif;
-	margin: auto;
-	padding: 20px;
-	max-width: 65ch;
+	font-family: 'Noto Sans JP', sans-serif;
 	text-align: left;
-	background-color: #fff;
+	background-color: #EBEBEB;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	line-height: 1.5;
-	color: #444;
+	line-height: 1.5px;
+    letter-spacing: 0.08em;
+	color: #252525;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong,
-b {
-	color: #222;
+
+main {
+    @apply mx-auto;
+    max-width: 55ch;
+    padding: 20px;
 }
+
+hr {
+    border-color: #474747;
+}
+
 a {
 	color: #3273dc;
 }
@@ -50,18 +68,15 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: #f2f2f2;
 }
 pre {
 	padding: 1rem;
+    background-color: #0d1117;
+    overflow-x: auto;
+    color: #EBEBEB;
+    border-radius: 3px;
 }
 pre > code {
 	all: unset;
 }
-blockquote {
-	border: 1px solid #999;
-	color: #222;
-	padding: 2px 0px 2px 20px;
-	margin: 0px;
-	font-style: italic;
-}
+
