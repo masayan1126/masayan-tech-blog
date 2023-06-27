@@ -20,6 +20,8 @@
     "@types/react-dom": "^18.2.6",
     "astro": "^2.7.0",
     "astro-icon": "^0.8.1",
+    "cheerio": "^1.0.0-rc.12",
+    "highlight.js": "^11.8.0",
     "microcms-js-sdk": "^2.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
