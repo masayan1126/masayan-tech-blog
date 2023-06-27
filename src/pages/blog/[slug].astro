@@ -1,39 +1,19 @@
 ---
-import { getBlogDetail, getBlogs } from "src/libs/microcms";
+import { CollectionEntry, getCollection } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
-
 export async function getStaticPaths() {
-  const res = await getBlogs();
-  const posts = res.contents;
-
-  return posts.map((post) => {
-    return {
-      params: { slug: post.id },
-      props: post,
-    };
-  });
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
-
-const { slug } = Astro.params;
-const post = await getBlogDetail(slug as string);
-
-const {
-  title,
-  content,
-  createdAt,
-  publishedAt,
-  updatedAt,
-  description,
-  eyecatch,
-} = post;
+type Props = CollectionEntry<"blog">;
+const post = Astro.props;
+const { Content } = await post.render();
 ---
 
-<!-- TODO: 動的に取得 -->
-<BlogPostLayout
-  title={title}
-  description={description}
-  pubDate={new Date(publishedAt)}
-  heroImage={eyecatch.url}
->
-  <p set:html={content} />
+<BlogPostLayout {...post.data}>
+  <h1>{post.data.title}</h1>
+  <Content />
 </BlogPostLayout>
