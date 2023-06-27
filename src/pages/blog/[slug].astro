@@ -1,6 +1,8 @@
 ---
 import { getBlogDetail, getBlogs } from "src/libs/microcms";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import { attachCodeHighlight } from "src/libs/codeHighlight";
+
 export async function getStaticPaths() {
   const res = await getBlogs();
   const posts = res.contents;
@@ -13,15 +15,10 @@ export async function getStaticPaths() {
 }
 const { slug } = Astro.params;
 const post = await getBlogDetail(slug as string);
-const {
-  title,
-  content,
-  createdAt,
-  publishedAt,
-  updatedAt,
-  description,
-  eyecatch,
-} = post;
+const { title, createdAt, publishedAt, updatedAt, description, eyecatch } =
+  post;
+
+const highlightedContent = attachCodeHighlight(post.content);
 ---
 
 <BlogPostLayout
@@ -30,5 +27,5 @@ const {
   pubDate={new Date(publishedAt)}
   heroImage={eyecatch.url}
 >
-  <p set:html={content} />
+  <p set:html={highlightedContent} />
 </BlogPostLayout>
