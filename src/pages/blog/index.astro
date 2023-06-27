@@ -3,12 +3,11 @@ import BaseHead from "../../components/BaseHead.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
+import { getBlogs } from "../../libs/microcms";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const res = await getBlogs();
+const posts = res.contents;
 // TODO: レイアウトコンポーネントに共通化する
 ---
 
@@ -23,10 +22,10 @@ const posts = (await getCollection("blog")).sort(
           {
             posts.map((post) => (
               <li>
-                <h2> {post.data.title}</h2>
-                <img src={post.data.heroImage} alt="" />
-                <FormattedDate date={post.data.pubDate} />
-                <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                <h2> {post.title}</h2>
+                <img src={post.eyecatch.url} alt="" />
+                <FormattedDate date={new Date(post.publishedAt)} />
+                <a href={`/blog/${post.id}/`}>{post.title}</a>
               </li>
             ))
           }

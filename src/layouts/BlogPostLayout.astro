@@ -1,11 +1,16 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+};
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
@@ -13,40 +18,82 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
   <BaseHead title={title} description={description} />
 
-  <body>
+  <body class="mx-auto">
     <Header />
     <main>
       <article>
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title text-3xl font-bold">{title}</h1>
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-        <hr />
+        <h1 class="title text-4xl font-bold mb-2 inline-block">
+          {title}
+        </h1>
+        <div>
+          <FormattedDate date={pubDate} />
+
+          {
+            updatedDate && (
+              <div class="last-updated-on">
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
+        </div>
+        <hr class="mt-1" />
+        {heroImage && <img class="w-full" src={heroImage} alt="" />}
         <slot />
       </article>
     </main>
     <Footer />
     <style is:global>
+      body {
+        line-height: 1.5px;
+      }
+
+      h1::before {
+        content: "🔥";
+      }
+
       article h2 {
-        @apply mt-4;
+        @apply mt-8 mb-2 inline-block;
+      }
+
+      article h2::before {
+        content: "🚀";
+        padding-right: 5px;
+      }
+
+      article h3 {
+        @apply mt-8 mb-2;
       }
 
       article p {
         @apply mt-4;
       }
 
-      blockquote {
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
+      article iframe {
+        @apply mt-4 block pb-4;
       }
+
+      article h2 {
+        @apply text-2xl font-bold;
+      }
+
+      article h3 {
+        @apply text-lg font-bold;
+      }
+
+      article blockquote {
+        @apply mt-2;
+        border: 1px solid #474747;
+        color: #222;
+        padding: 16px;
+        font-style: italic;
+      }
+
       blockquote p {
         margin: 0px;
+      }
+
+      article img {
+        border-radius: 5px;
       }
     </style>
   </body>
