@@ -1,38 +1,14 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import AstroReactSampleComponent from "@components/AstroReactSampleComponent";
-
-import Layout from "../layouts/Home.astro";
-
-const a = import.meta.env.PUBLIC_POKEAPI;
-console.log(a);
+import HomeLayout from "../layouts/HomeLayout.astro";
 ---
 
-<Layout title="Home" description="Blob home">
-  <h1>🧑‍🚀 Hello, Astronaut!</h1>
+<HomeLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <h1>Welcom to {SITE_TITLE}</h1>
   <AstroReactSampleComponent client:idle />
-  <h2>記事一覧</h2>
-  <div class="container">
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-    <img src="https://dummyimage.com/300x300.jpg" alt="" />
-  </div>
-  <p>
-    Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-      >read the docs
-    </a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-  </p>
-  <p>
-    Looking for a blog template with a bit more personality? Check out <a
-      href="https://github.com/Charca/astro-blog-template"
-      >astro-blog-template
-    </a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-  </p>
-</Layout>
+  自己紹介、経歴など
+</HomeLayout>
 
 <style>
   .container {
