@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Link from "../../../components/Link.astro";
+
+type Props = HTMLAttributes<"a"> & {
+  iconName?: string;
+};
+
+const { href, iconName = "" } = Astro.props;
+---
+
+{
+  /* memo: 画面幅に合わせて、アイコンのみか、アイコンとテキストの表示かどうかを切り替えしている */
+}
+
+{
+  iconName ? (
+    <Link {href} class={"inline-block"} icon={{ name: iconName, pos: "left" }}>
+      <slot />
+    </Link>
+  ) : (
+    <Link {href} class={"inline-block"}>
+      <slot />
+    </Link>
+  )
+}
