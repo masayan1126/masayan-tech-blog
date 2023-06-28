@@ -1,0 +1,28 @@
+---
+import Link from "@/components/Link/Link.astro";
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a"> & {
+  iconName: string;
+};
+
+const { href, iconName } = Astro.props;
+---
+
+{
+  /* memo: 画面幅に合わせて、アイコンのみか、アイコンとテキストの表示かどうかを切り替えしている */
+}
+
+<Link
+  {href}
+  icon={{ name: iconName, pos: "left" }}
+  class={"hidden md:inline-block"}
+>
+  <slot />
+</Link>
+
+<Link
+  {href}
+  icon={{ name: iconName, pos: "left" }}
+  class={"inline-block md:hidden"}
+/>

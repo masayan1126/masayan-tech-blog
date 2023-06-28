@@ -1,0 +1,40 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import Icon from "astro-icon";
+
+type Props = HTMLAttributes<"a"> & {
+  icon?: {
+    name: string;
+    pos: "left" | "right";
+  };
+};
+
+const { icon, href, class: className, ...props } = Astro.props;
+const { pathname } = Astro.url;
+const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+---
+
+<a
+  href={href}
+  class:list={[
+    "text-blue-600 dark:text-blue-500 hover:opacity-75",
+    { active: isActive },
+    className,
+  ]}
+  {...props}
+>
+  {
+    icon && icon.pos === "left" && (
+      <Icon name={icon.name} class="w-6 inline-block align-middle" />
+    )
+  }
+
+  <span class="align-middle">
+    <slot />
+  </span>
+  {
+    icon && icon.pos === "right" && (
+      <Icon name={icon.name} class="w-6 inline-block align-middle" />
+    )
+  }
+</a>

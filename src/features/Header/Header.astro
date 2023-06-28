@@ -1,0 +1,47 @@
+---
+import HeaderLink from "../Header/HeaderLink.astro";
+import { SITE_TITLE } from "../../consts";
+import Link from "@/components/Link/Link.astro";
+import ThemeIcon from "@/components/Icon/ThemeIcon.astro";
+---
+
+<header class="shadow-md px-5 py-3 md:p-5">
+  <div class="grid grid-cols-2 items-center">
+    <Link href="/">
+      <h2 class="text-base md:text-2xl">
+        {SITE_TITLE}
+      </h2>
+    </Link>
+
+    <nav class="grid grid-cols-4 justify-between items-center">
+      <div class="col-span-3 text-right">
+        <HeaderLink href="/" iconName="carbon:home">Home</HeaderLink>
+        <HeaderLink href="/blog" iconName="jam:blogger-square">Blog</HeaderLink>
+        <!-- <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
+            Twitter
+          </HeaderLink>
+          <HeaderLink href="https://github.com/withastro/astro" target="_blank">
+            GitHub
+          </HeaderLink> -->
+        <HeaderLink href="/about" iconName="carbon:user-profile-alt">
+          About
+        </HeaderLink>
+      </div>
+      <ThemeIcon class="mr-auto col-span-1" />
+    </nav>
+  </div>
+  <style>
+    header {
+      margin: 0em 0 2em;
+    }
+
+    header > div {
+      @apply mx-auto;
+      max-width: 100ch;
+    }
+
+    header h2 {
+      @apply text-2xl font-bold;
+    }
+  </style>
+</header>
