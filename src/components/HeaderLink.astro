@@ -1,28 +1,28 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import Link from "./Link.astro";
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<"a"> & {
+  iconName: string;
+};
 
-const { href, class: className, ...props } = Astro.props;
-
-const { pathname } = Astro.url;
-const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+const { href, iconName } = Astro.props;
 ---
 
-<a
-  href={href}
-  class:list={[className, { active: isActive }, "hover:opacity-75"]}
-  {...props}
+{
+  /* memo: 画面幅に合わせて、アイコンのみか、アイコンとテキストの表示かどうかを切り替えしている */
+}
+
+<Link
+  {href}
+  icon={{ name: iconName, pos: "left" }}
+  class={"hidden md:inline-block"}
 >
   <slot />
-</a>
-<style>
-  a {
-    display: inline-block;
-    text-decoration: none;
-  }
-  a.active {
-    font-weight: bolder;
-    text-decoration: underline;
-  }
-</style>
+</Link>
+
+<Link
+  {href}
+  icon={{ name: iconName, pos: "left" }}
+  class={"inline-block md:hidden"}
+/>
