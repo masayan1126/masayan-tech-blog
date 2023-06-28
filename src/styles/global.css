@@ -23,7 +23,8 @@
 }
 
 body {
-	font-family: 'Noto Sans JP', sans-serif;
+	/* font-family: 'Noto Sans JP', sans-serif; */
+    font-family: 'Noto Sans JP Variable', sans-serif;
 	text-align: left;
 	background-color: #EBEBEB;
 	word-wrap: break-word;
@@ -34,8 +35,8 @@ body {
 
 main {
     @apply mx-auto;
-    max-width: 55ch;
-    padding: 20px;
+    max-width: 100ch;
+    /* padding: 20px; */
 }
 
 hr {
