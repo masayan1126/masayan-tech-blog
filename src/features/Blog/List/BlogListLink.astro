@@ -1,6 +1,6 @@
 ---
+import Link from "@/components/Link/Link.astro";
 import type { HTMLAttributes } from "astro/types";
-import Link from "../../../components/Link.astro";
 
 type Props = HTMLAttributes<"a"> & {
   iconName?: string;
@@ -8,10 +8,6 @@ type Props = HTMLAttributes<"a"> & {
 
 const { href, iconName = "" } = Astro.props;
 ---
-
-{
-  /* memo: 画面幅に合わせて、アイコンのみか、アイコンとテキストの表示かどうかを切り替えしている */
-}
 
 {
   iconName ? (
