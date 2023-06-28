@@ -1,0 +1,20 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
+import AstroReactSampleComponent from "@/components/AstroReactSampleComponent";
+import HomeLayout from "@/layouts/HomeLayout.astro";
+---
+
+<HomeLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <h1>Welcom to {SITE_TITLE}</h1>
+  <!-- <AstroReactSampleComponent client:idle /> -->
+  <p class="text-red-600">自己紹介、経歴など</p>
+</HomeLayout>
+
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+</style>
