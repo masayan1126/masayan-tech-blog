@@ -10,19 +10,9 @@ type Props = HTMLAttributes<"a"> & {
 };
 
 const { icon, href, class: className, ...props } = Astro.props;
-const { pathname } = Astro.url;
-const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-<a
-  href={href}
-  class:list={[
-    "text-blue-600 dark:text-blue-500 hover:opacity-75",
-    { active: isActive },
-    className,
-  ]}
-  {...props}
->
+<a href={href} class:list={["anchorLink", className]} {...props}>
   {
     icon && icon.pos === "left" && (
       <Icon name={icon.name} class="w-6 inline-block align-middle" />
@@ -38,3 +28,9 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, "");
     )
   }
 </a>
+
+<style>
+  .anchorLink {
+    @apply text-blue-600 dark:text-blue-500 hover:opacity-75;
+  }
+</style>
