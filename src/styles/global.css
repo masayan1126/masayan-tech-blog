@@ -21,6 +21,10 @@ body {
   color: var(--text-color);
 }
 
+header h2 {
+  color: var(--text-color);
+}
+
 /* ダークモード用 */
 .dark body {
   background-color: var(--dark-mode-bg-color);
