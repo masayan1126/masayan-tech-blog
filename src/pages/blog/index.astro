@@ -1,44 +1,9 @@
 ---
-import BaseHead from "@/components/BaseHead.astro";
-import Footer from "@/features/Footer/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
-import FormattedDate from "@/components/FormattedDate.astro";
+import BlogList from "@/features/Blog/List/BlogList.astro";
 import { getBlogs } from "@/libs/microcms";
-import BlogListLink from "@/features/Blog/List/BlogListLink.astro";
-import Header from "@/features/Header/Header.astro";
 
 const res = await getBlogs();
 const posts = res.contents;
-// TODO: レイアウトコンポーネントに共通化する
 ---
 
-<!DOCTYPE html>
-<html lang="ja">
-  <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  <body>
-    <Header />
-    <main class="p-5 lg:p-0">
-      <section>
-        {
-          posts.map((post) => (
-            <div class="grid grid-cols-2 gap-6 mb-6">
-              <BlogListLink href={`/blog/${post.id}/`}>
-                <img src={post.eyecatch.url} alt={post.title} />
-              </BlogListLink>
-              <div>
-                <h2 class="text-sm md:text-2xl"> {post.title}</h2>
-                <div>
-                  <FormattedDate date={new Date(post.publishedAt)} />
-                </div>
-                <BlogListLink href={`/blog/${post.id}/`}>
-                  <span class="text-sm md:text-base">この記事を見る</span>
-                </BlogListLink>
-              </div>
-            </div>
-          ))
-        }
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+<BlogList {posts} />
