@@ -3,6 +3,7 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import BlogListLink from "@/features/Blog/List/BlogListLink.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import type { Blog } from "@/libs/microcms";
+import { Image } from "@astrojs/image/components";
 
 type Props = {
   posts: Blog[];
@@ -20,7 +21,13 @@ const { posts } = Astro.props;
       posts.map((post) => (
         <div class="grid grid-cols-2 gap-6 mb-6">
           <BlogListLink href={`/blog/${post.id}/`}>
-            <img src={post.eyecatch.url} alt={post.title} />
+            <Image
+              src={post.eyecatch.url}
+              width={512}
+              height={288}
+              alt={post.title}
+              format="avif"
+            />
           </BlogListLink>
           <div>
             <h2 class="text-sm md:text-2xl"> {post.title}</h2>

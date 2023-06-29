@@ -2,6 +2,7 @@
 import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/noto-sans-jp";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Image } from "@astrojs/image/components";
 
 type Props = {
   title: string;
@@ -30,7 +31,17 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         )
       }
     </div>
-    {heroImage && <img class="w-full mt-6" src={heroImage} alt="" />}
+    {
+      heroImage && (
+        <Image
+          src={heroImage}
+          width={384}
+          height={216}
+          alt={title}
+          format="avif"
+        />
+      )
+    }
     <slot />
   </article>
 </BaseLayout>
