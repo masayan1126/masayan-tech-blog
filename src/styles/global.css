@@ -4,76 +4,69 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-/* ダークモード用 */
-.dark body {
-    background-color: #252525;
-    color: #EBEBEB;
-}
-
-.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark p{
-    color: #EBEBEB;
-}
-
-.dark hr {
-    border-color: #474747;
-}
-  
-.dark .nav-links a {
-    color: #EBEBEB;
+:root {
+  --text-color: #252525;
+  --dark-mode-text-color: #ebebeb;
+  --bg-color: #ebebeb;
+  --dark-mode-bg-color: #252525;
 }
 
 body {
-    font-family: 'Noto Sans JP Variable', sans-serif;
-	text-align: left;
-	background-color: #EBEBEB;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-    letter-spacing: 0.08em;
-	color: #252525;
+  font-family: "Noto Sans JP Variable", sans-serif;
+  text-align: left;
+  background-color: var(--bg-color);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  letter-spacing: 0.08em;
+  color: var(--text-color);
+}
+
+/* ダークモード用 */
+.dark body {
+  background-color: var(--dark-mode-bg-color);
+  color: var(--dark-mode-text-color);
+}
+
+.dark header h2 {
+  color: var(--dark-mode-text-color);
 }
 
 main {
-    @apply mx-auto;
-    max-width: 100ch;
+  @apply mx-auto p-5 lg:p-0;
+  max-width: 100ch;
 }
-
-hr {
-    border-color: #474747;
-}
-
 
 nav a {
-	margin-right: 10px;
+  margin-right: 10px;
 }
+
 textarea {
-	width: 100%;
-	font-size: 16px;
+  width: 100%;
+  font-size: 16px;
 }
+
 input {
-	font-size: 16px;
+  font-size: 16px;
 }
+
 content {
-	line-height: 1.6;
+  line-height: 1.6;
 }
+
 table {
-	width: 100%;
+  width: 100%;
 }
+
 img {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
 }
+
 code {
-	padding: 2px 5px;
+  padding: 2px 5px;
 }
-pre {
-	padding: 1rem;
-    background-color: #0d1117;
-    overflow-x: auto;
-    color: #EBEBEB;
-    border-radius: 3px;
 
-}
+/* 全て初期値に戻す */
 pre > code {
-	all: unset;
+  all: unset;
 }
-
