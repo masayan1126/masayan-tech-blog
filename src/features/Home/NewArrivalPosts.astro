@@ -1,0 +1,19 @@
+---
+import Link from "@/components/Link/Link.astro";
+import NewArrivalPostSlider from "./NewArrivalPostSlider";
+import { Icon } from "astro-icon";
+---
+
+<div>
+  <h2>
+    <Icon name="ic:round-fiber-new" class="w-6 inline-block mr-2" />最新記事
+  </h2>
+  <div class="">
+    <NewArrivalPostSlider client:load />
+  </div>
+
+  <div class="text-end mt-2">
+    <Link href={"/blog"}>全記事を見る</Link>
+  </div>
+  <!-- <AstroReactSampleComponent client:idle /> -->
+</div>
