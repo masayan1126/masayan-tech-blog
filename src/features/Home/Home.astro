@@ -1,22 +1,49 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/consts";
 import AstroReactSampleComponent from "@/components/AstroReactSampleComponent";
+import Link from "@/components/Link/Link.astro";
+import Icon from "astro-icon";
 import HomeLayout from "@/layouts/HomeLayout.astro";
-import Button from "@/components/Button/Button.astro";
+import NewArrivalPosts from "./NewArrivalPosts.astro";
+import BlogContents from "./BlogContents.astro";
+import Disclaimer from "./Disclaimer.astro";
+import SnsAndMedia from "./SnsAndMedia.astro";
+import JobRequest from "./JobRequest.astro";
 ---
 
 <HomeLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <h1>Welcom to {SITE_TITLE}</h1>
-  <!-- <AstroReactSampleComponent client:idle /> -->
-  <p class="text-red-600">自己紹介、経歴など</p>
-  <Button />
+  <div class="home flex flex-col gap-8">
+    <div class="mb-5">
+      <h1>Welcom to {SITE_TITLE}</h1>
+      <p>
+        ブックマーク/rssリーダーでサブスクライブ推奨
+        <Link href={"/rss.xml"}>
+          <Icon name="mdi:rss" class="w-6 inline-block" />
+        </Link>
+      </p>
+    </div>
+    <NewArrivalPosts />
+    <BlogContents />
+    <JobRequest />
+    <SnsAndMedia />
+    <Disclaimer />
+  </div>
 </HomeLayout>
 
-<style>
-  .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-    grid-gap: 10px;
+<style is:global>
+  h1 {
+    @apply text-4xl font-bold mb-4;
+  }
+
+  .home h1::before {
+    content: "🎉";
+  }
+
+  .home h2 {
+    @apply text-2xl font-bold mb-2;
+  }
+
+  .home ul {
+    @apply list-disc px-8;
   }
 </style>
