@@ -1,3 +1,4 @@
+import type { BlogCategory } from "@/libs/microcms/blogCategory";
 import { createClient, MicroCMSQueries } from "microcms-js-sdk";
 const client = createClient({
   serviceDomain: import.meta.env.MICRO_CMS_SERVICE_DOMAIN,
@@ -20,7 +21,9 @@ export type Blog = {
   content: string;
   description: string;
   eyecatch: BlogDetailEyecatch;
+  category: BlogCategory[];
 };
+
 export type BlogResponse = {
   totalCount: number;
   offset: number;
