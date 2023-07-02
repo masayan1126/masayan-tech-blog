@@ -72,21 +72,19 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     @apply mt-2;
   }
 
-  article blockquote {
-    border: 1px solid #474747;
-    padding: 16px;
-    font-style: italic;
-  }
-
-  article blockquote p {
-    @apply m-0;
-  }
-
   article img {
     border-radius: 5px;
   }
 
   article ul {
     @apply list-disc px-8 py-4;
+  }
+
+  article ol {
+    @apply list-decimal px-8 py-4;
+  }
+
+  article table p {
+    @apply m-0;
   }
 </style>
