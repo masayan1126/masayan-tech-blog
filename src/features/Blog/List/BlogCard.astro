@@ -23,11 +23,11 @@ const { post } = Astro.props;
     </div>
   </BlogListLink>
   <div class="card__textbox">
-    <div class="card__titletext">
+    <!-- <div class="card__titletext">
       <h2 class="text-sm md:text-2xl">{post.title}</h2>
-    </div>
+    </div> -->
     <div class="card__overviewtext"></div>
-    <div>
+    <div class="text-sm">
       <FormattedDate date={new Date(post.publishedAt)} />
     </div>
     <div class="text-sm">タグ、閲覧数など表示</div>
