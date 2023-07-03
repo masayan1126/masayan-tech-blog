@@ -1,9 +1,6 @@
 import type { BlogCategory } from "@/libs/microcms/blogCategory";
-import { createClient, MicroCMSQueries } from "microcms-js-sdk";
-const client = createClient({
-  serviceDomain: import.meta.env.MICRO_CMS_SERVICE_DOMAIN,
-  apiKey: import.meta.env.MICRO_CMS_API_KEY,
-});
+import { client } from "@/libs/microcms/config";
+import type { MicroCMSQueries } from "microcms-js-sdk";
 
 type BlogDetailEyecatch = {
   url: string;
