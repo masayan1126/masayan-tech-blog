@@ -15,7 +15,7 @@ const { posts } = Astro.props;
   description={"プログ記事一覧ページです"}
 >
   <section>
-    <div class="grid grid-cols-2 gap-6 mb-6 lg:grid-cols-3">
+    <div class="gap-6 mb-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
       {posts.map((post) => <BlogCard post={post} />)}
     </div>
   </section>

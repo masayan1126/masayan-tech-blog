@@ -12,56 +12,34 @@ const { post } = Astro.props;
 
 <div class="card card-skin">
   <BlogListLink href={`/blog/${post.id}/`}>
-    <div class="card__imgframe">
-      <Image
-        src={post.eyecatch.url}
-        width={512}
-        height={288}
-        alt={post.title}
-        format="avif"
-      />
+    <Image
+      src={post.eyecatch.url}
+      width={512}
+      height={288}
+      alt={post.title}
+      format="avif"
+    />
+
+    <div class="card__textbox">
+      <div class="text-sm">タグ、閲覧数など表示</div>
+      <div class="text-sm">
+        <FormattedDate date={new Date(post.publishedAt)} />
+      </div>
     </div>
   </BlogListLink>
-  <div class="card__textbox">
-    <!-- <div class="card__titletext">
-      <h2 class="text-sm md:text-2xl">{post.title}</h2>
-    </div> -->
-    <div class="card__overviewtext"></div>
-    <div class="text-sm">
-      <FormattedDate date={new Date(post.publishedAt)} />
-    </div>
-    <div class="text-sm">タグ、閲覧数など表示</div>
-    <BlogListLink href={`/blog/${post.id}/`}>
-      <span class="text-sm md:text-base">この記事を見る</span>
-    </BlogListLink>
-  </div>
 </div>
 
 <style>
   .card {
     height: auto;
   }
-  .card__imgframe {
-    width: 100%;
-    height: auto;
-  }
+
   .card__textbox {
     width: 100%;
     height: auto;
     padding: 20px 18px;
     box-sizing: border-box;
-  }
-  .card__textbox > * + * {
-    margin-top: 10px;
-  }
-  .card__titletext {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 125%;
-  }
-  .card__overviewtext {
-    font-size: 12px;
-    line-height: 150%;
+    color: var(--dark-mode-text-color);
   }
 
   .card-skin {
