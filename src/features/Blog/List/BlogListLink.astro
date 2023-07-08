@@ -11,11 +11,11 @@ const { href, iconName = "" } = Astro.props;
 
 {
   iconName ? (
-    <Link {href} icon={{ name: iconName, pos: "left" }}>
+    <Link {href} color="white" icon={{ name: iconName, pos: "left" }}>
       <slot />
     </Link>
   ) : (
-    <Link {href}>
+    <Link {href} color="white">
       <slot />
     </Link>
   )

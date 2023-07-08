@@ -3,16 +3,23 @@ import type { HTMLAttributes } from "astro/types";
 import Icon from "astro-icon";
 
 type Props = HTMLAttributes<"a"> & {
+  color?: "white" | "blue";
   icon?: {
     name: string;
     pos: "left" | "right";
   };
 };
 
-const { icon, href, class: className, ...props } = Astro.props;
+const { color = "blue", icon, href, class: className, ...props } = Astro.props;
+const colorClass = color === "blue" ? "blueLink" : "whiteLink";
+console.log(colorClass);
 ---
 
-<a href={href} class:list={["anchorLink", className]} {...props}>
+<a
+  href={href}
+  class:list={[colorClass, className, "hover:opacity-75"]}
+  {...props}
+>
   {
     icon && icon.pos === "left" && (
       <Icon name={icon.name} class="w-6 inline-block align-middle" />
@@ -30,7 +37,11 @@ const { icon, href, class: className, ...props } = Astro.props;
 </a>
 
 <style>
-  .anchorLink {
-    @apply text-blue-600 dark:text-blue-500 hover:opacity-75;
+  .whiteLink {
+    color: var(--text-color);
+  }
+
+  .blueLink {
+    @apply text-blue-600;
   }
 </style>
