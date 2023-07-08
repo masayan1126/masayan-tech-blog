@@ -12,7 +12,6 @@ type Props = HTMLAttributes<"a"> & {
 
 const { color = "blue", icon, href, class: className, ...props } = Astro.props;
 const colorClass = color === "blue" ? "blueLink" : "whiteLink";
-console.log(colorClass);
 ---
 
 <a

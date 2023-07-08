@@ -10,13 +10,8 @@ type Props = {
 const { posts } = Astro.props;
 ---
 
-<BlogListLayout
-  title={"ブログ記事一覧"}
-  description={"プログ記事一覧ページです"}
->
-  <section>
-    <div class="gap-6 mb-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post) => <BlogCard post={post} />)}
-    </div>
-  </section>
-</BlogListLayout>
+<section class="mb-20">
+  <div class="gap-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
+    {posts.map((post) => <BlogCard post={post} />)}
+  </div>
+</section>

@@ -1,9 +1,0 @@
----
-import BlogList from "@/features/Blog/List/BlogList.astro";
-import { getBlogs } from "@/libs/microcms/blog";
-
-const res = await getBlogs();
-const posts = res.contents;
----
-
-<BlogList {posts} />
