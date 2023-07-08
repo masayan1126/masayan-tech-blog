@@ -5,11 +5,9 @@
  */
 
 :root {
-  --text-color: #252525;
-  --dark-mode-text-color: #ebebeb;
-  --dark-mode-border-color: #919191;
-  --bg-color: #ebebeb;
-  --dark-mode-bg-color: #252525;
+  --text-color: #ebebeb;
+  --border-color: #919191;
+  --bg-color: #252525;
 }
 
 body {
@@ -24,16 +22,6 @@ body {
 
 header h2 {
   color: var(--text-color);
-}
-
-/* ダークモード用 */
-.dark body {
-  background-color: var(--dark-mode-bg-color);
-  color: var(--dark-mode-text-color);
-}
-
-.dark header h2 {
-  color: var(--dark-mode-text-color);
 }
 
 main {
@@ -73,12 +61,6 @@ th {
   padding: 10px;
 }
 
-.dark td,
-.dark th {
-  border: 1px solid var(--dark-mode-border-color);
-  padding: 10px;
-}
-
 img {
   max-width: 100%;
   height: auto;
@@ -97,10 +79,6 @@ blockquote {
   border: 1px solid var(--text-color);
   padding: 16px;
   font-style: italic;
-}
-
-.dark blockquote {
-  border: 1px solid var(--dark-mode-border-color);
 }
 
 blockquote p {

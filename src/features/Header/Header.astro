@@ -1,19 +1,18 @@
 ---
-import HeaderLink from "../Header/HeaderLink.astro";
+import HeaderLink from "@/features/Header/HeaderLink.astro";
 import { SITE_TITLE } from "../../consts";
 import Link from "@/components/Link/Link.astro";
-import ThemeIcon from "@/features/Header/ThemeIcon.astro";
 ---
 
 <header class="shadow-md px-5 py-3 md:p-5">
-  <div class="grid grid-cols-2 items-center">
+  <div class="grid grid-cols-2 justify-between">
     <Link href="/">
       <h2 class="text-base md:text-2xl">
         {SITE_TITLE}
       </h2>
     </Link>
 
-    <nav class="grid grid-cols-4 justify-between items-center">
+    <nav class="grid grid-cols-3 items-center">
       <div class="col-span-3 text-right">
         <HeaderLink href="/" iconName="carbon:home">Home</HeaderLink>
         <HeaderLink href="/blog" iconName="jam:blogger-square">Blog</HeaderLink>
@@ -27,7 +26,6 @@ import ThemeIcon from "@/features/Header/ThemeIcon.astro";
           About
         </HeaderLink>
       </div>
-      <ThemeIcon class="mr-auto col-span-1" />
     </nav>
   </div>
   <style>
