@@ -27,7 +27,8 @@ header h2 {
 
 main {
   @apply mx-auto p-5 lg:pt-3 lg:px-0;
-  max-width: 100ch;
+  width: 90%;
+  max-width: 1100px;
 }
 
 nav a {
