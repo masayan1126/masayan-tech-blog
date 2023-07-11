@@ -3,6 +3,8 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/noto-sans-jp";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from "@astrojs/image/components";
+import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup.astro";
+import type { BlogCategory } from "@/libs/microcms/blogCategory";
 
 type Props = {
   title: string;
@@ -10,42 +12,79 @@ type Props = {
   pubDate: Date;
   updatedDate?: Date;
   heroImage?: string;
+  categories: BlogCategory[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, categories } =
+  Astro.props;
 ---
 
 <BaseLayout {title} {description}>
-  <article>
-    <h1 class="title text-3xl font-bold mb-2 inline-block">
-      {title}
-    </h1>
-    <div>
-      <FormattedDate date={pubDate} />
+  <div class="blog-detail-wrapper">
+    <div class="blog-detail-header">
+      <h1 class="title text-3xl font-bold mb-2 inline-block">
+        {title}
+      </h1>
 
-      {
-        updatedDate && (
-          <div class="last-updated-on">
-            Last updated on <FormattedDate date={updatedDate} />
-          </div>
-        )
-      }
+      <div>
+        <FormattedDate date={pubDate} />
+
+        {
+          updatedDate && (
+            <div class="last-updated-on">
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+      </div>
     </div>
-    {
-      heroImage && (
-        <Image
-          src={heroImage}
-          width={512}
-          height={288}
-          alt={title}
-          format="avif"
-        />
-      )
-    }
-    <slot />
-  </article>
+    <div class="main">
+      <article>
+        {
+          heroImage && (
+            <Image
+              class={"w-full"}
+              src={heroImage}
+              width={512}
+              height={288}
+              alt={title}
+              format="avif"
+            />
+          )
+        }
+        <slot />
+      </article>
+    </div>
+    <aside>
+      <div class="grid gap-10">
+        <div>
+          <p class="text-lg font-bold mb-2">カテゴリ</p>
+          <div class="flex flex-wrap gap-2">
+            <BlogCategoryBadgeGroup
+              categories={categories.map(({ id, name }) => {
+                return {
+                  id,
+                  name,
+                };
+              })}
+            />
+          </div>
+        </div>
+        <div>
+          <p class="text-lg font-bold mb-2">関連記事</p>
+          <div class="grid grid-flow-col lg:grid-flow-row gap-6">
+            <img src="https://dummyimage.com/300x300.jpg" alt="" />
+            <img src="https://dummyimage.com/300x300.jpg" alt="" />
+            <img src="https://dummyimage.com/300x300.jpg" alt="" />
+            <img src="https://dummyimage.com/300x300.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
 </BaseLayout>
 
+<!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
 <style is:global>
   article h1::before {
     content: "🔥";
@@ -93,6 +132,50 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   }
 
   article pre {
-    @apply mt-4 mb-1;
+    @apply mt-4 mb-10;
+  }
+</style>
+
+<style>
+  .blog-detail-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template:
+      "blog-detail-header blog-detail-header blog-detail-header" 50px
+      "center center right " 1fr
+      "footer footer footer" 100px
+      / auto 1fr 250px;
+    grid-gap: 50px;
+  }
+
+  .blog-detail-header {
+    grid-area: blog-detail-header;
+  }
+
+  .main {
+    grid-area: center;
+  }
+
+  nav {
+    grid-area: left;
+  }
+
+  aside {
+    grid-area: right;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-detail-wrapper {
+      grid-template:
+        "blog-detail-header blog-detail-header blog-detail-header" 70px
+        "center center center " 1fr
+        "right  right  right " 370px
+        / 1fr;
+    }
   }
 </style>
