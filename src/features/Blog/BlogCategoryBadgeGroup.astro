@@ -1,0 +1,12 @@
+---
+import BadgeGroup from "@/components/Badge/BadgeGroup";
+import type { BadgeItemProp } from "@/types/Badge/badgeProps";
+
+type Props = {
+  categories: BadgeItemProp[];
+};
+
+const { categories } = Astro.props;
+---
+
+<BadgeGroup client:load items={categories} />
