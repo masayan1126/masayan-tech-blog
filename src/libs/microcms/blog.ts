@@ -1,3 +1,4 @@
+import { FETCH_POSTS_MAX_LIMIT } from "@/consts";
 import type { BlogCategory } from "@/libs/microcms/blogCategory";
 import { client } from "@/libs/microcms/config";
 import type { MicroCMSQueries } from "microcms-js-sdk";
@@ -28,7 +29,9 @@ export type BlogResponse = {
   contents: Blog[];
 };
 
-export const getBlogs = async (queries?: MicroCMSQueries) => {
+export const getBlogs = async (
+  queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
+) => {
   return await client.get<BlogResponse>({ endpoint: "blogs", queries });
 };
 export const getBlogDetail = async (
