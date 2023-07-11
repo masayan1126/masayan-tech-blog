@@ -1,11 +1,11 @@
 ---
 import HeaderLink from "@/features/Header/HeaderLink.astro";
-import { SITE_TITLE } from "../../consts";
 import Link from "@/components/Link/Link.astro";
+import { SITE_TITLE } from "@/consts";
 ---
 
-<header class="shadow-md px-5 py-3 md:p-5">
-  <div class="grid grid-cols-2 justify-between">
+<header class="shadow-md mx-auto p-5 lg:pt-3 lg:px-0">
+  <div class="flex justify-between">
     <Link href="/">
       <h2 class="text-base md:text-2xl">
         {SITE_TITLE}
@@ -37,7 +37,8 @@ import Link from "@/components/Link/Link.astro";
 
     header > div {
       @apply mx-auto;
-      max-width: 100ch;
+      width: 90%;
+      max-width: 1100px;
     }
 
     header h2 {
