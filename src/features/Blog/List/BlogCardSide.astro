@@ -1,0 +1,40 @@
+---
+import type { Blog } from "@/libs/microcms/blog";
+import FormattedDate from "@/components/FormattedDate.astro";
+import BlogListLink from "@/features/Blog/List/BlogListLink.astro";
+import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup.astro";
+
+type Props = {
+  post: Blog;
+};
+
+const { post } = Astro.props;
+---
+
+<div class="card card-skin">
+  <BlogListLink href={`/blog/${post.id}/`}>
+    <div class="">
+      <div class="">
+        <h2>{post.title}</h2>
+        <div class="text-sm">閲覧数: 20</div>
+        <div class="text-sm">
+          <FormattedDate date={new Date(post.publishedAt)} />
+        </div>
+      </div>
+      <BlogCategoryBadgeGroup
+        categories={post.category.map((c) => {
+          return {
+            id: c.id,
+            name: c.name,
+          };
+        })}
+      />
+    </div>
+  </BlogListLink>
+</div>
+
+<style>
+  h2 {
+    @apply text-xl font-bold mt-8 mb-2;
+  }
+</style>

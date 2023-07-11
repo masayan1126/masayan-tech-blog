@@ -17,11 +17,11 @@ type Props = {
 };
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const res = await getBlogs({ limit: 200 });
+  const res = await getBlogs();
   const posts = res.contents;
 
   return paginate(posts, {
-    pageSize: 9,
+    pageSize: 10,
   });
 }
 

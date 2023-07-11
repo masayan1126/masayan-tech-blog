@@ -1,7 +1,6 @@
 ---
-import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import type { Blog } from "@/libs/microcms/blog";
-import BlogCard from "@/features/Blog/List/BlogCard.astro";
+import BlogCardSide from "./BlogCardSide.astro";
 
 type Props = {
   posts: Blog[];
@@ -11,7 +10,7 @@ const { posts } = Astro.props;
 ---
 
 <section class="mb-20">
-  <div class="gap-6 grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3">
-    {posts.map((post) => <BlogCard post={post} />)}
+  <div class="gap-6 grid grid-cols-1 lg:grid-cols-2">
+    {posts.map((post) => <BlogCardSide post={post} />)}
   </div>
 </section>
