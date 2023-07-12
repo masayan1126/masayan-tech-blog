@@ -2,6 +2,15 @@
 import HeaderLink from "@/features/Header/HeaderLink.astro";
 import Link from "@/components/Link/Link.astro";
 import { SITE_TITLE } from "@/consts";
+import { headerLinkOf } from "./headerLinkMapper";
+
+interface Props {
+  context: string;
+}
+
+const { context } = Astro.props;
+
+const headerLinks = headerLinkOf(context);
 ---
 
 <header class="shadow-md mx-auto p-5 lg:pt-3 lg:px-0">
@@ -14,19 +23,13 @@ import { SITE_TITLE } from "@/consts";
 
     <nav class="grid grid-cols-3 items-center">
       <div class="col-span-3 text-right">
-        <HeaderLink href="/" iconName="carbon:home">Home</HeaderLink>
-        <HeaderLink href="/blogs" iconName="jam:blogger-square">
-          Blog
-        </HeaderLink>
-        <!-- <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
-            Twitter
-          </HeaderLink>
-          <HeaderLink href="https://github.com/withastro/astro" target="_blank">
-            GitHub
-          </HeaderLink> -->
-        <HeaderLink href="/about" iconName="carbon:user-profile-alt">
-          About
-        </HeaderLink>
+        {
+          headerLinks.map((link) => (
+            <HeaderLink href={link.href} iconName={link.iconName}>
+              {link.text}
+            </HeaderLink>
+          ))
+        }
       </div>
     </nav>
   </div>
