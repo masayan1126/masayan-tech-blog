@@ -5,10 +5,10 @@
  */
 
 :root {
-  --text-color: #ebebeb;
-  --border-color: #919191;
+  --text-color: #d1cfcf;
+  --border-color: #3e3e3e;
   --bg-color: #252525;
-  --bg-color-thick: #1a1919;
+  --bg-color-thick: #252525;
 }
 
 body {
@@ -54,13 +54,18 @@ table {
 
 table {
   border-collapse: collapse;
-  margin: 0 auto;
+  margin: 20px auto;
+  color: var(--text-color);
 }
 
 td,
 th {
-  border: 1px solid var(--text-color);
+  border: 1px solid var(--border-color);
   padding: 10px;
+}
+
+article table p {
+  @apply m-0;
 }
 
 img {
