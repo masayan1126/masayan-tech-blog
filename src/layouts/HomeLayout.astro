@@ -9,6 +9,6 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} context={"home"}>
   <slot />
 </BaseLayout>
