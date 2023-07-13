@@ -9,9 +9,20 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://thriving-marzipan-3293ea.netlify.app",
-  integrations: [mdx(), sitemap(), react(), tailwind(), partytown(), image()],
+  site: "https://masayan-tech-blog.vercel.app",
+  integrations: [
+    mdx(),
+    sitemap(),
+    react(),
+    tailwind(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+    image(),
+  ],
   server: {
-    port: 53000
-  }
+    port: 53000,
+  },
 });
