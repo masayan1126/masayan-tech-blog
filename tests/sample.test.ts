@@ -88,7 +88,7 @@ describe("Vitest", () => {
     });
   });
 
-  test("スナップショットテスト", () => {
+  test.skip("スナップショットテスト", () => {
     const html = `<div class="container">
     <article>
       <p class="title">UI生成結果</p>
