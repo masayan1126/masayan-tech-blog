@@ -1,4 +1,5 @@
 ---
+import buildPaginationItem from "@/features/Pagination/buildPaginationItem";
 type Props = {
   page: {
     currentPage: number;
@@ -10,16 +11,19 @@ type Props = {
 };
 
 const { page } = Astro.props;
+const { categoryId } = Astro.params;
+
+const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
 ---
 
-<ul class="Pagination">
+<ul class="pagination">
   {
     page.url.prev && (
-      <li class="Pagination-Item">
-        <a class="Pagination-Item-Link" href={page.url.prev}>
+      <li class="pagination-item">
+        <a class="pagination-item-link" href={page.url.prev}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="Pagination-Item-Link-Icon"
+            class="pagination-item-link-icon"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -37,29 +41,47 @@ const { page } = Astro.props;
   }
 
   {
-    [...Array(Math.ceil(page.total / page.size))]
-      .map((_, i) => i + 1)
-      .map((_num) => (
-        <li class="Pagination-Item">
-          <a
-            class={`Pagination-Item-Link ${
-              page.currentPage === _num ? "isActive" : ""
-            }`}
-            href={_num === 1 ? `/blogs` : `/blogs/${_num}`}
-          >
-            <span>{_num}</span>
-          </a>
-        </li>
-      ))
+    // カテゴリーの記事一覧ページの場合はカテゴリーIDを付与、通常の記事一覧の場合は付与しない
+    page.url.current.includes("category")
+      ? pagination.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  }`}
+                  href={`/category/${categoryId}/${item}`}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
+      : pagination.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  }`}
+                  href={Number(item) === 1 ? `/blogs` : `/blogs/${item}`}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
   }
 
   {
     page.url.next && (
-      <li class="Pagination-Item">
-        <a class="Pagination-Item-Link" href={page.url.next}>
+      <li class="pagination-item">
+        <a class="pagination-item-link" href={page.url.next}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="Pagination-Item-Link-Icon"
+            class="pagination-item-link-icon"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -78,14 +100,13 @@ const { page } = Astro.props;
 </ul>
 
 <style>
-  .Pagination {
+  .pagination {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
-    max-width: 310px;
-    overflow: hidden;
   }
-  .Pagination-Item-Link {
+  .pagination-item-link {
     width: 45px;
     height: 45px;
     display: flex;
@@ -100,19 +121,19 @@ const { page } = Astro.props;
     font-weight: bold;
     transition: all 0.15s linear;
   }
-  .Pagination-Item-Link-Icon {
+  .pagination-item-link-icon {
     width: 20px;
   }
-  .Pagination-Item-Link.isActive {
+  .pagination-item-link.isActive {
     background: var(--bg-color-thick);
     color: var(--text-color);
     pointer-events: none;
   }
-  .Pagination-Item-Link:not(.isActive):hover {
+  .pagination-item-link:not(.isActive):hover {
     background: var(--bg-color-thick);
     color: var(--text-color);
   }
-  .Pagination > * + * {
+  .pagination > * + * {
     margin-left: 8px;
   }
 </style>
