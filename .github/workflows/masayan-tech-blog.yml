@@ -1,1 +1,37 @@
+name: masayan-tech-blog-ci
 
+on:
+  pull_request:
+    branches: [ "develop", "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - name: Check node and npm info
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      id: node_modules_cache_id
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-npm-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+    - name: Show root dir
+      run: ls -la
+    - name: Install npm package
+      if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
+      run: npm install
+    - name: Run test
+      run: npx vitest run
