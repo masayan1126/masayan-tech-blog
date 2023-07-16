@@ -61,6 +61,7 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
           <p class="text-lg font-bold mb-2">カテゴリ</p>
           <div class="flex flex-wrap gap-2">
             <BlogCategoryBadgeGroup
+              clickable={true}
               categories={categories.map(({ id, name }) => {
                 return {
                   id,

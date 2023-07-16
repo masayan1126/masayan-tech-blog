@@ -22,6 +22,7 @@ const { post } = Astro.props;
         </div>
       </div>
       <BlogCategoryBadgeGroup
+        clickable={true}
         categories={post.category.map((c) => {
           return {
             id: c.id,

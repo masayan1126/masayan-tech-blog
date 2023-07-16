@@ -1,0 +1,46 @@
+---
+import { Blog, getBlogs, getBlogsByCategory } from "@/libs/microcms/blog";
+import type { GetStaticPathsOptions } from "astro";
+import BlogList from "@/features/Blog/List/BlogList.astro";
+import BlogListLayout from "@/layouts/BlogListLayout.astro";
+import Pagination from "@/features/Pagination/Pagination.astro";
+import { getCategories } from "@/libs/microcms/blogCategory";
+
+type Props = {
+  page: {
+    data: Blog[];
+    currentPage: number;
+    lastPage: number;
+    size: number;
+    total: number;
+    url: { current: string; next?: string; prev?: string };
+  };
+};
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const categoryRes = await getCategories();
+  const categories = categoryRes.contents;
+
+  const postRes = await getBlogs();
+  const posts = postRes.contents;
+
+  return categories.map((c) => {
+    const filteredPosts = posts.filter((post) =>
+      post.category.map((category) => category.id).includes(c.id)
+    );
+
+    return paginate(filteredPosts, {
+      params: { categoryId: c.id },
+      pageSize: 10,
+    });
+  });
+}
+
+const { page } = Astro.props;
+const posts = page.data as Blog[];
+---
+
+<BlogListLayout>
+  <BlogList {posts} />
+  <Pagination page={page} />
+</BlogListLayout>
