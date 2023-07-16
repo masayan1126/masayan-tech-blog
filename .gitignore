@@ -19,3 +19,8 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# vietest
+tests/__snapshots__
+coverage
+html
