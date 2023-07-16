@@ -9,5 +9,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "importsNotUsedAsValues": "error",
+    "types": [
+        "vitest/globals" // 追加
+    ]
   }
 }
