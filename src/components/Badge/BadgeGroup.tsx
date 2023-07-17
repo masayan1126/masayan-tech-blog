@@ -11,7 +11,7 @@ export default function BadgeGroup({ items, clickable }: Props) {
     return items.map((item) => <Badge item={item} key={item.id} />);
 
   return items.map((item) => (
-    <a href={`/category/${item.id}/1`}>
+    <a key={item.id} href={`/category/${item.id}/1`}>
       <Badge item={item} key={item.id} />
     </a>
   ));
