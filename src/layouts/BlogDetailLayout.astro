@@ -8,6 +8,7 @@ import type { BlogCategory } from "@/libs/microcms/blogCategory";
 import { getBlogsByCategory } from "@/libs/microcms/blog";
 import Link from "@/components/Link/Link.astro";
 import buildFilter from "@/libs/microcms/buildFilter";
+import { Icon } from "astro-icon";
 
 type Props = {
   title: string;
@@ -20,6 +21,8 @@ type Props = {
 
 const { title, description, pubDate, updatedDate, heroImage, categories } =
   Astro.props;
+
+const { slug } = Astro.params;
 
 const catetoryIds = categories.map(({ id }) => id);
 const filter = buildFilter("categoryId", catetoryIds);
@@ -80,6 +83,24 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
               })}
             />
           </div>
+        </div>
+        <div>
+          <p class="aside-title">この記事をシェアする</p>
+          <Link
+            href={`http://twitter.com/share?url=https://masayan-tech-blog.vercel.app/blog/${slug}&via=masayanishigaki&text=${title}`}
+            target="_blank"
+          >
+            <Icon name="logos:twitter" class="w-8 inline-block mr-2" />
+          </Link>
+          <Link
+            href={`http://b.hatena.ne.jp/add?mode=confirm&url=https://masayan-tech-blog.vercel.app/blog/${slug}&title=${title}`}
+            target="_blank"
+          >
+            <Icon
+              name="simple-icons:hatenabookmark"
+              class="w-8 inline-block mr-2"
+            />
+          </Link>
         </div>
         <div>
           <p class="aside-title">関連記事</p>
