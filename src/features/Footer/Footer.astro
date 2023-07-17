@@ -1,9 +1,42 @@
 ---
+import Link from "@/components/Link/Link.astro";
+import { Icon } from "astro-icon";
 const today = new Date();
 ---
 
-<footer>
-  &copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+<footer class="flex flex-col gap-2 mx-auto max-w-3xl">
+  <div>
+    Copyright © {today.getFullYear()} Masayan tech blog. All Rights Reserved.
+  </div>
+  <div class="flex w-30 mx-auto items-center gap-2">
+    <Link href={"/disclaimer"} color="white">
+      <p class="text-xs">免責事項</p>
+    </Link>
+    <p class="pb-1">
+      <Link href={"/rss.xml"} color="white">
+        <Icon name="mdi:rss" class="w-6 inline-block" />
+      </Link>
+    </p>
+
+    <p class="pb-1">
+      <Link
+        href={"https://github.com/masayan1126"}
+        color="white"
+        isBrank={true}
+      >
+        <Icon name="logos:twitter" class="w-6 inline-block" />
+      </Link>
+    </p>
+    <p class="pb-1">
+      <Link
+        href={"https://github.com/masayan1126"}
+        color="white"
+        isBrank={true}
+      >
+        <Icon name="grommet-icons:github" class="w-6 inline-block" />
+      </Link>
+    </p>
+  </div>
 </footer>
 <style>
   footer {
