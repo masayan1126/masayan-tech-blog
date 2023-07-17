@@ -8,13 +8,23 @@ type Props = HTMLAttributes<"a"> & {
     name: string;
     pos: "left" | "right";
   };
+  isBrank?: boolean;
 };
 
-const { color = "blue", icon, href, class: className, ...props } = Astro.props;
+const {
+  color = "blue",
+  icon,
+  href,
+  class: className,
+  isBrank = false,
+  ...props
+} = Astro.props;
 const colorClass = color === "blue" ? "blueLink" : "whiteLink";
 ---
 
 <a
+  target={isBrank ? "_blank" : "_self"}
+  rel={isBrank ? "noopener noreferrer" : ""}
   href={href}
   class:list={[colorClass, className, "hover:opacity-75"]}
   {...props}
