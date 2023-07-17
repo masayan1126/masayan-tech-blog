@@ -22,7 +22,7 @@ export default function (
     }
 
     const diff = Math.abs(currentPage - num);
-    if (diff > 3) return "";
+    if (diff > 1) return "";
 
     // 現在のページから前後3ページ以内は表示する
     return String(num);
