@@ -5,6 +5,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Image } from "@astrojs/image/components";
 import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup.astro";
 import type { BlogCategory } from "@/libs/microcms/blogCategory";
+import { getBlogsByCategory } from "@/libs/microcms/blog";
+import Link from "@/components/Link/Link.astro";
+import buildFilter from "@/libs/microcms/buildFilter";
 
 type Props = {
   title: string;
@@ -17,6 +20,13 @@ type Props = {
 
 const { title, description, pubDate, updatedDate, heroImage, categories } =
   Astro.props;
+
+const catetoryIds = categories.map(({ id }) => id);
+const filter = buildFilter("categoryId", catetoryIds);
+const relatedPostsRes = await getBlogsByCategory(filter);
+const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
+  return Math.random() - 0.5;
+});
 ---
 
 <BaseLayout {title} {description} context={"blog"}>
@@ -58,7 +68,7 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
     <aside>
       <div class="grid gap-10">
         <div>
-          <p class="text-lg font-bold mb-2">カテゴリ</p>
+          <p class="aside-title">カテゴリ</p>
           <div class="flex flex-wrap gap-2">
             <BlogCategoryBadgeGroup
               clickable={true}
@@ -72,12 +82,23 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
           </div>
         </div>
         <div>
-          <p class="text-lg font-bold mb-2">関連記事</p>
-          <div class="grid grid-flow-col lg:grid-flow-row gap-6">
-            <img src="https://dummyimage.com/300x300.jpg" alt="" />
-            <img src="https://dummyimage.com/300x300.jpg" alt="" />
-            <img src="https://dummyimage.com/300x300.jpg" alt="" />
-            <img src="https://dummyimage.com/300x300.jpg" alt="" />
+          <p class="aside-title">関連記事</p>
+          <div class="gap-10 grid grid-cols-1">
+            {
+              relatedRandomPosts.map(
+                (post, i) =>
+                  i < 16 && (
+                    <div>
+                      <Link href={`/blog/${post.id}`} color="white">
+                        {post.title}
+                      </Link>
+                      <p class="mt-2 text-sm">
+                        <FormattedDate date={new Date(post.publishedAt)} />
+                      </p>
+                    </div>
+                  )
+              )
+            }
           </div>
         </div>
       </div>
@@ -148,7 +169,7 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
       "center center right " 1fr
       "footer footer footer" 100px
       / auto 1fr 250px;
-    grid-gap: 50px;
+    grid-gap: 10px 100px;
   }
 
   .blog-detail-header {
@@ -167,6 +188,12 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
     grid-area: right;
   }
 
+  .aside-title {
+    @apply text-xl font-bold mb-2;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+
   .footer {
     grid-area: footer;
   }
@@ -176,8 +203,9 @@ const { title, description, pubDate, updatedDate, heroImage, categories } =
       grid-template:
         "blog-detail-header blog-detail-header blog-detail-header" 70px
         "center center center " 1fr
-        "right  right  right " 370px
+        "right  right  right " auto
         / 1fr;
+      grid-gap: 70px 100px;
     }
   }
 </style>

@@ -34,14 +34,9 @@ export const getBlogs = async (
 ) => {
   return await client.get<BlogResponse>({ endpoint: "blogs", queries });
 };
-export const getBlogsByCategory = async (
-  categoryId: string,
-  queries: MicroCMSQueries = {
-    limit: FETCH_POSTS_MAX_LIMIT,
-    filters: `category[contains]${categoryId}`,
-  }
-) => {
-  return await client.getList<BlogResponse>({ endpoint: "blogs", queries });
+export const getBlogsByCategory = async (filters: string) => {
+  const queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT, filters };
+  return await client.getList<Blog>({ endpoint: "blogs", queries });
 };
 
 export const getBlogDetail = async (
