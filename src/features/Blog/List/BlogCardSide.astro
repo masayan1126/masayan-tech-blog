@@ -1,8 +1,9 @@
 ---
 import type { Blog } from "@/libs/microcms/blog";
 import FormattedDate from "@/components/FormattedDate.astro";
-import BlogListLink from "@/features/Blog/List/BlogListLink.astro";
-import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup.astro";
+
+import { BlogListLink } from "./BlogListLink";
+import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup";
 
 type Props = {
   post: Blog;
