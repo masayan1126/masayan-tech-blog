@@ -4,7 +4,7 @@ import { Icon } from "astro-icon";
 const today = new Date();
 ---
 
-<footer class="flex flex-col gap-2 mx-auto max-w-3xl">
+<footer class="flex flex-col gap-2">
   <div>
     Copyright © {today.getFullYear()} Masayan tech blog. All Rights Reserved.
   </div>
@@ -40,7 +40,8 @@ const today = new Date();
 </footer>
 <style>
   footer {
-    padding: 70px 25px;
+    padding: 50px 25px;
     text-align: center;
+    background-color: #181818;
   }
 </style>
