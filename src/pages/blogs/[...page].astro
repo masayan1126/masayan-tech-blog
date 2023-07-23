@@ -1,9 +1,9 @@
 ---
 import { Blog, getBlogs } from "@/libs/microcms/blog";
 import type { GetStaticPathsOptions } from "astro";
-import BlogList from "@/features/Blog/List/BlogList.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
+import { BlogList } from "@/features/Blog/List/BlogList";
 
 type Props = {
   page: {
@@ -30,6 +30,6 @@ const posts = page.data as Blog[];
 ---
 
 <BlogListLayout>
-  <BlogList {posts} />
+  <BlogList client:load {posts} />
   <Pagination page={page} />
 </BlogListLayout>

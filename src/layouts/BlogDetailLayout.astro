@@ -2,13 +2,13 @@
 import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/noto-sans-jp";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Image } from "@astrojs/image/components";
-import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup.astro";
+import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
 import type { BlogCategory } from "@/libs/microcms/blogCategory";
 import { getBlogsByCategory } from "@/libs/microcms/blog";
 import Link from "@/components/Link/Link.astro";
 import buildFilter from "@/libs/microcms/buildFilter";
 import { Icon } from "astro-icon";
+import { BlogListLink } from "@/features/Blog/List/BlogListLink";
 
 type Props = {
   title: string;
@@ -53,7 +53,8 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
     </div>
     <div class="main">
       <article>
-        {
+        <!-- 現段階でさサムネイルは表示しない -->
+        <!-- {
           heroImage && (
             <Image
               class={"w-full"}
@@ -64,7 +65,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
               format="avif"
             />
           )
-        }
+        } -->
         <slot />
       </article>
     </div>
@@ -113,6 +114,20 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
                       <Link href={`/blog/${post.id}`} color="white">
                         {post.title}
                       </Link>
+                      <BlogCategoryBadgeGroup
+                        clickable={true}
+                        categories={post.category.map((c) => {
+                          return {
+                            id: c.id,
+                            name: c.name,
+                          };
+                        })}
+                      />
+                      <div class="mt-3">
+                        <BlogListLink href={`/blog/${post.id}/`}>
+                          この記事を読む
+                        </BlogListLink>
+                      </div>
                       <p class="mt-2 text-sm">
                         <FormattedDate date={new Date(post.publishedAt)} />
                       </p>
