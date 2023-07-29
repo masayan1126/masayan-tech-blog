@@ -9,6 +9,7 @@ import Link from "@/components/Link/Link.astro";
 import buildFilter from "@/libs/microcms/buildFilter";
 import { Icon } from "astro-icon";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
+import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.astro";
 
 type Props = {
   title: string;
@@ -70,7 +71,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
       </article>
     </div>
     <aside>
-      <div class="grid gap-10">
+      <div class="grid gap-20">
         <div>
           <p class="aside-title">カテゴリ</p>
           <div class="flex flex-wrap gap-2">
@@ -103,6 +104,12 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
             />
           </Link>
         </div>
+
+        <div class="">
+          <p class="aside-title">ブログ管理人</p>
+          <BlogDetailProfileCard />
+        </div>
+
         <div>
           <p class="aside-title">関連記事</p>
           <div class="gap-10 grid grid-cols-1">
@@ -244,4 +251,5 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
       grid-gap: 70px 100px;
     }
   }
-</style>
+</style>@/features/Blog/Detail/ProfileCard
+@/features/Blog/Detail/BlogDetailProfileCard
