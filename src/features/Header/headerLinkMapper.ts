@@ -5,20 +5,21 @@ const headerLinkMapper = new Map<
 
 headerLinkMapper
   .set("home", [
-    { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
+    // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ])
-  .set("blogs", [
-    { href: "/", text: "Home", iconName: "carbon:home" },
-    { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
-  ])
+
   .set("blog", [
     { href: "/", text: "Home", iconName: "carbon:home" },
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ])
   .set("about", [
     { href: "/", text: "Home", iconName: "carbon:home" },
-    { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
+    // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
+  ])
+  .set("disclaimer", [
+    { href: "/", text: "Home", iconName: "carbon:home" },
+    { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ]);
 
 export const headerLinkOf = (currentUrl: string) => {
