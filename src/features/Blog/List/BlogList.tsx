@@ -2,31 +2,46 @@ import type { Blog } from "@/libs/microcms/blog";
 import { useCallback, useState } from "react";
 import { Icon } from "@iconify/react";
 import { BlogCardSide } from "@/features/Blog/List/BlogCardSide";
+import { SearchBar } from "@/components/SearchBar";
 
 type Props = {
   posts: Blog[];
+  allPosts: Blog[];
 };
 
-export const BlogList = ({ posts }: Props) => {
+export const BlogList = ({ posts, allPosts }: Props) => {
   const [sorted, setSorted] = useState<Blog[]>(posts);
+  //   const [searchTerm, setSearchTerm] = useState("");
+
+  //   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //     setSearchTerm(event.target.value);
+  //   };
 
   const sort = useCallback(() => {
     const sorted = [...posts].sort(() => Math.random() - 0.5);
     setSorted(sorted);
   }, [posts]);
 
+  //   const filtered = allPosts.filter((post) => {
+  //     return post.title.toLowerCase().includes(searchTerm.toLowerCase());
+  //   });
+
   return (
     <section className="mb-20">
-      <div className="flex sm:hidden">
+      {/* <div className="flex sm:hidden"> */}
+      {/* <div className="" onClick={sort}>
         <Icon
           icon="material-symbols:sort"
-          onClick={sort}
-          style={{ fontSize: "26px", marginLeft: "auto" }}
-          className="mb-10 mr-1"
+          style={{ fontSize: "26px", marginRight: "auto" }}
+          className="mr-2 mb-1 inline-block"
         />
         <span>並び替え</span>
-      </div>
-      <div className="flex gap-3 mb-12">
+      </div> */}
+      {/* <SearchBar
+        searchTerm={searchTerm}
+        handleInputChange={handleInputChange}
+      /> */}
+      {/* <div className="flex gap-3 mb-12">
         <button className="p-3 bg-blue-400 rounded hidden sm:block">
           新着順
         </button>
@@ -36,7 +51,7 @@ export const BlogList = ({ posts }: Props) => {
         <button className="p-3 bg-blue-400 rounded">VSCode</button>
         <button className="p-3 bg-blue-400 rounded">フロントエンド</button>
         <button className="p-3 bg-blue-400 rounded">バックエンド</button>
-      </div>
+      </div> */}
 
       <div className="gap-14 grid grid-cols-1 lg:grid-cols-2">
         {sorted.map((post) => (
