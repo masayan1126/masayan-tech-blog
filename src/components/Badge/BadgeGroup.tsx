@@ -10,10 +10,10 @@ export const BadgeGroup = ({ items, clickable }: Props) => {
   return (
     <>
       {!clickable
-        ? items.map((item) => <Badge item={item} key={item.id} />)
-        : items.map((item) => (
-            <a key={item.id} href={`/category/${item.id}/1`}>
-              <Badge item={item} key={item.id} />
+        ? items.map((item, i) => <Badge item={item} key={item.id + i} />)
+        : items.map((item, i) => (
+            <a key={item.id + i} href={`/category/${item.id}/page/1`}>
+              <Badge item={item} />
             </a>
           ))}
     </>

@@ -51,7 +51,7 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
                   class={`pagination-item-link ${
                     page.currentPage === Number(item) ? "isActive" : ""
                   }`}
-                  href={`/category/${categoryId}/${item}`}
+                  href={`/category/${categoryId}/page/${item}`}
                 >
                   <span>{item}</span>
                 </a>
@@ -66,7 +66,7 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
                   class={`pagination-item-link ${
                     page.currentPage === Number(item) ? "isActive" : ""
                   }`}
-                  href={Number(item) === 1 ? `/blogs` : `/blogs/${item}`}
+                  href={Number(item) === 1 ? `/page/1` : `/page/${item}`}
                 >
                   <span>{item}</span>
                 </a>
