@@ -39,6 +39,6 @@ const sortedPosts = [...posts].sort((a, b) => {
 ---
 
 <BlogListLayout>
-  <BlogList client:load posts={sortedPosts} allPosts={allPosts} />
+  <BlogList posts={sortedPosts} allPosts={allPosts} />
   <Pagination page={page} />
 </BlogListLayout>
