@@ -1,0 +1,42 @@
+---
+import { Link } from "@/components/Link/Link";
+import Icon from "astro-icon";
+---
+
+<div>
+  <h2>
+    <Icon
+      name="logos:youtube-icon"
+      class="w-6 inline-block mr-2"
+    />SNS/メディアでの発信
+  </h2>
+  <ul>
+    <li>
+      <Link
+        href={"https://www.youtube.com/@masayan.dev.1126"}
+        color="blue"
+        isBrank={true}
+      >
+        Youtube
+      </Link>
+      <li>
+        <Link
+          href={"https://github.com/masayan1126"}
+          color="blue"
+          isBrank={true}
+        >
+          Github
+        </Link>
+        <li>
+          <Link
+            href={"https://twitter.com/masayanishigaki"}
+            color="blue"
+            isBrank={true}
+          >
+            Twitter
+          </Link>
+        </li>
+      </li>
+    </li>
+  </ul>
+</div>
