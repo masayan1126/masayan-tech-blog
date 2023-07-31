@@ -4,6 +4,7 @@ import type { GetStaticPathsOptions } from "astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
 import { BlogList } from "@/features/Blog/List/BlogList";
+import { BlogListSortByCategoryButton } from "@/features/Blog/List/BlogListSortByCategoryButton";
 
 type Props = {
   page: {
@@ -39,6 +40,7 @@ const sortedPosts = [...posts].sort((a, b) => {
 ---
 
 <BlogListLayout>
+  <BlogListSortByCategoryButton client:load />
   <BlogList posts={sortedPosts} allPosts={allPosts} />
   <Pagination page={page} />
 </BlogListLayout>

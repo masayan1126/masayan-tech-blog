@@ -76,7 +76,6 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
           <p class="aside-title">カテゴリ</p>
           <div class="flex flex-wrap gap-2">
             <BlogCategoryBadgeGroup
-              clickable={true}
               categories={categories.map(({ id, name }) => {
                 return {
                   id,
@@ -122,7 +121,6 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
                         {post.title}
                       </Link>
                       <BlogCategoryBadgeGroup
-                        clickable={true}
                         categories={post.category.map((c) => {
                           return {
                             id: c.id,
