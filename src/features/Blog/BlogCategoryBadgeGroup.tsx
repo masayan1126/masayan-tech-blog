@@ -3,16 +3,12 @@ import type { BadgeItemProp } from "@/types/Badge/badgeProps";
 
 type Props = {
   categories: BadgeItemProp[];
-  clickable?: boolean;
 };
 
-export default function BlogCategoryBadgeGroup({
-  categories,
-  clickable,
-}: Props) {
+export default function BlogCategoryBadgeGroup({ categories }: Props) {
   return (
     <div>
-      <BadgeGroup items={categories} clickable={clickable} />
+      <BadgeGroup items={categories} />
     </div>
   );
 }
