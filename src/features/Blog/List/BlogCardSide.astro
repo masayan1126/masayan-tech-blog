@@ -17,13 +17,8 @@ const { post } = Astro.props;
     <div class="">
       <div class="">
         <h2>{post.title}</h2>
-        <div class="text-sm">閲覧数: 20</div>
-        <div class="text-sm">
-          <FormattedDate date={new Date(post.publishedAt)} />
-        </div>
       </div>
       <BlogCategoryBadgeGroup
-        clickable={true}
         categories={post.category.map((c) => {
           return {
             id: c.id,
@@ -31,6 +26,10 @@ const { post } = Astro.props;
           };
         })}
       />
+      <!-- <div class="text-sm mt-3">閲覧数: 20</div> -->
+      <div class="text-sm mt-3">
+        <FormattedDate date={new Date(post.publishedAt)} />
+      </div>
     </div>
   </BlogListLink>
 </div>

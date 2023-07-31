@@ -2,7 +2,6 @@ import type { Blog } from "@/libs/microcms/blog";
 import { useCallback, useState } from "react";
 import { Icon } from "@iconify/react";
 import { BlogCardSide } from "@/features/Blog/List/BlogCardSide";
-import { SearchBar } from "@/components/SearchBar";
 
 type Props = {
   posts: Blog[];
@@ -11,11 +10,6 @@ type Props = {
 
 export const BlogList = ({ posts, allPosts }: Props) => {
   const [sorted, setSorted] = useState<Blog[]>(posts);
-  //   const [searchTerm, setSearchTerm] = useState("");
-
-  //   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setSearchTerm(event.target.value);
-  //   };
 
   const sort = useCallback(() => {
     const sorted = [...posts].sort(() => Math.random() - 0.5);

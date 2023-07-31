@@ -14,13 +14,8 @@ export const BlogCardSide = ({ post }: Props) => {
       <div className="">
         <div className="">
           <h2 className="text-xl font-bold mt-8 mb-2">{post.title}</h2>
-          <div className="text-sm">閲覧数: 20</div>
-          <div className="text-sm">
-            {/* <FormattedDate date={new Date(post.publishedAt)} /> */}
-          </div>
         </div>
         <BlogCategoryBadgeGroup
-          clickable={true}
           categories={post.category.map((c) => {
             return {
               id: c.id,
@@ -28,8 +23,14 @@ export const BlogCardSide = ({ post }: Props) => {
             };
           })}
         />
+        {/* <div className="text-sm mt-3">閲覧数: 20</div> */}
+        <div className="text-sm">
+          {/* <FormattedDate date={new Date(post.publishedAt)} /> */}
+        </div>
         <div className="mt-3">
-          <BlogListLink href={`/blog/${post.id}/`}>この記事を読む</BlogListLink>
+          <BlogListLink className="text-sm" href={`/blog/${post.id}/`}>
+            この記事を読む
+          </BlogListLink>
         </div>
       </div>
     </div>
