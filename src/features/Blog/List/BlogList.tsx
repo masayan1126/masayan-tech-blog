@@ -10,6 +10,7 @@ type Props = {
 
 export const BlogList = ({ posts, allPosts }: Props) => {
   const [sorted, setSorted] = useState<Blog[]>(posts);
+  //   const [searchTerm, setSearchTerm] = useState("");
 
   const sort = useCallback(() => {
     const sorted = [...posts].sort(() => Math.random() - 0.5);
@@ -22,6 +23,11 @@ export const BlogList = ({ posts, allPosts }: Props) => {
 
   return (
     <section className="mb-20">
+      {/* <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      /> */}
       {/* <div className="flex sm:hidden"> */}
       {/* <div className="" onClick={sort}>
         <Icon
