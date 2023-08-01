@@ -1,7 +1,7 @@
 ---
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
-import { getBlogDetail, getBlogs } from "@/libs/microcms/blog";
+import { getBlogs } from "@/libs/microcms/blog";
 
 export async function getStaticPaths() {
   const res = await getBlogs();
@@ -13,8 +13,8 @@ export async function getStaticPaths() {
     };
   });
 }
-const { slug } = Astro.params;
-const post = await getBlogDetail(slug as string);
+
+const post = Astro.props;
 const { title, createdAt, publishedAt, updatedAt, description, eyecatch } =
   post;
 
