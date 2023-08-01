@@ -39,8 +39,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 const posts = page.data as Blog[];
 
-const categoryRes = await getCategories();
-const categories = categoryRes.contents;
+const categories = posts.map((p) => p.category).flat();
 
 const { categoryId } = Astro.params;
 const category = categories.find((c) => c.id === categoryId);
