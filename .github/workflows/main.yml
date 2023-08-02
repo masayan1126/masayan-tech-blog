@@ -34,13 +34,8 @@ jobs:
       if: ${{ steps.node_modules_cache_id.outputs.cache-hit != 'true' }}
       run: npm install
     - name: Run test
-      run: npx vitest run
-    - name: build
-      env:
-        MICRO_CMS_SERVICE_DOMAIN: ${{ secrets.MICRO_CMS_SERVICE_DOMAIN }}
-        MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
-      run: npx astro build
-    - name: deploy
+      run: npm run test
+    - name: Build And Deploy
       uses: amondnet/vercel-action@v20
       with:
         vercel-org-id: ${{ secrets.ORG_ID }}
