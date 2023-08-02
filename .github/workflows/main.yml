@@ -39,7 +39,7 @@ jobs:
       env:
         VITE_MICRO_CMS_SERVICE_DOMAIN: ${{ secrets.VITE_MICRO_CMS_SERVICE_DOMAIN }}
         VITE_MICRO_CMS_API_KEY: ${{ secrets.VITE_MICRO_CMS_API_KEY }}
-      run: npm run build
+      run: npx astro build
     - name: deploy
       uses: amondnet/vercel-action@v20
       with:
