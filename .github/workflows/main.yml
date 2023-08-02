@@ -37,7 +37,7 @@ jobs:
       run: npx vitest run
     - name: build
       env:
-        VITE_MICRO_CMS_SERVICE_DOMAIN: ${{ secrets.VITE_MICRO_CMS_SERVICE_DOMAIN }}
+        MICRO_CMS_SERVICE_DOMAIN: ${{ secrets.MICRO_CMS_SERVICE_DOMAIN }}
         MICRO_CMS_API_KEY: ${{ secrets.MICRO_CMS_API_KEY }}
       run: npx astro build
     - name: deploy
