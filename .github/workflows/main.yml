@@ -36,8 +36,7 @@ jobs:
     - name: Run test
       run: npx vitest run
     - name: build
-        run:
-          npm run build
+      run: npm run build
     - name: deploy
       uses: amondnet/vercel-action@v20
       with:
