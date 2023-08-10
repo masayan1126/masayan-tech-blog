@@ -64,7 +64,7 @@ export const BlogListSortByCategoryButton = () => {
           >
             <li>
               <a
-                href="http://localhost:53000/category/j0nmchr0c/page/1"
+                href="/category/j0nmchr0c/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 VisualStudioCode
@@ -72,7 +72,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="http://localhost:53000/category/j0nmchr0c/page/1"
+                href="/category/j0nmchr0c/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Settings
