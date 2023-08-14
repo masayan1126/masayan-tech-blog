@@ -9,7 +9,7 @@ export default defineConfig({
     setupFiles: ["./tests/setup.ts"],
     reporters: ["default", "html"],
     coverage: {
-      provider: "c8", // カバレッジ
+      provider: "c8",
     },
     alias: {
       "@": path.join(__dirname, "/src"),
