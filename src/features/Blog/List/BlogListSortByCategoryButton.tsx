@@ -1,11 +1,13 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 
+// BlogListFilterDropdown
 export const BlogListSortByCategoryButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef: RefObject<HTMLDivElement> = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
+      // DropDownのボタンをクリックした場合は、閉じずに開く
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
@@ -26,7 +28,7 @@ export const BlogListSortByCategoryButton = () => {
   };
 
   return (
-    <div ref={containerRef} style={{ width: "200px" }}>
+    <div className="containerRef" ref={containerRef} style={{ width: "200px" }}>
       <button
         style={{ backgroundColor: "#ebecec", color: "#252525" }}
         id="dropdownDefaultButton"
@@ -56,7 +58,7 @@ export const BlogListSortByCategoryButton = () => {
         <div
           style={{ position: "absolute" }}
           id="dropdown"
-          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-1/3 dark:bg-gray-700"
+          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-1/2 dark:bg-gray-700"
         >
           <ul
             className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -64,7 +66,7 @@ export const BlogListSortByCategoryButton = () => {
           >
             <li>
               <a
-                href="/category/j0nmchr0c/page/1"
+                href="/category/visual-studio-code/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 VisualStudioCode
@@ -72,26 +74,42 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/j0nmchr0c/page/1"
+                href="/category/frontend/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                Settings
+                フロントエンド
               </a>
             </li>
             <li>
               <a
-                href="#"
+                href="/category/python/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                Earnings
+                Python
               </a>
             </li>
             <li>
               <a
-                href="#"
+                href="/category/laravel/page/1"
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
-                Sign out
+                Laravel
+              </a>
+            </li>
+            <li>
+              <a
+                href="/category/php/page/1"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                PHP
+              </a>
+            </li>
+            <li>
+              <a
+                href="/category/typescript/page/1"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Typescript
               </a>
             </li>
           </ul>

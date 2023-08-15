@@ -41,12 +41,13 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
       </h1>
 
       <div>
+        公開日
         <FormattedDate date={pubDate} />
 
         {
           updatedDate && (
             <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
+              <FormattedDate date={updatedDate} />
             </div>
           )
         }
@@ -74,16 +75,14 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
       <div class="grid gap-20">
         <div>
           <p class="aside-title">カテゴリ</p>
-          <div class="flex flex-wrap gap-2">
-            <BlogCategoryBadgeGroup
-              categories={categories.map(({ id, name }) => {
-                return {
-                  id,
-                  name,
-                };
-              })}
-            />
-          </div>
+          <BlogCategoryBadgeGroup
+            categories={categories.map(({ id, name }) => {
+              return {
+                id,
+                name,
+              };
+            })}
+          />
         </div>
         <div>
           <p class="aside-title">この記事をシェアする</p>
@@ -117,19 +116,26 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
                 (post, i) =>
                   i < 16 && (
                     <div>
-                      <Link href={`/blog/${post.id}`} color="white">
-                        {post.title}
-                      </Link>
-                      <BlogCategoryBadgeGroup
-                        categories={post.category.map((c) => {
-                          return {
-                            id: c.id,
-                            name: c.name,
-                          };
-                        })}
-                      />
+                      <p class={"mb-2"}>
+                        <Link href={`/blog/${post.id}`} color="white">
+                          {post.title}
+                        </Link>
+                      </p>
+                      <div>
+                        <BlogCategoryBadgeGroup
+                          categories={post.category.map((c) => {
+                            return {
+                              id: c.id,
+                              name: c.name,
+                            };
+                          })}
+                        />
+                      </div>
                       <div class="mt-3">
-                        <BlogListLink href={`/blog/${post.id}/`}>
+                        <BlogListLink
+                          href={`/blog/${post.id}/`}
+                          className="text-link"
+                        >
                           この記事を読む
                         </BlogListLink>
                       </div>
@@ -174,6 +180,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
 
   article p {
     @apply m-0;
+    line-height: 1.8;
   }
 
   article iframe {
@@ -183,7 +190,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   article img {
     @apply my-4;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px rgba(20, 20, 20, 0.4);
+    box-shadow: 1px 1px 1px rgba(20, 20, 20, 0.4);
   }
 
   article ul {
@@ -197,6 +204,18 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   article pre {
     @apply mt-4 mb-10;
     box-shadow: 2px 2px 2px rgba(20, 20, 20, 0.4);
+  }
+
+  article p:has(a) {
+    color: rgb(146, 180, 237);
+    padding: 10px 0;
+  }
+
+  article p:has(.warning) {
+    background-color: rgb(231, 186, 186);
+    padding: 30px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
   }
 </style>
 
@@ -230,7 +249,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   }
 
   .aside-title {
-    @apply text-xl font-bold mb-2;
+    @apply text-xl font-bold mb-4;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 8px;
   }

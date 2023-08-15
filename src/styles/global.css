@@ -92,3 +92,8 @@ blockquote {
 blockquote p {
   @apply m-0;
 }
+
+.text-link {
+  @apply hover:underline;
+  color: rgb(146, 180, 237);
+}

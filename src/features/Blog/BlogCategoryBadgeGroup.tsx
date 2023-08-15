@@ -6,9 +6,5 @@ type Props = {
 };
 
 export default function BlogCategoryBadgeGroup({ categories }: Props) {
-  return (
-    <div>
-      <BadgeGroup items={categories} />
-    </div>
-  );
+  return <BadgeGroup items={categories} />;
 }
