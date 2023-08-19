@@ -17,7 +17,8 @@ body {
   background-color: var(--bg-color);
   word-wrap: break-word;
   overflow-wrap: break-word;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
   color: var(--text-color);
 }
 
@@ -87,6 +88,7 @@ blockquote {
   border: 1px solid var(--text-color);
   padding: 16px;
   font-style: italic;
+  @apply my-5;
 }
 
 blockquote p {
