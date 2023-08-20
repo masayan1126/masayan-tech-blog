@@ -1,11 +1,15 @@
 ---
+import { Image } from "@astrojs/image/components";
 ---
 
 <div class="aside-profile-container">
-  <img
-    src="/masayan.png"
-    alt="西垣雅矢のプロフィール画像"
-    class="mx-auto rounded-full mt-3"
+  <Image
+    src={"/masaya_nishigaki.jpg"}
+    width={512}
+    height={512}
+    alt={"西垣雅矢のプロフィール画像"}
+    format="avif"
+    class="mx-auto rounded-full mt-6"
   />
   <div class="text-center mt-8">
     <h2 class="text-lg font-semibold">西垣 雅矢</h2>
