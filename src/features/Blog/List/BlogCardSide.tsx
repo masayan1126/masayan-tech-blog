@@ -28,7 +28,10 @@ export const BlogCardSide = ({ post }: Props) => {
           {/* <FormattedDate date={new Date(post.publishedAt)} /> */}
         </div>
         <div className="mt-3">
-          <BlogListLink className="text-sm" href={`/blog/${post.id}/`}>
+          <BlogListLink
+            className="text-sm text-link"
+            href={`/blog/${post.id}/`}
+          >
             この記事を読む
           </BlogListLink>
         </div>
