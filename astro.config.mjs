@@ -6,10 +6,11 @@ import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 
 import image from "@astrojs/image";
+import { SITE_DOMAIN } from "@/consts";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://maasaablog.com",
+  site: SITE_DOMAIN,
   integrations: [
     mdx(),
     sitemap(),

@@ -10,6 +10,7 @@ import buildFilter from "@/libs/microcms/buildFilter";
 import { Icon } from "astro-icon";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
 import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.astro";
+import { SITE_DOMAIN } from "@/consts";
 
 type Props = {
   title: string;
@@ -89,13 +90,13 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
         <div>
           <p class="aside-title">この記事をシェアする</p>
           <Link
-            href={`http://twitter.com/share?url=https://masayan-tech-blog.vercel.app/blog/${slug}&via=masayanishigaki&text=${title}`}
+            href={`http://twitter.com/share?url=${SITE_DOMAIN}/blog/${slug}&via=masayanishigaki&text=${title}`}
             target="_blank"
           >
             <Icon name="logos:twitter" class="w-8 inline-block mr-2" />
           </Link>
           <Link
-            href={`http://b.hatena.ne.jp/add?mode=confirm&url=https://masayan-tech-blog.vercel.app/blog/${slug}&title=${title}`}
+            href={`http://b.hatena.ne.jp/add?mode=confirm&url=${SITE_DOMAIN}/blog/${slug}&title=${title}`}
             target="_blank"
           >
             <Icon
