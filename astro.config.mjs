@@ -9,7 +9,7 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://masayan-tech-blog.vercel.app",
+  site: "https://maasaablog.com",
   integrations: [
     mdx(),
     sitemap(),
