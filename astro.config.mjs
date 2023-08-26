@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 
 import image from "@astrojs/image";
-import { SITE_DOMAIN } from "@/consts";
+import { SITE_DOMAIN } from "./src/consts"; //FIXME: mjs alias(参考：https://stackoverflow.com/questions/70158055/how-to-have-aliases-with-nodejs-import)
 
 // https://astro.build/config
 export default defineConfig({
