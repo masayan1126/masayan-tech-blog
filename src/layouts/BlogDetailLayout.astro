@@ -19,10 +19,18 @@ type Props = {
   updatedDate?: Date;
   heroImage?: string;
   categories: BlogCategory[];
+  tocArray: string[];
 };
 
-const { title, description, pubDate, updatedDate, heroImage, categories } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  categories,
+  tocArray,
+} = Astro.props;
 
 const { slug } = Astro.params;
 
@@ -53,7 +61,18 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
           )
         }
       </div>
+      <!-- <div>
+        <p onclick="toggleToc">＞目次</p>
+        <div style="display:none;">
+          {
+            tocArray.map((toc) => {
+              return <span class={""}>{toc}</span>;
+            })
+          }
+        </div>
+      </div> -->
     </div>
+
     <div class="main">
       <article>
         <!-- 現段階でさサムネイルは表示しない -->
@@ -163,6 +182,15 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
 
     .article-title {
       @apply text-xl sm:text-2xl md:text-3xl font-bold mb-2 inline-block;
+    }
+
+    .toc-title {
+      @apply text-2xl font-bold mt-14 mb-2;
+    }
+
+    .toc-title::before {
+      content: "🚀";
+      padding-right: 5px;
     }
 
     article h2 {

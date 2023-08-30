@@ -19,6 +19,23 @@ const { title, createdAt, publishedAt, updatedAt, description, eyecatch } =
   post;
 
 const highlightedContent = attachCodeHighlight(post.content);
+
+function extractTextFromTags(input: string, tagName: string) {
+  const regex = new RegExp(`<${tagName}[^>]*>(.*?)<\/${tagName}>`, "g");
+  const matches = [];
+  let match;
+
+  while ((match = regex.exec(input)) !== null) {
+    matches.push(match[1]);
+  }
+
+  return matches;
+}
+
+const input = highlightedContent;
+
+const tagName = "h2";
+const tocArray = extractTextFromTags(input, tagName);
 ---
 
 <BlogDetailLayout
@@ -27,6 +44,7 @@ const highlightedContent = attachCodeHighlight(post.content);
   pubDate={new Date(publishedAt)}
   heroImage={eyecatch.url}
   categories={post.category}
+  {tocArray}
 >
   <p set:html={highlightedContent} />
 </BlogDetailLayout>
