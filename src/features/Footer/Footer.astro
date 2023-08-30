@@ -1,12 +1,14 @@
 ---
 import Link from "@/components/Link/Link.astro";
+import { SITE_TITLE } from "@/consts";
 import { Icon } from "astro-icon";
 const today = new Date();
 ---
 
 <footer class="flex flex-col gap-2">
   <div>
-    Copyright © {today.getFullYear()} Masayan tech blog. All Rights Reserved.
+    Copyright © {today.getFullYear()}
+    {SITE_TITLE} All Rights Reserved.
   </div>
   <div class="flex w-30 mx-auto items-center gap-2">
     <Link href={"/disclaimer"} color="white">

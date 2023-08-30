@@ -3,6 +3,7 @@ import HeaderLink from "@/features/Header/HeaderLink.astro";
 import Link from "@/components/Link/Link.astro";
 import { SITE_TITLE } from "@/consts";
 import { headerLinkOf } from "./headerLinkMapper";
+import { Image } from "@astrojs/image/components";
 
 interface Props {
   context: string;
@@ -16,9 +17,19 @@ const headerLinks = headerLinkOf(context);
 <header class="shadow-md mx-auto p-5 lg:pt-3 lg:px-0">
   <div class="flex justify-between">
     <Link href="/page/1">
-      <h2 class="text-base md:text-2xl">
-        {SITE_TITLE}
-      </h2>
+      <div class="flex">
+        <Image
+          src={"/masayan-illust.png"}
+          width={32}
+          height={20}
+          alt={"西垣雅矢のプロフィール画像"}
+          format="avif"
+          class="mr-2 mb-1 hidden md:block"
+        />
+        <h2 class="text-base md:text-2xl">
+          {SITE_TITLE}
+        </h2>
+      </div>
     </Link>
 
     <nav class="grid grid-cols-3 items-center">
