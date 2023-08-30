@@ -1,4 +1,5 @@
 ---
+import { buildTocArray } from "@/features/Blog/functions/buildTocArray";
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
 import { getBlogs } from "@/libs/microcms/blog";
@@ -20,22 +21,9 @@ const { title, createdAt, publishedAt, updatedAt, description, eyecatch } =
 
 const highlightedContent = attachCodeHighlight(post.content);
 
-function extractTextFromTags(input: string, tagName: string) {
-  const regex = new RegExp(`<${tagName}[^>]*>(.*?)<\/${tagName}>`, "g");
-  const matches = [];
-  let match;
-
-  while ((match = regex.exec(input)) !== null) {
-    matches.push(match[1]);
-  }
-
-  return matches;
-}
-
 const input = highlightedContent;
 
-const tagName = "h2";
-const tocArray = extractTextFromTags(input, tagName);
+const tocArray = buildTocArray(input);
 ---
 
 <BlogDetailLayout
