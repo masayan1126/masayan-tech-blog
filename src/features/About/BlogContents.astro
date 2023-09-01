@@ -1,6 +1,6 @@
 ---
 import Icon from "astro-icon";
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 ---
 
 <div>
@@ -13,13 +13,7 @@ import { Image } from "@astrojs/image/components";
   <ul>
     <li>300以上のテック記事</li>
     <li>月5万PVの実績</li>
-    <Image
-      src={"/pv.PNG"}
-      width={312}
-      height={512}
-      alt={"月間PV数"}
-      format="avif"
-    />
+    <Image src={"/pv.PNG"} width={312} height={512} alt={"月間PV数"} />
     <li>毎週ペースで記事更新</li>
     <li>WEB関連の技術の最新情報</li>
     <li>モダンフロントエンド技術、自動テスト</li>

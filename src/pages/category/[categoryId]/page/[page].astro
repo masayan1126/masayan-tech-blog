@@ -1,5 +1,5 @@
 ---
-import { Blog, getBlogs } from "@/libs/microcms/blog";
+import { getBlogs, type Blog } from "@/libs/microcms/blog";
 import type { GetStaticPathsOptions } from "astro";
 import BlogList from "@/features/Blog/List/BlogList.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
@@ -24,11 +24,10 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const postRes = await getBlogs();
   const posts = postRes.contents;
 
-  return categories.map((c) => {
+  return categories.flatMap((c) => {
     const filteredPosts = posts.filter((post) =>
       post.category.map((category) => category.id).includes(c.id)
     );
-
     return paginate(filteredPosts, {
       params: { categoryId: c.id },
       pageSize: 10,
