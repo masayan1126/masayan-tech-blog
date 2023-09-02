@@ -26,7 +26,7 @@ const headerLinks = headerLinkOf(context);
           format="avif"
           class="mr-2 mb-1 hidden md:block"
         />
-        <h2 class="text-base md:text-2xl">
+        <h2 class="headerTitle">
           {SITE_TITLE}
         </h2>
       </div>
@@ -55,8 +55,8 @@ const headerLinks = headerLinkOf(context);
       max-width: 1400px;
     }
 
-    header h2 {
-      @apply text-2xl font-bold;
+    .headerTitle {
+      @apply font-bold text-base sm:text-xl md:text-2xl;
     }
   </style>
 </header>
