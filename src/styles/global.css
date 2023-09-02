@@ -27,7 +27,7 @@ header h2 {
 }
 
 main {
-  @apply mx-auto p-5 lg:pt-10 lg:pb-20 lg:px-0;
+  @apply mx-auto py-3 lg:pt-6 lg:pb-20 lg:px-0;
   width: 90%;
   max-width: 1400px;
   min-height: 75vh;
