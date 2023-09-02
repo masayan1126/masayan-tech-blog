@@ -13,7 +13,9 @@ export const BlogCardSide = ({ post }: Props) => {
     <div className="card card-skin">
       <div className="">
         <div className="">
-          <h2 className="text-xl font-bold mt-8 mb-2">{post.title}</h2>
+          <h2 className="card-title text-xl font-bold mt-8 mb-2">
+            {post.title}
+          </h2>
         </div>
         <BlogCategoryBadgeGroup
           categories={post.category.map((c) => {
