@@ -10,7 +10,6 @@ headerLinkMapper
   ])
 
   .set("blog", [
-    { href: "/page/1", text: "Home", iconName: "carbon:home" },
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ])
   .set("about", [
@@ -18,7 +17,6 @@ headerLinkMapper
     // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
   ])
   .set("disclaimer", [
-    { href: "/page/1", text: "Home", iconName: "carbon:home" },
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ]);
 
