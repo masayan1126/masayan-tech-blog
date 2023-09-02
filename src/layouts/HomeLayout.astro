@@ -9,6 +9,6 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<BaseLayout {title} {description} context={"home"}>
+<BaseLayout {title} {description} context={"home"} breadCrumbsList={[]}>
   <slot />
 </BaseLayout>

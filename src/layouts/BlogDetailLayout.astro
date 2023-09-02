@@ -40,9 +40,26 @@ const relatedPostsRes = await getBlogsByCategory(filter);
 const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   return Math.random() - 0.5;
 });
+
+const breadCrumbsList = [
+  {
+    name: "ブログ記事一覧",
+    path: "/page/1",
+  },
+  {
+    name: title,
+    path: `/blog/${slug}/`,
+  },
+];
 ---
 
-<BaseLayout {title} {description} context={"blog"} {heroImage}>
+<BaseLayout
+  {title}
+  {description}
+  context={"blog"}
+  {heroImage}
+  {breadCrumbsList}
+>
   <div class="blog-detail-wrapper">
     <div class="blog-detail-header">
       <h1 class="article-title">
@@ -62,8 +79,8 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
         }
       </div>
       <!-- <div>
-        <p onclick="toggleToc">＞目次</p>
-        <div style="display:none;">
+        <p>＞目次</p>
+        <div class="pb-10">
           {
             tocArray.map((toc) => {
               return <span class={""}>{toc}</span>;

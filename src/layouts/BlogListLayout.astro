@@ -1,7 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "ブログ記事一覧";
+
+const breadCrumbsList = [
+  {
+    name: title,
+    path: `/blog/1/`,
+  },
+];
 ---
 
-<BaseLayout title="記事一覧" description="記事一覧です" context={"home"}>
+<BaseLayout
+  {title}
+  description="記事一覧です"
+  context={"home"}
+  {breadCrumbsList}
+>
   <slot />
 </BaseLayout>

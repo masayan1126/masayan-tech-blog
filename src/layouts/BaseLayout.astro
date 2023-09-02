@@ -1,5 +1,6 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
+import { BreadCrumbs } from "@/components/BreadCrumbs/BreadCrumbs";
 import Footer from "@/features/Footer/Footer.astro";
 import Header from "@/features/Header/Header.astro";
 
@@ -8,9 +9,13 @@ interface Props {
   description: string;
   context: string;
   heroImage?: string;
+  breadCrumbsList: {
+    name: string;
+    path: string;
+  }[];
 }
 
-const { title, description, context, heroImage } = Astro.props;
+const { title, description, context, heroImage, breadCrumbsList } = Astro.props;
 ---
 
 <html lang="ja">
@@ -19,6 +24,7 @@ const { title, description, context, heroImage } = Astro.props;
   <body class="mx-auto">
     <Header {context} />
     <main>
+      <BreadCrumbs lists={breadCrumbsList} />
       <slot />
     </main>
 
