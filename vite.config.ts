@@ -14,5 +14,6 @@ export default defineConfig({
     alias: {
       "@": path.join(__dirname, "/src"),
     },
+    include: ["tests/**/*.test.ts"],
   },
 });
