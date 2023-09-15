@@ -11,6 +11,7 @@ import { Icon } from "astro-icon";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
 import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.astro";
 import { SITE_DOMAIN } from "@/consts";
+import { Image } from "astro:assets";
 
 type Props = {
   title: string;
@@ -92,8 +93,7 @@ const breadCrumbsList = [
 
     <div class="main">
       <article>
-        <!-- 現段階でさサムネイルは表示しない -->
-        <!-- {
+        {
           heroImage && (
             <Image
               class={"w-full"}
@@ -104,7 +104,7 @@ const breadCrumbsList = [
               format="avif"
             />
           )
-        } -->
+        }
         <slot />
       </article>
     </div>
