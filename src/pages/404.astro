@@ -1,0 +1,17 @@
+---
+import Link from "@/components/Link/Link.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title={"404 - ページが見つかりません"}
+  description={"404 - ページが見つかりません"}
+  context={"404"}
+  breadCrumbsList={[]}
+>
+  <div>
+    <h1>404 - ページが見つかりません</h1>
+    <p>お探しのページが見つかりませんでした。</p>
+    <Link href={`/page/1`} color={"blue"}>ブログ記事一覧に戻る</Link>
+  </div>
+</BaseLayout>
