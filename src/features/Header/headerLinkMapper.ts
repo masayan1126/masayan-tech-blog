@@ -18,7 +18,8 @@ headerLinkMapper
   ])
   .set("disclaimer", [
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
-  ]);
+  ])
+  .set("404", []);
 
 export const headerLinkOf = (currentUrl: string) => {
   const headerLink = headerLinkMapper.get(currentUrl);
