@@ -8,7 +8,7 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "types": [
         "vitest/globals" // 追加
     ]

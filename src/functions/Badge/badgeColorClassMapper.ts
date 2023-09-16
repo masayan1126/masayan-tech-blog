@@ -2,7 +2,7 @@ import type { BadgeItemImportanceProps } from "@/types/Badge/badgeProps";
 
 const badgeColorMapper = new Map<string, string>();
 
-badgeColorMapper.set("primary", "bg-blue-100 text-blue-900");
+badgeColorMapper.set("primary", "bg-purple-100 text-purple-900");
 
 export const colorOf = (importance: BadgeItemImportanceProps) => {
   const colorClass = badgeColorMapper.get(importance);
