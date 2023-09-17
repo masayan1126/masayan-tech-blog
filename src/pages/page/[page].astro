@@ -30,13 +30,13 @@ const { page } = Astro.props;
 
 const allPosts = page.data as Blog[];
 
-const sortedPosts = [...allPosts].sort((a, b) => {
+const newArrivalPosts = [...allPosts].sort((a, b) => {
   return a.publishedAt > b.publishedAt ? -1 : 1;
 });
 ---
 
 <BlogListLayout>
   <BlogListSortByCategoryButton client:load />
-  <BlogList posts={sortedPosts} allPosts={allPosts} />
+  <BlogList posts={newArrivalPosts} allPosts={allPosts} />
   <Pagination page={page} />
 </BlogListLayout>
