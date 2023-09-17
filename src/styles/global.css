@@ -99,3 +99,22 @@ blockquote p {
   @apply hover:underline;
   color: rgb(146, 180, 237);
 }
+
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

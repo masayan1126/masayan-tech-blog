@@ -190,141 +190,140 @@ const breadCrumbsList = [
       </div>
     </aside>
   </div>
-
-  <!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
-  <style is:global>
-    article h1::before {
-      content: "🔥";
-    }
-
-    .article-title {
-      @apply text-xl sm:text-2xl md:text-3xl font-bold mb-2 inline-block;
-    }
-
-    .toc-title {
-      @apply text-2xl font-bold mt-14 mb-2;
-    }
-
-    .toc-title::before {
-      content: "🚀";
-      padding-right: 5px;
-    }
-
-    article h2 {
-      @apply text-2xl font-bold mt-14 mb-2;
-    }
-
-    article h2::before {
-      content: "🚀";
-      padding-right: 5px;
-    }
-
-    article h3 {
-      @apply text-lg font-bold mt-8 mb-2;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 8px;
-    }
-
-    article h4 {
-      @apply font-bold mt-8 mb-2;
-    }
-
-    article p {
-      @apply m-0;
-    }
-
-    article iframe {
-      @apply mt-2;
-    }
-
-    article img {
-      @apply my-4;
-      border-radius: 5px;
-      box-shadow: 1px 1px 1px rgba(20, 20, 20, 0.4);
-    }
-
-    article ul {
-      @apply list-disc px-8 py-4;
-    }
-
-    article ol {
-      @apply list-decimal px-8 py-4;
-    }
-
-    article pre {
-      @apply mt-4 mb-10;
-      box-shadow: 2px 2px 2px rgba(20, 20, 20, 0.4);
-    }
-
-    article a {
-      color: rgb(146, 180, 237);
-      padding: 10px 0;
-    }
-
-    article p:has(.warning) {
-      background-color: rgb(231, 186, 186);
-      padding: 30px;
-      border-radius: 5px;
-      color: rgb(0, 0, 0);
-    }
-
-    article .iframely-embed {
-      @apply my-6;
-    }
-
-    article th {
-      background-color: #181818;
-    }
-  </style>
-
-  <style>
-    .blog-detail-wrapper {
-      min-height: 100vh;
-      width: 100%;
-      display: grid;
-      grid-template:
-        "blog-detail-header blog-detail-header blog-detail-header" 50px
-        "center center right " 1fr
-        "footer footer footer" 100px
-        / auto 1fr 250px;
-      grid-gap: 10px 100px;
-    }
-
-    .blog-detail-header {
-      grid-area: blog-detail-header;
-    }
-
-    .main {
-      grid-area: center;
-    }
-
-    nav {
-      grid-area: left;
-    }
-
-    aside {
-      grid-area: right;
-    }
-
-    .aside-title {
-      @apply text-xl font-bold mb-4;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 8px;
-    }
-
-    .footer {
-      grid-area: footer;
-    }
-
-    @media (max-width: 1024px) {
-      .blog-detail-wrapper {
-        grid-template:
-          "blog-detail-header blog-detail-header blog-detail-header" 70px
-          "center center center " 1fr
-          "right  right  right " auto
-          / 1fr;
-        grid-gap: 70px 100px;
-      }
-    }
-  </style>
 </BaseLayout>
+<!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
+<style is:global>
+  article h1::before {
+    content: "🔥";
+  }
+
+  .article-title {
+    @apply text-xl sm:text-2xl md:text-3xl font-bold mb-2 inline-block;
+  }
+
+  .toc-title {
+    @apply text-2xl font-bold mt-14 mb-2;
+  }
+
+  .toc-title::before {
+    content: "🚀";
+    padding-right: 5px;
+  }
+
+  article h2 {
+    @apply text-2xl font-bold mt-14 mb-2;
+  }
+
+  article h2::before {
+    content: "🚀";
+    padding-right: 5px;
+  }
+
+  article h3 {
+    @apply text-lg font-bold mt-8 mb-2;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+
+  article h4 {
+    @apply font-bold mt-8 mb-2;
+  }
+
+  article p {
+    @apply m-0;
+  }
+
+  article iframe {
+    @apply mt-2;
+  }
+
+  article img {
+    @apply my-4;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(20, 20, 20, 0.4);
+  }
+
+  article ul {
+    @apply list-disc px-8 py-4;
+  }
+
+  article ol {
+    @apply list-decimal px-8 py-4;
+  }
+
+  article pre {
+    @apply mt-4 mb-10;
+    box-shadow: 2px 2px 2px rgba(20, 20, 20, 0.4);
+  }
+
+  article a {
+    color: rgb(146, 180, 237);
+    padding: 10px 0;
+  }
+
+  article p:has(.warning) {
+    background-color: rgb(231, 186, 186);
+    padding: 30px;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+  }
+
+  article .iframely-embed {
+    @apply my-6;
+  }
+
+  article th {
+    background-color: #181818;
+  }
+</style>
+
+<style>
+  .blog-detail-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template:
+      "blog-detail-header blog-detail-header blog-detail-header" 50px
+      "center center right " 1fr
+      "footer footer footer" 100px
+      / auto 1fr 250px;
+    grid-gap: 10px 100px;
+  }
+
+  .blog-detail-header {
+    grid-area: blog-detail-header;
+  }
+
+  .main {
+    grid-area: center;
+  }
+
+  nav {
+    grid-area: left;
+  }
+
+  aside {
+    grid-area: right;
+  }
+
+  .aside-title {
+    @apply text-xl font-bold mb-4;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-detail-wrapper {
+      grid-template:
+        "blog-detail-header blog-detail-header blog-detail-header" 70px
+        "center center center " 1fr
+        "right  right  right " auto
+        / 1fr;
+      grid-gap: 70px 100px;
+    }
+  }
+</style>
