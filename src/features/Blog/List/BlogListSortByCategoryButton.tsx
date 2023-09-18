@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 
 // BlogListFilterDropdown
 export const BlogListSortByCategoryButton = () => {
@@ -28,7 +28,11 @@ export const BlogListSortByCategoryButton = () => {
   };
 
   return (
-    <div className="containerRef" ref={containerRef} style={{ width: "200px" }}>
+    <div
+      className="containerRef"
+      ref={containerRef}
+      style={{ width: "200px", marginBottom: "20px" }}
+    >
       <button
         style={{ backgroundColor: "#ebecec", color: "#252525" }}
         id="dropdownDefaultButton"

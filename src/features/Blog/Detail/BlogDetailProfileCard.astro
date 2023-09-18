@@ -24,11 +24,14 @@ import { Image } from "astro:assets";
 
 <style>
   .aside-profile-container {
-    @apply mx-auto rounded-md shadow-md overflow-hidden;
+    @apply mx-auto overflow-hidden;
     max-width: 350px;
     margin-left: 0;
-    background-color: #2d2d2d;
-    color: #cacaca;
+    background: rgba(74, 74, 74, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(68, 68, 68, 0.37);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border-radius: 10px;
   }
 
   .aside-profile-container > img {

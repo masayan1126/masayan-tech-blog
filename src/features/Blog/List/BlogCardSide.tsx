@@ -8,9 +8,19 @@ type Props = {
   post: Blog;
 };
 
+const style = {
+  padding: "0 20px 15px",
+  background: "rgba(74, 74, 74, 0.3)",
+  boxShadow: "0 8px 32px 0 rgba(68, 68, 68, 0.37)",
+  backdropFilter: "blur(0px)",
+  // -webkit-backdrop-filter: blur(0px),
+  borderRadius: "10px",
+  //   border: "1px solid rgba(255, 255, 255, 0.18)",
+};
+
 export const BlogCardSide = ({ post }: Props) => {
   return (
-    <div className="card card-skin">
+    <div className="card card-skin" style={style}>
       <div className="">
         <div className="">
           <h2 className="card-title text-xl font-bold mt-8 mb-2">
