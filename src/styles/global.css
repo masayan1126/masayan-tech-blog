@@ -50,9 +50,9 @@ content {
   line-height: 1.6;
 }
 
-table {
-  width: 100%;
-}
+/* table {
+  width: 2000px;
+} */
 
 table {
   border-collapse: collapse;

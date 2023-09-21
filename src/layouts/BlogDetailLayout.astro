@@ -193,6 +193,11 @@ const breadCrumbsList = [
 </BaseLayout>
 <!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
 <style is:global>
+  article {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
   article h1::before {
     content: "🔥";
   }
