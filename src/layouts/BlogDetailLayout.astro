@@ -62,36 +62,35 @@ const breadCrumbsList = [
   {breadCrumbsList}
 >
   <div class="blog-detail-wrapper">
-    <div class="blog-detail-header">
-      <h1 class="article-title">
-        {title}
-      </h1>
+    <div class="main">
+      <div class="blog-detail-header">
+        <h1 class="article-title">
+          {title}
+        </h1>
 
-      <div>
-        公開日
-        <FormattedDate date={pubDate} />
+        <div>
+          公開日
+          <FormattedDate date={pubDate} />
 
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-      </div>
-      <!-- <div>
-        <p>＞目次</p>
-        <div class="pb-10">
           {
-            tocArray.map((toc) => {
-              return <span class={""}>{toc}</span>;
-            })
+            updatedDate && (
+              <div class="last-updated-on">
+                <FormattedDate date={updatedDate} />
+              </div>
+            )
           }
         </div>
-      </div> -->
-    </div>
-
-    <div class="main">
+        <!-- <div>
+              <p>＞目次</p>
+              <div class="pb-10">
+                {
+                  tocArray.map((toc) => {
+                    return <span class={""}>{toc}</span>;
+                  })
+                }
+              </div>
+            </div> -->
+      </div>
       <article>
         {
           heroImage && (
@@ -328,7 +327,7 @@ const breadCrumbsList = [
         "center center center " 1fr
         "right  right  right " auto
         / 1fr;
-      grid-gap: 70px 100px;
+      grid-gap: 10px 100px;
     }
   }
 </style>
