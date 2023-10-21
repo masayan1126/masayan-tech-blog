@@ -1,16 +1,14 @@
 ---
-import { SITE_TITLE } from "@/consts";
 import BlogContents from "./BlogContents.astro";
 import SnsAndMedia from "./SnsAndMedia.astro";
 import JobRequest from "./JobRequest.astro";
-import AboutLayout from "@/layouts/AboutLayout.astro";
+import { SITE_TITLE } from "@/constants/meta";
 ---
 
 <div class="home flex flex-col gap-8">
   <div class="mb-5">
     <h1>Welcom to {SITE_TITLE}</h1>
   </div>
-  <!-- <NewArrivalPosts /> -->
   <BlogContents />
   <JobRequest />
   <SnsAndMedia />

@@ -1,10 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-interface Props {
-  title: string;
-  description: string;
-}
+import type { LayoutProps } from "@/layouts/layout";
+
+interface Props extends LayoutProps {}
 
 const { title, description } = Astro.props;
 ---

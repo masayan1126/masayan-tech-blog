@@ -5,10 +5,10 @@ import { BlogCardSide } from "@/features/Blog/List/BlogCardSide";
 
 type Props = {
   posts: Blog[];
-  allPosts: Blog[];
+  articles: Blog[];
 };
 
-export const BlogList = ({ posts, allPosts }: Props) => {
+export const BlogList = ({ posts, articles }: Props) => {
   const [sorted, setSorted] = useState<Blog[]>(posts);
   //   const [searchTerm, setSearchTerm] = useState("");
 

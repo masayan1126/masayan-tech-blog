@@ -1,17 +1,23 @@
 ---
+import {
+  DISCLAIMER_DESCRIPTION,
+  DISCLAIMER_TITLE,
+} from "@/features/Disclaimer/constants/meta";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Icon } from "astro-icon";
 ---
 
 <BaseLayout
-  title={"免責事項"}
-  description={"免責事項のページです"}
+  title={DISCLAIMER_TITLE}
+  description={DISCLAIMER_DESCRIPTION}
   context={"disclaimer"}
   breadCrumbsList={[]}
 >
   <div>
     <h2 class="align-middle">
-      <Icon name="noto:person-bowing" class="w-6 inline-block mr-2" />免責事項
+      <Icon name="noto:person-bowing" class="w-6 inline-block mr-2" />{
+        DISCLAIMER_TITLE
+      }
     </h2>
     <p>
       当ブログからのリンクやバナーなどで移動したサイトで提供される情報、サービス等について一切の責任を負いません。

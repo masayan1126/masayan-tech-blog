@@ -1,3 +1,4 @@
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import { type RefObject, useEffect, useRef, useState } from "react";
 
 // BlogListFilterDropdown
@@ -70,7 +71,7 @@ export const BlogListSortByCategoryButton = () => {
           >
             <li>
               <a
-                href="/category/visual-studio-code/page/1"
+                href={`/category/visual-studio-code${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 VisualStudioCode
@@ -78,7 +79,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/frontend/page/1"
+                href={`/category/frontend${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 フロントエンド
@@ -86,7 +87,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/python/page/1"
+                href={`/category/python${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Python
@@ -94,7 +95,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/laravel/page/1"
+                href={`/category/laravel${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Laravel
@@ -102,7 +103,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/php/page/1"
+                href={`/category/php${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 PHP
@@ -110,7 +111,7 @@ export const BlogListSortByCategoryButton = () => {
             </li>
             <li>
               <a
-                href="/category/typescript/page/1"
+                href={`/category/typescript${ARTICLES_PATH}`}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
               >
                 Typescript

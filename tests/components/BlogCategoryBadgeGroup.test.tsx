@@ -1,4 +1,5 @@
 import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -30,7 +31,7 @@ describe("ブログのカテゴリバッチグループのコンポーネント"
       expect(anchorElement).toBeInTheDocument();
       expect(anchorElement).toHaveAttribute(
         "href",
-        `/category/${category.id}/page/1`
+        `/category/${category.id}${ARTICLES_PATH}`
       );
 
       // 実際の遷移はテストできない(E2Eテストで行う)

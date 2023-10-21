@@ -1,9 +1,11 @@
 ---
 import HeaderLink from "@/features/Header/HeaderLink.astro";
 import Link from "@/components/Link/Link.astro";
-import { SITE_TITLE } from "@/consts";
+
 import { headerLinkOf } from "./headerLinkMapper";
 import { Image } from "astro:assets";
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
+import { SITE_TITLE } from "@/constants/meta";
 
 interface Props {
   context: string;
@@ -16,7 +18,7 @@ const headerLinks = headerLinkOf(context);
 
 <header class="shadow-md mx-auto py-3 lg:pt-3 lg:px-0">
   <div class="flex justify-between">
-    <Link href="/page/1">
+    <Link href={ARTICLES_PATH}>
       <div class="flex">
         <Image
           src={"/masayan-illust.png"}

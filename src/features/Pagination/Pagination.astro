@@ -1,14 +1,10 @@
 ---
 import buildPaginationItem from "@/features/Pagination/buildPaginationItem";
-type Props = {
-  page: {
-    currentPage: number;
-    lastPage: number;
-    size: number;
-    total: number;
-    url: { current: string; next?: string; prev?: string };
-  };
-};
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
+import type { Blog } from "@/libs/microcms/blog";
+import type { Pagination as ArticlePagination } from "@/types/pagination";
+
+type Props = ArticlePagination;
 
 const { page } = Astro.props;
 const { categoryId } = Astro.params;
@@ -66,7 +62,7 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
                   class={`pagination-item-link ${
                     page.currentPage === Number(item) ? "isActive" : ""
                   }`}
-                  href={Number(item) === 1 ? `/page/1` : `/page/${item}`}
+                  href={Number(item) === 1 ? ARTICLES_PATH : `/page/${item}`}
                 >
                   <span>{item}</span>
                 </a>
@@ -135,3 +131,4 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
     margin-left: 8px;
   }
 </style>
+@/types/pagination

@@ -5,30 +5,22 @@ import BlogList from "@/features/Blog/List/BlogList.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
 import { getCategories } from "@/libs/microcms/blogCategory";
+import type { Pagination as ArticlePagination } from "@/types/pagination";
 
-type Props = {
-  page: {
-    data: Blog[];
-    currentPage: number;
-    lastPage: number;
-    size: number;
-    total: number;
-    url: { current: string; next?: string; prev?: string };
-  };
-};
+type Props = ArticlePagination;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const categoryRes = await getCategories();
-  const categories = categoryRes.contents;
+  const categoriesRes = await getCategories();
+  const categories = categoriesRes.contents;
 
-  const postRes = await getBlogs();
-  const posts = postRes.contents;
+  const articlesRes = await getBlogs();
+  const articles = articlesRes.contents;
 
   return categories.flatMap((c) => {
-    const filteredPosts = posts.filter((post) =>
-      post.category.map((category) => category.id).includes(c.id)
+    const categorizedArticles = articles.filter((article) =>
+      article.category.map((ac) => ac.id).includes(c.id)
     );
-    return paginate(filteredPosts, {
+    return paginate(categorizedArticles, {
       params: { categoryId: c.id },
       pageSize: 10,
     });
@@ -36,22 +28,21 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { page } = Astro.props;
-const posts = page.data as Blog[];
+const categorizedArticles = page.data;
 
-const categories = posts.map((p) => p.category).flat();
-
+const categories = categorizedArticles.map((p) => p.category).flat();
 const { categoryId } = Astro.params;
-const category = categories.find((c) => c.id === categoryId);
+const category_of_this_page = categories.find((c) => c.id === categoryId);
 ---
 
 <BlogListLayout>
   <h1 class="blog-list-title">
-    {category?.name}関連の記事 全{page.lastPage}ページ中{
+    {category_of_this_page?.name}関連の記事 全{page.lastPage}ページ中{
       page.currentPage
     }ページ目
   </h1>
-  <BlogList {posts} />
-  <Pagination page={page} />
+  <BlogList articles={categorizedArticles} />
+  <Pagination {page} />
 </BlogListLayout>
 
 <style>

@@ -10,8 +10,9 @@ import buildFilter from "@/libs/microcms/buildFilter";
 import { Icon } from "astro-icon";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
 import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.astro";
-import { SITE_DOMAIN } from "@/consts";
 import { Image } from "astro:assets";
+import { SITE_DOMAIN } from "@/constants/url";
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 
 type Props = {
   title: string;
@@ -20,18 +21,10 @@ type Props = {
   updatedDate?: Date;
   heroImage?: string;
   categories: BlogCategory[];
-  tocArray: string[];
 };
 
-const {
-  title,
-  description,
-  pubDate,
-  updatedDate,
-  heroImage,
-  categories,
-  tocArray,
-} = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, categories } =
+  Astro.props;
 
 const { slug } = Astro.params;
 
@@ -45,7 +38,7 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
 const breadCrumbsList = [
   {
     name: "ブログ記事一覧",
-    path: "/page/1",
+    path: ARTICLES_PATH,
   },
   {
     name: title,
@@ -80,30 +73,8 @@ const breadCrumbsList = [
             )
           }
         </div>
-        <!-- <div>
-              <p>＞目次</p>
-              <div class="pb-10">
-                {
-                  tocArray.map((toc) => {
-                    return <span class={""}>{toc}</span>;
-                  })
-                }
-              </div>
-            </div> -->
       </div>
       <article>
-        {
-          heroImage && (
-            <Image
-              class={"w-full"}
-              src={heroImage}
-              width={512}
-              height={288}
-              alt={title}
-              format="avif"
-            />
-          )
-        }
         <slot />
       </article>
     </div>

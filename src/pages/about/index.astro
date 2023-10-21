@@ -1,11 +1,9 @@
 ---
 import About from "@/features/About/About.astro";
+import { ABOUT_DESCRIPTION, ABOUT_TITLE } from "@/features/About/constans/meta";
 import AboutLayout from "@/layouts/AboutLayout.astro";
 ---
 
-<AboutLayout
-  title="本ブログや管理人兼現役フロントエンジニアである西垣雅矢の経歴に関するページ"
-  description="本ブログや管理人兼現役フロントエンジニアである西垣雅矢の経歴に関するページです"
->
+<AboutLayout title={ABOUT_TITLE} description={ABOUT_DESCRIPTION}>
   <About />
 </AboutLayout>

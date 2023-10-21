@@ -1,8 +1,9 @@
 ---
-import { buildTocArray } from "@/features/Blog/functions/buildTocArray";
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
-import { getBlogs } from "@/libs/microcms/blog";
+import { getBlogs, type Blog } from "@/libs/microcms/blog";
+
+type Props = Blog;
 
 export async function getStaticPaths() {
   const res = await getBlogs();
@@ -16,14 +17,9 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-const { title, createdAt, publishedAt, updatedAt, description, eyecatch } =
-  post;
+const { title, publishedAt, description, eyecatch, category } = post;
 
-const highlightedContent = attachCodeHighlight(post.content);
-
-const input = highlightedContent;
-
-const tocArray = buildTocArray(input);
+const highlightedArticle = attachCodeHighlight(post.content);
 ---
 
 <BlogDetailLayout
@@ -31,8 +27,7 @@ const tocArray = buildTocArray(input);
   description={description}
   pubDate={new Date(publishedAt)}
   heroImage={eyecatch.url}
-  categories={post.category}
-  {tocArray}
+  categories={category}
 >
-  <p set:html={highlightedContent} />
+  <p set:html={highlightedArticle} />
 </BlogDetailLayout>

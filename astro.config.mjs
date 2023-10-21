@@ -4,7 +4,8 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
-import { SITE_DOMAIN } from "./src/consts"; //FIXME: mjs alias(参考：https://stackoverflow.com/questions/70158055/how-to-have-aliases-with-nodejs-import)
+//FIXME: mjs alias(参考：https://stackoverflow.com/questions/70158055/how-to-have-aliases-with-nodejs-import)
+import { SITE_DOMAIN } from "./src/constants/url.ts";
 
 // https://astro.build/config
 export default defineConfig({

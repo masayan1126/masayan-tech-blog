@@ -1,4 +1,4 @@
-import { FETCH_POSTS_MAX_LIMIT } from "@/consts";
+import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
 import type { BlogCategory } from "@/libs/microcms/blogCategory";
 import { client } from "@/libs/microcms/config";
 import type { MicroCMSQueries } from "microcms-js-sdk";

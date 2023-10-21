@@ -1,3 +1,5 @@
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
+
 const headerLinkMapper = new Map<
   string,
   { href: string; text: string; iconName: string }[]
@@ -13,7 +15,7 @@ headerLinkMapper
     { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
   ])
   .set("about", [
-    { href: "/page/1", text: "Home", iconName: "carbon:home" },
+    { href: ARTICLES_PATH, text: "Home", iconName: "carbon:home" },
     // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
   ])
   .set("disclaimer", [
