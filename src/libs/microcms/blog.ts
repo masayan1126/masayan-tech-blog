@@ -1,15 +1,15 @@
 import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
-import type { BlogCategory } from "@/libs/microcms/blogCategory";
+import type { ArticleCategory } from "@/libs/microcms/category";
 import { client } from "@/libs/microcms/config";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 
-type BlogDetailEyecatch = {
+type ArticleEyecatch = {
   url: string;
   height: number;
   width: number;
 };
 
-export type Blog = {
+export type Article = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -18,34 +18,23 @@ export type Blog = {
   title: string;
   content: string;
   description: string;
-  eyecatch: BlogDetailEyecatch;
-  category: BlogCategory[];
+  eyecatch: ArticleEyecatch;
+  category: ArticleCategory[];
 };
 
-export type BlogResponse = {
+export type ArticlesResponse = {
   totalCount: number;
   offset: number;
   limit: number;
-  contents: Blog[];
+  contents: Article[];
 };
 
-export const getBlogs = async (
+export const getArticles = async (
   queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
 ) => {
-  return await client.get<BlogResponse>({ endpoint: "blogs", queries });
+  return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
 };
-export const getBlogsByCategory = async (filters: string) => {
+export const getArticlesByCategory = async (filters: string) => {
   const queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT, filters };
-  return await client.getList<Blog>({ endpoint: "blogs", queries });
-};
-
-export const getBlogDetail = async (
-  contentId: string,
-  queries?: MicroCMSQueries
-) => {
-  return await client.getListDetail<Blog>({
-    endpoint: "blogs",
-    contentId,
-    queries,
-  });
+  return await client.getList<Article>({ endpoint: "blogs", queries });
 };

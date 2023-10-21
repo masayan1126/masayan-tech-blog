@@ -1,10 +1,10 @@
 ---
-import { getBlogs, type Blog } from "@/libs/microcms/blog";
+import { getArticles } from "@/libs/microcms/blog";
 import type { GetStaticPathsOptions } from "astro";
 import BlogList from "@/features/Blog/List/BlogList.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
-import { getCategories } from "@/libs/microcms/blogCategory";
+import { getCategories } from "@/libs/microcms/category";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 
 type Props = ArticlePagination;
@@ -13,7 +13,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const categoriesRes = await getCategories();
   const categories = categoriesRes.contents;
 
-  const articlesRes = await getBlogs();
+  const articlesRes = await getArticles();
   const articles = articlesRes.contents;
 
   return categories.flatMap((c) => {
@@ -49,4 +49,4 @@ const category_of_this_page = categories.find((c) => c.id === categoryId);
   .blog-list-title {
     @apply text-2xl font-bold mb-10;
   }
-</style>
+</style>@/libs/microcms/category

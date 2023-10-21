@@ -3,34 +3,24 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/noto-sans-jp";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
-import type { BlogCategory } from "@/libs/microcms/blogCategory";
-import { getBlogsByCategory } from "@/libs/microcms/blog";
+import { getArticlesByCategory } from "@/libs/microcms/blog";
 import Link from "@/components/Link/Link.astro";
 import buildFilter from "@/libs/microcms/buildFilter";
 import { Icon } from "astro-icon";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
 import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.astro";
-import { Image } from "astro:assets";
 import { SITE_DOMAIN } from "@/constants/url";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
+import type { Article } from "@/libs/microcms/blog";
 
-type Props = {
-  title: string;
-  description: string;
-  pubDate: Date;
-  updatedDate?: Date;
-  heroImage?: string;
-  categories: BlogCategory[];
-};
+type Props = Article;
 
-const { title, description, pubDate, updatedDate, heroImage, categories } =
-  Astro.props;
-
+const { title, description, publishedAt, eyecatch, category } = Astro.props;
 const { slug } = Astro.params;
 
-const catetoryIds = categories.map(({ id }) => id);
+const catetoryIds = category.map(({ id }) => id);
 const filter = buildFilter("categoryId", catetoryIds);
-const relatedPostsRes = await getBlogsByCategory(filter);
+const relatedPostsRes = await getArticlesByCategory(filter);
 const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   return Math.random() - 0.5;
 });
@@ -51,7 +41,7 @@ const breadCrumbsList = [
   {title}
   {description}
   context={"blog"}
-  {heroImage}
+  heroImage={eyecatch.url}
   {breadCrumbsList}
 >
   <div class="blog-detail-wrapper">
@@ -63,15 +53,15 @@ const breadCrumbsList = [
 
         <div>
           公開日
-          <FormattedDate date={pubDate} />
+          <FormattedDate date={new Date(publishedAt)} />
 
-          {
+          <!-- {
             updatedDate && (
               <div class="last-updated-on">
                 <FormattedDate date={updatedDate} />
               </div>
             )
-          }
+          } -->
         </div>
       </div>
       <article>
@@ -84,7 +74,7 @@ const breadCrumbsList = [
           <p class="aside-title">カテゴリ</p>
           <div class="flex flex-wrap">
             <BlogCategoryBadgeGroup
-              categories={categories.map(({ id, name }) => {
+              categories={category.map(({ id, name }) => {
                 return {
                   id,
                   name,

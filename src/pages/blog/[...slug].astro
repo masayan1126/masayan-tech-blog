@@ -1,12 +1,12 @@
 ---
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
-import { getBlogs, type Blog } from "@/libs/microcms/blog";
+import { getArticles, type Article } from "@/libs/microcms/blog";
 
-type Props = Blog;
+type Props = Article;
 
 export async function getStaticPaths() {
-  const res = await getBlogs();
+  const res = await getArticles();
   const posts = res.contents;
   return posts.map((post) => {
     return {
@@ -16,18 +16,10 @@ export async function getStaticPaths() {
   });
 }
 
-const post = Astro.props;
-const { title, publishedAt, description, eyecatch, category } = post;
-
-const highlightedArticle = attachCodeHighlight(post.content);
+const article = Astro.props;
+const highlightedArticle = attachCodeHighlight(article.content);
 ---
 
-<BlogDetailLayout
-  title={title}
-  description={description}
-  pubDate={new Date(publishedAt)}
-  heroImage={eyecatch.url}
-  categories={category}
->
+<BlogDetailLayout {...article}>
   <p set:html={highlightedArticle} />
 </BlogDetailLayout>

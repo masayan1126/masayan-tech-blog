@@ -1,15 +1,15 @@
-import type { Blog } from "@/libs/microcms/blog";
+import type { Article } from "@/libs/microcms/blog";
 import { useCallback, useState } from "react";
 import { Icon } from "@iconify/react";
 import { BlogCardSide } from "@/features/Blog/List/BlogCardSide";
 
 type Props = {
-  posts: Blog[];
-  articles: Blog[];
+  posts: Article[];
+  articles: Article[];
 };
 
 export const BlogList = ({ posts, articles }: Props) => {
-  const [sorted, setSorted] = useState<Blog[]>(posts);
+  const [sorted, setSorted] = useState<Article[]>(posts);
   //   const [searchTerm, setSearchTerm] = useState("");
 
   const sort = useCallback(() => {

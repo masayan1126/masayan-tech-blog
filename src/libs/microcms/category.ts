@@ -5,7 +5,7 @@ const client = createClient({
   apiKey: import.meta.env.MICRO_CMS_API_KEY,
 });
 
-export type BlogCategory = {
+export type ArticleCategory = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -14,11 +14,11 @@ export type BlogCategory = {
   name: string;
 };
 
-export type BlogCategoryResponse = {
+export type CategoryResponse = {
   totalCount: number;
   offset: number;
   limit: number;
-  contents: BlogCategory[];
+  contents: ArticleCategory[];
 };
 
 export const getCategories = async (
@@ -26,7 +26,7 @@ export const getCategories = async (
     limit: FETCH_POSTS_MAX_LIMIT,
   }
 ) => {
-  return await client.get<BlogCategoryResponse>({
+  return await client.get<CategoryResponse>({
     endpoint: "categories",
     queries,
   });

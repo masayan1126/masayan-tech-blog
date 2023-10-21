@@ -1,7 +1,6 @@
 ---
 import buildPaginationItem from "@/features/Pagination/buildPaginationItem";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
-import type { Blog } from "@/libs/microcms/blog";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 
 type Props = ArticlePagination;
@@ -131,4 +130,3 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
     margin-left: 8px;
   }
 </style>
-@/types/pagination

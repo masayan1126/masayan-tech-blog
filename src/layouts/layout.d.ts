@@ -9,12 +9,12 @@
 //   }[];
 // };
 
-export interface LayoutProps {
+export interface BasicLayoutProps {
   title: string;
   description: string;
 }
 
-export interface BaseLayoutProps extends LayoutProps {
+export interface BaseLayoutProps extends BasicLayoutProps {
   context: string;
   heroImage?: string;
   breadCrumbsList: {

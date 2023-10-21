@@ -1,12 +1,12 @@
 ---
-import type { Blog } from "@/libs/microcms/blog";
+import type { Article } from "@/libs/microcms/blog";
 import FormattedDate from "@/components/FormattedDate.astro";
 
 import { BlogListLink } from "./BlogListLink";
 import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup";
 
 type Props = {
-  post: Blog;
+  post: Article;
 };
 
 const { post } = Astro.props;

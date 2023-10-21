@@ -1,5 +1,5 @@
 ---
-import { getBlogs } from "@/libs/microcms/blog";
+import { getArticles } from "@/libs/microcms/blog";
 import type { GetStaticPathsOptions } from "astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
@@ -10,7 +10,7 @@ import type { Pagination as ArticlePagination } from "@/types/pagination";
 type Props = ArticlePagination;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-  const res = await getBlogs();
+  const res = await getArticles();
   const posts = res.contents;
 
   return paginate(posts, {
