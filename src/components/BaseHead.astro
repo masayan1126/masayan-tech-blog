@@ -2,28 +2,23 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import "@/styles/global.css";
-import { ViewTransitions } from "astro:transitions";
 
 export interface Props {
   title: string;
   description: string;
-  heroImage?: string;
+  image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const {
-  title,
-  description,
-  heroImage = "/placeholder-social.jpg",
-} = Astro.props;
+const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
 ---
 
 <head>
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="generator" content={Astro.generator} />
 
   <!-- Canonical URL -->
@@ -41,26 +36,24 @@ const {
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(heroImage, Astro.url)} />
+  <meta property="og:image" content={new URL(image, Astro.url)} />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content={Astro.url} />
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={new URL(heroImage, Astro.url)} />
+  <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-  <ViewTransitions />
-
-  <!-- <script
+  <script
     async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
-    crossorigin="anonymous"></script> -->
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7690343715983011"
+    crossorigin="anonymous"></script>
+
   <script
     type="text/partytown"
     src="https://www.googletagmanager.com/gtag/js?id=G-V5DNQ95RRH"></script>
-
-  <script type="text/partytown" is:inline>
+  <script type="text/partytown">
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
