@@ -9,7 +9,7 @@ type Props = {
 };
 
 const style = {
-  padding: "0 20px 15px",
+  //   padding: "0 20px 15px",
   //   background: "rgba(74, 74, 74, 0.3)",
   //   boxShadow: "0 2px 6px 0 rgba(68, 68, 68, 0.37)",
   backdropFilter: "blur(0px)",
@@ -20,7 +20,6 @@ const style = {
 
 export const BlogCardSide = ({ post }: Props) => {
   const date = new Date(post.publishedAt);
-  console.log(date);
   return (
     <div className="card card-skin" style={style}>
       <div className="">
