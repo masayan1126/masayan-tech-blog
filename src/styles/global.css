@@ -97,7 +97,7 @@ blockquote p {
 
 .text-link {
   @apply hover:underline;
-  color: rgb(146, 180, 237);
+  color: rgb(160, 185, 227);
 }
 
 .fadeUp {

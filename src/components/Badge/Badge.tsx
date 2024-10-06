@@ -3,7 +3,7 @@ import type { BadgeItemProps } from "@/types/Badge/badgeProps";
 
 export default function Badge({
   item,
-  importance = "primary",
+  importance = "secondary",
 }: BadgeItemProps) {
   return (
     <span
