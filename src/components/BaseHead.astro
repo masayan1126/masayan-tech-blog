@@ -45,8 +45,12 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-  <script
+  <!-- <script
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+  ></script>
 </head>
