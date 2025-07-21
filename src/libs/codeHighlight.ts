@@ -8,6 +8,9 @@ export const attachCodeHighlight = (content: string) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);
     $(elm).addClass("hljs");
+    // Add copy button to the parent <pre>
+    const pre = $(elm).parent();
+    pre.prepend('<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText).then(()=>{this.innerText=\'copied!\';setTimeout(()=>{this.innerText=\'copy\';},1200);})">copy</button>');
   });
   content = $.html();
   return content;
