@@ -1,14 +1,22 @@
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
-import { type RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-// BlogListFilterDropdown
+const categories = [
+  { id: "ai", label: "AI" },
+  { id: "visual-studio-code", label: "VisualStudioCode" },
+  { id: "frontend", label: "フロントエンド" },
+  { id: "python", label: "Python" },
+  { id: "laravel", label: "Laravel" },
+  { id: "php", label: "PHP" },
+  { id: "typescript", label: "Typescript" },
+];
+
 export const BlogListSortByCategoryButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const containerRef: RefObject<HTMLDivElement> = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      // DropDownのボタンをクリックした場合は、閉じずに開く
       if (
         containerRef.current &&
         !containerRef.current.contains(event.target as Node)
@@ -16,21 +24,13 @@ export const BlogListSortByCategoryButton = () => {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
+    return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
-
-  const handleToggleClick = () => {
-    setIsOpen((prevOpen) => !prevOpen);
-  };
 
   return (
     <div
-      className="containerRef"
+      className="relative"
       ref={containerRef}
       style={{ width: "200px", marginBottom: "20px" }}
     >
@@ -39,9 +39,12 @@ export const BlogListSortByCategoryButton = () => {
         data-dropdown-toggle="dropdown"
         className="bg-white/80 text-gray-800 border border-gray-200 shadow-sm hover:bg-blue-50 hover:text-blue-700 focus:ring-2 focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mb-1 transition-colors duration-200"
         type="button"
-        onClick={handleToggleClick}
+        onClick={() => setIsOpen((prev) => !prev)}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls="category-dropdown"
       >
-        人気のカテゴリ{" "}
+        人気のカテゴリ
         <svg
           className="w-2.5 h-2.5 ml-2.5"
           aria-hidden="true"
@@ -61,61 +64,23 @@ export const BlogListSortByCategoryButton = () => {
       {isOpen && (
         <div
           style={{ position: "absolute" }}
-          id="dropdown"
-          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-1/2 dark:bg-gray-700"
+          id="category-dropdown"
+          className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow min-w-[180px] w-56 dark:bg-gray-700"
+          role="listbox"
         >
-          <ul
-            className="py-2 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownDefaultButton"
-          >
-            <li>
-              <a
-                href={`/category/visual-studio-code${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                VisualStudioCode
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/category/frontend${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                フロントエンド
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/category/python${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Python
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/category/laravel${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Laravel
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/category/php${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                PHP
-              </a>
-            </li>
-            <li>
-              <a
-                href={`/category/typescript${ARTICLES_PATH}`}
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Typescript
-              </a>
-            </li>
+          <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+            {categories.map((cat) => (
+              <li key={cat.id}>
+                <a
+                  href={`/category/${cat.id}${ARTICLES_PATH}`}
+                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="option"
+                  aria-label={cat.label}
+                >
+                  {cat.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       )}

@@ -22,6 +22,45 @@ const { title, description, context, heroImage, breadCrumbsList } = Astro.props;
 
     <Footer />
 
+    <!-- Feedback Dialog -->
+    <div id="feedback-modal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 hidden">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+        <button id="feedback-close" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
+        <h2 class="text-lg font-bold mb-2 text-gray-800">サイト品質に関するフィードバック</h2>
+        <p class="mb-3 text-gray-700">いつもアクセスいただきありがとうございます！このサイトの品質やご意見をぜひお聞かせください。</p>
+        <div class="mb-3">
+          <label class="block mb-1 text-gray-800 font-semibold">サイトの総合評価</label>
+          <div id="feedback-stars" class="flex flex-row-reverse justify-end gap-1 text-2xl cursor-pointer">
+            <input type="radio" name="star" id="star5" value="5" class="hidden" />
+            <label for="star5" class="star">★</label>
+            <input type="radio" name="star" id="star4" value="4" class="hidden" />
+            <label for="star4" class="star">★</label>
+            <input type="radio" name="star" id="star3" value="3" class="hidden" />
+            <label for="star3" class="star">★</label>
+            <input type="radio" name="star" id="star2" value="2" class="hidden" />
+            <label for="star2" class="star">★</label>
+            <input type="radio" name="star" id="star1" value="1" class="hidden" />
+            <label for="star1" class="star">★</label>
+          </div>
+        </div>
+        <textarea id="feedback-text" class="w-full border border-gray-300 rounded p-2 mb-3 text-gray-800" rows="4" placeholder="ご意見・ご感想を入力してください"></textarea>
+        <div class="flex justify-end gap-2">
+          <button id="feedback-submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">送信</button>
+        </div>
+      </div>
+    </div>
+    <style>
+      .star {
+        color: #d1d5db;
+        transition: color 0.2s;
+      }
+      .star.selected,
+      .star:hover,
+      .star:hover ~ .star {
+        color: #fbbf24;
+      }
+    </style>
+
     <script>
       // lazyload adsense
       let lazyloadads = false;
@@ -47,6 +86,61 @@ const { title, description, context, heroImage, breadCrumbsList } = Astro.props;
         },
         true
       );
+
+      // Feedback modal logic
+      setTimeout(() => {
+        if (localStorage.getItem('feedback_submitted') === '1') return;
+        const modal = document.getElementById('feedback-modal');
+        if (modal) modal.classList.remove('hidden');
+      }, 30000);
+      document.addEventListener('DOMContentLoaded', () => {
+        const closeBtn = document.getElementById('feedback-close');
+        const modal = document.getElementById('feedback-modal');
+        const submitBtn = document.getElementById('feedback-submit');
+        const stars = Array.from(document.querySelectorAll('#feedback-stars .star'));
+        let selectedRating = 0;
+        stars.forEach((star, idx) => {
+          star.addEventListener('mouseenter', () => {
+            stars.forEach((s, i) => {
+              s.classList.toggle('selected', i >= stars.length - 1 - idx);
+            });
+          });
+          star.addEventListener('mouseleave', () => {
+            stars.forEach((s, i) => {
+              s.classList.toggle('selected', selectedRating > 0 && i >= stars.length - selectedRating);
+            });
+          });
+          star.addEventListener('click', () => {
+            selectedRating = stars.length - idx;
+            stars.forEach((s, i) => {
+              s.classList.toggle('selected', i >= stars.length - selectedRating);
+            });
+          });
+        });
+        closeBtn?.addEventListener('click', () => modal?.classList.add('hidden'));
+        submitBtn?.addEventListener('click', () => {
+          const text = (document.getElementById('feedback-text') as HTMLTextAreaElement)?.value;
+          if (!selectedRating) {
+            alert('星で評価を選択してください');
+            return;
+          }
+          if (text && text.length > 0) {
+            // Google Analytics イベント送信
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'feedback_submit', {
+                event_category: 'Feedback',
+                event_label: text,
+                value: selectedRating
+              });
+            }
+            alert(`ご意見ありがとうございました！\n評価: ${selectedRating} 星\n内容: ${text}`);
+            modal?.classList.add('hidden');
+            localStorage.setItem('feedback_submitted', '1');
+          } else {
+            alert('ご意見・ご感想を入力してください');
+          }
+        });
+      });
     </script>
 
     <!-- <script
