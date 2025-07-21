@@ -15,7 +15,7 @@ const { title, description, context, heroImage, breadCrumbsList } = Astro.props;
 
   <body class="mx-auto">
     <Header {context} />
-    <main class="fadeUp">
+    <main class="fadeUp pt-20">
       <BreadCrumbs lists={breadCrumbsList} />
       <slot />
     </main>
