@@ -35,10 +35,9 @@ export const BlogListSortByCategoryButton = () => {
       style={{ width: "200px", marginBottom: "20px" }}
     >
       <button
-        style={{ backgroundColor: "#ebecec", color: "#252525" }}
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
-        className="text-white focus:ring-4  font-medium rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center mb-1"
+        className="bg-white/80 text-gray-800 border border-gray-200 shadow-sm hover:bg-blue-50 hover:text-blue-700 focus:ring-2 focus:ring-blue-300 font-semibold rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mb-1 transition-colors duration-200"
         type="button"
         onClick={handleToggleClick}
       >

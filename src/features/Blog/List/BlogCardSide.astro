@@ -1,6 +1,7 @@
 ---
 import type { Article } from "@/libs/microcms/blog";
 import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon";
 
 import { BlogListLink } from "./BlogListLink";
 import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup";
@@ -28,6 +29,7 @@ const { post } = Astro.props;
       />
       <!-- <div class="text-sm mt-3">閲覧数: 20</div> -->
       <div class="text-sm mt-3">
+        <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
         <FormattedDate date={new Date(post.publishedAt)} />
       </div>
     </div>

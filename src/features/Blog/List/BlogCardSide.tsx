@@ -3,6 +3,7 @@ import FormattedDate from "@/components/FormattedDate.astro";
 
 import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
 import { BlogListLink } from "@/features/Blog/List/BlogListLink";
+import { Icon } from "@iconify/react";
 
 type Props = {
   post: Article;
@@ -28,6 +29,7 @@ export const BlogCardSide = ({ post }: Props) => {
             {post.title}
           </h2>
         </div>
+        
         <BlogCategoryBadgeGroup
           categories={post.category.map((c) => {
             return {
@@ -37,8 +39,9 @@ export const BlogCardSide = ({ post }: Props) => {
           })}
         />
         <div className="text-sm mt-1">
+          <Icon icon="material-symbols:calendar-month" className="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
           公開日:
-          <time datetime={date.toISOString()}>
+          <time dateTime={date.toISOString()}>
             {date.toLocaleDateString("ja-JP", {
               year: "numeric",
               month: "short",
