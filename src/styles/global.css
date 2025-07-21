@@ -85,10 +85,25 @@ pre > code {
 }
 
 blockquote {
-  border: 1px solid var(--text-color);
-  padding: 16px;
-  font-style: italic;
-  @apply my-5;
+  border-left: 6px solid #7fa7ff;
+  background: rgba(127, 167, 255, 0.08);
+  padding: 1.2em 1.5em 1.2em 2.2em;
+  margin: 2em 0;
+  font-style: normal;
+  position: relative;
+  border-radius: 8px;
+  color: #c7d6f9;
+}
+blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: 0.7em;
+  top: 0.2em;
+  font-size: 2.5em;
+  color: #7fa7ff;
+  font-family: serif;
+  line-height: 1;
+  opacity: 0.4;
 }
 
 blockquote p {

@@ -20,6 +20,7 @@ export type Article = {
   description: string;
   eyecatch: ArticleEyecatch;
   category: ArticleCategory[];
+  youtube_link?: string; // Optional YouTube link for embedding
 };
 
 export type ArticlesResponse = {

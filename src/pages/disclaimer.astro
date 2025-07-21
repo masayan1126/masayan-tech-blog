@@ -13,16 +13,75 @@ import { Icon } from "astro-icon";
   context={"disclaimer"}
   breadCrumbsList={[]}
 >
-  <div>
-    <h2 class="align-middle">
-      <Icon name="noto:person-bowing" class="w-6 inline-block mr-2" />{
-        DISCLAIMER_TITLE
-      }
+  <div class="disclaimer-container">
+    <h2 class="disclaimer-title">
+      <Icon name="noto:person-bowing" class="w-6 inline-block mr-2" />{DISCLAIMER_TITLE}
     </h2>
-    <p>
-      当ブログからのリンクやバナーなどで移動したサイトで提供される情報、サービス等について一切の責任を負いません。
-      また当ブログのコンテンツ・情報について、できる限り正確な情報を提供するように努めておりますが、正確性や安全性を保証するものではありません。情報が古くなっていることもございます。
-      当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください
-    </p>
+    <section class="disclaimer-section">
+      <h3><Icon name="noto:information" class="w-5 inline-block mr-1" />情報の正確性について</h3>
+      <p>
+        当ブログのコンテンツや情報については、できる限り正確な情報を掲載するよう努めておりますが、誤情報が入り込んだり、情報が古くなっていることもございます。必ずしも正確性や安全性等を保証するものではありません。予告なく内容を変更・削除することもございますのでご了承ください。
+      </p>
+    </section>
+    <section class="disclaimer-section">
+      <h3><Icon name="noto:warning" class="w-5 inline-block mr-1" />損害等の責任について</h3>
+      <p>
+        当ブログに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。また、当ブログを利用することで生じたトラブルや損害等についても一切の責任を負いません。各種サービスや商品等のご利用は、ご自身の判断と責任でお願いいたします。
+      </p>
+    </section>
+    <section class="disclaimer-section">
+      <h3><Icon name="noto:link" class="w-5 inline-block mr-1" />外部リンクについて</h3>
+      <p>
+        当ブログからのリンクやバナーなどで移動した外部サイトで提供される情報、サービス等について一切の責任を負いません。移動先サイトの内容やサービスについては、各自の責任でご利用ください。
+      </p>
+    </section>
+    <section class="disclaimer-section">
+      <h3><Icon name="noto:copyright" class="w-5 inline-block mr-1" />著作権・肖像権について</h3>
+      <p>
+        当ブログで掲載している文章や画像などにつきましては、無断転載することを禁止します。各コンテンツの著作権・肖像権等は当ブログまたは各権利所有者に帰属します。万が一問題がある場合は、お問い合わせよりご連絡ください。迅速に対応いたします。
+      </p>
+    </section>
+    <section class="disclaimer-section">
+      <h3>免責事項の変更について</h3>
+      <p>
+        本免責事項の内容は、予告なく変更されることがあります。最新の内容をご確認の上、ご利用ください。
+      </p>
+    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .disclaimer-container {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    width: 90%;
+    max-width: 1400px;
+    margin: 2rem 0 3rem 0;
+  }
+  .disclaimer-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    letter-spacing: 0.08em;
+  }
+  .disclaimer-section {
+    margin-bottom: 2.2rem;
+  }
+  .disclaimer-section h3 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #a7c7f9;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+  }
+  .disclaimer-section p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.8;
+  }
+</style>
