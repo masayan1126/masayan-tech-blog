@@ -15,7 +15,7 @@ import type { Article } from "@/libs/microcms/blog";
 
 type Props = Article;
 
-const { title, description, publishedAt, eyecatch, category, youtube_link } = Astro.props;
+const { title, description, publishedAt, category, youtube_link } = Astro.props;
 const { slug } = Astro.params;
 
 
@@ -46,7 +46,6 @@ const breadCrumbsList = [
   {title}
   {description}
   context={"blog"}
-  heroImage={eyecatch.url}
   {breadCrumbsList}
 >
   <div class="blog-detail-wrapper">
@@ -199,6 +198,8 @@ const breadCrumbsList = [
 
   article h2 {
     @apply text-2xl font-bold mt-14 mb-2;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
   }
 
   article h2::before {
@@ -214,6 +215,14 @@ const breadCrumbsList = [
 
   article h4 {
     @apply font-bold mt-8 mb-2;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+  }
+
+  article h5 {
+    @apply font-bold mt-8 mb-2;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
   }
 
   article p {

@@ -3,11 +3,11 @@ import type { ArticleCategory } from "@/libs/microcms/category";
 import { client } from "@/libs/microcms/config";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 
-type ArticleEyecatch = {
-  url: string;
-  height: number;
-  width: number;
-};
+// type ArticleEyecatch = {
+//   url: string;
+//   height: number;
+//   width: number;
+// };
 
 export type Article = {
   id: string;
@@ -18,7 +18,7 @@ export type Article = {
   title: string;
   content: string;
   description: string;
-  eyecatch: ArticleEyecatch;
+  // eyecatch: ArticleEyecatch;
   category: ArticleCategory[];
   youtube_link?: string; // Optional YouTube link for embedding
 };
