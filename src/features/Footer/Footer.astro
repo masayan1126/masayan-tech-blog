@@ -6,54 +6,308 @@ import { Icon } from "astro-icon";
 const today = new Date();
 ---
 
-<footer class="flex flex-col gap-2">
-  <div>
-    Copyright © {today.getFullYear()}
-    {SITE_TITLE} All Rights Reserved.
-  </div>
-  <div class="flex w-30 mx-auto items-center gap-2">
-    <Link href={"/disclaimer"} color="white">
-      <p class="text-xs">免責事項</p>
-    </Link>
-    <!-- <p class="pb-1">
-      <Link href={"/rss.xml"} color="white">
-        <Icon name="mdi:rss" class="w-6 inline-block" />
-      </Link>
-    </p> -->
-
-    <p class="pb-1">
-      <Link
-        href={"https://twitter.com/masayanishigaki"}
-        color="white"
-        isBrank={true}
+<footer class="modern-footer">
+  <!-- 背景グラデーション -->
+  <div class="footer-background"></div>
+  
+  <!-- メインコンテンツ -->
+  <div class="footer-content">
+    <!-- サイトタイトル -->
+    <div class="footer-brand">
+      <h3 class="footer-title">{SITE_TITLE}</h3>
+      <p class="footer-subtitle">Modern Tech Blog</p>
+    </div>
+    
+    <!-- ソーシャルリンク -->
+    <div class="social-links">
+      <a 
+        href="https://x.com/masayanishigaki" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="social-link x-twitter"
       >
-        <Icon name="logos:twitter" class="w-6 inline-block" />
-      </Link>
-    </p>
-    <p class="pb-1">
-      <Link
-        href={"https://github.com/masayan1126"}
-        color="white"
-        isBrank={true}
+        <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span class="social-label">X</span>
+      </a>
+      
+      <a 
+        href="https://github.com/masayan1126" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="social-link github"
       >
-        <Icon name="grommet-icons:github" class="w-6 inline-block" />
-      </Link>
-    </p>
-    <p class="pb-1">
-      <Link
-        href={"https://www.youtube.com/@masayan.dev.1126/playlists"}
-        color="white"
-        isBrank={true}
+        <Icon name="grommet-icons:github" class="social-icon" />
+        <span class="social-label">GitHub</span>
+      </a>
+      
+      <a 
+        href="https://www.youtube.com/@masayan.dev.1126/playlists" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="social-link youtube"
       >
-        <Icon name="mdi:youtube" class="w-6 inline-block" color="red" />
+        <Icon name="mdi:youtube" class="social-icon" />
+        <span class="social-label">YouTube</span>
+      </a>
+    </div>
+    
+    <!-- フッターリンク -->
+    <div class="footer-links">
+      <Link href="/disclaimer" class="footer-link">
+        <Icon name="mdi:shield-check-outline" class="footer-link-icon" />
+        免責事項
       </Link>
-    </p>
+    </div>
+    
+    <!-- コピーライト -->
+    <div class="copyright">
+      <div class="copyright-text">
+        © {today.getFullYear()} {SITE_TITLE}. All rights reserved.
+      </div>
+      <div class="made-with-love">
+        Made with <Icon name="noto:red-heart" class="heart-icon" /> by Masaya
+      </div>
+    </div>
   </div>
 </footer>
 <style>
-  footer {
-    padding: 50px 25px;
+  .modern-footer {
+    position: relative;
+    overflow: hidden;
+    padding: 4rem 2rem 2rem;
     text-align: center;
-    background-color: #181818;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 4rem;
+  }
+  
+  .footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(127, 167, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(127, 167, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(127, 167, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  
+  .footer-brand {
+    margin-bottom: 1rem;
+  }
+  
+  .footer-title {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(127, 167, 255, 0.8) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-link:hover::before {
+    opacity: 1;
+  }
+  
+  .social-link:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15);
+    border: 1px solid rgba(127, 167, 255, 0.3);
+    color: rgba(127, 167, 255, 0.9);
+  }
+  
+  .social-icon {
+    width: 2rem;
+    height: 2rem;
+    transition: transform 0.3s ease;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .social-link:hover .social-icon {
+    transform: scale(1.2) rotate(5deg);
+  }
+  
+  .social-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    z-index: 1;
+    position: relative;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  :global(.footer-link) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+  }
+  
+  :global(.footer-link:hover) {
+    transform: translateY(-2px);
+    background: rgba(127, 167, 255, 0.1);
+    border: 1px solid rgba(127, 167, 255, 0.3);
+    color: rgba(127, 167, 255, 0.9);
+    box-shadow: 0 8px 16px rgba(127, 167, 255, 0.1);
+  }
+  
+  .footer-link-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .copyright-text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+  }
+  
+  .made-with-love {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  
+  .heart-icon {
+    width: 1rem;
+    height: 1rem;
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+  
+  @keyframes heartbeat {
+    0%, 50%, 100% {
+      transform: scale(1);
+    }
+    25%, 75% {
+      transform: scale(1.1);
+    }
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .modern-footer {
+      padding: 3rem 1rem 1.5rem;
+    }
+    
+    .footer-content {
+      gap: 2rem;
+    }
+    
+    .footer-title {
+      font-size: 1.5rem;
+    }
+    
+    .social-links {
+      gap: 1rem;
+    }
+    
+    .social-link {
+      min-width: 100px;
+      padding: 1rem 0.75rem;
+    }
+    
+    .social-link:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .copyright {
+      padding-top: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .social-links {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .social-link {
+      width: 100%;
+      max-width: 200px;
+    }
   }
 </style>

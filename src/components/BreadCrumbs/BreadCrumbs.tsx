@@ -12,7 +12,7 @@ export const BreadCrumbs = ({ lists }: Props) => {
 
   return (
     <ol
-      className="flex font-bold overflow-x-auto whitespace-nowrap text-xs mb-3"
+      className="flex font-bold overflow-x-auto whitespace-nowrap text-xs mb-3 mt-4 md:mt-6"
       aria-label="breadcrumb"
     >
       {lists.map(({ name, path }, index) => (

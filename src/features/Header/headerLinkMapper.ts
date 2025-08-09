@@ -8,18 +8,18 @@ const headerLinkMapper = new Map<
 headerLinkMapper
   .set("home", [
     // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
-    { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
+    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
 
   .set("blog", [
-    { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
+    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
   .set("about", [
-    { href: ARTICLES_PATH, text: "Home", iconName: "carbon:home" },
+    { href: ARTICLES_PATH, text: "Home", iconName: "mdi:home-variant-outline" },
     // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
   ])
   .set("disclaimer", [
-    { href: "/about", text: "About", iconName: "carbon:user-profile-alt" },
+    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
   .set("404", []);
 

@@ -11,20 +11,24 @@ type Props = {
 const { post } = Astro.props;
 ---
 
-<div class="card card-skin">
-  <BlogListLink href={`/blog/${post.id}/`}>
-    <Image
-      src={post.eyecatch.url}
-      width={512}
-      height={288}
-      alt={post.title}
-      format="avif"
-    />
+<div class="card card-skin modern-card">
+  <BlogListLink href={`/blog/${post.id}/`} class="card-link">
+    <div class="card-image-container">
+      <Image
+        src={post.eyecatch.url}
+        width={512}
+        height={288}
+        alt={post.title}
+        format="avif"
+        class="card-image"
+      />
+      <div class="card-overlay"></div>
+    </div>
 
     <div class="card__textbox">
       <div class="text-sm">タグ、閲覧数など表示</div>
       <div class="text-sm">
-        <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
+        <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-gray-300" />
         <FormattedDate date={new Date(post.publishedAt)} />
       </div>
     </div>
@@ -32,8 +36,16 @@ const { post } = Astro.props;
 </div>
 
 <style>
-  .card {
+  .modern-card {
     height: auto;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+  }
+
+  .modern-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15);
   }
 
   .card__textbox {
@@ -42,11 +54,70 @@ const { post } = Astro.props;
     padding: 20px 18px;
     box-sizing: border-box;
     color: var(--dark-mode-text-color);
+    position: relative;
+    z-index: 2;
   }
 
   .card-skin {
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  
+  .modern-card:hover .card-image {
+    transform: scale(1.05);
+  }
+  
+  .modern-card:hover .card-overlay {
+    opacity: 1;
+  }
+  
+  .modern-card:hover .card-skin {
+    border: 1px solid rgba(127, 167, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  :global(.card-link) {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* モバイル対応 */
+  @media (max-width: 768px) {
+    .modern-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 25px rgba(127, 167, 255, 0.1);
+    }
+    
+    .modern-card:hover .card-image {
+      transform: scale(1.03);
+    }
   }
 </style>

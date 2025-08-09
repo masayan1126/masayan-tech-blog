@@ -8,60 +8,64 @@ type Props = ArticlePagination;
 const { page } = Astro.props;
 const { categoryId } = Astro.params;
 
-const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
+// 画面サイズに応じた表示範囲を設定
+const paginationMobile = buildPaginationItem(page.total, page.size, page.currentPage, 1);     // モバイル: 前後1ページ
+const paginationTablet = buildPaginationItem(page.total, page.size, page.currentPage, 2);     // タブレット: 前後2ページ  
+const paginationDesktop = buildPaginationItem(page.total, page.size, page.currentPage, 3);    // デスクトップ: 前後3ページ
 ---
 
-<ul class="pagination">
+<!-- モバイル用ページネーション (768px以下) -->
+<ul class="pagination pagination-mobile">
   {
     page.url.prev && (
       <li class="pagination-item">
-        <a class="pagination-item-link" href={page.url.prev}>
+        <a class="pagination-item-link prev-link" href={page.url.prev}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="pagination-item-link-icon"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.5"
           >
             <path
               stroke-linecap="round"
-              stroke-inejoin="round"
-              d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
             />
           </svg>
+          <span class="sr-only">前のページ</span>
         </a>
       </li>
     )
   }
 
   {
-    // カテゴリーの記事一覧ページの場合はカテゴリーIDを付与、通常の記事一覧の場合は付与しない
     page.url.current.includes("category")
-      ? pagination.map(
+      ? paginationMobile.map(
           (item) =>
             item !== "" && (
               <li class="pagination-item">
                 <a
                   class={`pagination-item-link ${
                     page.currentPage === Number(item) ? "isActive" : ""
-                  }`}
-                  href={`/category/${categoryId}/page/${item}`}
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : `/category/${categoryId}/page/${item}`}
                 >
                   <span>{item}</span>
                 </a>
               </li>
             )
         )
-      : pagination.map(
+      : paginationMobile.map(
           (item) =>
             item !== "" && (
               <li class="pagination-item">
                 <a
                   class={`pagination-item-link ${
                     page.currentPage === Number(item) ? "isActive" : ""
-                  }`}
-                  href={Number(item) === 1 ? ARTICLES_PATH : `/page/${item}`}
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : (Number(item) === 1 ? ARTICLES_PATH : `/page/${item}`)}
                 >
                   <span>{item}</span>
                 </a>
@@ -73,21 +77,192 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
   {
     page.url.next && (
       <li class="pagination-item">
-        <a class="pagination-item-link" href={page.url.next}>
+        <a class="pagination-item-link next-link" href={page.url.next}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="pagination-item-link-icon"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.5"
           >
             <path
               stroke-linecap="round"
-              stroke-inejoin="round"
-              d="M13 5l7 7-7 7M5 5l7 7-7 7"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
             />
           </svg>
+          <span class="sr-only">次のページ</span>
+        </a>
+      </li>
+    )
+  }
+</ul>
+
+<!-- タブレット用ページネーション (769px-1023px) -->
+<ul class="pagination pagination-tablet">
+  {
+    page.url.prev && (
+      <li class="pagination-item">
+        <a class="pagination-item-link prev-link" href={page.url.prev}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pagination-item-link-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          <span class="sr-only">前のページ</span>
+        </a>
+      </li>
+    )
+  }
+
+  {
+    page.url.current.includes("category")
+      ? paginationTablet.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : `/category/${categoryId}/page/${item}`}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
+      : paginationTablet.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : (Number(item) === 1 ? ARTICLES_PATH : `/page/${item}`)}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
+  }
+
+  {
+    page.url.next && (
+      <li class="pagination-item">
+        <a class="pagination-item-link next-link" href={page.url.next}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pagination-item-link-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+          <span class="sr-only">次のページ</span>
+        </a>
+      </li>
+    )
+  }
+</ul>
+
+<!-- デスクトップ用ページネーション (1024px以上) -->
+<ul class="pagination pagination-desktop">
+  {
+    page.url.prev && (
+      <li class="pagination-item">
+        <a class="pagination-item-link prev-link" href={page.url.prev}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pagination-item-link-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+          <span class="sr-only">前のページ</span>
+        </a>
+      </li>
+    )
+  }
+
+  {
+    page.url.current.includes("category")
+      ? paginationDesktop.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : `/category/${categoryId}/page/${item}`}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
+      : paginationDesktop.map(
+          (item) =>
+            item !== "" && (
+              <li class="pagination-item">
+                <a
+                  class={`pagination-item-link ${
+                    page.currentPage === Number(item) ? "isActive" : ""
+                  } ${item === "..." ? "ellipsis" : ""}`}
+                  href={item === "..." ? "#" : (Number(item) === 1 ? ARTICLES_PATH : `/page/${item}`)}
+                >
+                  <span>{item}</span>
+                </a>
+              </li>
+            )
+        )
+  }
+
+  {
+    page.url.next && (
+      <li class="pagination-item">
+        <a class="pagination-item-link next-link" href={page.url.next}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pagination-item-link-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+          <span class="sr-only">次のページ</span>
         </a>
       </li>
     )
@@ -99,34 +274,262 @@ const pagination = buildPaginationItem(page.total, page.size, page.currentPage);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 3rem auto;
+    padding: 1rem;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    max-width: fit-content;
   }
+  
+  .pagination-item {
+    list-style: none;
+  }
+  
   .pagination-item-link {
-    @apply w-10 h-10 sm:w-12 sm:h-12 text-xs sm:text-sm;
+    @apply w-11 h-11 sm:w-12 sm:h-12 text-sm sm:text-base;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    position: relative;
     overflow: hidden;
-    background: var(--text-color);
-    border: solid 2px var(--bg-color-thick);
-    color: var(--bg-color-thick);
-    font-weight: bold;
-    transition: all 0.15s linear;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
   }
+  
+  .pagination-item-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 12px;
+  }
+  
+  .pagination-item-link:hover::before {
+    opacity: 1;
+  }
+  
   .pagination-item-link-icon {
-    @apply w-3 h-3 sm:w-5 sm:h-5;
+    @apply w-4 h-4 sm:w-5 sm:h-5;
+    transition: transform 0.3s ease;
   }
+  
   .pagination-item-link.isActive {
-    background: var(--bg-color-thick);
-    color: var(--text-color);
+    background: rgba(127, 167, 255, 0.2);
+    border: 1px solid rgba(127, 167, 255, 0.4);
+    color: rgba(127, 167, 255, 0.95);
+    box-shadow: 0 4px 16px rgba(127, 167, 255, 0.2);
     pointer-events: none;
+    transform: scale(1.05);
   }
+  
+  .pagination-item-link.isActive::before {
+    background: rgba(127, 167, 255, 0.1);
+    opacity: 1;
+  }
+  
   .pagination-item-link:not(.isActive):hover {
-    background: var(--bg-color-thick);
-    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(127, 167, 255, 0.3);
+    color: rgba(127, 167, 255, 0.9);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(127, 167, 255, 0.15);
   }
-  .pagination > * + * {
-    margin-left: 8px;
+  
+  .prev-link:hover .pagination-item-link-icon {
+    transform: translateX(-2px);
+  }
+  
+  .next-link:hover .pagination-item-link-icon {
+    transform: translateX(2px);
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* レスポンシブ調整 */
+  @media (max-width: 640px) {
+    .pagination {
+      margin: 2rem auto;
+      padding: 0.75rem;
+      gap: 0.5rem;
+      border-radius: 12px;
+    }
+    
+    .pagination-item-link {
+      border-radius: 8px;
+    }
+    
+    .pagination-item-link::before {
+      border-radius: 8px;
+    }
+  }
+  
+  /* 超小画面対応 (439px以下) */
+  @media (max-width: 439px) {
+    .pagination {
+      margin: 1.5rem auto;
+      padding: 0.25rem 0.375rem;  /* 左右のpaddingを最小化 */
+      gap: 0.125rem;              /* gapも縮小 */
+      border-radius: 8px;
+      max-width: calc(100vw - 1rem);  /* より幅を広く取る */
+      width: fit-content;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      box-sizing: border-box;     /* ボックスサイズ指定 */
+    }
+  }
+  
+  /* 440px以下での特別調整 */
+  @media (max-width: 440px) {
+    .pagination {
+      padding: 0.125rem 0.25rem !important;  /* 強制的に最小padding */
+      gap: 0.0625rem !important;             /* 強制的に最小gap */
+      margin: 1rem auto !important;          /* マージンも縮小 */
+    }
+    
+    .pagination::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .pagination-item-link {
+      @apply w-8 h-8 text-xs;    /* さらに小さく */
+      min-width: 32px;           /* 最小幅も縮小 */
+      border-radius: 6px;
+      font-weight: 500;
+      flex-shrink: 0;
+      font-size: 0.7rem;         /* フォントサイズも調整 */
+    }
+    
+    .pagination-item-link::before {
+      border-radius: 6px;
+    }
+    
+    .pagination-item-link-icon {
+      @apply w-3 h-3;
+    }
+    
+    .pagination-item-link:not(.isActive):hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 4px 12px rgba(127, 167, 255, 0.1);
+    }
+  }
+  
+  /* 極小画面対応 (360px以下) */
+  @media (max-width: 360px) {
+    .pagination {
+      margin: 1rem auto;
+      padding: 0.125rem 0.25rem;  /* さらに最小化 */
+      gap: 0.0625rem;             /* 極小gap */
+      max-width: calc(100vw - 0.5rem);  /* 極限まで幅を使用 */
+    }
+    
+    .pagination-item-link {
+      @apply w-7 h-7;             /* 最小サイズ */
+      min-width: 28px;            /* 最小幅 */
+      font-size: 0.65rem;         /* 最小フォント */
+    }
+  }
+  
+  /* アニメーション */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 4px 16px rgba(127, 167, 255, 0.2);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(127, 167, 255, 0.3);
+    }
+  }
+  
+  .pagination-item-link.isActive {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* 省略記号のスタイル */
+  .pagination-item-link.ellipsis {
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none !important;
+  }
+  
+  .pagination-item-link.ellipsis:hover {
+    transform: none !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  .pagination-item-link.ellipsis::before {
+    display: none;
+  }
+  
+  /* レスポンシブ表示制御 */
+  .pagination-mobile {
+    display: flex;
+  }
+  
+  .pagination-tablet {
+    display: none;
+  }
+  
+  .pagination-desktop {
+    display: none;
+  }
+  
+  /* タブレット表示 (769px-1023px) */
+  @media (min-width: 769px) and (max-width: 1023px) {
+    .pagination-mobile {
+      display: none;
+    }
+    
+    .pagination-tablet {
+      display: flex;
+    }
+    
+    .pagination-desktop {
+      display: none;
+    }
+  }
+  
+  /* デスクトップ表示 (1024px以上) */
+  @media (min-width: 1024px) {
+    .pagination-mobile {
+      display: none;
+    }
+    
+    .pagination-tablet {
+      display: none;
+    }
+    
+    .pagination-desktop {
+      display: flex;
+    }
   }
 </style>

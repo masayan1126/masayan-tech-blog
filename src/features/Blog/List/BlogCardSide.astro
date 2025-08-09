@@ -13,12 +13,11 @@ type Props = {
 const { post } = Astro.props;
 ---
 
-<div class="card card-skin">
-  <BlogListLink href={`/blog/${post.id}/`}>
-    <div class="">
-      <div class="">
-        <h2>{post.title}</h2>
-      </div>
+<div class="modern-blog-card-astro">
+  <BlogListLink href={`/blog/${post.id}/`} className="card-link">
+    <div class="card-overlay"></div>
+    <div class="card-content">
+      <h2 class="card-title">{post.title}</h2>
       <BlogCategoryBadgeGroup
         categories={post.category.map((c) => {
           return {
@@ -27,9 +26,8 @@ const { post } = Astro.props;
           };
         })}
       />
-      <!-- <div class="text-sm mt-3">閲覧数: 20</div> -->
-      <div class="text-sm mt-3">
-        <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
+      <div class="text-sm mt-3 date-info">
+        <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-gray-300" />
         <FormattedDate date={new Date(post.publishedAt)} />
       </div>
     </div>
@@ -37,7 +35,70 @@ const { post } = Astro.props;
 </div>
 
 <style>
-  h2 {
-    @apply text-xl font-bold mt-8 mb-2;
+  .modern-blog-card-astro {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    cursor: pointer;
+  }
+  
+  .modern-blog-card-astro:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15);
+    border: 1px solid rgba(127, 167, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .modern-blog-card-astro:hover .card-overlay {
+    opacity: 1;
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 2;
+    padding: 24px;
+  }
+  
+  .card-title {
+    @apply text-xl font-bold mt-2 mb-4;
+    transition: color 0.3s ease;
+    color: var(--text-color);
+  }
+  
+  .date-info {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  :global(.card-link) {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* モバイル対応 */
+  @media (max-width: 768px) {
+    .modern-blog-card-astro:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 25px rgba(127, 167, 255, 0.1);
+    }
   }
 </style>

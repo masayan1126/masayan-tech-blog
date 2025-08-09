@@ -33,6 +33,134 @@ main {
   min-height: 75vh;
 }
 
+/* 超小画面対応 (439px以下) */
+@media (max-width: 439px) {
+  main {
+    width: 95%;
+    @apply py-2 px-2;
+  }
+}
+
+/* 極小画面対応 (360px以下) */
+@media (max-width: 360px) {
+  main {
+    width: 98%;
+    @apply py-1 px-1;
+  }
+}
+
+/* カテゴリボタンの超小画面対応 */
+@media (max-width: 439px) {
+  .category-button-container {
+    font-size: 0.8rem !important;
+  }
+  
+  .category-button-container button {
+    padding: 0 0 2px 0 !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .category-button-container {
+    font-size: 0.75rem !important;
+  }
+  
+  .category-button-container button {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* モダンなブログカードのグローバルスタイル */
+.modern-blog-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform-origin: center !important;
+  cursor: pointer !important;
+}
+
+.modern-blog-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15) !important;
+  border: 1px solid rgba(127, 167, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .modern-blog-card:hover {
+    transform: translateY(-4px) scale(1.01) !important;
+    box-shadow: 0 12px 25px rgba(127, 167, 255, 0.1) !important;
+  }
+}
+
+/* バッジのホバーアニメーション */
+.modern-badge {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.3s ease;
+}
+
+.modern-badge:hover::before {
+  left: 100%;
+}
+
+.modern-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(127, 167, 255, 0.2);
+  border: 1px solid rgba(127, 167, 255, 0.3);
+}
+
+.badge-group {
+  margin: 0.5rem 0;
+}
+
+.badge-link:hover .modern-badge {
+  animation: badge-pulse 0.3s ease-out;
+}
+
+@keyframes badge-pulse {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.08); }
+  100% { transform: translateY(-2px) scale(1.05); }
+}
+
+/* モバイルでのバッジアニメーション調整 */
+@media (max-width: 768px) {
+  .modern-badge:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 2px 4px rgba(127, 167, 255, 0.15);
+  }
+  
+  .badge-link:hover .modern-badge {
+    animation: badge-pulse-mobile 0.25s ease-out;
+  }
+  
+  @keyframes badge-pulse-mobile {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-2px) scale(1.05); }
+    100% { transform: translateY(-1px) scale(1.03); }
+  }
+}
+
 nav a {
   margin-right: 10px;
 }
