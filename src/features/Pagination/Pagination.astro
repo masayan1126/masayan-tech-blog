@@ -393,24 +393,25 @@ const paginationDesktop = buildPaginationItem(page.total, page.size, page.curren
   @media (max-width: 439px) {
     .pagination {
       margin: 1.5rem auto;
-      padding: 0.25rem 0.375rem;  /* 左右のpaddingを最小化 */
-      gap: 0.125rem;              /* gapも縮小 */
+      padding: 0.5rem 0.75rem;    /* 余白を増加 */
+      gap: 0.25rem;               /* gapも適度に増加 */
       border-radius: 8px;
-      max-width: calc(100vw - 1rem);  /* より幅を広く取る */
+      max-width: calc(100vw - 2rem);  /* 左右に余白を確保 */
       width: fit-content;
       overflow-x: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      box-sizing: border-box;     /* ボックスサイズ指定 */
+      box-sizing: border-box;
     }
   }
   
   /* 440px以下での特別調整 */
   @media (max-width: 440px) {
     .pagination {
-      padding: 0.125rem 0.25rem !important;  /* 強制的に最小padding */
-      gap: 0.0625rem !important;             /* 強制的に最小gap */
-      margin: 1rem auto !important;          /* マージンも縮小 */
+      padding: 0.5rem 0.75rem !important;    /* 適切な余白を確保 */
+      gap: 0.25rem !important;               /* 適度なgapを維持 */
+      margin: 1.5rem auto !important;        /* マージンも適切に設定 */
+      max-width: calc(100vw - 2rem) !important;  /* 画面端からの余白を確保 */
     }
     
     .pagination::-webkit-scrollbar {
@@ -443,10 +444,10 @@ const paginationDesktop = buildPaginationItem(page.total, page.size, page.curren
   /* 極小画面対応 (360px以下) */
   @media (max-width: 360px) {
     .pagination {
-      margin: 1rem auto;
-      padding: 0.125rem 0.25rem;  /* さらに最小化 */
-      gap: 0.0625rem;             /* 極小gap */
-      max-width: calc(100vw - 0.5rem);  /* 極限まで幅を使用 */
+      margin: 1.25rem auto;
+      padding: 0.375rem 0.5rem;   /* 最小限でも適切な余白を確保 */
+      gap: 0.125rem;              /* 最小限のgap */
+      max-width: calc(100vw - 1.5rem);  /* 画面端からの余白を確保 */
     }
     
     .pagination-item-link {
