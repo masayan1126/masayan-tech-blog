@@ -1,0 +1,91 @@
+---
+import { extractHeadings } from "@/utils/extractHeadings";
+import { Icon } from "astro-icon";
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+const headings = extractHeadings(content);
+---
+
+{headings.length > 0 && (
+  <div class="table-of-contents">
+    <h3 class="toc-title">
+      <Icon name="noto:bookmark-tabs" class="w-5 h-5 mr-1 inline-block align-middle" />
+      目次
+    </h3>
+    <nav class="toc-nav">
+      <ul class="toc-list">
+        {headings.map((heading) => (
+          <li class="toc-item">
+            <a href={`#${heading.id}`} class="toc-link">
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+)}
+
+<style>
+  .table-of-contents {
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-left: 4px solid #9ca3af;
+  }
+
+  .toc-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .toc-nav {
+    margin-left: 0.5rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-item {
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-link {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+    display: block;
+    padding: 0.25rem 0;
+  }
+
+  .toc-link:hover {
+    color: #f9fafb;
+    text-decoration: underline;
+  }
+
+  .toc-link:before {
+    content: "▸ ";
+    color: #9ca3af;
+    margin-right: 0.5rem;
+  }
+
+  /* スムーズスクロールと固定ヘッダー対応 */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px; /* 固定ヘッダーの高さ + 余白 */
+  }
+</style>

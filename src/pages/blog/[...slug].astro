@@ -2,6 +2,7 @@
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
 import { getArticles, type Article } from "@/libs/microcms/blog";
+import TableOfContents from "@/components/TableOfContents.astro";
 
 type Props = Article;
 
@@ -21,5 +22,6 @@ const highlightedArticle = attachCodeHighlight(article.content);
 ---
 
 <BlogDetailLayout {...article}>
+  <TableOfContents content={article.content} />
   <p set:html={highlightedArticle} />
 </BlogDetailLayout>
