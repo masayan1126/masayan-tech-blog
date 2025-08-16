@@ -258,10 +258,41 @@ const breadCrumbsList = [
   }
 
   article p:has(.warning) {
-    background-color: rgb(231, 186, 186);
-    padding: 30px;
-    border-radius: 5px;
-    color: rgb(0, 0, 0);
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    border-radius: 8px;
+    color: #ffd54f;
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  article p:has(.warning)::before {
+    content: "⚠️";
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+  }
+
+  article p:has(.info) {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    border-radius: 8px;
+    color: #81c784;
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  article p:has(.info)::before {
+    content: "ℹ️";
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
   }
 
   article .iframely-embed {
