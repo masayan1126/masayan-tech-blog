@@ -13,9 +13,17 @@ const categories = [
 
 export const BlogListSortByCategoryButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // クライアントサイドでのみ実行
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleOutsideClick = (event: MouseEvent) => {
       if (
         containerRef.current &&
@@ -26,7 +34,7 @@ export const BlogListSortByCategoryButton = () => {
     };
     document.addEventListener("click", handleOutsideClick);
     return () => document.removeEventListener("click", handleOutsideClick);
-  }, []);
+  }, [isClient]);
 
   return (
     <div
@@ -60,7 +68,7 @@ export const BlogListSortByCategoryButton = () => {
       >
         人気のカテゴリ ▼
       </button>
-      {isOpen && (
+      {isOpen && isClient && (
         <div
           style={{ 
             position: "absolute",

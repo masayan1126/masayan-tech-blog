@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import type { Article } from '@/libs/microcms/blog';
 import { BlogCardSide } from '@/features/Blog/List/BlogCardSide';
 import { SearchBar } from '@/features/Search/SearchBar';
@@ -21,8 +21,15 @@ export const BlogListWithSearch = ({
   totalArticles = 0,
   pageSize = 10
 }: BlogListWithSearchProps) => {
-  const [displayedArticles, setDisplayedArticles] = useState<Article[]>(initialArticles);
+  const [displayedArticles, setDisplayedArticles] = useState<Article[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // クライアントサイドでのみ実行
+  useEffect(() => {
+    setIsClient(true);
+    setDisplayedArticles(initialArticles);
+  }, [initialArticles]);
 
   // 検索結果を処理
   const handleSearchResults = (results: Article[]) => {
@@ -32,6 +39,10 @@ export const BlogListWithSearch = ({
 
   // 現在表示すべき記事を取得
   const getCurrentPageArticles = () => {
+    if (!isClient) {
+      return initialArticles; // サーバーサイドでは初期記事を表示
+    }
+    
     if (isSearching) {
       // 検索時は全検索結果を表示
       return displayedArticles;

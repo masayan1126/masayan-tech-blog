@@ -34,13 +34,21 @@ interface SearchBarProps {
 export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   const search = useMemo(() => {
     return new SimpleSearch(allArticles);
   }, [allArticles]);
 
-  // デバウンス機能付きのリアルタイム検索
+  // クライアントサイドでのみ実行
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // デバウンス機能付きのリアルタイム検索（クライアントサイドでのみ実行）
+  useEffect(() => {
+    if (!isClient) return;
+
     const timeoutId = setTimeout(() => {
       if (searchTerm.trim() === '') {
         // 空の場合は全記事を表示
@@ -56,7 +64,7 @@ export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
     }, 300); // 300msのデバウンス
 
     return () => clearTimeout(timeoutId);
-  }, [searchTerm, search, onSearchResults, allArticles]);
+  }, [searchTerm, search, onSearchResults, allArticles, isClient]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -83,7 +91,7 @@ export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
       </div>
       
       {/* 検索状態表示 */}
-      {searchTerm && (
+      {searchTerm && isClient && (
         <div className="text-center mt-2">
           <p className="text-white/60 text-sm">
             {isSearching ? '検索中...' : `「${searchTerm}」の検索結果`}
