@@ -13,7 +13,10 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    react(),
+    react({
+      include: ['**/*.{jsx,tsx}'],
+      experimentalReactChildren: true,
+    }),
     tailwind(),
     partytown({
       config: {
@@ -23,5 +26,49 @@ export default defineConfig({
   ],
   server: {
     port: 53000,
+  },
+  vite: {
+    define: {
+      'process.env.NODE_ENV': '"development"',
+    },
+    ssr: {
+      external: ["svgo"],
+    },
+    optimizeDeps: {
+      exclude: ["@astrojs/partytown"],
+    },
+    server: {
+      proxy: {
+        '/images.microcms-assets.io': {
+          target: 'https://images.microcms-assets.io',
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path.replace('/images.microcms-assets.io', ''),
+        },
+        '/%22https://images.microcms-assets.io': {
+          target: 'https://images.microcms-assets.io',
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path.replace('/%22https://images.microcms-assets.io', ''),
+        },
+        '/%22https%3A//images.microcms-assets.io': {
+          target: 'https://images.microcms-assets.io',
+          changeOrigin: true,
+          secure: false,
+          rewrite: (path) => path.replace('/%22https%3A//images.microcms-assets.io', ''),
+        }
+      }
+    }
+  },
+  image: {
+    domains: ["images.microcms-assets.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.microcms-assets.io",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 });
