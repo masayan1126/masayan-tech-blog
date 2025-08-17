@@ -29,11 +29,11 @@ export const BlogListSortByCategoryButton = () => {
   }, []);
 
   return (
-               <div
-             className="relative fadeUp category-button-container"
-             ref={containerRef}
-             style={{ marginBottom: "20px", zIndex: 1000 }}
-           >
+    <div
+      className="relative fadeUp category-button-container"
+      ref={containerRef}
+      style={{ marginBottom: "20px", zIndex: 1000 }}
+    >
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdown"
