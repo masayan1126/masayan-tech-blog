@@ -2,7 +2,6 @@
 import FormattedDate from "@/components/FormattedDate.astro";
 import "@fontsource-variable/noto-sans-jp";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
 import { getArticlesByCategory } from "@/libs/microcms/blog";
 import Link from "@/components/Link/Link.astro";
 import buildFilter from "@/libs/microcms/buildFilter";
@@ -91,19 +90,19 @@ const breadCrumbsList = [
     </div>
     <aside>
       <div class="grid gap-20">
-        <di>
+        <div>
           <p class="aside-title">カテゴリ</p>
-          <div class="flex flex-wrap">
-            <BlogCategoryBadgeGroup
-              categories={category.map(({ id, name }) => {
-                return {
-                  id,
-                  name,
-                };
-              })}
-            />
+          <div class="flex flex-wrap gap-2">
+            {category.map(({ id, name }) => (
+              <a
+                href={`/category/${id}${ARTICLES_PATH}`}
+                class="inline-block px-3 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
+              >
+                {name}
+              </a>
+            ))}
           </div>
-        </di>
+        </div>
         <div>
           <p class="aside-title">この記事をシェアする</p>
           <Link
@@ -141,15 +140,15 @@ const breadCrumbsList = [
                           {post.title}
                         </Link>
                       </p>
-                      <div>
-                        <BlogCategoryBadgeGroup
-                          categories={post.category.map((c) => {
-                            return {
-                              id: c.id,
-                              name: c.name,
-                            };
-                          })}
-                        />
+                      <div class="flex flex-wrap gap-1 mb-2">
+                        {post.category.map((c) => (
+                          <a
+                            href={`/category/${c.id}${ARTICLES_PATH}`}
+                            class="inline-block px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+                          >
+                            {c.name}
+                          </a>
+                        ))}
                       </div>
                       <p class="mt-2 text-sm">
                         <FormattedDate date={new Date(post.publishedAt)} />

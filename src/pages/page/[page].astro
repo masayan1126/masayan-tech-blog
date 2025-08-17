@@ -4,6 +4,7 @@ import type { GetStaticPathsOptions } from "astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
 import { BlogList } from "@/features/Blog/List/BlogList";
+import { BlogListWithSearch } from "@/features/Blog/List/BlogListWithSearch";
 import { BlogListSortByCategoryButton } from "@/features/Blog/List/BlogListSortByCategoryButton";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 
@@ -21,6 +22,10 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 const articles = page.data;
 
+// 全記事データを取得（検索用）
+const allArticlesRes = await getArticles();
+const allArticles = allArticlesRes.contents;
+
 const newArrivalPosts = [...articles].sort((a, b) => {
   return a.publishedAt > b.publishedAt ? -1 : 1;
 });
@@ -28,6 +33,15 @@ const newArrivalPosts = [...articles].sort((a, b) => {
 
 <BlogListLayout>
   <BlogListSortByCategoryButton client:load />
-  <BlogList posts={newArrivalPosts} articles={articles} />
-  <Pagination page={page} />
+  
+  <!-- 検索機能付きブログリスト -->
+  <BlogListWithSearch 
+    allArticles={allArticles}
+    initialArticles={newArrivalPosts}
+    currentPage={page.currentPage}
+    totalPages={page.lastPage}
+    totalArticles={page.total}
+    pageSize={page.size}
+    client:load 
+  />
 </BlogListLayout>

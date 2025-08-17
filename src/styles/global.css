@@ -184,8 +184,9 @@ content {
 
 table {
   border-collapse: collapse;
-  margin: 20px auto;
+  margin: 20px 0;
   color: var(--text-color);
+  width: 100%;
 }
 
 td,

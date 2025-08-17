@@ -1,10 +1,18 @@
-import { BadgeGroup } from "@/components/Badge/BadgeGroup";
-import type { BadgeItemProp } from "@/types/Badge/badgeProps";
+import { BadgeGroup } from '@/components/Badge/BadgeGroup';
+import type { BadgeItemProp } from '@/types/Badge/badgeProps';
 
-type Props = {
-  categories: BadgeItemProp[];
-};
-
-export default function BlogCategoryBadgeGroup({ categories }: Props) {
-  return <BadgeGroup items={categories} />;
+interface BlogCategoryBadgeGroupProps {
+  categories: {
+    id: string;
+    name: string;
+  }[];
 }
+
+export const BlogCategoryBadgeGroup = ({ categories }: BlogCategoryBadgeGroupProps) => {
+  const badgeItems: BadgeItemProp[] = categories.map(category => ({
+    id: category.id,
+    name: category.name,
+  }));
+
+  return <BadgeGroup items={badgeItems} />;
+};

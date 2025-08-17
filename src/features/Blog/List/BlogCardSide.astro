@@ -4,7 +4,6 @@ import FormattedDate from "@/components/FormattedDate.astro";
 import { Icon } from "astro-icon";
 
 import { BlogListLink } from "./BlogListLink";
-import BlogCategoryBadgeGroup from "../BlogCategoryBadgeGroup";
 
 type Props = {
   post: Article;
@@ -18,14 +17,16 @@ const { post } = Astro.props;
     <div class="card-overlay"></div>
     <div class="card-content">
       <h2 class="card-title">{post.title}</h2>
-      <BlogCategoryBadgeGroup
-        categories={post.category.map((c) => {
-          return {
-            id: c.id,
-            name: c.name,
-          };
-        })}
-      />
+      <div class="flex flex-wrap gap-2 mb-4">
+        {post.category.map((c) => (
+          <a
+            href={`/category/${c.id}/page/1`}
+            class="inline-block px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+          >
+            {c.name}
+          </a>
+        ))}
+      </div>
       <div class="text-sm mt-3 date-info">
         <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-gray-300" />
         <FormattedDate date={new Date(post.publishedAt)} />
