@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 import type { Article } from '@/libs/microcms/blog';
 import { BlogCardSide } from '@/features/Blog/List/BlogCardSide';
 import { SearchBar } from '@/features/Search/SearchBar';
@@ -303,14 +304,24 @@ export const BlogListWithSearch = ({
       )}
 
       {/* 通常表示時のヘッダー */}
-      {!isSearching && totalPages > 1 && (
-        <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold mb-2 text-white">
-            記事一覧
-          </h2>
-          <p className="text-white/60">
-            全{totalArticles}件中 {((currentPage - 1) * pageSize) + 1}〜{Math.min(currentPage * pageSize, totalArticles)}件を表示
-          </p>
+      {!isSearching && (
+        <div className="mb-8 flex items-center justify-between">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl font-bold mb-2 text-white">記事一覧</h2>
+            {totalPages > 1 && (
+              <p className="text-white/60">
+                全{totalArticles}件中 {((currentPage - 1) * pageSize) + 1}〜{Math.min(currentPage * pageSize, totalArticles)}件を表示
+              </p>
+            )}
+          </div>
+          <a
+            href="/rss.xml"
+            aria-label="RSSフィード"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white shadow-md transition-colors"
+          >
+            <Icon icon="mdi:rss" width={22} height={22} />
+            <span className="hidden sm:inline">RSS</span>
+          </a>
         </div>
       )}
       
