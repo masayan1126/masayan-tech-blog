@@ -11,7 +11,7 @@ import vercel from "@astrojs/vercel/serverless";
 // https://astro.build/config
 export default defineConfig({
   output: 'hybrid',
-  adapter: vercel({ runtime: 'nodejs22.x' }),
+  adapter: vercel({ runtime: 'nodejs20.x' }),
   site: SITE_DOMAIN,
   integrations: [
     mdx(),

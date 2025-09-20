@@ -1,3 +1,8 @@
 {
-  "redirects": [{ "source": "/", "destination": "/page/1", "permanent": true }]
+  "redirects": [
+    { "source": "/", "destination": "/page/1", "permanent": true }
+  ],
+  "functions": {
+    "runtime": "nodejs20.x"
+  }
 }
