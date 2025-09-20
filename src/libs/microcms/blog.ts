@@ -39,3 +39,11 @@ export const getArticlesByCategory = async (filters: string) => {
   const queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT, filters };
   return await client.getList<Article>({ endpoint: "blogs", queries });
 };
+
+export const getArticleDraft = async (id: string, draftKey: string) => {
+  return await client.getListDetail<Article>({
+    endpoint: "blogs",
+    contentId: id,
+    queries: { draftKey },
+  });
+};

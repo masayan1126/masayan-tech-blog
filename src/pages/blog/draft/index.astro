@@ -1,0 +1,22 @@
+---
+import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
+import { attachCodeHighlight } from "@/libs/codeHighlight";
+import { getArticleDraft, type Article } from "@/libs/microcms/blog";
+
+const id = Astro.url.searchParams.get("id");
+const draftKey = Astro.url.searchParams.get("draftKey");
+
+if (!id || !draftKey) {
+  throw new Error("id と draftKey は必須です");
+}
+
+const article = await getArticleDraft(id, draftKey);
+const highlightedArticle = attachCodeHighlight(article.content);
+---
+
+<BlogDetailLayout {...article}>
+  <p set:html={highlightedArticle} />
+  <!-- microCMSプレビュー用: id と draftKey をURLクエリに付与してアクセスしてください -->
+</BlogDetailLayout>
+
+
