@@ -1,18 +1,39 @@
 ---
 export interface Props {
-  date: Date;
+  date?: Date | string | null;
+  placeholder?: string;
 }
 
-const { date } = Astro.props;
+const { date, placeholder = "未公開" } = Astro.props;
+
+const normalizeDate = (value?: Date | string | null): Date | null => {
+  if (!value) return null;
+  if (value instanceof Date) {
+    const time = value.getTime();
+    if (!Number.isFinite(time) || Number.isNaN(time) || time === 0) return null;
+    return value;
+  }
+  const parsed = new Date(value);
+  const time = parsed.getTime();
+  if (!Number.isFinite(time) || Number.isNaN(time)) return null;
+  return parsed;
+};
+
+const normalized = normalizeDate(date);
 ---
 
-<time datetime={date.toISOString()}>
-  {
-    date.toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      weekday: "short", // 曜日を表示する場合は追加
-    })
-  }
-</time>
+{normalized && (
+  <time datetime={normalized.toISOString()}>
+    {
+      normalized.toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        weekday: "short",
+      })
+    }
+  </time>
+)}
+{!normalized && (
+  <span class="text-white/60">{placeholder}</span>
+)}
