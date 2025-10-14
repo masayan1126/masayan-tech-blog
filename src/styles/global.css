@@ -314,6 +314,55 @@ blockquote p {
   color: rgb(160, 185, 227);
 }
 
+/* 記事内のリンクにモダンなアイコンを追加 */
+article a {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.5em;
+}
+
+article a::after {
+  content: "";
+  position: absolute;
+  top: -0.05em;
+  right: -0.5em;
+  width: 0.85em;
+  height: 0.85em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fa7ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+article a:hover::after {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* table-of-contents内のリンクはアイコン非表示 */
+.table-of-contents a {
+  padding-right: 0;
+}
+
+.table-of-contents a::after {
+  content: none;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  article a {
+    padding-right: 1.2em;
+  }
+
+  article a::after {
+    width: 0.75em;
+    height: 0.75em;
+    right: -0.2em;
+  }
+}
+
 .fadeUp {
   animation-name: fadeUpAnime;
   animation-duration: 0.7s;
