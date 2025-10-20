@@ -14,7 +14,7 @@ import type { Article } from "@/libs/microcms/blog";
 
 type Props = Article;
 
-const { title, description, publishedAt, category, youtube_link } = Astro.props;
+const { title, description, publishedAt, revisedAt, category, youtube_link } = Astro.props;
 const { slug } = Astro.params;
 
 
@@ -54,18 +54,17 @@ const breadCrumbsList = [
           {title}
         </h1>
 
-        <div>
-          <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
-          公開日
-          <FormattedDate date={new Date(publishedAt)} />
-
-          <!-- {
-            updatedDate && (
-              <div class="last-updated-on">
-                <FormattedDate date={updatedDate} />
-              </div>
-            )
-          } -->
+        <div class="flex flex-col gap-2">
+          <div>
+            <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
+            公開日
+            <FormattedDate date={new Date(publishedAt)} />
+          </div>
+          <div>
+            <Icon name="noto:pen" class="w-5 h-5 mr-1 inline-block align-middle text-green-300" />
+            最終更新日
+            <FormattedDate date={new Date(revisedAt)} />
+          </div>
         </div>
       </div>
       {youtube_link && (
