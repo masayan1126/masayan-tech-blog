@@ -11,6 +11,7 @@ import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.
 import { SITE_DOMAIN } from "@/constants/url";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import type { Article } from "@/libs/microcms/blog";
+import ScrollToTop from "@/components/ScrollToTop.astro";
 
 type Props = Article;
 
@@ -169,6 +170,7 @@ const breadCrumbsList = [
       </div>
     </aside>
   </div>
+  <ScrollToTop />
 </BaseLayout>
 <!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
 <style is:global>
