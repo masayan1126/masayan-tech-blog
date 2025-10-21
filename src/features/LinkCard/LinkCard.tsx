@@ -21,14 +21,21 @@ export const LinkCard: React.FC<LinkCardProps> = ({ url }) => {
   useEffect(() => {
     const fetchOGP = async () => {
       try {
+        console.log('[LinkCard] Fetching OGP data for:', url);
         const response = await fetch(`/api/ogp?url=${encodeURIComponent(url)}`);
+        console.log('[LinkCard] Response status:', response.status);
+
         if (!response.ok) {
-          throw new Error('Failed to fetch OGP data');
+          const errorText = await response.text();
+          console.error('[LinkCard] API error:', errorText);
+          throw new Error(`Failed to fetch OGP data: ${response.status}`);
         }
+
         const data = await response.json();
+        console.log('[LinkCard] OGP data received:', data);
         setOgpData(data);
       } catch (err) {
-        console.error('Error fetching OGP data:', err);
+        console.error('[LinkCard] Error fetching OGP data:', err);
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
