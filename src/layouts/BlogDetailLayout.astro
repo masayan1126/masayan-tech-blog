@@ -292,8 +292,8 @@ const breadCrumbsList = [
     padding: 10px 0;
   }
 
-  /* Link Card Styles */
-  article a.link-card {
+  /* Link Card Styles - supports both <a> and <span> */
+  article .link-card {
     display: flex !important;
     align-items: stretch !important;
     text-decoration: none !important;
@@ -310,7 +310,7 @@ const breadCrumbsList = [
     color: inherit !important;
   }
 
-  article a.link-card:hover {
+  article .link-card:hover {
     background: rgba(255, 255, 255, 0.05) !important;
     border-color: rgba(146, 180, 237, 0.4) !important;
     transform: translateY(-2px) !important;
@@ -319,7 +319,7 @@ const breadCrumbsList = [
       0 2px 6px rgba(146, 180, 237, 0.2) !important;
   }
 
-  article a.link-card .link-card-thumbnail {
+  article .link-card .link-card-thumbnail {
     flex-shrink: 0;
     width: 200px;
     height: auto;
@@ -330,7 +330,7 @@ const breadCrumbsList = [
     overflow: hidden;
   }
 
-  article a.link-card .link-card-thumbnail img {
+  article .link-card .link-card-thumbnail img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
@@ -340,12 +340,12 @@ const breadCrumbsList = [
     padding: 0 !important;
   }
 
-  article a.link-card .link-card-thumbnail img:hover {
+  article .link-card .link-card-thumbnail img:hover {
     transform: none !important;
     box-shadow: none !important;
   }
 
-  article a.link-card .link-card-content {
+  article .link-card .link-card-content {
     flex: 1;
     padding: 1rem 1.25rem;
     display: flex;
@@ -354,14 +354,14 @@ const breadCrumbsList = [
     min-width: 0;
   }
 
-  article a.link-card .link-card-header {
+  article .link-card .link-card-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
   }
 
-  article a.link-card .link-card-favicon {
+  article .link-card .link-card-favicon {
     width: 16px !important;
     height: 16px !important;
     flex-shrink: 0;
@@ -371,18 +371,18 @@ const breadCrumbsList = [
     padding: 0 !important;
   }
 
-  article a.link-card .link-card-favicon:hover {
+  article .link-card .link-card-favicon:hover {
     transform: none !important;
     box-shadow: none !important;
   }
 
-  article a.link-card .link-card-site-name {
+  article .link-card .link-card-site-name {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.6);
     font-weight: 500;
   }
 
-  article a.link-card .link-card-title {
+  article .link-card .link-card-title {
     font-size: 1rem;
     color: rgb(146, 180, 237);
     font-weight: 600;
@@ -396,16 +396,16 @@ const breadCrumbsList = [
 
   /* Mobile Responsive */
   @media (max-width: 640px) {
-    article a.link-card {
+    article .link-card {
       flex-direction: column !important;
     }
 
-    article a.link-card .link-card-thumbnail {
+    article .link-card .link-card-thumbnail {
       width: 100% !important;
       height: 180px !important;
     }
 
-    article a.link-card .link-card-content {
+    article .link-card .link-card-content {
       padding: 1rem !important;
     }
   }
