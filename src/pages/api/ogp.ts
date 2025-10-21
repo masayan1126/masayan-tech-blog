@@ -35,7 +35,37 @@ export const GET: APIRoute = async ({ request }) => {
 
     const $ = cheerio.load(html);
 
+    // Helper function to convert relative URL to absolute
+    const toAbsoluteUrl = (relativeUrl: string, baseUrl: string): string => {
+      if (!relativeUrl) return '';
+
+      // Already absolute URL
+      if (relativeUrl.startsWith('http://') || relativeUrl.startsWith('https://')) {
+        return relativeUrl;
+      }
+
+      const base = new URL(baseUrl);
+
+      // Protocol-relative URL
+      if (relativeUrl.startsWith('//')) {
+        return `${base.protocol}${relativeUrl}`;
+      }
+
+      // Absolute path
+      if (relativeUrl.startsWith('/')) {
+        return `${base.origin}${relativeUrl}`;
+      }
+
+      // Relative path
+      return `${base.origin}/${relativeUrl}`;
+    };
+
     // Extract OGP data
+    const rawImage =
+      $('meta[property="og:image"]').attr('content') ||
+      $('meta[name="twitter:image"]').attr('content') ||
+      '';
+
     const ogpData = {
       title:
         $('meta[property="og:title"]').attr('content') ||
@@ -47,10 +77,7 @@ export const GET: APIRoute = async ({ request }) => {
         $('meta[name="twitter:description"]').attr('content') ||
         $('meta[name="description"]').attr('content') ||
         '',
-      image:
-        $('meta[property="og:image"]').attr('content') ||
-        $('meta[name="twitter:image"]').attr('content') ||
-        '',
+      image: toAbsoluteUrl(rawImage, targetUrl),
       siteName:
         $('meta[property="og:site_name"]').attr('content') ||
         '',
@@ -62,28 +89,18 @@ export const GET: APIRoute = async ({ request }) => {
           $('link[rel="apple-touch-icon"]').attr('href') ||
           '';
 
-        // Convert relative URL to absolute
-        if (iconLink && !iconLink.startsWith('http')) {
-          const baseUrl = new URL(targetUrl);
-          if (iconLink.startsWith('//')) {
-            return `${baseUrl.protocol}${iconLink}`;
-          } else if (iconLink.startsWith('/')) {
-            return `${baseUrl.origin}${iconLink}`;
-          } else {
-            return `${baseUrl.origin}/${iconLink}`;
-          }
+        if (iconLink) {
+          return toAbsoluteUrl(iconLink, targetUrl);
         }
 
         // Default to /favicon.ico
-        if (!iconLink) {
-          const baseUrl = new URL(targetUrl);
-          return `${baseUrl.origin}/favicon.ico`;
-        }
-
-        return iconLink;
+        const baseUrl = new URL(targetUrl);
+        return `${baseUrl.origin}/favicon.ico`;
       })(),
       url: targetUrl,
     };
+
+    console.log('[OGP API] Extracted OGP data:', ogpData);
 
     // If no site name, extract from URL
     if (!ogpData.siteName) {
