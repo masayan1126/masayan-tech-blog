@@ -11,6 +11,8 @@ interface LinkCardData {
 
 async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
   try {
+    console.log(`[LinkCard] Fetching metadata for: ${url}`);
+
     const { error, result } = await ogs({
       url,
       timeout: 5000, // 5 second timeout
@@ -22,7 +24,7 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
     });
 
     if (error) {
-      console.error(`Failed to fetch metadata for ${url}:`, error);
+      console.error(`[LinkCard] Failed to fetch metadata for ${url}:`, error);
       return null;
     }
 
@@ -39,22 +41,38 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
     if (result.ogImage) {
       if (Array.isArray(result.ogImage) && result.ogImage.length > 0) {
         thumbnail = result.ogImage[0].url;
+        console.log(`[LinkCard] Found thumbnail (array): ${thumbnail}`);
       } else if (typeof result.ogImage === 'object' && 'url' in result.ogImage) {
         thumbnail = result.ogImage.url;
+        console.log(`[LinkCard] Found thumbnail (object): ${thumbnail}`);
       } else if (typeof result.ogImage === 'string') {
         thumbnail = result.ogImage;
+        console.log(`[LinkCard] Found thumbnail (string): ${thumbnail}`);
       }
+
+      // Convert relative URLs to absolute
+      if (thumbnail && !thumbnail.startsWith('http')) {
+        const baseUrl = new URL(url);
+        thumbnail = new URL(thumbnail, baseUrl.origin).href;
+        console.log(`[LinkCard] Converted relative URL to absolute: ${thumbnail}`);
+      }
+    } else {
+      console.log(`[LinkCard] No ogImage found for ${url}`);
     }
 
-    return {
+    const metadata = {
       title: result.ogTitle || result.twitterTitle || url,
       siteName: result.ogSiteName || new URL(url).hostname,
       thumbnail,
       favicon,
       url,
     };
+
+    console.log(`[LinkCard] Metadata extracted:`, JSON.stringify(metadata, null, 2));
+
+    return metadata;
   } catch (error) {
-    console.error(`Failed to fetch metadata for ${url}:`, error);
+    console.error(`[LinkCard] Exception while fetching metadata for ${url}:`, error);
     return null;
   }
 }
@@ -78,28 +96,32 @@ function generateLinkCardHTML(data: LinkCardData): string {
   const escapedSiteName = escapeHtml(siteName);
   const escapedUrl = escapeHtml(url);
 
-  return `
-    <a href="${escapedUrl}" class="rich-link-card" target="_blank" rel="noopener noreferrer">
+  const html = `
+    <a href="${escapedUrl}" class="link-card" target="_blank" rel="noopener noreferrer">
       ${
         thumbnail
-          ? `<div class="rich-link-card-thumbnail">
+          ? `<div class="link-card-thumbnail">
                <img src="${escapeHtml(thumbnail)}" alt="${escapedTitle}" loading="lazy">
              </div>`
           : ""
       }
-      <div class="rich-link-card-content">
-        <div class="rich-link-card-header">
+      <div class="link-card-content">
+        <div class="link-card-header">
           ${
             favicon
-              ? `<img src="${escapeHtml(favicon)}" class="rich-link-card-favicon" alt="" loading="lazy">`
+              ? `<img src="${escapeHtml(favicon)}" class="link-card-favicon" alt="" loading="lazy">`
               : ""
           }
-          <span class="rich-link-card-site-name">${escapedSiteName}</span>
+          <span class="link-card-site-name">${escapedSiteName}</span>
         </div>
-        <div class="rich-link-card-title">${escapedTitle}</div>
+        <div class="link-card-title">${escapedTitle}</div>
       </div>
     </a>
   `.trim();
+
+  console.log(`[LinkCard] Generated HTML for ${url}:`, html.substring(0, 200) + '...');
+
+  return html;
 }
 
 export async function attachLinkCards(content: string): Promise<string> {
@@ -108,12 +130,14 @@ export async function attachLinkCards(content: string): Promise<string> {
   // Find all <span class="link-card"><a href="...">...</a></span>
   const linkCardSpans = $('span.link-card');
 
+  console.log(`[LinkCard] Found ${linkCardSpans.length} link-card spans`);
+
   if (linkCardSpans.length === 0) {
     return content;
   }
 
-  // Fetch metadata for all links in parallel
-  const metadataPromises: Promise<{ element: any; data: LinkCardData | null }>[] = [];
+  // Collect all links and their elements
+  const linksToProcess: { element: any; href: string }[] = [];
 
   linkCardSpans.each((_, element) => {
     const $element = $(element);
@@ -121,22 +145,24 @@ export async function attachLinkCards(content: string): Promise<string> {
     const href = $link.attr('href');
 
     if (href) {
-      metadataPromises.push(
-        fetchLinkMetadata(href).then((data) => ({
-          element: $element,
-          data,
-        }))
-      );
+      console.log(`[LinkCard] Found link to process: ${href}`);
+      linksToProcess.push({ element: $element, href });
     }
   });
 
-  const results = await Promise.all(metadataPromises);
+  // Fetch metadata for all links in parallel
+  const metadataPromises = linksToProcess.map(({ href }) => fetchLinkMetadata(href));
+  const metadataResults = await Promise.all(metadataPromises);
 
   // Replace each span with the rich link card
-  results.forEach(({ element, data }) => {
+  linksToProcess.forEach(({ element }, index) => {
+    const data = metadataResults[index];
     if (data) {
       const richCardHTML = generateLinkCardHTML(data);
+      console.log(`[LinkCard] Replacing span with card HTML for: ${data.url}`);
       element.replaceWith(richCardHTML);
+    } else {
+      console.log(`[LinkCard] No metadata found, keeping original link`);
     }
   });
 
