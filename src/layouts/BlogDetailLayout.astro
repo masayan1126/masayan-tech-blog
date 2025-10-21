@@ -12,6 +12,7 @@ import { SITE_DOMAIN } from "@/constants/url";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import type { Article } from "@/libs/microcms/blog";
 import ScrollToTop from "@/components/ScrollToTop.astro";
+import { LinkCardReplacer } from "@/features/LinkCard/LinkCardReplacer";
 
 type Props = Article;
 
@@ -87,6 +88,7 @@ const breadCrumbsList = [
       <article>
         <slot />
       </article>
+      <LinkCardReplacer client:load />
       <ScrollToTop />
     </div>
     <aside>
@@ -416,6 +418,238 @@ const breadCrumbsList = [
     content: "▶";
     color: #ff0000;
     font-size: 1.2em;
+  }
+
+  /* Link Card Styles */
+  .link-card-wrapper {
+    @apply my-6;
+  }
+
+  .link-card-container {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .link-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .link-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(96, 165, 250, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .link-card-thumbnail {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .link-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    transition: transform 0.3s ease;
+  }
+
+  .link-card:hover .link-card-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .link-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .link-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .link-card-favicon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .link-card-site-name {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  .link-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .link-card-title::before {
+    content: none !important;
+  }
+
+  .link-card-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Loading skeleton */
+  .link-card-skeleton {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
+  .skeleton-thumbnail {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+  }
+
+  .skeleton-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .skeleton-title {
+    height: 1.25rem;
+    width: 80%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+  }
+
+  .skeleton-description {
+    height: 3rem;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+  }
+
+  .skeleton-site {
+    height: 0.875rem;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  /* Fallback styles */
+  .link-card-fallback {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .link-card-fallback:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(96, 165, 250, 0.3);
+  }
+
+  .fallback-icon {
+    font-size: 1.5rem;
+  }
+
+  .fallback-url {
+    font-size: 0.875rem;
+    color: rgb(146, 180, 237);
+    word-break: break-all;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 640px) {
+    .link-card {
+      flex-direction: column;
+    }
+
+    .link-card-thumbnail {
+      width: 100%;
+      height: 200px;
+    }
   }
 </style>
 
