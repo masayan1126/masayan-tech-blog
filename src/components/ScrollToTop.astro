@@ -65,6 +65,9 @@
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     if (!scrollToTopBtn) return;
 
+    // transformの影響を受けないよう、ボタンをbodyに直接移動
+    document.body.appendChild(scrollToTopBtn);
+
     // スクロールイベントのハンドリング
     function toggleVisibility() {
       if (window.scrollY > 300) {
