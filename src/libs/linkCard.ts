@@ -15,7 +15,7 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
 
     const { error, result } = await ogs({
       url,
-      timeout: 5000, // 5 second timeout
+      timeout: 3000, // 3 second timeout
       fetchOptions: {
         headers: {
           'user-agent': 'Mozilla/5.0 (compatible; LinkCardBot/1.0)'
@@ -157,12 +157,22 @@ export async function attachLinkCards(content: string): Promise<string> {
   // Replace each span with the rich link card
   linksToProcess.forEach(({ element }, index) => {
     const data = metadataResults[index];
+    const { href } = linksToProcess[index];
+
     if (data) {
       const richCardHTML = generateLinkCardHTML(data);
       console.log(`[LinkCard] Replacing span with card HTML for: ${data.url}`);
       element.replaceWith(richCardHTML);
     } else {
-      console.log(`[LinkCard] No metadata found, keeping original link`);
+      // Fallback: Create a basic card with just the URL
+      console.log(`[LinkCard] No metadata found for ${href}, creating fallback card`);
+      const fallbackData: LinkCardData = {
+        title: href,
+        siteName: new URL(href).hostname,
+        url: href,
+      };
+      const fallbackHTML = generateLinkCardHTML(fallbackData);
+      element.replaceWith(fallbackHTML);
     }
   });
 
