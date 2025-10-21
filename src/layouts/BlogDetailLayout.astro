@@ -291,6 +291,121 @@ const breadCrumbsList = [
     padding: 10px 0;
   }
 
+  /* Rich Link Card Styles */
+  article .rich-link-card {
+    display: flex;
+    align-items: stretch;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.2);
+    padding: 0;
+  }
+
+  article .rich-link-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(146, 180, 237, 0.4);
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(146, 180, 237, 0.2);
+  }
+
+  article .rich-link-card-thumbnail {
+    flex-shrink: 0;
+    width: 200px;
+    height: auto;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  article .rich-link-card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  article .rich-link-card-thumbnail img:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  article .rich-link-card-content {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  article .rich-link-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  article .rich-link-card-favicon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  article .rich-link-card-favicon:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  article .rich-link-card-site-name {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  article .rich-link-card-title {
+    font-size: 1rem;
+    color: rgb(146, 180, 237);
+    font-weight: 600;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 640px) {
+    article .rich-link-card {
+      flex-direction: column;
+    }
+
+    article .rich-link-card-thumbnail {
+      width: 100%;
+      height: 180px;
+    }
+
+    article .rich-link-card-content {
+      padding: 1rem;
+    }
+  }
+
   article p:has(.warning) {
     background: rgba(255, 193, 7, 0.1);
     border: 1px solid rgba(255, 193, 7, 0.3);
