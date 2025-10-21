@@ -5,7 +5,6 @@ interface LinkCardData {
   title: string;
   siteName: string;
   thumbnail?: string;
-  favicon?: string;
   url: string;
 }
 
@@ -28,21 +27,13 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
       return null;
     }
 
-    // Extract favicon URL
-    let favicon = result.favicon;
-    if (!favicon) {
-      // Fallback to default favicon location
-      const urlObj = new URL(url);
-      favicon = `${urlObj.origin}/favicon.ico`;
-    }
-
     // Extract thumbnail (OG image)
     let thumbnail: string | undefined;
     if (result.ogImage) {
       if (Array.isArray(result.ogImage) && result.ogImage.length > 0) {
         thumbnail = result.ogImage[0].url;
         console.log(`[LinkCard] Found thumbnail (array): ${thumbnail}`);
-      } else if (typeof result.ogImage === 'object' && 'url' in result.ogImage) {
+      } else if (typeof result.ogImage === 'object' && 'url' in result.ogImage && typeof result.ogImage.url === 'string') {
         thumbnail = result.ogImage.url;
         console.log(`[LinkCard] Found thumbnail (object): ${thumbnail}`);
       } else if (typeof result.ogImage === 'string') {
@@ -64,7 +55,6 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
       title: result.ogTitle || result.twitterTitle || url,
       siteName: result.ogSiteName || new URL(url).hostname,
       thumbnail,
-      favicon,
       url,
     };
 
@@ -89,7 +79,7 @@ function escapeHtml(text: string): string {
 }
 
 function generateLinkCardHTML(data: LinkCardData): string {
-  const { title, siteName, thumbnail, favicon, url } = data;
+  const { title, siteName, thumbnail, url } = data;
 
   // Escape HTML to prevent XSS
   const escapedTitle = escapeHtml(title);
@@ -107,11 +97,6 @@ function generateLinkCardHTML(data: LinkCardData): string {
       }
       <div class="link-card-content">
         <div class="link-card-header">
-          ${
-            favicon
-              ? `<img src="${escapeHtml(favicon)}" class="link-card-favicon" alt="" loading="lazy">`
-              : ""
-          }
           <span class="link-card-site-name">${escapedSiteName}</span>
         </div>
         <div class="link-card-title">${escapedTitle}</div>
@@ -127,7 +112,9 @@ function generateLinkCardHTML(data: LinkCardData): string {
 export async function attachLinkCards(content: string): Promise<string> {
   const $ = load(content);
 
-  // Find all <span class="link-card"><a href="...">...</a></span>
+  console.log(`[LinkCard] Processing content (first 500 chars):`, content.substring(0, 500));
+
+  // Find all <span class="link-card">...</span>
   const linkCardSpans = $('span.link-card');
 
   console.log(`[LinkCard] Found ${linkCardSpans.length} link-card spans`);
@@ -141,8 +128,15 @@ export async function attachLinkCards(content: string): Promise<string> {
 
   linkCardSpans.each((_, element) => {
     const $element = $(element);
+
+    // Check if there's an <a> tag inside (old format)
     const $link = $element.find('a');
-    const href = $link.attr('href');
+    let href = $link.attr('href');
+
+    // If no <a> tag, treat the text content as the URL (new format)
+    if (!href) {
+      href = $element.text().trim();
+    }
 
     if (href) {
       console.log(`[LinkCard] Found link to process: ${href}`);
@@ -159,20 +153,61 @@ export async function attachLinkCards(content: string): Promise<string> {
     const data = metadataResults[index];
     const { href } = linksToProcess[index];
 
+    const $element = $(element);
+    let $parent = $element.parent();
+
     if (data) {
       const richCardHTML = generateLinkCardHTML(data);
-      console.log(`[LinkCard] Replacing span with card HTML for: ${data.url}`);
-      element.replaceWith(richCardHTML);
+      console.log(`[LinkCard] SUCCESS - Replacing span with card HTML for: ${data.url}`);
+      console.log(`[LinkCard] Data:`, { title: data.title, thumbnail: data.thumbnail });
+
+      // Check if parent is <a>, and if so, check grandparent
+      if ($parent.is('a')) {
+        console.log(`[LinkCard] Parent is <a> tag, checking grandparent`);
+        const $grandparent = $parent.parent();
+        if ($grandparent.is('p') && $grandparent.children().length === 1) {
+          console.log(`[LinkCard] Replacing grandparent <p> tag`);
+          $grandparent.replaceWith(richCardHTML);
+        } else {
+          console.log(`[LinkCard] Replacing parent <a> tag`);
+          $parent.replaceWith(richCardHTML);
+        }
+      } else if ($parent.is('p') && $parent.children().length === 1 && $parent.text().trim() === $element.text().trim()) {
+        console.log(`[LinkCard] Replacing parent <p> tag`);
+        $parent.replaceWith(richCardHTML);
+      } else {
+        console.log(`[LinkCard] Replacing element only`);
+        element.replaceWith(richCardHTML);
+      }
     } else {
       // Fallback: Create a basic card with just the URL
-      console.log(`[LinkCard] No metadata found for ${href}, creating fallback card`);
+      console.log(`[LinkCard] FALLBACK - No metadata found for ${href}, creating fallback card`);
       const fallbackData: LinkCardData = {
         title: href,
         siteName: new URL(href).hostname,
         url: href,
       };
       const fallbackHTML = generateLinkCardHTML(fallbackData);
-      element.replaceWith(fallbackHTML);
+      console.log(`[LinkCard] Fallback HTML:`, fallbackHTML.substring(0, 200));
+
+      // Check if parent is <a>, and if so, check grandparent
+      if ($parent.is('a')) {
+        console.log(`[LinkCard] Parent is <a> tag, checking grandparent (fallback)`);
+        const $grandparent = $parent.parent();
+        if ($grandparent.is('p') && $grandparent.children().length === 1) {
+          console.log(`[LinkCard] Replacing grandparent <p> tag (fallback)`);
+          $grandparent.replaceWith(fallbackHTML);
+        } else {
+          console.log(`[LinkCard] Replacing parent <a> tag (fallback)`);
+          $parent.replaceWith(fallbackHTML);
+        }
+      } else if ($parent.is('p') && $parent.children().length === 1 && $parent.text().trim() === $element.text().trim()) {
+        console.log(`[LinkCard] Replacing parent <p> tag (fallback)`);
+        $parent.replaceWith(fallbackHTML);
+      } else {
+        console.log(`[LinkCard] Replacing element only (fallback)`);
+        element.replaceWith(fallbackHTML);
+      }
     }
   });
 
