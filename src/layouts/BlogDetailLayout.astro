@@ -87,6 +87,7 @@ const breadCrumbsList = [
       <article>
         <slot />
       </article>
+      <ScrollToTop />
     </div>
     <aside>
       <div class="grid gap-20">
@@ -170,7 +171,6 @@ const breadCrumbsList = [
       </div>
     </aside>
   </div>
-  <ScrollToTop />
 </BaseLayout>
 <!-- MEMO:動的に取得した記事のタグにスタイルを当てるには、globaにする必要がある -->
 <style is:global>
