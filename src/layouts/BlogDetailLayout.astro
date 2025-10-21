@@ -11,6 +11,7 @@ import BlogDetailProfileCard from "@/features/Blog/Detail/BlogDetailProfileCard.
 import { SITE_DOMAIN } from "@/constants/url";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import type { Article } from "@/libs/microcms/blog";
+import ScrollToTop from "@/components/ScrollToTop.astro";
 
 type Props = Article;
 
@@ -86,6 +87,7 @@ const breadCrumbsList = [
       <article>
         <slot />
       </article>
+      <ScrollToTop />
     </div>
     <aside>
       <div class="grid gap-20">
