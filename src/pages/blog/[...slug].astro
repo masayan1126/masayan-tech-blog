@@ -1,6 +1,7 @@
 ---
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
+import { attachLinkCards } from "@/libs/linkCard";
 import { getArticles, type Article } from "@/libs/microcms/blog";
 import TableOfContents from "@/components/TableOfContents.astro";
 
@@ -18,10 +19,11 @@ export async function getStaticPaths() {
 }
 
 const article = Astro.props;
-const highlightedArticle = attachCodeHighlight(article.content);
+let processedContent = attachCodeHighlight(article.content);
+processedContent = await attachLinkCards(processedContent);
 ---
 
 <BlogDetailLayout {...article}>
   <TableOfContents content={article.content} />
-  <p set:html={highlightedArticle} />
+  <p set:html={processedContent} />
 </BlogDetailLayout>

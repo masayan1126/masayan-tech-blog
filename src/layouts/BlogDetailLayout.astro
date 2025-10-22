@@ -286,9 +286,114 @@ const breadCrumbsList = [
     transform: translateY(-2px);
   }
 
-  article a {
+  /* Normal links (excluding link cards) */
+  article a:not(.link-card) {
     color: rgb(146, 180, 237);
     padding: 10px 0;
+  }
+
+  /* Link Card Styles - supports both <a> and <span> */
+  article .link-card {
+    display: flex !important;
+    align-items: stretch !important;
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    margin: 1.5rem 0 !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    transition: all 0.3s ease !important;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    padding: 0 !important;
+    color: inherit !important;
+  }
+
+  article .link-card:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(146, 180, 237, 0.4) !important;
+    transform: translateY(-2px) !important;
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 2px 6px rgba(146, 180, 237, 0.2) !important;
+  }
+
+  article .link-card .link-card-thumbnail {
+    flex-shrink: 0;
+    width: 200px;
+    min-height: 120px;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  article .link-card .link-card-thumbnail img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  article .link-card .link-card-thumbnail img:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  article .link-card .link-card-content {
+    flex: 1;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  article .link-card .link-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  article .link-card .link-card-site-name {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+  }
+
+  article .link-card .link-card-title {
+    font-size: 1rem;
+    color: rgb(146, 180, 237);
+    font-weight: 600;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 640px) {
+    article .link-card {
+      flex-direction: column !important;
+    }
+
+    article .link-card .link-card-thumbnail {
+      width: 100% !important;
+      min-height: 180px !important;
+      max-height: 200px !important;
+    }
+
+    article .link-card .link-card-content {
+      padding: 1.25rem !important;
+    }
   }
 
   article p:has(.warning) {
