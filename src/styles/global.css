@@ -274,11 +274,20 @@ img {
   height: auto;
 }
 
+/* インラインコードのスタイル */
 code {
-  padding: 2px 5px;
+  padding: 3px 6px;
+  background: rgba(127, 167, 255, 0.15);
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  color: #f0c5c9;
+  border: 1px solid rgba(127, 167, 255, 0.25);
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-/* 全て初期値に戻す */
+/* コードブロック内のcodeタグは全て初期値に戻す */
 pre > code {
   all: unset;
 }
