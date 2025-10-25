@@ -231,9 +231,6 @@ main {
   }
 }
 
-nav a {
-  margin-right: 10px;
-}
 
 textarea {
   width: 100%;
@@ -277,12 +274,12 @@ img {
 /* インラインコードのスタイル */
 code {
   padding: 3px 6px;
-  background: rgba(127, 167, 255, 0.15);
+  background: rgb(59 130 246 / 0.2); /* bg-blue-500/20 */
+  color: rgb(255 255 255); /* text-white */
   border-radius: 4px;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 0.9em;
-  color: #f0c5c9;
-  border: 1px solid rgba(127, 167, 255, 0.25);
+  border: 1px solid rgb(59 130 246 / 0.3); /* border-blue-500/30 */
   white-space: pre-wrap;
   word-break: break-word;
 }

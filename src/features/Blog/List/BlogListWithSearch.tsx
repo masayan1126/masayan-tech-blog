@@ -317,7 +317,7 @@ export const BlogListWithSearch = ({
           <a
             href="/rss.xml"
             aria-label="RSSフィード"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white shadow-md transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border-2 border-orange-500 hover:border-orange-600 text-orange-500 hover:text-orange-600 transition-colors"
           >
             <Icon icon="mdi:rss" width={22} height={22} />
             <span className="hidden sm:inline">RSS</span>
