@@ -5,7 +5,9 @@ import BlogList from "@/features/Blog/List/BlogList.astro";
 import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
 import { getCategories } from "@/libs/microcms/category";
+import { BlogCategoryTabs } from "@/features/Blog/List/BlogCategoryTabs";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
 
 type Props = ArticlePagination;
 
@@ -33,9 +35,27 @@ const categorizedArticles = page.data;
 const categories = categorizedArticles.map((p) => p.category).flat();
 const { categoryId } = Astro.params;
 const category_of_this_page = categories.find((c) => c.id === categoryId);
+
+// 全記事データを取得してカテゴリごとの記事数をカウント
+const allArticlesRes = await getArticles();
+const allArticles = allArticlesRes.contents;
+
+const categoriesWithCount = CATEGORY_LIST.map(cat => {
+  const count = allArticles.filter(article =>
+    article.category.some(c => c.id === cat.id)
+  ).length;
+  return { ...cat, count };
+});
 ---
 
 <BlogListLayout>
+  <BlogCategoryTabs
+    categories={categoriesWithCount}
+    totalArticles={allArticles.length}
+    currentCategoryId={categoryId}
+    client:load
+  />
+
   <h1 class="blog-list-title">
     {category_of_this_page?.name}関連の記事 全{page.lastPage}ページ中{
       page.currentPage

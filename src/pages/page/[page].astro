@@ -5,8 +5,9 @@ import BlogListLayout from "@/layouts/BlogListLayout.astro";
 import Pagination from "@/features/Pagination/Pagination.astro";
 import { BlogList } from "@/features/Blog/List/BlogList";
 import { BlogListWithSearch } from "@/features/Blog/List/BlogListWithSearch";
-import { BlogListSortByCategoryButton } from "@/features/Blog/List/BlogListSortByCategoryButton";
+import { BlogCategoryTabs } from "@/features/Blog/List/BlogCategoryTabs";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
 
 type Props = ArticlePagination;
 
@@ -26,22 +27,35 @@ const articles = page.data;
 const allArticlesRes = await getArticles();
 const allArticles = allArticlesRes.contents;
 
+// 各カテゴリの記事数をカウント
+const categoriesWithCount = CATEGORY_LIST.map(cat => {
+  const count = allArticles.filter(article =>
+    article.category.some(c => c.id === cat.id)
+  ).length;
+  return { ...cat, count };
+});
+
 const newArrivalPosts = [...articles].sort((a, b) => {
   return a.publishedAt > b.publishedAt ? -1 : 1;
 });
 ---
 
 <BlogListLayout>
-  <BlogListSortByCategoryButton client:load />
-  
+  <BlogCategoryTabs
+    categories={categoriesWithCount}
+    totalArticles={allArticles.length}
+    currentCategoryId={null}
+    client:load
+  />
+
   <!-- 検索機能付きブログリスト -->
-  <BlogListWithSearch 
+  <BlogListWithSearch
     allArticles={allArticles}
     initialArticles={newArrivalPosts}
     currentPage={page.currentPage}
     totalPages={page.lastPage}
     totalArticles={page.total}
     pageSize={page.size}
-    client:load 
+    client:load
   />
 </BlogListLayout>
