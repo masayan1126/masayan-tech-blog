@@ -7,18 +7,24 @@ const headerLinkMapper = new Map<
 
 headerLinkMapper
   .set("home", [
-    // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
+    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
     { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
 
   .set("blog", [
+    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
     { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
   .set("about", [
     { href: ARTICLES_PATH, text: "Home", iconName: "mdi:home-variant-outline" },
-    // { href: "/blogs", text: "Blog", iconName: "jam:blogger-square" },
+    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
+  ])
+  .set("categories", [
+    { href: ARTICLES_PATH, text: "Home", iconName: "mdi:home-variant-outline" },
+    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
   .set("disclaimer", [
+    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
     { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
   ])
   .set("404", []);

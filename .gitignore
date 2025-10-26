@@ -28,3 +28,6 @@ html
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+.mcp.json
+.serena
