@@ -1,16 +1,12 @@
 describe("Vitest", () => {
   beforeAll(() => {
-    console.log("テストファイル開始前");
   });
   afterAll(() => {
-    console.log("テストファイル終了後");
   });
 
   beforeEach(() => {
-    console.log("テスト開始前");
   });
   afterEach(() => {
-    console.log("テスト終了後");
   });
 
   test("マッチャー", () => {

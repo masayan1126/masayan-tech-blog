@@ -6,27 +6,20 @@ export const LinkCardReplacer: React.FC = () => {
   useEffect(() => {
     // Wait for DOM to be fully ready
     const replaceLinkCards = () => {
-      console.log('[LinkCardReplacer] Starting to search for link cards...');
-
       // Find all span elements with class "link-card"
       const linkCardSpans = document.querySelectorAll('span.link-card');
-      console.log('[LinkCardReplacer] Found', linkCardSpans.length, 'link card spans');
 
       linkCardSpans.forEach((span, index) => {
         // Find the anchor tag inside the span
         const anchor = span.querySelector('a');
         if (!anchor) {
-          console.warn('[LinkCardReplacer] No anchor found in span', index);
           return;
         }
 
         const url = anchor.href;
         if (!url) {
-          console.warn('[LinkCardReplacer] No URL found in anchor', index);
           return;
         }
-
-        console.log('[LinkCardReplacer] Replacing link card', index, 'with URL:', url);
 
         // Create a container div for the React component
         const container = document.createElement('div');

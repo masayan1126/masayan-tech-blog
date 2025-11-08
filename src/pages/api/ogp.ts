@@ -15,8 +15,6 @@ export const GET: APIRoute = async ({ request }) => {
   }
 
   try {
-    console.log('[OGP API] Fetching URL:', targetUrl);
-
     // Fetch the target URL
     const response = await fetch(targetUrl, {
       headers: {
@@ -24,14 +22,11 @@ export const GET: APIRoute = async ({ request }) => {
       },
     });
 
-    console.log('[OGP API] Fetch response status:', response.status);
-
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
     }
 
     const html = await response.text();
-    console.log('[OGP API] HTML length:', html.length);
 
     const $ = cheerio.load(html);
 
@@ -99,8 +94,6 @@ export const GET: APIRoute = async ({ request }) => {
       })(),
       url: targetUrl,
     };
-
-    console.log('[OGP API] Extracted OGP data:', ogpData);
 
     // If no site name, extract from URL
     if (!ogpData.siteName) {
