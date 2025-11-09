@@ -108,21 +108,78 @@ const breadCrumbsList = [
         </div>
         <div>
           <p class="aside-title">この記事をシェアする</p>
-          <Link
-            href={`http://twitter.com/share?url=${SITE_DOMAIN}/blog/${slug}&via=masayanishigaki&text=${title}`}
-            target="_blank"
-          >
-            <Icon name="logos:twitter" class="w-8 inline-block mr-2" />
-          </Link>
-          <Link
-            href={`http://b.hatena.ne.jp/add?mode=confirm&url=${SITE_DOMAIN}/blog/${slug}&title=${title}`}
-            target="_blank"
-          >
-            <Icon
-              name="simple-icons:hatenabookmark"
-              class="w-8 inline-block mr-2"
-            />
-          </Link>
+          <div class="flex flex-wrap gap-2">
+            <a
+              href={`http://twitter.com/share?url=${SITE_DOMAIN}/blog/${slug}&via=masayanishigaki&text=${title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-black hover:text-gray-700 transition-colors"
+            >
+              <svg class="w-8 inline-block mr-2" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a
+              href={`http://b.hatena.ne.jp/add?mode=confirm&url=${SITE_DOMAIN}/blog/${slug}&title=${title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #00A4DE;"
+              class="hover:opacity-80 transition-opacity"
+            >
+              <Icon
+                name="simple-icons:hatenabookmark"
+                class="w-8 inline-block mr-2"
+              />
+            </a>
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`${SITE_DOMAIN}/blog/${slug}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #1877F2;"
+              class="hover:opacity-80 transition-opacity"
+            >
+              <Icon
+                name="simple-icons:facebook"
+                class="w-8 inline-block mr-2"
+              />
+            </a>
+            <a
+              href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(`${SITE_DOMAIN}/blog/${slug}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #00C300;"
+              class="hover:opacity-80 transition-opacity"
+            >
+              <Icon
+                name="simple-icons:line"
+                class="w-8 inline-block mr-2"
+              />
+            </a>
+            <a
+              href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`${SITE_DOMAIN}/blog/${slug}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #0A66C2;"
+              class="hover:opacity-80 transition-opacity"
+            >
+              <Icon
+                name="simple-icons:linkedin"
+                class="w-8 inline-block mr-2"
+              />
+            </a>
+            <a
+              href={`https://getpocket.com/save?url=${encodeURIComponent(`${SITE_DOMAIN}/blog/${slug}`)}&title=${encodeURIComponent(title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #EF4056;"
+              class="hover:opacity-80 transition-opacity"
+            >
+              <Icon
+                name="simple-icons:getpocket"
+                class="w-8 inline-block mr-2"
+              />
+            </a>
+          </div>
         </div>
 
         <div class="">
