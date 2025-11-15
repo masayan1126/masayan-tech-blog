@@ -372,6 +372,19 @@ const breadCrumbsList = [
     content: none;
   }
 
+  /* blockquote内の箇条書きもチェックマークを表示しない */
+  article blockquote ul {
+    list-style: disc;
+  }
+
+  article blockquote ul li {
+    padding-left: 0;
+  }
+
+  article blockquote ul li::before {
+    content: none;
+  }
+
   article ol {
     @apply px-8 py-4;
     list-style: none;
@@ -422,7 +435,7 @@ const breadCrumbsList = [
   /* インラインコードのスタイル */
   article code:not(pre code) {
     background: rgba(96, 130, 62, 0.2);
-    color: #a4c78a;
+    color: #ffffff;
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-size: 0.9em;
