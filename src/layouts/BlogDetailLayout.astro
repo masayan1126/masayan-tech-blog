@@ -340,11 +340,67 @@ const breadCrumbsList = [
   }
 
   article ul {
-    @apply list-disc px-8 py-4;
+    @apply px-8 py-4;
+    list-style: none;
+  }
+
+  article ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  article ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #F3BC45;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  /* 目次内の箇条書きはチェックマークを表示しない */
+  .table-of-contents ul {
+    list-style: disc;
+  }
+
+  .table-of-contents ul li {
+    padding-left: 0;
+  }
+
+  .table-of-contents ul li::before {
+    content: none;
   }
 
   article ol {
-    @apply list-decimal px-8 py-4;
+    @apply px-8 py-4;
+    list-style: none;
+    counter-reset: item;
+  }
+
+  article ol li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+    counter-increment: item;
+  }
+
+  article ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    background: linear-gradient(135deg, #F3BC45, #FFC857);
+    color: #1a1a1a;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(243, 188, 69, 0.4);
   }
 
   article pre {
@@ -605,7 +661,7 @@ const breadCrumbsList = [
   }
 
   article th {
-    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(50, 50, 50, 0.9));
+    background: rgba(40, 40, 40, 0.9);
     padding: 1.125rem 1.25rem;
     border-bottom: 2px solid rgba(100, 100, 100, 0.5);
     font-weight: 700;
@@ -626,8 +682,8 @@ const breadCrumbsList = [
     height: 2px;
     background: linear-gradient(90deg, 
       transparent,
-      rgba(243, 188, 69, 0.6) 20%,
-      rgba(243, 188, 69, 0.6) 80%,
+      rgba(100, 100, 100, 0.4) 20%,
+      rgba(100, 100, 100, 0.4) 80%,
       transparent
     );
   }
@@ -654,8 +710,8 @@ const breadCrumbsList = [
     bottom: 0;
     width: 3px;
     background: linear-gradient(180deg, 
-      rgba(243, 188, 69, 0.9), 
-      rgba(243, 188, 69, 0.5)
+      rgba(100, 100, 100, 0.6), 
+      rgba(100, 100, 100, 0.3)
     );
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -671,10 +727,6 @@ const breadCrumbsList = [
 
   article tbody tr:hover::before {
     opacity: 1;
-  }
-
-  article tbody tr:hover td {
-    color: #f0f0f0;
   }
 
   article tbody tr:last-child td {
