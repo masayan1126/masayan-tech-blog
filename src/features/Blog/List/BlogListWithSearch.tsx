@@ -175,9 +175,10 @@ export const BlogListWithSearch = ({
             href={Number(item) === 1 ? "/page/1" : `/page/${item}`}
             className={`flex justify-center items-center w-11 h-11 rounded-xl transition-all duration-200 ${
               currentPage === Number(item)
-                ? 'bg-blue-500 text-white shadow-lg'
+                ? 'text-black shadow-lg'
                 : 'bg-white/5 hover:bg-white/10 border border-white/10 text-white'
             }`}
+            style={currentPage === Number(item) ? { backgroundColor: '#F3BC45' } : undefined}
           >
             <span>{item}</span>
           </a>
@@ -224,9 +225,10 @@ export const BlogListWithSearch = ({
                     href={Number(item) === 1 ? "/page/1" : `/page/${item}`}
                     className={`flex justify-center items-center w-9 h-9 rounded-lg transition-all duration-200 text-sm ${
                       currentPage === Number(item)
-                        ? 'bg-blue-500 text-white shadow-lg'
+                        ? 'text-black shadow-lg'
                         : 'bg-white/5 hover:bg-white/10 border border-white/10 text-white'
                     }`}
+                    style={currentPage === Number(item) ? { backgroundColor: '#F3BC45' } : undefined}
                   >
                     <span>{item}</span>
                   </a>
@@ -317,7 +319,19 @@ export const BlogListWithSearch = ({
           <a
             href="/rss.xml"
             aria-label="RSSフィード"
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border-2 border-orange-500 hover:border-orange-600 text-orange-500 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border-2 transition-colors"
+            style={{ 
+              borderColor: '#F3BC45',
+              color: '#F3BC45'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#E5AD35';
+              e.currentTarget.style.color = '#E5AD35';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#F3BC45';
+              e.currentTarget.style.color = '#F3BC45';
+            }}
           >
             <Icon icon="mdi:rss" width={22} height={22} />
             <span className="hidden sm:inline">RSS</span>

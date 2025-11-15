@@ -36,6 +36,56 @@ const filteredCategories = categoriesWithCount.filter((category) => category.cou
 
 // 記事数の多い順にソート
 const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
+
+// カテゴリ名とアイコンのマッピング
+const categoryIcons: Record<string, string> = {
+  "ソフトウェア開発": "💻",
+  "Python": "🐍",
+  "バックエンド": "⚙️",
+  "フロントエンド": "🎨",
+  "Laravel": "🔷",
+  "VSCode": "📝",
+  "Visual Studio Code": "📝",
+  "PHP": "🐘",
+  "TypeScript": "📘",
+  "JavaScript": "📜",
+  "インフラ": "🏗️",
+  "Docker": "🐳",
+  "React": "⚛️",
+  "AI": "🤖",
+  "コラム": "📰",
+  "Google Cloud": "☁️",
+  "Next.js": "▲",
+  "Git": "🔀",
+  "Claude": "🧠",
+  "Github": "🐙",
+  "GitHub": "🐙",
+  "キャリア": "💼",
+  "自動テスト": "🧪",
+  "Vue": "💚",
+  "MySQL": "🗄️",
+  "技術書要約": "📚",
+  "サーバーレス": "☁️",
+  "Mac": "🍎",
+  "Node.js": "🟢",
+  "Express.js": "🚂",
+  "Linux": "🐧",
+  "Docker Compose": "🐳",
+  "作業効率化": "⚡",
+  "AWS": "☁️",
+  "WEB基礎": "🌐",
+  "Vite": "⚡",
+  "Claude Code": "🧠",
+  "プロンプトエンジニアリング": "💬",
+  "MCP": "🔗",
+  "CSS": "🎨",
+  "シェルスクリプト": "📜",
+  "GitHub Actions": "🔄",
+  "ChatGPT": "💬",
+  "Prisma": "🔺",
+  "Vitest": "🧪",
+  "GitHub Copilot": "🤖",
+};
 ---
 
 <BaseLayout
@@ -52,20 +102,26 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
 
     <div class="categories-grid">
       {
-        sortedCategories.map((category) => (
-          <a
-            href={`/category/${category.id}/page/1`}
-            class="category-card"
-          >
-            <div class="category-header">
-              <h2 class="category-name">{category.name}</h2>
-              <span class="category-count">{category.count}件</span>
-            </div>
-            <div class="category-footer">
-              <span class="view-link">記事を見る →</span>
-            </div>
-          </a>
-        ))
+        sortedCategories.map((category) => {
+          const icon = category.count >= 10 ? categoryIcons[category.name] : null;
+          return (
+            <a
+              href={`/category/${category.id}/page/1`}
+              class="category-card"
+            >
+              <div class="category-header">
+                <h2 class="category-name">
+                  {icon && <span class="category-icon">{icon}</span>}
+                  <span>{category.name}</span>
+                </h2>
+                <span class="category-count">{category.count}件</span>
+              </div>
+              <div class="category-footer">
+                <span class="view-link">記事を見る →</span>
+              </div>
+            </a>
+          );
+        })
       }
     </div>
   </div>
@@ -119,7 +175,7 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    background: linear-gradient(135deg, rgba(243, 188, 69, 0.12), rgba(243, 188, 69, 0.06));
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
@@ -128,8 +184,8 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
 
   .category-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15);
-    border: 1px solid rgba(127, 167, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(243, 188, 69, 0.2);
+    border: 1px solid rgba(243, 188, 69, 0.3);
     background: rgba(255, 255, 255, 0.05);
   }
 
@@ -153,26 +209,37 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
     margin: 0;
     flex: 1;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .category-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .category-card:hover .category-name {
-    color: rgba(127, 167, 255, 0.9);
+    color: #F3BC45;
   }
 
   .category-count {
     @apply text-sm font-medium;
-    color: rgba(127, 167, 255, 0.9);
-    background-color: rgba(127, 167, 255, 0.15);
+    color: #F3BC45;
+    background-color: rgba(243, 188, 69, 0.2);
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     white-space: nowrap;
-    border: 1px solid rgba(127, 167, 255, 0.2);
+    border: 1px solid rgba(243, 188, 69, 0.3);
     transition: all 0.3s ease;
   }
 
   .category-card:hover .category-count {
-    background-color: rgba(127, 167, 255, 0.25);
-    border-color: rgba(127, 167, 255, 0.4);
+    background-color: rgba(243, 188, 69, 0.35);
+    border-color: rgba(243, 188, 69, 0.5);
   }
 
   .category-footer {
@@ -184,12 +251,12 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
 
   .view-link {
     @apply text-sm font-medium;
-    color: rgba(127, 167, 255, 0.8);
+    color: rgba(243, 188, 69, 0.9);
     transition: all 0.3s ease;
   }
 
   .category-card:hover .view-link {
-    color: rgba(127, 167, 255, 1);
+    color: #F3BC45;
     transform: translateX(4px);
   }
 
@@ -209,7 +276,7 @@ const sortedCategories = filteredCategories.sort((a, b) => b.count - a.count);
 
     .category-card:hover {
       transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 12px 25px rgba(127, 167, 255, 0.1);
+      box-shadow: 0 12px 25px rgba(243, 188, 69, 0.15);
     }
   }
 </style>

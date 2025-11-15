@@ -8,11 +8,11 @@ export const BlogListLink = ({ iconName, children, ...other }: Props) => {
   return (
     <div>
       {iconName ? (
-        <Link icon={{ name: iconName, pos: "left" }} {...other} color="blue">
+        <Link icon={{ name: iconName, pos: "left" }} {...other} color="white">
           {children}
         </Link>
       ) : (
-        <Link {...other} color="blue">
+        <Link {...other} color="white">
           {children}
         </Link>
       )}

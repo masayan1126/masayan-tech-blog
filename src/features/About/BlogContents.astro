@@ -3,22 +3,242 @@ import Icon from "astro-icon";
 import { Image } from "astro:assets";
 ---
 
-<div>
-  <h2>
-    <Icon
-      name="emojione:beer-mug"
-      class="w-6 inline-block mr-2"
-    />本ブログで取り扱う内容
-  </h2>
-  <ul>
-    <li>300以上のテック記事</li>
-    <li>月5万PVの実績</li>
-    <Image src={"/pv.PNG"} width={312} height={512} alt={"月間PV数"} />
-    <li>毎週ペースで記事更新</li>
-    <li>WEB関連の技術の最新情報</li>
-    <li>モダンフロントエンド技術、自動テスト</li>
-    <li>DevOps、バックエンド、インフラ、DBなどフルスタックな技術情報</li>
-    <li>エンジニアのキャリア戦略/転職に関する情報</li>
-    <li>VSCode、chatGPT、その他開発に欠かせないツールの紹介</li>
-  </ul>
-</div>
+<section class="blog-contents-section">
+  <div class="section-header">
+    <Icon name="emojione:beer-mug" class="section-icon" />
+    <h2>本ブログで取り扱う内容</h2>
+  </div>
+
+  <div class="content-cards">
+    <!-- 統計カード -->
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-value">400+</div>
+        <div class="stat-label">テック記事</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-value">5万</div>
+        <div class="stat-label">月間PV</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">毎週</div>
+        <div class="stat-label">記事更新</div>
+      </div>
+    </div>
+
+    <!-- トピックカード -->
+    <div class="topics-grid">
+      <div class="topic-card">
+        <div class="topic-icon">🐍</div>
+        <div class="topic-content">
+          <h3 class="topic-title">Python開発</h3>
+          <p class="topic-desc">Python, Django, FastAPIなどバックエンド開発（86記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">⚛️</div>
+        <div class="topic-content">
+          <h3 class="topic-title">モダンフロントエンド</h3>
+          <p class="topic-desc">React, Next.js, TypeScript, JavaScript（46記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">🔧</div>
+        <div class="topic-content">
+          <h3 class="topic-title">PHP/Laravel開発</h3>
+          <p class="topic-desc">Laravel, PHPによるバックエンド開発（72記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">🐳</div>
+        <div class="topic-content">
+          <h3 class="topic-title">インフラ/DevOps</h3>
+          <p class="topic-desc">Docker, GCP, AWS, サーバーレスなど（64記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">🤖</div>
+        <div class="topic-content">
+          <h3 class="topic-title">AI/開発支援ツール</h3>
+          <p class="topic-desc">Claude, ChatGPT, MCP, VSCode（85記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">🧪</div>
+        <div class="topic-content">
+          <h3 class="topic-title">自動テスト/品質管理</h3>
+          <p class="topic-desc">Vitest, テスト戦略、CI/CD（13記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">💼</div>
+        <div class="topic-content">
+          <h3 class="topic-title">キャリア/技術書</h3>
+          <p class="topic-desc">エンジニアのキャリア戦略、技術書要約（30記事）</p>
+        </div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-icon">💻</div>
+        <div class="topic-content">
+          <h3 class="topic-title">作業効率化/Git</h3>
+          <p class="topic-desc">Git, GitHub, Mac, 開発効率化テクニック（31記事）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-contents-section {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-icon {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+
+  .content-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* 統計カード */
+  .stat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(80, 80, 80, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(40, 40, 40, 0.8);
+    border-color: rgba(100, 100, 100, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .stat-card.highlight {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.8), rgba(50, 50, 50, 0.8));
+    border-color: rgba(100, 100, 100, 0.6);
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #F3BC45 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #F3BC45;
+    font-weight: 600;
+  }
+
+  /* トピックカード */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .topic-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .topic-card:hover {
+    background: rgba(40, 40, 40, 0.7);
+    border-color: rgba(100, 100, 100, 0.5);
+    transform: translateX(4px);
+  }
+
+  .topic-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .topic-content {
+    flex: 1;
+  }
+
+  .topic-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 0.25rem;
+  }
+
+  .topic-desc {
+    font-size: 0.875rem;
+    color: #d1cfcf;
+    line-height: 1.5;
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 768px) {
+    .blog-contents-section {
+      padding: 1.5rem;
+    }
+
+    .stat-cards {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .blog-contents-section {
+      padding: 1rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+    }
+  }
+</style>

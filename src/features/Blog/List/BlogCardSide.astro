@@ -21,7 +21,7 @@ const { post } = Astro.props;
         {post.category.map((c) => (
           <a
             href={`/category/${c.id}/page/1`}
-            class="inline-block px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+            class="category-badge"
           >
             {c.name}
           </a>
@@ -51,8 +51,8 @@ const { post } = Astro.props;
   
   .modern-blog-card-astro:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(127, 167, 255, 0.15);
-    border: 1px solid rgba(127, 167, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(243, 188, 69, 0.2);
+    border: 1px solid rgba(243, 188, 69, 0.3);
     background: rgba(255, 255, 255, 0.05);
   }
   
@@ -62,11 +62,29 @@ const { post } = Astro.props;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(127, 167, 255, 0.1), rgba(127, 167, 255, 0.05));
+    background: linear-gradient(135deg, rgba(243, 188, 69, 0.12), rgba(243, 188, 69, 0.06));
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
     z-index: 1;
+  }
+  
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(243, 188, 69, 0.2);
+    border: 1px solid rgba(243, 188, 69, 0.4);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: #F3BC45;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .category-badge:hover {
+    background-color: rgba(243, 188, 69, 0.35);
+    border-color: rgba(243, 188, 69, 0.6);
+    transform: scale(1.05);
   }
   
   .modern-blog-card-astro:hover .card-overlay {
@@ -99,7 +117,7 @@ const { post } = Astro.props;
   @media (max-width: 768px) {
     .modern-blog-card-astro:hover {
       transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 12px 25px rgba(127, 167, 255, 0.1);
+      box-shadow: 0 12px 25px rgba(243, 188, 69, 0.15);
     }
   }
 </style>

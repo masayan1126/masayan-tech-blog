@@ -14,8 +14,8 @@
             --card-border: rgba(255,255,255,0.12);
             --text: #ffffff;
             --muted: rgba(255,255,255,0.7);
-            --accent: #f97316; /* orange-500 */
-            --accent-600: #ea580c; /* orange-600 */
+            --accent: #F3BC45; /* yellow/gold */
+            --accent-600: #E5AD35; /* yellow/gold-600 */
           }
           * { box-sizing: border-box; }
           body { margin: 0; padding: 32px 16px; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); }

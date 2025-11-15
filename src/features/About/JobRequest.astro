@@ -2,41 +2,256 @@
 import Icon from "astro-icon";
 ---
 
-<div>
-  <h2>
-    <Icon
-      name="emojione:handshake"
-      class="w-6 inline-block mr-2"
-    />お仕事のご依頼
-  </h2>
-  <p class="mb-2">
-    下記関連のお仕事のご依頼は<a
-      class="text-blue-500"
-      href="mailto:masa199311266@gmail.com">メール</a
-    >から
-  </p>
-  <p class="font-bold">Webサイト制作</p>
-  <ul class="mb-2">
-    <li>
-      Astroなどの静的サイトジェネレーターを使用したハイパフォーマンスで高速なWebサイト、LPの作成
-    </li>
-    <li>WPその他のCMSからの移行</li>
-  </ul>
+<section class="job-request-section">
+  <div class="section-header">
+    <Icon name="emojione:handshake" class="section-icon" />
+    <h2>お仕事のご依頼</h2>
+  </div>
 
-  <p class="font-bold">Webアプリケーション開発</p>
-  <ul class="mb-2">
-    <li>
-      モダンフロントエンド技術を駆使したWebアプリケーションの開発が可能です。バックエンド、インフラの構築も一括で承っております
-    </li>
-    <li>
-      ただ開発するだけでなく、自動テストの組み込みや、アプリケーション自体の最適化を実施し、保守性の優れた成果物の納品を心がけております
-    </li>
-  </ul>
+  <div class="contact-card">
+    <p class="contact-text">
+      下記のサービスに関するご依頼は、お気軽に
+      <a class="contact-link" href="mailto:masa199311266@gmail.com">
+        <svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M22 7l-10 7L2 7"/>
+        </svg>
+        メール
+      </a>
+      でご連絡ください
+    </p>
+  </div>
 
-  <p class="font-bold">フロントエンドテスト自動化のコンサルティング/実装</p>
-  <ul>
-    <li>
-      フロントエンドのテストを導入して保守性を向上したいけれど、どうしたらいいかわからないという企業様向けに、テストの導入方法のコンサルティングやテストの導入を行っております
-    </li>
-  </ul>
-</div>
+  <div class="services-grid">
+    <!-- Webサイト制作 -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">🌐</div>
+        <h3 class="service-title">Webサイト制作</h3>
+      </div>
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>Astroなどの静的サイトジェネレーターを使用したハイパフォーマンスで高速なWebサイト、LPの作成</span>
+        </li>
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>WPその他のCMSからの移行</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Webアプリケーション開発 -->
+    <div class="service-card featured">
+      <div class="featured-badge">おすすめ</div>
+      <div class="service-header">
+        <div class="service-icon">⚡</div>
+        <h3 class="service-title">Webアプリケーション開発</h3>
+      </div>
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>モダンフロントエンド技術を駆使したWebアプリケーションの開発。バックエンド、インフラの構築も一括対応</span>
+        </li>
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>自動テストの組み込みや最適化を実施し、保守性の優れた成果物を納品</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- テスト自動化 -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-icon">🧪</div>
+        <h3 class="service-title">テスト自動化コンサルティング</h3>
+      </div>
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>フロントエンドのテスト導入方法のコンサルティングと実装支援</span>
+        </li>
+        <li class="service-item">
+          <span class="bullet">✓</span>
+          <span>保守性向上のための最適なテスト戦略の提案</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .job-request-section {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-icon {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+  }
+
+  /* コンタクトカード */
+  .contact-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(40, 40, 40, 0.8));
+    border: 1px solid rgba(80, 80, 80, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .contact-text {
+    color: #f0f0f0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #F3BC45;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+  }
+
+  .contact-link:hover {
+    color: #FFC857;
+    text-decoration: underline;
+  }
+
+  .inline-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    vertical-align: middle;
+    margin-bottom: 2px;
+  }
+
+  /* サービスグリッド */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    position: relative;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(80, 80, 80, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    background: rgba(40, 40, 40, 0.7);
+    border-color: rgba(100, 100, 100, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .service-card.featured {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.8), rgba(50, 50, 50, 0.8));
+    border-color: rgba(100, 100, 100, 0.5);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: linear-gradient(135deg, #F3BC45, #FFC857);
+    color: #0f0f0f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(243, 188, 69, 0.4);
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .service-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin: 0;
+  }
+
+  .service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .service-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    color: #d1cfcf;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .bullet {
+    color: #F3BC45;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 768px) {
+    .job-request-section {
+      padding: 1.5rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .job-request-section {
+      padding: 1rem;
+    }
+
+    .contact-card {
+      padding: 1rem;
+    }
+
+    .service-card {
+      padding: 1.25rem;
+    }
+
+    .service-title {
+      font-size: 1rem;
+    }
+  }
+</style>

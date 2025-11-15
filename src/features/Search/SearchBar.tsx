@@ -79,7 +79,7 @@ export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
           value={searchTerm}
           onChange={handleInputChange}
           placeholder="記事を検索..."
-          className="w-full px-4 py-3 pr-16 border-2 border-white/10 rounded-xl bg-white/5 backdrop-blur-md text-white text-base transition-all duration-300 focus:outline-none focus:border-blue-400/50 focus:shadow-lg focus:shadow-blue-400/10 placeholder:text-white/50"
+          className="w-full px-4 py-3 pr-16 border-2 border-white/10 rounded-xl bg-white/5 backdrop-blur-md text-white text-base transition-all duration-300 focus:outline-none focus:border-[#F3BC45]/50 focus:shadow-lg focus:shadow-[#F3BC45]/10 placeholder:text-white/50"
         />
         <div className="absolute right-2 flex items-center justify-center w-10 h-10">
           {isSearching ? (

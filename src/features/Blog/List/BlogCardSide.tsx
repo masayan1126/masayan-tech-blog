@@ -22,7 +22,21 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
               <a
                 key={c.id}
                 href={`/category/${c.id}/page/1`}
-                className="inline-block px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+                className="inline-block px-2 py-1 rounded text-xs transition-all duration-200 hover:scale-105"
+                style={{
+                  backgroundColor: 'rgba(243, 188, 69, 0.2)',
+                  borderColor: 'rgba(243, 188, 69, 0.4)',
+                  border: '1px solid',
+                  color: '#F3BC45'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(243, 188, 69, 0.35)';
+                  e.currentTarget.style.borderColor = 'rgba(243, 188, 69, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(243, 188, 69, 0.2)';
+                  e.currentTarget.style.borderColor = 'rgba(243, 188, 69, 0.4)';
+                }}
               >
                 {c.name}
               </a>

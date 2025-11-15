@@ -14,6 +14,9 @@ const { title, description, context, breadCrumbsList } = Astro.props;
   <BaseHead {title} {description} />
 
   <body class="mx-auto">
+    <!-- ページ読み込みプログレスバー -->
+    <div id="progress-bar"></div>
+    
     <Header {context} />
     <main class="fadeUp pt-20">
       <BreadCrumbs lists={breadCrumbsList} />
@@ -22,7 +25,67 @@ const { title, description, context, breadCrumbsList } = Astro.props;
 
     <Footer />
 
-    
+    <script>
+      // ページ読み込みプログレスバー
+      (function() {
+        const progressBar = document.getElementById('progress-bar');
+        if (!progressBar) return;
+
+        let progress = 0;
+        let intervalId = null;
+
+        function startProgress() {
+          progress = 0;
+          progressBar.style.width = '0%';
+          progressBar.style.opacity = '1';
+
+          // ランダムな速度でプログレスバーを進める
+          intervalId = setInterval(() => {
+            if (progress < 90) {
+              const increment = Math.random() * 10 + 5;
+              progress += increment;
+              if (progress > 90) progress = 90;
+              progressBar.style.width = progress + '%';
+            }
+          }, 200);
+        }
+
+        function completeProgress() {
+          if (intervalId) clearInterval(intervalId);
+          progress = 100;
+          progressBar.style.width = '100%';
+          
+          setTimeout(() => {
+            progressBar.style.opacity = '0';
+            setTimeout(() => {
+              progressBar.style.width = '0%';
+            }, 400);
+          }, 200);
+        }
+
+        // リンククリック時にプログレスバーを開始
+        document.addEventListener('click', (e) => {
+          const link = e.target.closest('a');
+          if (link && link.href && 
+              link.href.startsWith(window.location.origin) && 
+              !link.href.includes('#') &&
+              !link.target) {
+            startProgress();
+          }
+        });
+
+        // ページロード完了時にプログレスバーを完了
+        window.addEventListener('load', completeProgress);
+
+        // 初回ロード時
+        if (document.readyState === 'complete') {
+          completeProgress();
+        } else {
+          startProgress();
+          window.addEventListener('load', completeProgress);
+        }
+      })();
+    </script>
 
     <script>
       // lazyload adsense
@@ -74,5 +137,19 @@ const { title, description, context, breadCrumbsList } = Astro.props;
     opacity: 0.7;
     filter: brightness(0.4);
     z-index: -1;
+  }
+
+  /* ページ読み込みプログレスバー */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #F3BC45, #FFC857);
+    box-shadow: 0 2px 8px rgba(243, 188, 69, 0.5);
+    z-index: 9999;
+    transition: width 0.3s ease, opacity 0.4s ease;
+    opacity: 0;
   }
 </style>

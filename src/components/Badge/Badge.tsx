@@ -19,8 +19,8 @@ export default function Badge({
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = "translateY(-2px) scale(1.05)";
-        e.currentTarget.style.boxShadow = "0 4px 8px rgba(127, 167, 255, 0.2)";
-        e.currentTarget.style.borderColor = "rgba(127, 167, 255, 0.3)";
+        e.currentTarget.style.boxShadow = "0 4px 8px rgba(243, 188, 69, 0.25)";
+        e.currentTarget.style.borderColor = "rgba(243, 188, 69, 0.4)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = "translateY(0) scale(1)";

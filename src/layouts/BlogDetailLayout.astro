@@ -58,7 +58,7 @@ const breadCrumbsList = [
 
         <div class="flex flex-col gap-2">
           <div>
-            <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle text-blue-300" />
+            <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle" style="color: #F3BC45;" />
             公開日
             <FormattedDate date={new Date(publishedAt)} />
           </div>
@@ -99,7 +99,10 @@ const breadCrumbsList = [
             {category.map(({ id, name }) => (
               <a
                 href={`/category/${id}${ARTICLES_PATH}`}
-                class="inline-block px-3 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
+                class="inline-block px-3 py-1 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
+                style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
+                onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
+                onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
               >
                 {name}
               </a>
@@ -204,7 +207,10 @@ const breadCrumbsList = [
                         {post.category.map((c) => (
                           <a
                             href={`/category/${c.id}${ARTICLES_PATH}`}
-                            class="inline-block px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 hover:border-blue-500/50 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+                            class="inline-block px-2 py-1 rounded text-xs text-white transition-all duration-200 hover:scale-105"
+                            style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
+                            onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
+                            onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
                           >
                             {c.name}
                           </a>
@@ -214,12 +220,18 @@ const breadCrumbsList = [
                         <FormattedDate date={new Date(post.publishedAt)} />
                       </p>
                       <div class="mt-3">
-                        <BlogListLink
+                        <a
                           href={`/blog/${post.id}/`}
-                          className="text-link"
+                          class="inline-flex items-center gap-2 text-white hover:opacity-75 transition-all duration-200 hover:gap-3"
                         >
-                          この記事を読む
-                        </BlogListLink>
+                          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21,5C19.89,4.65 18.67,4.5 17.5,4.5C15.55,4.5 13.45,4.9 12,6C10.55,4.9 8.45,4.5 6.5,4.5C4.55,4.5 2.45,4.9 1,6V20.65C1,20.9 1.25,21.15 1.5,21.15C1.6,21.15 1.65,21.1 1.75,21.1C3.1,20.45 5.05,20 6.5,20C8.45,20 10.55,20.4 12,21.5C13.35,20.65 15.8,20 17.5,20C19.15,20 20.85,20.3 22.25,21.05C22.35,21.1 22.4,21.1 22.5,21.1C22.75,21.1 23,20.85 23,20.6V6C22.4,5.55 21.75,5.25 21,5M21,18.5C19.9,18.15 18.7,18 17.5,18C15.8,18 13.35,18.65 12,19.5V8C13.35,7.15 15.8,6.5 17.5,6.5C18.7,6.5 19.9,6.65 21,7V18.5Z"/>
+                          </svg>
+                          <span>この記事を読む</span>
+                          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
+                          </svg>
+                        </a>
                       </div>
                     </div>
                   )
@@ -262,8 +274,16 @@ const breadCrumbsList = [
   }
 
   article h2::before {
-    content: "🚀";
-    padding-right: 5px;
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url('/miyabiya.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
   }
 
   article h3 {
@@ -333,9 +353,48 @@ const breadCrumbsList = [
     box-shadow: 
       0 8px 24px rgba(0, 0, 0, 0.4),
       0 2px 6px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(80, 80, 80, 0.3);
     transition: all 0.3s ease;
     overflow-x: auto;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%) !important;
+  }
+
+  article pre code {
+    background: transparent !important;
+  }
+
+  /* インラインコードのスタイル */
+  article code:not(pre code) {
+    background: rgba(96, 130, 62, 0.2);
+    color: #a4c78a;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid rgba(96, 130, 62, 0.3);
+  }
+
+  /* blockquoteのスタイル */
+  article blockquote {
+    background: rgba(96, 130, 62, 0.15);
+    border-left: 4px solid rgba(96, 130, 62, 0.6);
+    border-radius: 8px;
+    padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+    margin: 1.5rem 0;
+    color: #d1cfcf;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  article blockquote::before {
+    content: '"';
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    color: rgba(96, 130, 62, 0.4);
+    font-family: Georgia, serif;
   }
 
   article pre:hover {
@@ -343,11 +402,12 @@ const breadCrumbsList = [
       0 12px 32px rgba(0, 0, 0, 0.5),
       0 4px 8px rgba(0, 0, 0, 0.4);
     transform: translateY(-2px);
+    border-color: rgba(100, 100, 100, 0.4);
   }
 
   /* Normal links (excluding link cards) */
   article a:not(.link-card) {
-    color: rgb(146, 180, 237);
+    color: #F3BC45;
     padding: 10px 0;
   }
 
@@ -371,11 +431,11 @@ const breadCrumbsList = [
 
   article .link-card:hover {
     background: rgba(255, 255, 255, 0.05) !important;
-    border-color: rgba(146, 180, 237, 0.4) !important;
+    border-color: rgba(243, 188, 69, 0.5) !important;
     transform: translateY(-2px) !important;
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.4),
-      0 2px 6px rgba(146, 180, 237, 0.2) !important;
+      0 2px 6px rgba(243, 188, 69, 0.3) !important;
   }
 
   article .link-card .link-card-thumbnail {
@@ -428,7 +488,7 @@ const breadCrumbsList = [
 
   article .link-card .link-card-title {
     font-size: 1rem;
-    color: rgb(146, 180, 237);
+    color: #F3BC45;
     font-weight: 600;
     line-height: 1.5;
     display: -webkit-box;
@@ -474,8 +534,8 @@ const breadCrumbsList = [
   }
 
   article p:has(.info) {
-    background: rgba(76, 175, 80, 0.1);
-    border: 1px solid rgba(76, 175, 80, 0.3);
+    background: rgba(96, 130, 62, 0.15);
+    border: 1px solid rgba(96, 130, 62, 0.4);
     padding: 1.5rem 1.5rem 1.5rem 3.5rem;
     border-radius: 8px;
     position: relative;
@@ -491,36 +551,157 @@ const breadCrumbsList = [
     font-size: 1.2rem;
   }
 
+  article p:has(.tip) {
+    background: rgba(243, 188, 69, 0.15);
+    border: 1px solid rgba(243, 188, 69, 0.4);
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    border-radius: 8px;
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  article p:has(.tip)::before {
+    content: "💡";
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+  }
+
+  article p:has(.note) {
+    background: rgba(156, 39, 176, 0.12);
+    border: 1px solid rgba(156, 39, 176, 0.3);
+    padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+    border-radius: 8px;
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  article p:has(.note)::before {
+    content: "📝";
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+  }
+
   article .iframely-embed {
     @apply my-6;
   }
 
   article table {
     @apply my-6;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
     box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.4),
-      0 2px 6px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+      0 10px 40px rgba(0, 0, 0, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(80, 80, 80, 0.4);
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.95), rgba(35, 35, 35, 0.95));
+    backdrop-filter: blur(10px);
   }
 
   article th {
-    background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(59, 130, 246, 0.15));
-    padding: 1rem;
-    border-bottom: 2px solid rgba(96, 165, 250, 0.3);
-    font-weight: 600;
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(50, 50, 50, 0.9));
+    padding: 1.125rem 1.25rem;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.5);
+    font-weight: 700;
     text-align: left;
+    color: #e0e0e0;
+    letter-spacing: 0.03em;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  article th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+      transparent,
+      rgba(243, 188, 69, 0.6) 20%,
+      rgba(243, 188, 69, 0.6) 80%,
+      transparent
+    );
   }
 
   article td {
-    padding: 0.875rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(80, 80, 80, 0.3);
+    color: #d1cfcf;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    position: relative;
   }
 
-  article tr:hover {
-    background: rgba(255, 255, 255, 0.03);
-    transition: background 0.2s ease;
+  article tbody tr {
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  article tbody tr::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, 
+      rgba(243, 188, 69, 0.9), 
+      rgba(243, 188, 69, 0.5)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  article tbody tr:hover {
+    background: linear-gradient(90deg, 
+      rgba(40, 40, 40, 0.8), 
+      rgba(45, 45, 45, 0.8)
+    );
+    transform: translateX(2px);
+  }
+
+  article tbody tr:hover::before {
+    opacity: 1;
+  }
+
+  article tbody tr:hover td {
+    color: #f0f0f0;
+  }
+
+  article tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* テーブルのレスポンシブ対応 */
+  @media (max-width: 768px) {
+    article table {
+      font-size: 0.875rem;
+    }
+
+    article th,
+    article td {
+      padding: 0.875rem 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    article table {
+      font-size: 0.8rem;
+    }
+
+    article th,
+    article td {
+      padding: 0.75rem 0.875rem;
+    }
   }
 
   .youtube-embed-container {
@@ -608,11 +789,11 @@ const breadCrumbsList = [
 
   .link-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(96, 165, 250, 0.5);
+    border-color: rgba(243, 188, 69, 0.5);
     background: rgba(255, 255, 255, 0.05);
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.4),
-      0 2px 6px rgba(0, 0, 0, 0.3);
+      0 2px 6px rgba(243, 188, 69, 0.3);
   }
 
   .link-card-thumbnail {
@@ -787,7 +968,7 @@ const breadCrumbsList = [
 
   .link-card-fallback:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(96, 165, 250, 0.3);
+    border-color: rgba(243, 188, 69, 0.4);
   }
 
   .fallback-icon {
@@ -796,7 +977,7 @@ const breadCrumbsList = [
 
   .fallback-url {
     font-size: 0.875rem;
-    color: rgb(146, 180, 237);
+    color: #F3BC45;
     word-break: break-all;
   }
 
