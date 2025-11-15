@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 <div class="aside-profile-container">
   <Image
-    src={"/masayan-illust.png"}
+    src={"/miyabiya.png"}
     width={512}
     height={512}
     alt={"西垣雅矢のプロフィール画像"}
@@ -12,18 +12,35 @@ import { Image } from "astro:assets";
     class="mx-auto rounded-full mt-6"
   />
   <div class="text-center mt-8">
-    <h2 class="text-lg font-semibold">masayan</h2>
-    <p class="text-sm">Web Developer</p>
-  </div>
-  <div class="px-6 py-4">
-    <p class="text-xs">
-      - 大阪<br/>
-      - MCPサーバー開発<br/>
-      - フルスタックエンジニア<br/>
-      - クリーンアーキテクチャ、自動テスト<br/>
-      - AI駆動開発<br/>
-      - Claude Codeヘビーユーザー
+    <h2 class="text-xl font-bold name-gradient">masayan</h2>
+    <p class="text-sm font-medium mt-1" style="color: #d1cfcf;">Full Stack Engineer</p>
+    <p class="text-xs mt-2 flex items-center justify-center gap-1" style="color: #a7c7f9;">
+      <span>📍</span>
+      <span>大阪, Japan</span>
     </p>
+  </div>
+  <div class="px-6 py-4 space-y-4">
+    <div class="profile-section">
+      <h3 class="section-title">
+        <span class="section-icon">🎯</span>
+        Specialties
+      </h3>
+      <div class="tags-container">
+        <span class="skill-tag">MCP Server</span>
+        <span class="skill-tag">Clean Architecture</span>
+        <span class="skill-tag">Test Automation</span>
+      </div>
+    </div>
+    <div class="profile-section">
+      <h3 class="section-title">
+        <span class="section-icon">⚡</span>
+        Focus
+      </h3>
+      <div class="tags-container">
+        <span class="skill-tag highlight">AI-Driven Dev</span>
+        <span class="skill-tag highlight">Claude Code</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -32,14 +49,66 @@ import { Image } from "astro:assets";
     @apply mx-auto overflow-hidden;
     max-width: 350px;
     margin-left: 0;
-    background: rgba(74, 74, 74, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(68, 68, 68, 0.37);
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
+    background: rgba(37, 37, 37, 0.6);
+    box-shadow: 0 8px 32px 0 rgba(127, 167, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 10px;
+    border: 1px solid rgba(127, 167, 255, 0.15);
   }
 
   .aside-profile-container > img {
     width: 100px;
+  }
+
+  .name-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #7fa7ff 50%, #a7c7f9 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .profile-section {
+    @apply mb-4;
+  }
+
+  .section-title {
+    @apply text-xs font-semibold mb-2 flex items-center gap-2;
+    letter-spacing: 0.05em;
+    color: #c7d6f9;
+  }
+
+  .section-icon {
+    @apply text-sm;
+  }
+
+  .tags-container {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .skill-tag {
+    @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
+    background: rgba(127, 167, 255, 0.12);
+    color: #a7c7f9;
+    border: 1px solid rgba(127, 167, 255, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    background: rgba(127, 167, 255, 0.2);
+    border-color: rgba(127, 167, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .skill-tag.highlight {
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.18), rgba(59, 130, 246, 0.18));
+    color: #c7d6f9;
+    border-color: rgba(127, 167, 255, 0.35);
+    font-weight: 600;
+  }
+
+  .skill-tag.highlight:hover {
+    background: linear-gradient(135deg, rgba(127, 167, 255, 0.28), rgba(59, 130, 246, 0.28));
+    border-color: rgba(127, 167, 255, 0.5);
   }
 </style>
