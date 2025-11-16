@@ -205,3 +205,61 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `package.json` - 2025-11-16 14:27:49
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `package.json`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2025-11-16 14:27:57
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import vercel from "@astrojs/vercel/serverless";
+```
+
+**変更後**:
+```
+import vercel from "@astrojs/vercel";
+```
+</details>
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2025-11-16 14:34:47
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export default defineConfig({
+  output: 'hybrid',
+  adapter: vercel({ runtime: 'nodejs20.x' }),
+```
+
+**変更後**:
+```
+export default defineConfig({
+  output: 'server',
+  adapter: vercel({ runtime: 'nodejs20.x' }),
+```
+</details>
+
+---
+

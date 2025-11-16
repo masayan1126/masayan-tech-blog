@@ -11,15 +11,15 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/miyabiya.png' } = Astro.props;
+const { title, description, image = '/miyabiya.webp' } = Astro.props;
 ---
 
 <head>
   <!-- Global Metadata -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/png" href="/miyabiya.png" />
-  <link rel="apple-touch-icon" href="/miyabiya.png" />
+  <link rel="icon" type="image/x-icon" href="/miyabiya.ico" />
+  <link rel="apple-touch-icon" href="/miyabiya.webp" />
   <meta name="generator" content={Astro.generator} />
 
   <!-- Canonical URL -->
