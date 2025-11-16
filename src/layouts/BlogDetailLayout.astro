@@ -255,7 +255,52 @@ const breadCrumbsList = [
   }
 
   .article-title {
-    @apply text-xl sm:text-2xl md:text-3xl font-bold mb-2 inline-block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    padding: 0.75rem 0;
+    position: relative;
+  }
+
+  .article-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #F3BC45;
+  }
+
+  /* モバイル対応 */
+  @media (max-width: 768px) {
+    .article-title {
+      font-size: 1.75rem;
+      letter-spacing: -0.01em;
+      padding: 0.5rem 0;
+      margin-bottom: 1.25rem;
+    }
+    
+    .article-title::after {
+      width: 40px;
+      height: 2px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .article-title {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    
+    .article-title::after {
+      width: 30px;
+    }
   }
 
   .toc-title {
