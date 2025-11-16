@@ -31,6 +31,41 @@ const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
 
 console.log(youtube_link);
 
+// YouTube URLからVideo IDを抽出
+function extractVideoId(youtubeUrl: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/,
+    /youtube\.com\/embed\/([^?&\s]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = youtubeUrl.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+
+  return null;
+}
+
+// VideoObject構造化データを生成
+let videoStructuredData = null;
+if (youtube_link) {
+  const videoId = extractVideoId(youtube_link);
+  if (videoId) {
+    videoStructuredData = {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": title,
+      "description": description || title,
+      "thumbnailUrl": `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      "uploadDate": publishedAt,
+      "contentUrl": `https://www.youtube.com/watch?v=${videoId}`,
+      "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+    };
+  }
+}
+
 const breadCrumbsList = [
   {
     name: "ホーム",
@@ -53,6 +88,11 @@ const breadCrumbsList = [
   context={"blog"}
   {breadCrumbsList}
 >
+  {videoStructuredData && (
+    <Fragment slot="head">
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(videoStructuredData)} />
+    </Fragment>
+  )}
   <div class="blog-detail-wrapper">
     <div class="main">
       <div class="blog-detail-header">
