@@ -3,6 +3,9 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.css";
 
 export const attachCodeHighlight = (content: string) => {
+  if (!content || typeof content !== 'string') {
+    return content || '';
+  }
   const $ = load(content);
   $("pre code").each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text());

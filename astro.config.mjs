@@ -6,11 +6,11 @@ import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 //FIXME: mjs alias(参考：https://stackoverflow.com/questions/70158055/how-to-have-aliases-with-nodejs-import)
 import { SITE_DOMAIN } from "./src/constants/url.ts";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  output: 'server',
   adapter: vercel({ runtime: 'nodejs20.x' }),
   site: SITE_DOMAIN,
   integrations: [

@@ -11,7 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.0.3",
+    "@astrojs/mdx": "^4.3.10",
     "@astrojs/react": "^3.0.9",
     "@astrojs/rss": "^4.0.1",
     "@astrojs/sitemap": "^3.0.4",
@@ -21,7 +21,7 @@
     "@iconify-json/simple-icons": "^1.2.58",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
-    "astro": "^4.1.1",
+    "astro": "^5.15.8",
     "astro-icon": "^0.8.1",
     "cheerio": "^1.0.0-rc.12",
     "highlight.js": "^11.8.0",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@astrojs/partytown": "^2.1.2",
-    "@astrojs/vercel": "^7.8.2",
+    "@astrojs/vercel": "^9.0.0",
     "@iconify/react": "^4.1.1",
     "@playwright/test": "^1.37.1",
     "@testing-library/jest-dom": "^5.17.0",

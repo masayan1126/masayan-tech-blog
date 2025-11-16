@@ -5,6 +5,8 @@ import { attachLinkCards } from "@/libs/linkCard";
 import { getArticles, type Article } from "@/libs/microcms/blog";
 import TableOfContents from "@/components/TableOfContents.astro";
 
+export const prerender = true;
+
 type Props = Article;
 
 export async function getStaticPaths() {

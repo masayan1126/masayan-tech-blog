@@ -263,3 +263,60 @@ export default defineConfig({
 
 ---
 
+### ✏️ Edited `[page].astro` - 2025-11-16 14:46:11
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2025-11-16 14:50:52
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `codeHighlight.ts` - 2025-11-16 14:51:04
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/codeHighlight.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export const attachCodeHighlight = (content: string) => {
+  const $ = load(content);
+```
+
+**変更後**:
+```
+export const attachCodeHighlight = (content: string) => {
+  if (!content || typeof content !== 'string') {
+    return content || '';
+  }
+  const $ = load(content);
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-11-16 14:51:19
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
