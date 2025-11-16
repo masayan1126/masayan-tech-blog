@@ -57,16 +57,40 @@ const categoriesWithCount = CATEGORY_LIST.map(cat => {
   />
 
   <h1 class="blog-list-title">
-    {category_of_this_page?.name}関連の記事 全{page.lastPage}ページ中{
-      page.currentPage
-    }ページ目
+    <span class="category-name">{category_of_this_page?.name}</span>
+    <span class="article-count">（全{page.total}件）</span>
   </h1>
+  {page.lastPage > 1 && (
+    <p class="page-info">
+      {page.lastPage}ページ中 {page.currentPage}ページ目を表示
+    </p>
+  )}
   <BlogList articles={categorizedArticles} />
   <Pagination {page} />
 </BlogListLayout>
 
 <style>
   .blog-list-title {
-    @apply text-2xl font-bold mb-10;
+    @apply text-2xl font-bold mb-4;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .category-name {
+    color: #F3BC45;
+  }
+
+  .article-count {
+    font-size: 1rem;
+    color: #d1cfcf;
+    font-weight: 500;
+  }
+
+  .page-info {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+    padding-left: 0.25rem;
   }
 </style>

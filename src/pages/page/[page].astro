@@ -42,14 +42,15 @@ const newArrivalPosts = [...articles].sort((a, b) => {
 
 <BlogListLayout>
   <!-- 信頼性メッセージバナー -->
-  <div class="quality-banner">
+  <div slot="banner" class="quality-banner">
     <div class="quality-banner-content">
       <div class="quality-icon">
         <img src="/miyabiya.png" alt="西垣雅矢" class="author-image" width="56" height="56" />
       </div>
       <div class="quality-text">
-        <h3 class="quality-title">『AIよりも深く掘り下げて』、『公式ドキュメントよりもわかりやすく』<span class="title-white">を重視したディープなテックブログです</span></h3>
+        <h3 class="quality-title">『AIよりも深く掘り下げて』、<br>『公式ドキュメントよりもわかりやすく』</h3>
         <p class="quality-description">
+          をコンセプトとしたディープなテックブログです。<br><br>
           AI生成の薄っぺらい記事ではなく、実務で培った深い知見をもとに、公式ドキュメントの難解さをわかりやすい言葉で届けます。
         </p>
       </div>
@@ -115,11 +116,18 @@ const newArrivalPosts = [...articles].sort((a, b) => {
   }
 
   .quality-title {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #F3BC45;
     letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .quality-title {
+      font-size: 1.25rem;
+    }
   }
 
   .title-white {

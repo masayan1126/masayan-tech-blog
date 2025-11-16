@@ -19,6 +19,7 @@ const { title, description, context, breadCrumbsList } = Astro.props;
     
     <Header {context} />
     <main class="fadeUp pt-20">
+      <slot name="banner" />
       <BreadCrumbs lists={breadCrumbsList} />
       <slot />
     </main>
