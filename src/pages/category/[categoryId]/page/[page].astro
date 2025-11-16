@@ -46,9 +46,28 @@ const categoriesWithCount = CATEGORY_LIST.map(cat => {
   ).length;
   return { ...cat, count };
 });
+
+const breadCrumbsList = [
+  {
+    name: "ホーム",
+    path: `/`,
+  },
+  {
+    name: "カテゴリー一覧",
+    path: `/categories/`,
+  },
+  {
+    name: category_of_this_page?.name || "カテゴリ",
+    path: `/category/${categoryId}/page/1/`,
+  },
+];
 ---
 
-<BlogListLayout>
+<BlogListLayout 
+  title={`${category_of_this_page?.name || "カテゴリ"} - ブログ記事一覧`}
+  description={`${category_of_this_page?.name || "カテゴリ"}に関する記事一覧です`}
+  {breadCrumbsList}
+>
   <BlogCategoryTabs
     categories={categoriesWithCount}
     totalArticles={allArticles.length}

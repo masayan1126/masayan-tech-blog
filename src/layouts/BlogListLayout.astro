@@ -1,19 +1,36 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const title = "ブログ記事一覧";
+type BreadCrumb = {
+  name: string;
+  path: string;
+};
 
-const breadCrumbsList = [
-  {
-    name: title,
-    path: `/page/1/`,
-  },
-];
+interface Props {
+  title?: string;
+  description?: string;
+  breadCrumbsList?: BreadCrumb[];
+}
+
+const { 
+  title = "ブログ記事一覧",
+  description = "記事一覧です",
+  breadCrumbsList = [
+    {
+      name: "ホーム",
+      path: `/`,
+    },
+    {
+      name: "ブログ記事一覧",
+      path: `/page/1/`,
+    },
+  ]
+} = Astro.props;
 ---
 
 <BaseLayout
   {title}
-  description="記事一覧です"
+  {description}
   context={"home"}
   {breadCrumbsList}
   heroImage="/top-page-ogp-thum.jpg"

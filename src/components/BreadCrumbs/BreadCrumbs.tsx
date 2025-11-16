@@ -6,8 +6,8 @@ type Props = {
 };
 
 export const BreadCrumbs = ({ lists }: Props) => {
-  if (!lists) {
-    return "";
+  if (!lists || lists.length === 0) {
+    return null;
   }
 
   return (
