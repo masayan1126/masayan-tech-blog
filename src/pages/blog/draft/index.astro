@@ -2,7 +2,9 @@
 export const prerender = false;
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
+import { attachHeadingIds } from "@/libs/headingIds";
 import { getArticleDraft, type Article } from "@/libs/microcms/blog";
+import TableOfContents from "@/components/TableOfContents.astro";
 
 const id = Astro.url.searchParams.get("id");
 const draftKey = Astro.url.searchParams.get("draftKey");
@@ -12,16 +14,21 @@ if (!draftKey || !id) {
 }
 
 let article: Article | null = null;
-let highlightedArticle = "";
+let processedContent = "";
 if (draftKey && id) {
   const fetched = await getArticleDraft(id, draftKey);
   article = fetched;
-  highlightedArticle = attachCodeHighlight(fetched.content);
+  processedContent = attachHeadingIds(fetched.content);
+  processedContent = attachCodeHighlight(processedContent);
 }
 ---
 {article && (
   <BlogDetailLayout {...article}>
-    <p set:html={highlightedArticle} />
+    <!-- PC表示用の目次 -->
+    <TableOfContents slot="toc-desktop" content={processedContent} />
+    <!-- モバイル表示用の目次 -->
+    <TableOfContents slot="toc-mobile" content={processedContent} />
+    <p set:html={processedContent} />
     <!-- microCMSプレビュー用: id と draftKey をURLクエリに付与してアクセスしてください -->
   </BlogDetailLayout>
 )}

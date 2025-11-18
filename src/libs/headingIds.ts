@@ -1,11 +1,5 @@
 import { load } from "cheerio";
 
-export interface Heading {
-  id: string;
-  text: string;
-  level: number;
-}
-
 /**
  * テキストからIDを生成（URLセーフな形式）
  * @param text - 見出しテキスト
@@ -38,33 +32,30 @@ const generateId = (text: string, index: number): string => {
 };
 
 /**
- * HTMLコンテンツからh2タグを抽出して見出し一覧を生成
- * @param htmlContent - microCMSから取得したHTML形式のコンテンツ
- * @returns 見出しの配列
+ * HTMLコンテンツ内のH2タグにIDを自動付与する
+ * @param content - HTML形式のコンテンツ
+ * @returns IDが付与されたHTMLコンテンツ
  */
-export const extractHeadings = (htmlContent: string): Heading[] => {
-  const $ = load(htmlContent);
-  const headings: Heading[] = [];
-
-  // h2タグのみを対象に抽出
+export const attachHeadingIds = (content: string): string => {
+  if (!content || typeof content !== 'string') {
+    return content || '';
+  }
+  
+  const $ = load(content);
+  
+  // H2タグのみを対象にIDを付与
   $('h2').each((index, element) => {
     const $element = $(element);
     let id = $element.attr('id');
     const text = $element.text().trim();
     
-    if (text) {
-      // IDが無い場合は自動生成（extractHeadings用）
-      if (!id) {
-        id = generateId(text, index);
-      }
-      
-      headings.push({
-        id,
-        text,
-        level: 2
-      });
+    // IDが無い場合は自動生成
+    if (!id && text) {
+      id = generateId(text, index);
+      $element.attr('id', id);
     }
   });
-
-  return headings;
+  
+  return $.html();
 };
+
