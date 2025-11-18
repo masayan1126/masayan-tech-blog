@@ -112,6 +112,23 @@ const breadCrumbsList = [
             <FormattedDate date={new Date(revisedAt)} />
           </div>
         </div>
+
+        <!-- カテゴリ表示 -->
+        <div class="category-section mt-4">
+          <div class="flex flex-wrap gap-2">
+            {category.map(({ id, name }) => (
+              <a
+                href={`/category/${id}${ARTICLES_PATH}`}
+                class="inline-block px-3 py-1 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
+                style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
+                onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
+                onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
+              >
+                {name}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
       {youtube_link && (
         <>
@@ -129,32 +146,19 @@ const breadCrumbsList = [
           </div>
         </>
       )}
+      <!-- モバイル表示用の目次 -->
+      <div class="toc-mobile">
+        <slot name="toc-mobile" />
+      </div>
       <article>
         <slot />
       </article>
-      <LinkCardReplacer client:load />
-      <ScrollToTop />
-    </div>
-    <aside>
-      <div class="grid gap-20">
-        <div>
-          <p class="aside-title">カテゴリ</p>
-          <div class="flex flex-wrap gap-2">
-            {category.map(({ id, name }) => (
-              <a
-                href={`/category/${id}${ARTICLES_PATH}`}
-                class="inline-block px-3 py-1 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
-                style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
-                onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
-                onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
-              >
-                {name}
-              </a>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p class="aside-title">この記事をシェアする</p>
+
+      <!-- 記事最後のセクション -->
+      <div class="article-footer-sections">
+        <!-- この記事をシェアする -->
+        <div class="share-section">
+          <h2 class="section-title">この記事をシェアする</h2>
           <div class="flex flex-wrap gap-2">
             <a
               href={`http://twitter.com/share?url=${SITE_DOMAIN}/blog/${slug}&via=masayanishigaki&text=${title}`}
@@ -229,13 +233,9 @@ const breadCrumbsList = [
           </div>
         </div>
 
-        <div class="">
-          <p class="aside-title">ブログ管理人</p>
-          <BlogDetailProfileCard />
-        </div>
-
-        <div>
-          <p class="aside-title">関連記事</p>
+        <!-- 関連記事 -->
+        <div class="related-posts-section">
+          <h2 class="section-title">関連記事</h2>
           <div class="gap-10 grid grid-cols-1">
             {
               relatedRandomPosts.map(
@@ -283,6 +283,19 @@ const breadCrumbsList = [
             }
           </div>
         </div>
+      </div>
+
+      <LinkCardReplacer client:load />
+      <ScrollToTop />
+    </div>
+    <aside>
+      <!-- PC表示用の目次（スティッキー） -->
+      <slot name="toc-desktop" />
+
+      <!-- ブログ管理人 -->
+      <div class="profile-section">
+        <p class="aside-title">ブログ管理人</p>
+        <BlogDetailProfileCard />
       </div>
     </aside>
   </div>
@@ -1177,6 +1190,37 @@ const breadCrumbsList = [
 
   aside {
     grid-area: right;
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* スクロールバーのスタイリング（aside用） */
+  aside::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  aside::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  aside::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+
+  aside::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+  }
+
+  .profile-section {
+    margin-top: 0;
   }
 
   .aside-title {
@@ -1189,6 +1233,48 @@ const breadCrumbsList = [
     grid-area: footer;
   }
 
+  /* カテゴリセクション */
+  .category-section {
+    margin-top: 1rem;
+  }
+
+  /* 記事最後のセクション */
+  .article-footer-sections {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .share-section,
+  .related-posts-section {
+    padding: 2rem;
+    background: rgba(40, 40, 40, 0.6);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(243, 188, 69, 0.5);
+    color: #ffffff;
+  }
+
+  /* デフォルトでモバイル用目次は非表示 */
+  .toc-mobile {
+    display: block;
+  }
+
+  @media (min-width: 1025px) {
+    /* PC表示時はモバイル用目次を非表示 */
+    .toc-mobile {
+      display: none;
+    }
+  }
+
   @media (max-width: 1024px) {
     .blog-detail-wrapper {
       grid-template:
@@ -1197,6 +1283,19 @@ const breadCrumbsList = [
         "right  right  right " auto
         / 1fr;
       grid-gap: 10px 100px;
+    }
+
+    /* モバイル表示時はasideをstickyにしない */
+    aside {
+      position: relative;
+      top: auto;
+      max-height: none;
+      overflow-y: visible;
+    }
+
+    /* モバイル表示時はモバイル用目次を表示 */
+    .toc-mobile {
+      display: block;
     }
   }
 </style>

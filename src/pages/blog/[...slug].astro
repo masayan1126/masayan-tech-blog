@@ -26,6 +26,9 @@ processedContent = await attachLinkCards(processedContent);
 ---
 
 <BlogDetailLayout {...article}>
-  <TableOfContents content={article.content} />
+  <!-- PC表示用の目次 -->
+  <TableOfContents slot="toc-desktop" content={article.content} />
+  <!-- モバイル表示用の目次 -->
+  <TableOfContents slot="toc-mobile" content={article.content} />
   <p set:html={processedContent} />
 </BlogDetailLayout>
