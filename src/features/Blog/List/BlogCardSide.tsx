@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Article } from '@/libs/microcms/blog';
 import { Icon } from '@iconify/react';
+import { PRIMARY_COLOR } from '@/constants/colors';
 
 interface BlogCardSideProps {
   post: Article;
@@ -24,18 +25,18 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
                 href={`/category/${c.id}/page/1`}
                 className="inline-block px-2 py-1 rounded text-xs transition-all duration-200 hover:scale-105"
                 style={{
-                  backgroundColor: 'rgba(243, 188, 69, 0.2)',
-                  borderColor: 'rgba(243, 188, 69, 0.4)',
+                  backgroundColor: PRIMARY_COLOR.rgba(0.2),
+                  borderColor: PRIMARY_COLOR.rgba(0.4),
                   border: '1px solid',
-                  color: '#F3BC45'
+                  color: PRIMARY_COLOR.hex
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(243, 188, 69, 0.35)';
-                  e.currentTarget.style.borderColor = 'rgba(243, 188, 69, 0.6)';
+                  e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.35);
+                  e.currentTarget.style.borderColor = PRIMARY_COLOR.rgba(0.6);
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(243, 188, 69, 0.2)';
-                  e.currentTarget.style.borderColor = 'rgba(243, 188, 69, 0.4)';
+                  e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.2);
+                  e.currentTarget.style.borderColor = PRIMARY_COLOR.rgba(0.4);
                 }}
               >
                 {c.name}
@@ -43,7 +44,7 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
             ))}
           </div>
           <div className="text-sm mt-3 date-info">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block align-middle mr-1.5" style={{ color: '#F3BC45', marginBottom: '2px' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block align-middle mr-1.5" style={{ color: PRIMARY_COLOR.hex, marginBottom: '2px' }}>
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>

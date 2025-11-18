@@ -22,8 +22,8 @@ export const BreadCrumbs = ({ lists }: Props) => {
           margin-top: 1rem;
           margin-bottom: 1rem;
           padding: 0.75rem 1rem;
-          background: rgba(243, 188, 69, 0.08);
-          border-left: 3px solid #F3BC45;
+          background: rgba(var(--color-primary-rgb), 0.08);
+          border-left: 3px solid var(--color-primary);
           border-radius: 8px;
           font-size: 0.875rem;
         }
@@ -42,7 +42,7 @@ export const BreadCrumbs = ({ lists }: Props) => {
         }
 
         .breadcrumb-link {
-          color: #F3BC45;
+          color: var(--color-primary);
           text-decoration: none;
           transition: all 0.2s ease;
           font-weight: 500;
@@ -65,7 +65,7 @@ export const BreadCrumbs = ({ lists }: Props) => {
         }
 
         .breadcrumb-separator {
-          color: rgba(243, 188, 69, 0.5);
+          color: rgba(var(--color-primary-rgb), 0.5);
           font-size: 0.75rem;
         }
 

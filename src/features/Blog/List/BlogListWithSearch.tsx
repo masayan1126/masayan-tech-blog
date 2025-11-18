@@ -4,6 +4,7 @@ import type { Article } from '@/libs/microcms/blog';
 import { BlogCardSide } from '@/features/Blog/List/BlogCardSide';
 import { SearchBar } from '@/features/Search/SearchBar';
 import buildPaginationItem from '@/features/Pagination/buildPaginationItem';
+import { PRIMARY_COLOR } from '@/constants/colors';
 
 interface BlogListWithSearchProps {
   allArticles: Article[];
@@ -178,7 +179,7 @@ export const BlogListWithSearch = ({
                 ? 'text-black shadow-lg'
                 : 'bg-white/5 hover:bg-white/10 border border-white/10 text-white'
             }`}
-            style={currentPage === Number(item) ? { backgroundColor: '#F3BC45' } : undefined}
+            style={currentPage === Number(item) ? { backgroundColor: PRIMARY_COLOR.hex } : undefined}
           >
             <span>{item}</span>
           </a>
@@ -228,7 +229,7 @@ export const BlogListWithSearch = ({
                         ? 'text-black shadow-lg'
                         : 'bg-white/5 hover:bg-white/10 border border-white/10 text-white'
                     }`}
-                    style={currentPage === Number(item) ? { backgroundColor: '#F3BC45' } : undefined}
+                    style={currentPage === Number(item) ? { backgroundColor: PRIMARY_COLOR.hex } : undefined}
                   >
                     <span>{item}</span>
                   </a>
@@ -321,16 +322,16 @@ export const BlogListWithSearch = ({
             aria-label="RSSフィード"
             className="inline-flex items-center gap-2 px-3 py-2 rounded-xl border-2 transition-colors"
             style={{ 
-              borderColor: '#F3BC45',
-              color: '#F3BC45'
+              borderColor: PRIMARY_COLOR.hex,
+              color: PRIMARY_COLOR.hex
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#E5AD35';
               e.currentTarget.style.color = '#E5AD35';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = '#F3BC45';
-              e.currentTarget.style.color = '#F3BC45';
+              e.currentTarget.style.borderColor = PRIMARY_COLOR.hex;
+              e.currentTarget.style.color = PRIMARY_COLOR.hex;
             }}
           >
             <Icon icon="mdi:rss" width={22} height={22} />

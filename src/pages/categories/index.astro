@@ -179,7 +179,7 @@ const categoryIcons: Record<string, string> = {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(243, 188, 69, 0.12), rgba(243, 188, 69, 0.06));
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.12), rgba(var(--color-primary-rgb), 0.06));
     opacity: 0;
     transition: opacity 0.4s ease;
     pointer-events: none;
@@ -188,8 +188,8 @@ const categoryIcons: Record<string, string> = {
 
   .category-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(243, 188, 69, 0.2);
-    border: 1px solid rgba(243, 188, 69, 0.3);
+    box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.2);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
     background: rgba(255, 255, 255, 0.05);
   }
 
@@ -227,23 +227,23 @@ const categoryIcons: Record<string, string> = {
   }
 
   .category-card:hover .category-name {
-    color: #F3BC45;
+    color: var(--color-primary);
   }
 
   .category-count {
     @apply text-sm font-medium;
-    color: #F3BC45;
-    background-color: rgba(243, 188, 69, 0.2);
+    color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.2);
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
     white-space: nowrap;
-    border: 1px solid rgba(243, 188, 69, 0.3);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
     transition: all 0.3s ease;
   }
 
   .category-card:hover .category-count {
-    background-color: rgba(243, 188, 69, 0.35);
-    border-color: rgba(243, 188, 69, 0.5);
+    background-color: rgba(var(--color-primary-rgb), 0.35);
+    border-color: rgba(var(--color-primary-rgb), 0.5);
   }
 
   .category-footer {
@@ -255,12 +255,12 @@ const categoryIcons: Record<string, string> = {
 
   .view-link {
     @apply text-sm font-medium;
-    color: rgba(243, 188, 69, 0.9);
+    color: rgba(var(--color-primary-rgb), 0.9);
     transition: all 0.3s ease;
   }
 
   .category-card:hover .view-link {
-    color: #F3BC45;
+    color: var(--color-primary);
     transform: translateX(4px);
   }
 
@@ -280,7 +280,7 @@ const categoryIcons: Record<string, string> = {
 
     .category-card:hover {
       transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 12px 25px rgba(243, 188, 69, 0.15);
+      box-shadow: 0 12px 25px rgba(var(--color-primary-rgb), 0.15);
     }
   }
 </style>

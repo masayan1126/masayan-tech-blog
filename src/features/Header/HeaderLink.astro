@@ -39,9 +39,9 @@ const { href, iconName } = Astro.props;
   
   :global(.header-link:hover) {
     @apply transform scale-105;
-    background: rgba(243, 188, 69, 0.2);
-    border: 1px solid rgba(243, 188, 69, 0.4);
-    box-shadow: 0 4px 12px rgba(243, 188, 69, 0.25);
+    background: rgba(var(--color-primary-rgb), 0.2);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.4);
+    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
   }
   
   :global(.header-link-mobile) {
@@ -52,9 +52,9 @@ const { href, iconName } = Astro.props;
   
   :global(.header-link-mobile:hover) {
     @apply transform scale-110;
-    background: rgba(243, 188, 69, 0.25);
-    border: 1px solid rgba(243, 188, 69, 0.5);
-    box-shadow: 0 4px 8px rgba(243, 188, 69, 0.35);
+    background: rgba(var(--color-primary-rgb), 0.25);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.5);
+    box-shadow: 0 4px 8px rgba(var(--color-primary-rgb), 0.35);
   }
   
   /* 超小画面対応 (439px以下) */

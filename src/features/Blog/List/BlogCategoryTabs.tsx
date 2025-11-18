@@ -1,5 +1,6 @@
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import { useEffect, useState } from "react";
+import { PRIMARY_COLOR } from "@/constants/colors";
 
 type Category = {
   id: string;
@@ -53,13 +54,13 @@ export const BlogCategoryTabs = ({ categories, totalArticles, currentCategoryId 
             color: "var(--text-color)",
             textDecoration: "none",
             whiteSpace: "nowrap",
-            borderBottom: currentCategoryId === null ? "2px solid #F3BC45" : "2px solid transparent",
+            borderBottom: currentCategoryId === null ? `2px solid ${PRIMARY_COLOR.hex}` : "2px solid transparent",
             transition: "all 0.2s ease",
             cursor: "pointer",
           }}
           onMouseEnter={(e) => {
             if (currentCategoryId !== null) {
-              e.currentTarget.style.backgroundColor = "rgba(243, 188, 69, 0.15)";
+              e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.15);
             }
           }}
           onMouseLeave={(e) => {
@@ -84,13 +85,13 @@ export const BlogCategoryTabs = ({ categories, totalArticles, currentCategoryId 
               color: "var(--text-color)",
               textDecoration: "none",
               whiteSpace: "nowrap",
-              borderBottom: currentCategoryId === cat.id ? "2px solid #F3BC45" : "2px solid transparent",
+              borderBottom: currentCategoryId === cat.id ? `2px solid ${PRIMARY_COLOR.hex}` : "2px solid transparent",
               transition: "all 0.2s ease",
               cursor: "pointer",
             }}
             onMouseEnter={(e) => {
               if (currentCategoryId !== cat.id) {
-                e.currentTarget.style.backgroundColor = "rgba(243, 188, 69, 0.15)";
+                e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.15);
               }
             }}
             onMouseLeave={(e) => {

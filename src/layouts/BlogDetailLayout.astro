@@ -102,7 +102,7 @@ const breadCrumbsList = [
 
         <div class="flex flex-col gap-2">
           <div>
-            <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle" style="color: #F3BC45;" />
+            <Icon name="noto:calendar" class="w-5 h-5 mr-1 inline-block align-middle" style="color: var(--color-primary);" />
             公開日
             <FormattedDate date={new Date(publishedAt)} />
           </div>
@@ -120,9 +120,9 @@ const breadCrumbsList = [
               <a
                 href={`/category/${id}${ARTICLES_PATH}`}
                 class="inline-block px-3 py-1 rounded-lg text-sm text-white transition-all duration-200 hover:scale-105"
-                style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
-                onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
-                onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
+                style="background-color: rgba(var(--color-primary-rgb), 0.2); border: 1px solid rgba(var(--color-primary-rgb), 0.4);"
+                onmouseover="this.style.backgroundColor='rgba(var(--color-primary-rgb), 0.3)'; this.style.borderColor='rgba(var(--color-primary-rgb), 0.6)';"
+                onmouseout="this.style.backgroundColor='rgba(var(--color-primary-rgb), 0.2)'; this.style.borderColor='rgba(var(--color-primary-rgb), 0.4)';"
               >
                 {name}
               </a>
@@ -252,9 +252,9 @@ const breadCrumbsList = [
                           <a
                             href={`/category/${c.id}${ARTICLES_PATH}`}
                             class="inline-block px-2 py-1 rounded text-xs text-white transition-all duration-200 hover:scale-105"
-                            style="background-color: rgba(243, 188, 69, 0.2); border: 1px solid rgba(243, 188, 69, 0.4);"
-                            onmouseover="this.style.backgroundColor='rgba(243, 188, 69, 0.3)'; this.style.borderColor='rgba(243, 188, 69, 0.6)';"
-                            onmouseout="this.style.backgroundColor='rgba(243, 188, 69, 0.2)'; this.style.borderColor='rgba(243, 188, 69, 0.4)';"
+                            style="background-color: rgba(var(--color-primary-rgb), 0.2); border: 1px solid rgba(var(--color-primary-rgb), 0.4);"
+                            onmouseover="this.style.backgroundColor='rgba(var(--color-primary-rgb), 0.3)'; this.style.borderColor='rgba(var(--color-primary-rgb), 0.6)';"
+                            onmouseout="this.style.backgroundColor='rgba(var(--color-primary-rgb), 0.2)'; this.style.borderColor='rgba(var(--color-primary-rgb), 0.4)';"
                           >
                             {c.name}
                           </a>
@@ -330,7 +330,7 @@ const breadCrumbsList = [
     left: 0;
     width: 60px;
     height: 3px;
-    background: #F3BC45;
+    background: var(--color-primary);
   }
 
   /* モバイル対応 */
@@ -456,7 +456,7 @@ const breadCrumbsList = [
     content: "✓";
     position: absolute;
     left: 0;
-    color: #F3BC45;
+    color: var(--color-primary);
     font-weight: bold;
     font-size: 1.1rem;
   }
@@ -510,12 +510,12 @@ const breadCrumbsList = [
     justify-content: center;
     width: 1.75rem;
     height: 1.75rem;
-    background: linear-gradient(135deg, #F3BC45, #FFC857);
+    background: linear-gradient(135deg, var(--color-primary), #FFC857);
     color: #1a1a1a;
     font-weight: bold;
     font-size: 0.9rem;
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(243, 188, 69, 0.4);
+    box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.4);
   }
 
   article pre {
@@ -536,19 +536,19 @@ const breadCrumbsList = [
 
   /* インラインコードのスタイル */
   article code:not(pre code) {
-    background: rgba(96, 130, 62, 0.2);
+    background: rgba(var(--color-secondary-rgb), 0.2);
     color: #ffffff;
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-size: 0.9em;
     font-family: 'Courier New', Courier, monospace;
-    border: 1px solid rgba(96, 130, 62, 0.3);
+    border: 1px solid rgba(var(--color-secondary-rgb), 0.3);
   }
 
   /* blockquoteのスタイル */
   article blockquote {
-    background: rgba(96, 130, 62, 0.15);
-    border-left: 4px solid rgba(96, 130, 62, 0.6);
+    background: rgba(var(--color-secondary-rgb), 0.15);
+    border-left: 4px solid rgba(var(--color-secondary-rgb), 0.6);
     border-radius: 8px;
     padding: 1.5rem 1.5rem 1.5rem 1.75rem;
     margin: 1.5rem 0;
@@ -564,7 +564,7 @@ const breadCrumbsList = [
     left: 1rem;
     top: 0.5rem;
     font-size: 2rem;
-    color: rgba(96, 130, 62, 0.4);
+    color: rgba(var(--color-secondary-rgb), 0.4);
     font-family: Georgia, serif;
   }
 
@@ -578,7 +578,7 @@ const breadCrumbsList = [
 
   /* Normal links (excluding link cards) */
   article a:not(.link-card) {
-    color: #F3BC45;
+    color: var(--color-primary);
     padding: 10px 0;
   }
 
@@ -602,11 +602,11 @@ const breadCrumbsList = [
 
   article .link-card:hover {
     background: rgba(255, 255, 255, 0.05) !important;
-    border-color: rgba(243, 188, 69, 0.5) !important;
+    border-color: rgba(var(--color-primary-rgb), 0.5) !important;
     transform: translateY(-2px) !important;
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.4),
-      0 2px 6px rgba(243, 188, 69, 0.3) !important;
+      0 2px 6px rgba(var(--color-primary-rgb), 0.3) !important;
   }
 
   article .link-card .link-card-thumbnail {
@@ -660,7 +660,7 @@ const breadCrumbsList = [
 
   article .link-card .link-card-title {
     font-size: 1rem;
-    color: #F3BC45;
+    color: var(--color-primary);
     font-weight: 600;
     line-height: 1.5;
     display: -webkit-box;
@@ -706,8 +706,8 @@ const breadCrumbsList = [
   }
 
   article p:has(.info) {
-    background: rgba(96, 130, 62, 0.15);
-    border: 1px solid rgba(96, 130, 62, 0.4);
+    background: rgba(var(--color-secondary-rgb), 0.15);
+    border: 1px solid rgba(var(--color-secondary-rgb), 0.4);
     padding: 1.5rem 1.5rem 1.5rem 3.5rem;
     border-radius: 8px;
     position: relative;
@@ -724,8 +724,8 @@ const breadCrumbsList = [
   }
 
   article p:has(.tip) {
-    background: rgba(243, 188, 69, 0.15);
-    border: 1px solid rgba(243, 188, 69, 0.4);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.4);
     padding: 1.5rem 1.5rem 1.5rem 3.5rem;
     border-radius: 8px;
     position: relative;
@@ -957,11 +957,11 @@ const breadCrumbsList = [
 
   .link-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(243, 188, 69, 0.5);
+    border-color: rgba(var(--color-primary-rgb), 0.5);
     background: rgba(255, 255, 255, 0.05);
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.4),
-      0 2px 6px rgba(243, 188, 69, 0.3);
+      0 2px 6px rgba(var(--color-primary-rgb), 0.3);
   }
 
   .link-card-thumbnail {
@@ -1137,7 +1137,7 @@ const breadCrumbsList = [
 
   .link-card-fallback:hover {
     background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(243, 188, 69, 0.4);
+    border-color: rgba(var(--color-primary-rgb), 0.4);
   }
 
   .fallback-icon {
@@ -1146,7 +1146,7 @@ const breadCrumbsList = [
 
   .fallback-url {
     font-size: 0.875rem;
-    color: #F3BC45;
+    color: var(--color-primary);
     word-break: break-all;
   }
 
@@ -1259,7 +1259,7 @@ const breadCrumbsList = [
     font-weight: bold;
     margin-bottom: 1.5rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid rgba(243, 188, 69, 0.5);
+    border-bottom: 2px solid rgba(var(--color-primary-rgb), 0.5);
     color: #ffffff;
   }
 

@@ -3,6 +3,19 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      colors: {
+        // サイトのテーマカラー定義
+        'theme': {
+          // プライマリカラー（黄色）
+          'primary': '#F3BC45',
+          'primary-light': '#FFC857',
+          'primary-dark': '#E0A82E',
+          // セカンダリカラー（緑）
+          'secondary': '#60823E',
+          'secondary-light': '#7BA956',
+          'secondary-dark': '#4A6430',
+        },
+      },
       animation: {
         'in': 'slideInFromTop 0.2s ease-out',
         'bounce-gentle': 'bounceGentle 0.6s ease-out',

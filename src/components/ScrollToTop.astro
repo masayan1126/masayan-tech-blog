@@ -16,8 +16,8 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background: linear-gradient(135deg, #F3BC45, #E5AD35);
-    border: 2px solid rgba(243, 188, 69, 0.4);
+    background: linear-gradient(135deg, var(--color-primary), #E5AD35);
+    border: 2px solid rgba(var(--color-primary-rgb), 0.4);
     color: #1a1a1a;
     cursor: pointer;
     display: flex;
@@ -34,11 +34,11 @@
 
   .scroll-to-top:hover {
     transform: translateY(-4px);
-    background: linear-gradient(135deg, #FFC857, #F3BC45);
+    background: linear-gradient(135deg, #FFC857, var(--color-primary));
     box-shadow:
-      0 8px 20px rgba(243, 188, 69, 0.4),
+      0 8px 20px rgba(var(--color-primary-rgb), 0.4),
       0 4px 10px rgba(0, 0, 0, 0.4);
-    border-color: rgba(243, 188, 69, 0.6);
+    border-color: rgba(var(--color-primary-rgb), 0.6);
   }
 
   .scroll-to-top:active {
