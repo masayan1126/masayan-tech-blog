@@ -283,6 +283,12 @@ const breadCrumbsList = [
             }
           </div>
         </div>
+
+        <!-- ブログ管理人 -->
+        <div class="profile-section">
+          <h2 class="section-title">ブログ管理人</h2>
+          <BlogDetailProfileCard />
+        </div>
       </div>
 
       <LinkCardReplacer client:load />
@@ -291,12 +297,6 @@ const breadCrumbsList = [
     <aside>
       <!-- PC表示用の目次（スティッキー） -->
       <slot name="toc-desktop" />
-
-      <!-- ブログ管理人 -->
-      <div class="profile-section">
-        <p class="aside-title">ブログ管理人</p>
-        <BlogDetailProfileCard />
-      </div>
     </aside>
   </div>
 </BaseLayout>
@@ -361,7 +361,7 @@ const breadCrumbsList = [
   }
 
   .toc-title {
-    @apply text-2xl font-bold mt-14 mb-2;
+    @apply text-2xl font-bold mt-4 mb-2;
   }
 
   .toc-title::before {
@@ -1172,7 +1172,7 @@ const breadCrumbsList = [
       "blog-detail-header blog-detail-header blog-detail-header" 50px
       "center center right " 1fr
       "footer footer footer" 100px
-      / auto 1fr 250px;
+      / auto 1fr 320px;
     grid-gap: 10px 100px;
   }
 

@@ -14,7 +14,7 @@ import { Image } from "astro:assets";
   <div class="text-center mt-8">
     <h2 class="text-xl font-bold name-gradient">masayan</h2>
     <p class="text-sm font-medium mt-1" style="color: #d1cfcf;">Full Stack Engineer</p>
-    <p class="text-xs mt-2 flex items-center justify-center gap-1" style="color: #8fb166;">
+    <p class="text-xs mt-2 flex items-center justify-center gap-1" style="color: #F3BC45;">
       <span>📍</span>
       <span>大阪, Japan</span>
     </p>
@@ -50,11 +50,8 @@ import { Image } from "astro:assets";
     max-width: 350px;
     margin-left: 0;
     background: rgba(37, 37, 37, 0.6);
-    box-shadow: 0 8px 32px 0 rgba(var(--color-secondary-rgb), 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 10px;
-    border: 1px solid rgba(var(--color-secondary-rgb), 0.25);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.25);
   }
 
   .aside-profile-container > img {
@@ -62,7 +59,7 @@ import { Image } from "astro:assets";
   }
 
   .name-gradient {
-    background: linear-gradient(135deg, #ffffff 0%, #7a9f52 50%, #8fb166 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #F3BC45 50%, #f5ca6d 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -75,7 +72,7 @@ import { Image } from "astro:assets";
   .section-title {
     @apply text-xs font-semibold mb-2 flex items-center gap-2;
     letter-spacing: 0.05em;
-    color: #a4c78a;
+    color: #F3BC45;
   }
 
   .section-icon {
@@ -88,27 +85,15 @@ import { Image } from "astro:assets";
 
   .skill-tag {
     @apply inline-block px-3 py-1 text-xs font-medium rounded-full;
-    background: rgba(var(--color-secondary-rgb), 0.15);
-    color: #8fb166;
-    border: 1px solid rgba(var(--color-secondary-rgb), 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .skill-tag:hover {
-    background: rgba(var(--color-secondary-rgb), 0.25);
-    border-color: rgba(var(--color-secondary-rgb), 0.5);
-    transform: translateY(-1px);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    color: #F3BC45;
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
   }
 
   .skill-tag.highlight {
-    background: linear-gradient(135deg, rgba(var(--color-secondary-rgb), 0.2), rgba(122, 159, 82, 0.2));
-    color: #a4c78a;
-    border-color: rgba(var(--color-secondary-rgb), 0.4);
+    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.2), rgba(243, 188, 69, 0.2));
+    color: #f5ca6d;
+    border-color: rgba(var(--color-primary-rgb), 0.4);
     font-weight: 600;
-  }
-
-  .skill-tag.highlight:hover {
-    background: linear-gradient(135deg, rgba(var(--color-secondary-rgb), 0.3), rgba(122, 159, 82, 0.3));
-    border-color: rgba(var(--color-secondary-rgb), 0.6);
   }
 </style>

@@ -13,7 +13,7 @@ const headings = extractHeadings(content);
 {headings.length > 0 && (
   <div class="table-of-contents">
     <h3 class="toc-title">
-      <Icon name="noto:bookmark-tabs" class="w-5 h-5 mr-1 inline-block align-middle" />
+      <Icon name="noto:bookmark-tabs" class="w-4 h-4 mr-1 inline-block align-middle" />
       目次
     </h3>
     <nav class="toc-nav">
@@ -34,43 +34,24 @@ const headings = extractHeadings(content);
   .table-of-contents {
     background: rgba(40, 40, 40, 0.8);
     border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
+    padding: 1rem;
+    margin: 0 0 1rem 0;
     border-left: 4px solid #9ca3af;
     backdrop-filter: blur(8px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  /* スクロールバーのスタイリング */
-  .toc-nav::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .toc-nav::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-  }
-
-  .toc-nav::-webkit-scrollbar-thumb {
-    background: rgba(156, 163, 175, 0.5);
-    border-radius: 3px;
-  }
-
-  .toc-nav::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 163, 175, 0.7);
-  }
-
   .toc-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #d1d5db;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
   }
 
   .toc-nav {
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
   }
 
   .toc-list {
@@ -80,17 +61,17 @@ const headings = extractHeadings(content);
   }
 
   .toc-item {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
   .toc-link {
     color: #d1d5db;
     text-decoration: none;
-    font-size: 0.95rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.4;
     transition: all 0.3s ease;
     display: block;
-    padding: 0.5rem 0.75rem;
+    padding: 0.375rem 0.75rem;
     margin-left: -0.75rem;
     border-radius: 6px;
   }
@@ -112,12 +93,21 @@ const headings = extractHeadings(content);
   .toc-link:before {
     content: "▸ ";
     color: #9ca3af;
-    margin-right: 0.5rem;
-    transition: color 0.3s ease;
+    margin-right: 0.375rem;
+    transition: all 0.3s ease;
   }
 
   .toc-link.active:before {
-    color: #F3BC45 !important;
+    content: "";
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-image: url('/miyabiya.webp');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
   }
 
   /* スムーズスクロールと固定ヘッダー対応 */
