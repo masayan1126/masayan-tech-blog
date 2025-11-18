@@ -115,6 +115,13 @@ const headings = extractHeadings(content);
     scroll-behavior: smooth;
     scroll-padding-top: 120px; /* 固定ヘッダーの高さ + 余白 */
   }
+
+  /* モバイル表示時に目次の上にマージンを追加 */
+  @media (max-width: 1024px) {
+    .table-of-contents {
+      margin-top: 2rem;
+    }
+  }
 </style>
 
 <script>
