@@ -2,7 +2,6 @@
 import type { Article } from "@/libs/microcms/blog";
 import { Image } from "astro:assets";
 import FormattedDate from "@/components/FormattedDate.astro";
-import BlogListLink from "@/features/Blog/List/BlogListLink.astro";
 import { Icon } from "astro-icon";
 type Props = {
   post: Article;
@@ -12,7 +11,7 @@ const { post } = Astro.props;
 ---
 
 <div class="card card-skin modern-card">
-  <BlogListLink href={`/blog/${post.id}/`} class="card-link">
+  <a href={`/blog/${post.id}/`} class="card-link">
     <!-- <div class="card-image-container">
       <Image
         src={post.eyecatch.url}
@@ -32,7 +31,7 @@ const { post } = Astro.props;
         <FormattedDate date={new Date(post.publishedAt)} />
       </div>
     </div>
-  </BlogListLink>
+  </a>
 </div>
 
 <style>

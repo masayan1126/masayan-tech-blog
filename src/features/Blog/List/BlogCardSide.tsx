@@ -14,10 +14,12 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
 
   return (
     <div className="modern-blog-card-astro">
-      <a href={`/blog/${post.id}/`} className="card-link">
+      <div className="card-link">
         <div className="card-overlay"></div>
         <div className="card-content">
-          <h2 className="card-title">{post.title}</h2>
+          <a href={`/blog/${post.id}/`} className="block mb-2">
+            <h2 className="card-title">{post.title}</h2>
+          </a>
           <div className="flex flex-wrap gap-2 mb-4">
             {post.category.map((c) => (
               <a
@@ -38,6 +40,7 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
                   e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.2);
                   e.currentTarget.style.borderColor = PRIMARY_COLOR.rgba(0.4);
                 }}
+                onClick={(e) => e.stopPropagation()}
               >
                 {c.name}
               </a>
@@ -51,7 +54,7 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
             {formatDate(post.publishedAt)}
           </div>
         </div>
-      </a>
+      </div>
     </div>
   );
 };

@@ -127,7 +127,7 @@ const headings = extractHeadings(content);
 <script>
   // グローバルフラグで重複実行を防ぐ
   if ((window as any).tocHighlightSetup) {
-    console.log('TOC: すでにセットアップ済みなのでスキップ');
+    // すでにセットアップ済み
   } else {
     (window as any).tocHighlightSetup = true;
     setupTableOfContentsHighlight();
@@ -135,24 +135,18 @@ const headings = extractHeadings(content);
 
   // スクロール連動で目次をハイライトする機能
   function setupTableOfContentsHighlight(): void {
-    console.log('=== TOC: setupTableOfContentsHighlight 開始 ===');
-    
     // 全ての目次リンクを取得（PC用とモバイル用の両方）
     const tocLinks = document.querySelectorAll('.toc-link');
-    console.log('TOC: tocLinks 数:', tocLinks.length);
-    
+
     // H2見出しを探す（article内から）
     let headings = document.querySelectorAll('article h2[id]');
-    console.log('TOC: article h2[id] の数:', headings.length);
-    
+
     // articleの中に見出しがない場合は、より広範囲に探す
     if (headings.length === 0) {
       headings = document.querySelectorAll('h2[id]');
-      console.log('TOC: h2[id] の数（広範囲）:', headings.length);
     }
-    
+
     if (tocLinks.length === 0 || headings.length === 0) {
-      console.warn('TOC: リンクまたは見出しが見つかりません');
       return;
     }
 
@@ -168,47 +162,33 @@ const headings = extractHeadings(content);
 
     // 目次のリンクをアクティブにする関数
     const setActiveLink = (id: string): void => {
-      console.log('TOC: setActiveLink 呼び出し:', id, '現在:', currentActiveId);
-      
       if (currentActiveId === id) {
-        console.log('TOC: すでにアクティブなのでスキップ');
         return;
       }
-      
+
       currentActiveId = id;
-      
+
       // 全てのリンクからactiveクラスを削除
       const allTocLinks = document.querySelectorAll('.toc-link');
       allTocLinks.forEach(link => {
         link.classList.remove('active');
       });
-      console.log('TOC: 全てのリンクからactiveクラスを削除:', allTocLinks.length, '個');
-      
+
       // 対応する全てのリンク（PC用とモバイル用）にactiveクラスを追加
       const selector = `.toc-link[href="#${id}"]`;
-      console.log('TOC: セレクタ:', selector);
       const activeLinks = document.querySelectorAll(selector);
-      console.log('TOC: activeLinks:', activeLinks.length, '個');
-      
-      activeLinks.forEach((link, index) => {
+
+      activeLinks.forEach(link => {
         link.classList.add('active');
-        console.log(`TOC: activeクラスを追加[${index}]:`, link);
       });
-      
-      if (activeLinks.length === 0) {
-        console.warn('TOC: activeLink が見つかりません');
-      }
     };
 
     // Intersection Observerのコールバック
     const observerCallback = (entries: IntersectionObserverEntry[]): void => {
-      console.log('TOC: Intersection Observer コールバック:', entries.length, 'エントリ');
-      
       // 表示されている見出しを収集
       const visibleHeadings: Array<{id: string; top: number}> = [];
-      
+
       entries.forEach(entry => {
-        console.log('TOC: エントリ:', entry.target.id, 'isIntersecting:', entry.isIntersecting);
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
           if (id) {
@@ -219,53 +199,42 @@ const headings = extractHeadings(content);
           }
         }
       });
-      
-      console.log('TOC: 表示されている見出し:', visibleHeadings);
-      
+
       // 表示されている見出しの中で最も上にあるものをアクティブにする
       if (visibleHeadings.length > 0) {
         visibleHeadings.sort((a, b) => a.top - b.top);
-        console.log('TOC: 最上位の見出し:', visibleHeadings[0].id);
         setActiveLink(visibleHeadings[0].id);
       }
     };
 
     // Observerを作成
-    console.log('TOC: Intersection Observer を作成');
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // 全てのH2見出しを監視
-    console.log('TOC: 見出しの監視を開始');
     headings.forEach(heading => {
       observer.observe(heading);
-      console.log('TOC: 監視開始:', heading.id);
     });
 
     // 初期状態の設定（少し遅延させる）
     setTimeout(() => {
-      console.log('TOC: 初期状態の設定を開始');
-      
       // 最初に表示されている見出しを探す
       for (let i = 0; i < headings.length; i++) {
         const heading = headings[i];
         const rect = heading.getBoundingClientRect();
-        console.log(`TOC: 見出し[${i}] ${heading.id} の位置:`, rect.top);
-        
+
         // 画面内に表示されているかチェック
         if (rect.top >= 0 && rect.top <= window.innerHeight * 0.5) {
           const id = heading.getAttribute('id');
           if (id) {
-            console.log('TOC: 初期アクティブ見出し:', id);
             setActiveLink(id);
             break;
           }
         }
       }
-      
+
       // どの見出しも表示されていない場合は最初の見出しをアクティブに
       if (!currentActiveId && headings.length > 0) {
         const firstId = headings[0].getAttribute('id');
-        console.log('TOC: デフォルトで最初の見出しをアクティブに:', firstId);
         if (firstId) {
           setActiveLink(firstId);
         }
@@ -275,7 +244,6 @@ const headings = extractHeadings(content);
 
   // Astroのビュー遷移対応
   document.addEventListener('astro:after-swap', () => {
-    console.log('TOC: astro:after-swap イベント');
     (window as any).tocHighlightSetup = false; // リセット
     setupTableOfContentsHighlight();
   });

@@ -320,3 +320,46 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2025年11月19日
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-11-19 14:31:22
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-11-19 14:32:00
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2025-11-19 14:32:38
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2025-11-19 14:39:40
+
+**変更内容**: console.logを削除
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
