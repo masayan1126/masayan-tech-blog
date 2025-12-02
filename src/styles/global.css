@@ -393,3 +393,9 @@ pre {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
+
+/* Twitter/X埋め込みを左寄せにする */
+.twitter-tweet,
+.twitter-tweet-rendered {
+  margin: 10px auto 10px 0 !important;
+}

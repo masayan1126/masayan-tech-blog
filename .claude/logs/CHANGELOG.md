@@ -363,3 +363,46 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2025年12月02日
+
+### ✏️ Edited `global.css` - 2025-12-02 20:46:29
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/styles/global.css`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+.copy-btn:hover, .copy-btn:focus {
+  opacity: 1;
+  background: rgba(100, 100, 100, 0.95);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+```
+
+**変更後**:
+```
+.copy-btn:hover, .copy-btn:focus {
+  opacity: 1;
+  background: rgba(100, 100, 100, 0.95);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Twitter/X埋め込みを左寄せにする */
+.twitter-tweet,
+.twitter-tweet-rendered {
+  margin: 10px auto 10px 0 !important;
+}
+```
+</details>
+
+---
+
