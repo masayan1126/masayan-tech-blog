@@ -3,6 +3,7 @@ import BaseHead from "@/components/BaseHead.astro";
 import { BreadCrumbs } from "@/components/BreadCrumbs/BreadCrumbs";
 import Footer from "@/features/Footer/Footer.astro";
 import Header from "@/features/Header/Header.astro";
+import BottomNav from "@/features/Header/BottomNav.astro";
 import type { BaseLayoutProps } from "@/layouts/layout";
 
 interface Props extends BaseLayoutProps {}
@@ -25,6 +26,7 @@ const { title, description, context, breadCrumbsList } = Astro.props;
     </main>
 
     <Footer />
+    <BottomNav {context} />
 
     <script>
       // ページ読み込みプログレスバー
@@ -152,5 +154,12 @@ const { title, description, context, breadCrumbsList } = Astro.props;
     z-index: 9999;
     transition: width 0.3s ease, opacity 0.4s ease;
     opacity: 0;
+  }
+
+  /* モバイル時のボトムナビ用余白 */
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    }
   }
 </style>

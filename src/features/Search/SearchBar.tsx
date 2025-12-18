@@ -72,8 +72,8 @@ export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
   };
 
   return (
-    <div className="search-bar-container mb-8">
-      <div className="relative flex items-center max-w-2xl mx-auto">
+    <div className="search-bar-container mb-6">
+      <div className="relative flex items-center max-w-md">
         <input
           type="text"
           value={searchTerm}

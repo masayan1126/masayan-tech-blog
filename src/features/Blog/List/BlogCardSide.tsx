@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { Article } from '@/libs/microcms/blog';
 import { Icon } from '@iconify/react';
 import { PRIMARY_COLOR } from '@/constants/colors';
@@ -7,54 +6,74 @@ interface BlogCardSideProps {
   post: Article;
 }
 
+// 読了時間を計算（日本語は1分あたり約500文字）
+const calculateReadingTime = (content: string): number => {
+  // HTMLタグを除去してテキストのみを抽出
+  const textOnly = content.replace(/<[^>]*>/g, '');
+  const charCount = textOnly.length;
+  const readingTime = Math.ceil(charCount / 500);
+  return Math.max(1, readingTime); // 最低1分
+};
+
+// 概要を指定文字数で切り詰め
+const truncateDescription = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength) + '...';
+};
+
 export const BlogCardSide = ({ post }: BlogCardSideProps) => {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('ja-JP');
   };
 
+  const readingTime = calculateReadingTime(post.content);
+
   return (
     <div className="modern-blog-card-astro">
-      <div className="card-link">
+      <a href={`/blog/${post.id}/`} className="card-link">
         <div className="card-overlay"></div>
         <div className="card-content">
-          <a href={`/blog/${post.id}/`} className="block mb-2">
-            <h2 className="card-title">{post.title}</h2>
-          </a>
-          <div className="flex flex-wrap gap-2 mb-4">
+          {/* タイトル */}
+          <h2 className="card-title">{post.title}</h2>
+          
+          {/* 記事概要 */}
+          {post.description && (
+            <p className="card-description">
+              {truncateDescription(post.description, 80)}
+            </p>
+          )}
+          
+          {/* カテゴリバッジ */}
+          <div className="flex flex-wrap gap-2 mb-3">
             {post.category.map((c) => (
-              <a
+              <span
                 key={c.id}
-                href={`/category/${c.id}/page/1`}
-                className="inline-block px-2 py-1 rounded text-xs transition-all duration-200 hover:scale-105"
+                className="inline-block px-2 py-1 rounded text-xs"
                 style={{
                   backgroundColor: PRIMARY_COLOR.rgba(0.2),
                   borderColor: PRIMARY_COLOR.rgba(0.4),
                   border: '1px solid',
                   color: PRIMARY_COLOR.hex
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.35);
-                  e.currentTarget.style.borderColor = PRIMARY_COLOR.rgba(0.6);
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = PRIMARY_COLOR.rgba(0.2);
-                  e.currentTarget.style.borderColor = PRIMARY_COLOR.rgba(0.4);
-                }}
-                onClick={(e) => e.stopPropagation()}
               >
                 {c.name}
-              </a>
+              </span>
             ))}
           </div>
-          <div className="text-sm mt-3 date-info">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block align-middle mr-1.5" style={{ color: PRIMARY_COLOR.hex, marginBottom: '2px' }}>
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            {formatDate(post.publishedAt)}
+          
+          {/* メタ情報（公開日・読了時間） */}
+          <div className="card-meta">
+            <div className="meta-item">
+              <Icon icon="ph:calendar-bold" className="meta-icon" style={{ color: PRIMARY_COLOR.hex }} />
+              <span>{formatDate(post.publishedAt)}</span>
+            </div>
+            <div className="meta-item">
+              <Icon icon="ph:clock-bold" className="meta-icon" style={{ color: PRIMARY_COLOR.hex }} />
+              <span>約{readingTime}分で読めます</span>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   );
 };

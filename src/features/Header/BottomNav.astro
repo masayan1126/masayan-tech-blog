@@ -1,0 +1,154 @@
+---
+import { Icon } from "astro-icon";
+import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
+
+interface Props {
+  context: string;
+}
+
+const { context } = Astro.props;
+
+// ボトムナビのリンク設定（コンテキストに応じてアクティブ状態を切り替え）
+const navItems = [
+  {
+    href: ARTICLES_PATH,
+    label: "ホーム",
+    iconName: "ph:house-bold",
+    activeContexts: ["home", "blog"],
+  },
+  {
+    href: "/categories",
+    label: "カテゴリ",
+    iconName: "ph:squares-four-bold",
+    activeContexts: ["categories"],
+  },
+  {
+    href: "/about",
+    label: "プロフィール",
+    iconName: "ph:user-circle-bold",
+    activeContexts: ["about"],
+  },
+];
+---
+
+<nav class="bottom-nav md:hidden" aria-label="モバイルナビゲーション">
+  <div class="nav-container">
+    {
+      navItems.map((item) => {
+        const isActive = item.activeContexts.includes(context);
+        return (
+          <a
+            href={item.href}
+            class:list={["nav-item", { active: isActive }]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            <span class="nav-icon">
+              <Icon name={item.iconName} class="w-6 h-6" />
+            </span>
+            <span class="nav-label">{item.label}</span>
+          </a>
+        );
+      })
+    }
+  </div>
+</nav>
+
+<style>
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    min-width: 70px;
+    position: relative;
+  }
+
+  .nav-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 30px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), #ffd966);
+    border-radius: 0 0 4px 4px;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-item.active {
+    color: var(--color-primary);
+  }
+
+  .nav-item.active::before {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .nav-item.active .nav-icon {
+    transform: translateY(-2px);
+  }
+
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.25rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-item:active .nav-icon {
+    transform: scale(0.9);
+  }
+
+  .nav-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* 超小画面対応 */
+  @media (max-width: 360px) {
+    .nav-item {
+      padding: 0.4rem 0.75rem;
+      min-width: 60px;
+    }
+
+    .nav-label {
+      font-size: 0.6rem;
+    }
+  }
+</style>

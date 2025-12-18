@@ -1,11 +1,10 @@
 ---
 // スクロールトップボタンコンポーネント
+import { Icon } from "astro-icon";
 ---
 
 <button id="scroll-to-top" class="scroll-to-top" aria-label="ページトップへ戻る">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
+  <Icon name="ph:rocket-launch-bold" class="w-5 h-5" />
 </button>
 
 <style>
@@ -58,8 +57,18 @@
 
   @media (max-width: 768px) {
     .scroll-to-top {
-      bottom: 1.5rem;
+      /* ボトムナビ（約60px）の上に配置 */
+      bottom: calc(80px + env(safe-area-inset-bottom, 0px));
       right: 1.5rem;
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  @media (max-width: 439px) {
+    .scroll-to-top {
+      bottom: calc(75px + env(safe-area-inset-bottom, 0px));
+      right: 1rem;
       width: 2.5rem;
       height: 2.5rem;
     }

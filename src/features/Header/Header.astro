@@ -29,12 +29,12 @@ const headerLinks = headerLinkOf(context);
           class="mr-2 hidden md:block rounded-full"
         />
         <h2 class="headerTitle">
-          {SITE_TITLE.slice(0, -1)}<span class="title-dot">{SITE_TITLE.slice(-1)}</span>
+          <span id="typing-text" class="typing-text" data-text={SITE_TITLE}></span><span class="typing-cursor">|</span>
         </h2>
       </div>
     </Link>
 
-    <nav class="flex items-center space-x-3">
+    <nav class="hidden md:flex items-center space-x-3">
       {
         headerLinks.map((link) => (
           <HeaderLink href={link.href} iconName={link.iconName}>
@@ -58,11 +58,35 @@ const headerLinks = headerLinkOf(context);
     }
 
     .headerTitle {
-      @apply font-bold text-base sm:text-xl md:text-2xl transition-all duration-200;
+      @apply font-bold text-lg sm:text-xl md:text-2xl transition-all duration-200;
+      display: flex;
+      align-items: center;
     }
 
-    .title-dot {
+    .typing-text {
+      display: inline-block;
+    }
+
+    /* 最後のピリオドをプライマリカラーに */
+    .typing-text :global(.title-dot) {
       color: var(--color-primary);
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      color: var(--color-primary);
+      font-weight: 400;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    .typing-cursor.hidden {
+      opacity: 0;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
     
     :global(.site-title-link) {
@@ -85,12 +109,8 @@ const headerLinks = headerLinkOf(context);
       }
       
       .headerTitle {
-        @apply text-sm;
-        font-size: 0.875rem;
-      }
-      
-      nav {
-        gap: 0.5rem;
+        @apply text-base;
+        font-size: 1.2rem;
       }
     }
     
@@ -102,12 +122,87 @@ const headerLinks = headerLinkOf(context);
       }
       
       .headerTitle {
-        font-size: 0.8rem;
-      }
-      
-      nav {
-        gap: 0.25rem;
+        font-size: 0.9rem;
       }
     }
   </style>
 </header>
+
+<script>
+  function initTypingAnimation() {
+    const typingElement = document.getElementById('typing-text');
+    const cursorElement = document.querySelector('.typing-cursor');
+    
+    if (!typingElement || !cursorElement) return;
+    
+    const fullText = typingElement.dataset.text || '';
+    
+    // アニメーション設定
+    const typingSpeed = 100;      // タイピング速度（ミリ秒/文字）
+    const deletingSpeed = 50;     // 削除速度（ミリ秒/文字）
+    const pauseAfterTyping = 3000; // タイピング完了後の待機時間
+    const pauseAfterDeleting = 500; // 削除完了後の待機時間
+    
+    let currentIndex = 0;
+    let isDeleting = false;
+    let animationId: number | null = null;
+    
+    function updateText() {
+      // 現在表示するテキストを取得
+      const displayText = fullText.substring(0, currentIndex);
+      
+      // 最後の文字がピリオドの場合は特別なスタイルを適用
+      if (displayText.length > 0 && displayText.length === fullText.length) {
+        const mainText = displayText.slice(0, -1);
+        const lastChar = displayText.slice(-1);
+        typingElement.innerHTML = `${mainText}<span class="title-dot">${lastChar}</span>`;
+      } else {
+        typingElement.textContent = displayText;
+      }
+    }
+    
+    function animateTyping() {
+      if (isDeleting) {
+        // 削除中
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateText();
+          animationId = window.setTimeout(animateTyping, deletingSpeed);
+        } else {
+          // 削除完了、タイピングモードに切り替え
+          isDeleting = false;
+          animationId = window.setTimeout(animateTyping, pauseAfterDeleting);
+        }
+      } else {
+        // タイピング中
+        if (currentIndex < fullText.length) {
+          currentIndex++;
+          updateText();
+          animationId = window.setTimeout(animateTyping, typingSpeed);
+        } else {
+          // タイピング完了、削除モードに切り替え
+          isDeleting = true;
+          animationId = window.setTimeout(animateTyping, pauseAfterTyping);
+        }
+      }
+    }
+    
+    // 既存のアニメーションをクリア（ページ遷移時の二重実行防止）
+    if ((window as any).__typingAnimationId) {
+      clearTimeout((window as any).__typingAnimationId);
+    }
+    
+    // 少し遅延してからアニメーション開始
+    (window as any).__typingAnimationId = window.setTimeout(animateTyping, 300);
+  }
+  
+  // 初期化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTypingAnimation);
+  } else {
+    initTypingAnimation();
+  }
+  
+  // Astroのビュートランジション対応
+  document.addEventListener('astro:page-load', initTypingAnimation);
+</script>

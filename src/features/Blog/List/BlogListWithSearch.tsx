@@ -73,7 +73,7 @@ export const BlogListWithSearch = ({
     }
 
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {currentArticles.map((article) => (
           <BlogCardSide post={article} key={article.id} />
         ))}
@@ -308,11 +308,11 @@ export const BlogListWithSearch = ({
 
       {/* 通常表示時のヘッダー */}
       {!isSearching && (
-        <div className="mb-8 flex items-center justify-between">
-          <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold mb-2 text-white">記事一覧</h2>
+        <div className="mb-6 flex items-center justify-between">
+          <div className="text-left">
+            <h2 className="text-2xl font-bold mb-1 text-white">記事一覧</h2>
             {totalPages > 1 && (
-              <p className="text-white/60">
+              <p className="text-white/60 text-sm">
                 全{totalArticles}件中 {((currentPage - 1) * pageSize) + 1}〜{Math.min(currentPage * pageSize, totalArticles)}件を表示
               </p>
             )}
@@ -341,7 +341,7 @@ export const BlogListWithSearch = ({
       )}
       
       {/* 記事一覧 */}
-      <section className="mb-20">
+      <section className="mb-12">
         {renderSearchResults()}
       </section>
 

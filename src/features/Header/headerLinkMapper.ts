@@ -5,27 +5,28 @@ const headerLinkMapper = new Map<
   { href: string; text: string; iconName: string }[]
 >();
 
+// Phosphor Iconsを使用したおしゃれなアイコン
 headerLinkMapper
   .set("home", [
-    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
-    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
 
   .set("blog", [
-    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
-    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("about", [
-    { href: ARTICLES_PATH, text: "Home", iconName: "mdi:home-variant-outline" },
-    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
+    { href: ARTICLES_PATH, text: "Home", iconName: "ph:house-bold" },
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
   ])
   .set("categories", [
-    { href: ARTICLES_PATH, text: "Home", iconName: "mdi:home-variant-outline" },
-    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
+    { href: ARTICLES_PATH, text: "Home", iconName: "ph:house-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("disclaimer", [
-    { href: "/categories", text: "Categories", iconName: "mdi:tag-multiple-outline" },
-    { href: "/about", text: "About", iconName: "mdi:account-circle-outline" },
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("404", []);
 

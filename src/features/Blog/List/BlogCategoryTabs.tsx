@@ -28,7 +28,7 @@ export const BlogCategoryTabs = ({ categories, totalArticles, currentCategoryId 
     <div
       className="category-tabs-container fadeUp"
       style={{
-        marginBottom: "24px",
+        marginBottom: "20px",
         overflowX: "auto",
         WebkitOverflowScrolling: "touch",
       }}
