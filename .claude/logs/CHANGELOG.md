@@ -406,3 +406,122 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2025年12月18日
+
+### 📝 Updated `categories.ts` - 2025-12-18 14:58:00
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/mock/categories.ts`
+
+---
+
+### 📝 Updated `articles.ts` - 2025-12-18 14:58:47
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+---
+
+### 📝 Updated `index.ts` - 2025-12-18 14:59:07
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/mock/index.ts`
+
+---
+
+### ✏️ Edited `config.ts` - 2025-12-18 14:59:23
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/config.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `category.ts` - 2025-12-18 14:59:45
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/category.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2025-12-18 15:00:00
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2025-12-18 15:00:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export const getArticles = async (
+  queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
+) => {
+  return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
+};
+```
+
+**変更後**:
+```
+export const getArticles = async (
+  queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
+) => {
+  // 開発環境ではモックデータを返す
+  if (IS_DEV_MODE) {
+    return mockArticlesResponse;
+  }
+  return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
+};
+```
+</details>
+
+---
+
+### ✏️ Edited `blog.ts` - 2025-12-18 15:00:14
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2025-12-18 15:00:23
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### 📝 Updated `articles.ts` - 2025-12-18 15:08:07
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+---
+
