@@ -31,7 +31,6 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
   return (
     <div className="modern-blog-card-astro">
       <a href={`/blog/${post.id}/`} className="card-link">
-        <div className="card-overlay"></div>
         <div className="card-content">
           {/* タイトル */}
           <h2 className="card-title">{post.title}</h2>
@@ -48,13 +47,7 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
             {post.category.map((c) => (
               <span
                 key={c.id}
-                className="inline-block px-2 py-1 rounded text-xs"
-                style={{
-                  backgroundColor: PRIMARY_COLOR.rgba(0.2),
-                  borderColor: PRIMARY_COLOR.rgba(0.4),
-                  border: '1px solid',
-                  color: PRIMARY_COLOR.hex
-                }}
+                className="category-badge"
               >
                 {c.name}
               </span>
@@ -64,11 +57,11 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
           {/* メタ情報（公開日・読了時間） */}
           <div className="card-meta">
             <div className="meta-item">
-              <Icon icon="ph:calendar-bold" className="meta-icon" style={{ color: PRIMARY_COLOR.hex }} />
+              <Icon icon="ph:calendar-bold" className="meta-icon" />
               <span>{formatDate(post.publishedAt)}</span>
             </div>
             <div className="meta-item">
-              <Icon icon="ph:clock-bold" className="meta-icon" style={{ color: PRIMARY_COLOR.hex }} />
+              <Icon icon="ph:clock-bold" className="meta-icon" />
               <span>約{readingTime}分で読めます</span>
             </div>
           </div>
