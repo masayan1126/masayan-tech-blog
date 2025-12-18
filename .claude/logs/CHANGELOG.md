@@ -525,3 +525,43 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BaseHead.astro` - 2025-12-18 16:47:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <!-- <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
+    crossorigin="anonymous"></script> -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+  ></script>
+```
+
+**変更後**:
+```
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
+    crossorigin="anonymous"></script>
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseLayout.astro` - 2025-12-18 16:48:10
+
+**変更内容**: コードを削除
+
+**ファイルパス**: `src/layouts/BaseLayout.astro`
+
+---
+
