@@ -22,8 +22,8 @@ export const BreadCrumbs = ({ lists }: Props) => {
           margin-top: 1rem;
           margin-bottom: 1rem;
           padding: 0.75rem 1rem;
-          background: rgba(var(--color-primary-rgb), 0.08);
-          border-left: 3px solid var(--color-primary);
+          background: #2a2a2a;
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 8px;
           font-size: 0.875rem;
         }

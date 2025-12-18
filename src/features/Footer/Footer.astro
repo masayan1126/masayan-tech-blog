@@ -7,7 +7,7 @@ const today = new Date();
 ---
 
 <footer class="modern-footer">
-  <!-- 背景グラデーション -->
+  <!-- 背景 -->
   <div class="footer-background"></div>
   
   <!-- メインコンテンツ -->
@@ -43,7 +43,7 @@ const today = new Date();
       </a>
       
       <a 
-        href="https://www.youtube.com/@masayan.dev.1126/playlists" 
+        href="https://www.youtube.com/@masayan_tech_ai_mcp" 
         target="_blank" 
         rel="noopener noreferrer"
         class="social-link youtube"
@@ -78,22 +78,13 @@ const today = new Date();
     overflow: hidden;
     padding: 4rem 2rem 2rem;
     text-align: center;
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+    background: #1a1a1a;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 4rem;
   }
   
   .footer-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 50%, rgba(var(--color-primary-rgb), 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(var(--color-primary-rgb), 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, rgba(var(--color-primary-rgb), 0.02) 0%, transparent 50%);
-    pointer-events: none;
+    display: none;
   }
   
   .footer-content {
@@ -113,12 +104,8 @@ const today = new Date();
   .footer-title {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-primary);
     margin-bottom: 0.5rem;
-    transition: all 0.3s ease;
   }
   
   .footer-subtitle {
@@ -141,37 +128,16 @@ const today = new Date();
     align-items: center;
     gap: 0.5rem;
     padding: 1.5rem 1rem;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
+    background: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.8);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     min-width: 120px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .social-link::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.12), rgba(var(--color-primary-rgb), 0.06));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .social-link:hover::before {
-    opacity: 1;
   }
   
   .social-link:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.2);
     border: 1px solid rgba(var(--color-primary-rgb), 0.4);
     color: var(--color-primary);
   }
@@ -179,20 +145,11 @@ const today = new Date();
   .social-icon {
     width: 2rem;
     height: 2rem;
-    transition: transform 0.3s ease;
-    z-index: 1;
-    position: relative;
-  }
-  
-  .social-link:hover .social-icon {
-    transform: scale(1.2) rotate(5deg);
   }
   
   .social-label {
     font-size: 0.875rem;
     font-weight: 500;
-    z-index: 1;
-    position: relative;
   }
   
   .footer-links {
@@ -207,22 +164,18 @@ const today = new Date();
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
+    background: #2a2a2a;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 8px;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.875rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   }
   
   :global(.footer-link:hover) {
-    transform: translateY(-2px);
-    background: rgba(var(--color-primary-rgb), 0.15);
     border: 1px solid rgba(var(--color-primary-rgb), 0.4);
     color: var(--color-primary);
-    box-shadow: 0 8px 16px rgba(var(--color-primary-rgb), 0.15);
   }
   
   .footer-link-icon {
@@ -255,16 +208,6 @@ const today = new Date();
   .heart-icon {
     width: 1rem;
     height: 1rem;
-    animation: heartbeat 2s ease-in-out infinite;
-  }
-  
-  @keyframes heartbeat {
-    0%, 50%, 100% {
-      transform: scale(1);
-    }
-    25%, 75% {
-      transform: scale(1.1);
-    }
   }
   
   /* レスポンシブ対応 */
@@ -288,10 +231,6 @@ const today = new Date();
     .social-link {
       min-width: 100px;
       padding: 1rem 0.75rem;
-    }
-    
-    .social-link:hover {
-      transform: translateY(-4px) scale(1.02);
     }
     
     .copyright {

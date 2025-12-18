@@ -201,7 +201,7 @@ export const BlogListWithSearch = ({
       <div className="mt-12">
         {/* モバイル用ページネーション (768px以下) */}
         <div className="md:hidden">
-          <ul className="flex items-center justify-center gap-2 p-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl overflow-hidden">
+          <ul className="flex items-center justify-center gap-2 p-3 bg-[#2a2a2a] rounded-lg border border-white/10 overflow-hidden">
             {/* 前のページ */}
             {currentPage > 1 && (
               <li className="list-none flex-shrink-0">
@@ -253,7 +253,7 @@ export const BlogListWithSearch = ({
 
         {/* デスクトップ用ページネーション (769px以上) */}
         <div className="hidden md:block">
-          <ul className="flex items-center justify-center gap-3 p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl">
+          <ul className="flex items-center justify-center gap-3 p-4 bg-[#2a2a2a] rounded-lg border border-white/10">
             {/* 前のページ */}
             {currentPage > 1 && (
               <li className="list-none">

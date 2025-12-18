@@ -45,16 +45,25 @@ const newArrivalPosts = [...articles].sort((a, b) => {
 <BlogListLayout>
   <!-- 信頼性メッセージバナー -->
   <div slot="banner" class="quality-banner">
-    <div class="quality-banner-content">
-      <div class="quality-icon">
-        <img src="/miyabiya.webp" alt="西垣雅矢" class="author-image" width="56" height="56" />
-      </div>
-      <div class="quality-text">
-        <h3 class="quality-title">『AIよりも深く掘り下げて』、<br>『公式ドキュメントよりもわかりやすく』</h3>
-        <p class="quality-description">
-          をコンセプトとしたディープなテックブログです。<br><br>
-          AI生成の薄っぺらい記事ではなく、実務で培った深い知見をもとに、公式ドキュメントの難解さをわかりやすい言葉で届けます。
-        </p>
+    <div class="quality-banner-inner">
+      <div class="banner-badge">Concept</div>
+      <div class="banner-content">
+        <div class="author-profile">
+          <div class="author-icon-wrapper">
+            <img src="/miyabiya.webp" alt="西垣雅矢" class="author-image" width="64" height="64" />
+          </div>
+          <div class="author-role">Tech Lead / Full Stack Engineer</div>
+        </div>
+        <div class="text-content">
+          <h3 class="banner-title">
+            <span class="highlight">『AIよりも深く掘り下げて』</span><br class="mobile-break" />
+            <span class="highlight">『公式ドキュメントよりもわかりやすく』</span>
+          </h3>
+          <p class="banner-description">
+            AI生成の薄っぺらい記事ではなく、実務で培った<span class="text-accent">深い知見</span>をもとに、<br class="desktop-break" />
+            公式ドキュメントの<span class="text-accent">難解さをわかりやすい言葉</span>で届けます。
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -80,93 +89,151 @@ const newArrivalPosts = [...articles].sort((a, b) => {
 
 <style>
   .quality-banner {
-    margin: 2rem 0;
+    margin: 3rem 0;
     width: 100%;
+    position: relative;
   }
 
-  .quality-banner-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2rem;
-    background: rgba(var(--color-primary-rgb), 0.15);
-    border: 2px solid rgba(var(--color-primary-rgb), 0.4);
-    border-radius: 16px;
-  }
-
-  .quality-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    background: rgba(var(--color-primary-rgb), 0.25);
-    border: 2px solid rgba(var(--color-primary-rgb), 0.5);
-    border-radius: 50%;
+  .quality-banner-inner {
+    position: relative;
+    padding: 3rem;
+    background: #1a1a1a;
+    border: 1px solid rgba(243, 188, 69, 0.3);
+    border-radius: 4px;
     overflow: hidden;
+  }
+
+  /* 装飾的なコーナーアクセント */
+  .quality-banner-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--color-primary);
+  }
+
+  .banner-badge {
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    background: var(--color-primary);
+    color: #1a1a1a;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1.5rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+  }
+
+  .banner-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .author-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 120px;
+  }
+
+  .author-icon-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    padding: 4px;
+    border: 1px solid rgba(243, 188, 69, 0.5);
+    border-radius: 50%;
   }
 
   .author-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
+    filter: grayscale(20%);
   }
 
-  .quality-text {
+  .author-role {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  .text-content {
     flex: 1;
   }
 
-  .quality-title {
-    margin: 0 0 1rem 0;
-    font-size: 1.5rem;
+  .banner-title {
+    font-size: 1.75rem;
     font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-feature-settings: "palt";
+  }
+
+  .highlight {
+    background: linear-gradient(transparent 70%, rgba(243, 188, 69, 0.15) 70%);
+    color: #f0f0f0;
+    padding: 0 0.25rem;
+  }
+
+  .banner-description {
+    font-size: 1rem;
+    line-height: 2;
+    color: #cccccc;
+    font-weight: 400;
+  }
+
+  .text-accent {
     color: var(--color-primary);
-    letter-spacing: 0.02em;
-    line-height: 1.4;
+    font-weight: 600;
   }
 
-  @media (max-width: 768px) {
-    .quality-title {
-      font-size: 1.25rem;
-    }
+  .mobile-break {
+    display: none;
   }
 
-  .title-white {
-    color: #ffffff;
+  .desktop-break {
+    display: block;
   }
 
-  .quality-description {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: #d1cfcf;
-  }
-
-  @media (max-width: 768px) {
-    .quality-banner {
-      margin: 1.5rem auto;
-    }
-
-    .quality-banner-content {
+  @media (max-width: 900px) {
+    .banner-content {
       flex-direction: column;
-      align-items: center;
       text-align: center;
-      padding: 1.5rem;
-      gap: 1rem;
+      gap: 2rem;
     }
 
-    .quality-icon {
-      width: 48px;
-      height: 48px;
+    .quality-banner-inner {
+      padding: 2.5rem 1.5rem;
     }
 
-    .quality-title {
-      font-size: 1.1rem;
+    .quality-banner-inner::before {
+      width: 100%;
+      height: 4px;
     }
 
-    .quality-description {
-      font-size: 0.9rem;
+    .banner-title {
+      font-size: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .mobile-break {
+      display: block;
+    }
+
+    .desktop-break {
+      display: none;
     }
   }
 </style>

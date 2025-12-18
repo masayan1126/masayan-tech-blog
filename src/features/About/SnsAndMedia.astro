@@ -12,7 +12,7 @@ import Icon from "astro-icon";
   <div class="social-links-grid">
     <!-- YouTube -->
     <a 
-      href="https://www.youtube.com/@masayan.dev.1126" 
+      href="https://www.youtube.com/@masayan_tech_ai_mcp" 
       target="_blank" 
       rel="noopener noreferrer"
       class="social-card youtube"
@@ -67,11 +67,10 @@ import Icon from "astro-icon";
 
 <style>
   .sns-media-section {
-    background: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(80, 80, 80, 0.3);
-    border-radius: 16px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     padding: 2rem;
-    backdrop-filter: blur(10px);
   }
 
   .section-header {
@@ -95,43 +94,19 @@ import Icon from "astro-icon";
   }
 
   .social-card {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: rgba(30, 30, 30, 0.5);
-    border: 1px solid rgba(80, 80, 80, 0.3);
-    border-radius: 12px;
+    background: #2a2a2a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     text-decoration: none;
-    transition: all 0.3s ease;
-    overflow: hidden;
-  }
-
-  .social-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, currentColor, transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.2s ease;
   }
 
   .social-card:hover {
-    background: rgba(40, 40, 40, 0.7);
-    border-color: rgba(100, 100, 100, 0.5);
-    transform: translateX(8px);
-  }
-
-  .social-card:hover::before {
-    opacity: 1;
-  }
-
-  .social-card:hover .social-arrow {
-    transform: translateX(4px);
+    border-color: rgba(var(--color-primary-rgb), 0.4);
   }
 
   /* YouTube */
@@ -139,29 +114,14 @@ import Icon from "astro-icon";
     color: #ff0000;
   }
 
-  .social-card.youtube:hover {
-    background: rgba(255, 0, 0, 0.08);
-    border-color: rgba(255, 0, 0, 0.3);
-  }
-
   /* GitHub */
   .social-card.github {
     color: #ffffff;
   }
 
-  .social-card.github:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
   /* Twitter */
   .social-card.twitter {
     color: #1da1f2;
-  }
-
-  .social-card.twitter:hover {
-    background: rgba(29, 161, 242, 0.08);
-    border-color: rgba(29, 161, 242, 0.3);
   }
 
   .social-icon-wrapper {
@@ -171,13 +131,8 @@ import Icon from "astro-icon";
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(50, 50, 50, 0.6);
+    background: #333;
     border-radius: 50%;
-    transition: all 0.3s ease;
-  }
-
-  .social-card:hover .social-icon-wrapper {
-    transform: scale(1.1) rotate(5deg);
   }
 
   .social-icon {

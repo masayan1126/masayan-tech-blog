@@ -32,29 +32,24 @@ const { href, iconName } = Astro.props;
 <style>
   :global(.header-link) {
     @apply px-3 py-2 rounded-lg transition-all duration-200 ease-out;
-    background: rgba(255, 255, 255, 0.05);
+    background: #2a2a2a;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
   }
   
   :global(.header-link:hover) {
-    @apply transform scale-105;
-    background: rgba(var(--color-primary-rgb), 0.2);
     border: 1px solid rgba(var(--color-primary-rgb), 0.4);
-    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.25);
+    color: var(--color-primary);
   }
   
   :global(.header-link-mobile) {
     @apply px-2 py-2 rounded-full transition-all duration-200 ease-out;
-    background: rgba(255, 255, 255, 0.08);
+    background: #2a2a2a;
     border: 1px solid rgba(255, 255, 255, 0.15);
   }
   
   :global(.header-link-mobile:hover) {
-    @apply transform scale-110;
-    background: rgba(var(--color-primary-rgb), 0.25);
     border: 1px solid rgba(var(--color-primary-rgb), 0.5);
-    box-shadow: 0 4px 8px rgba(var(--color-primary-rgb), 0.35);
+    color: var(--color-primary);
   }
   
   /* 超小画面対応 (439px以下) */

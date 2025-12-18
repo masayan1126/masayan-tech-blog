@@ -79,18 +79,7 @@ export const SearchBar = ({ allArticles, onSearchResults }: SearchBarProps) => {
           value={searchTerm}
           onChange={handleInputChange}
           placeholder="記事を検索..."
-          className="w-full px-4 py-3 pr-16 border-2 border-white/10 rounded-xl bg-white/5 backdrop-blur-md text-white text-base transition-all duration-300 focus:outline-none placeholder:text-white/50"
-          style={{
-            transition: 'all 0.3s'
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(var(--color-primary-rgb), 0.5)';
-            e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(var(--color-primary-rgb), 0.1)';
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
+          className="w-full px-4 py-3 pr-16 border border-white/10 rounded-lg bg-[#2a2a2a] text-white text-base focus:outline-none focus:border-[rgba(243,188,69,0.5)] placeholder:text-white/50"
         />
         <div className="absolute right-2 flex items-center justify-center w-10 h-10">
           {isSearching ? (

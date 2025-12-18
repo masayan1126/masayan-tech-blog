@@ -81,67 +81,36 @@ main {
 .modern-blog-card {
   position: relative !important;
   overflow: hidden !important;
-  border-radius: 12px !important;
-  background: rgba(255, 255, 255, 0.02) !important;
-  backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transform-origin: center !important;
+  border-radius: 8px !important;
+  background: #2a2a2a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.2s ease !important;
   cursor: pointer !important;
 }
 
 .modern-blog-card:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.2) !important;
-  border: 1px solid rgba(var(--color-primary-rgb), 0.3) !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* モバイル対応 */
-@media (max-width: 768px) {
-  .modern-blog-card:hover {
-    transform: translateY(-4px) scale(1.01) !important;
-    box-shadow: 0 12px 25px rgba(var(--color-primary-rgb), 0.15) !important;
-  }
+  border: 1px solid rgba(var(--color-primary-rgb), 0.4) !important;
+  background: #2f2f2f !important;
 }
 
 /* BlogCardSideコンポーネント用のスタイル */
 .modern-blog-card-astro {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center;
+  border-radius: 8px;
+  background: #2a2a2a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .modern-blog-card-astro:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.2);
-  border: 1px solid rgba(var(--color-primary-rgb), 0.3);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.4);
+  background: #2f2f2f;
 }
 
 .card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.12), rgba(var(--color-primary-rgb), 0.06));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.modern-blog-card-astro:hover .card-overlay {
-  opacity: 1;
+  display: none;
 }
 
 .card-content {
@@ -207,70 +176,22 @@ main {
 /* モバイル対応 */
 @media (max-width: 768px) {
   .modern-blog-card-astro:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 25px rgba(var(--color-primary-rgb), 0.15);
+    /* シンプル化 */
   }
 }
 
-/* バッジのホバーアニメーション */
+/* バッジスタイル */
 .modern-badge {
-  position: relative;
-  overflow: hidden;
   border: 1px solid transparent;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modern-badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transition: left 0.3s ease;
-}
-
-.modern-badge:hover::before {
-  left: 100%;
+  transition: all 0.2s ease;
 }
 
 .modern-badge:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 8px rgba(var(--color-primary-rgb), 0.25);
   border: 1px solid rgba(var(--color-primary-rgb), 0.4);
 }
 
 .badge-group {
   margin: 0.5rem 0;
-}
-
-.badge-link:hover .modern-badge {
-  animation: badge-pulse 0.3s ease-out;
-}
-
-@keyframes badge-pulse {
-  0% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-3px) scale(1.08); }
-  100% { transform: translateY(-2px) scale(1.05); }
-}
-
-/* モバイルでのバッジアニメーション調整 */
-@media (max-width: 768px) {
-  .modern-badge:hover {
-    transform: translateY(-1px) scale(1.03);
-    box-shadow: 0 2px 4px rgba(var(--color-primary-rgb), 0.2);
-  }
-  
-  .badge-link:hover .modern-badge {
-    animation: badge-pulse-mobile 0.25s ease-out;
-  }
-  
-  @keyframes badge-pulse-mobile {
-    0% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-2px) scale(1.05); }
-    100% { transform: translateY(-1px) scale(1.03); }
-  }
 }
 
 
@@ -296,12 +217,9 @@ table {
   margin: 20px 0;
   color: var(--text-color);
   width: 100%;
-  background: linear-gradient(135deg, rgba(25, 25, 25, 0.95), rgba(35, 35, 35, 0.95));
-  border-radius: 16px;
+  background: #1a1a1a;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    0 2px 8px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(80, 80, 80, 0.4);
 }
 
@@ -313,7 +231,7 @@ th {
 }
 
 th {
-  background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(50, 50, 50, 0.9));
+  background: #2a2a2a;
   font-weight: 700;
   color: #e0e0e0;
   letter-spacing: 0.03em;

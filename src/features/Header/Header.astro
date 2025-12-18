@@ -16,20 +16,22 @@ const { context } = Astro.props;
 const headerLinks = headerLinkOf(context);
 ---
 
-<header class="shadow-lg mx-auto py-3 lg:pt-3 lg:px-0 fixed top-0 left-0 w-full z-50 bg-[rgba(36,36,36,0.9)] backdrop-blur-xl border-b border-white/10">
+<header class="mx-auto py-3 lg:pt-3 lg:px-0 fixed top-0 left-0 w-full z-50 bg-[#1a1a1a] border-b border-white/10">
   <div class="flex justify-between items-center">
     <Link href={ARTICLES_PATH} class="site-title-link">
-      <div class="flex items-center">
+      <div class="flex items-center logo-container">
         <Image
           src={"/miyabiya.webp"}
           width={32}
-          height={20}
+          height={32}
           alt={"西垣雅矢のプロフィール画像"}
           format="avif"
-          class="mr-2 hidden md:block rounded-full"
+          class="mr-3 hidden md:block rounded-full border border-white/20"
         />
         <h2 class="headerTitle">
-          <span id="typing-text" class="typing-text" data-text={SITE_TITLE}></span><span class="typing-cursor">|</span>
+          <span class="prompt-symbol">&gt;</span>
+          <span id="typing-text" class="typing-text" data-text={SITE_TITLE}></span>
+          <span class="typing-cursor"></span>
         </h2>
       </div>
     </Link>
@@ -47,8 +49,7 @@ const headerLinks = headerLinkOf(context);
   <style>
     header {
       margin: 0 0 1em 0;
-      opacity: 0.7;
-      /* fixed header用の余白はbody側で調整推奨 */
+      opacity: 0.95;
     }
 
     header > div {
@@ -57,14 +58,34 @@ const headerLinks = headerLinkOf(context);
       max-width: 1400px;
     }
 
+    .logo-container {
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .site-title-link:hover .logo-container {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
     .headerTitle {
-      @apply font-bold text-lg sm:text-xl md:text-2xl transition-all duration-200;
+      @apply text-lg sm:text-xl md:text-2xl transition-all duration-200;
       display: flex;
       align-items: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      letter-spacing: -0.02em;
+      color: #e0e0e0;
+    }
+
+    .prompt-symbol {
+      color: var(--color-primary);
+      margin-right: 0.5rem;
+      font-weight: bold;
     }
 
     .typing-text {
       display: inline-block;
+      white-space: pre;
     }
 
     /* 最後のピリオドをプライマリカラーに */
@@ -74,10 +95,12 @@ const headerLinks = headerLinkOf(context);
 
     .typing-cursor {
       display: inline-block;
-      color: var(--color-primary);
-      font-weight: 400;
-      animation: blink 1s step-end infinite;
+      width: 10px;
+      height: 1.2em;
+      background-color: var(--color-primary);
       margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
     }
 
     .typing-cursor.hidden {
@@ -91,14 +114,11 @@ const headerLinks = headerLinkOf(context);
     
     :global(.site-title-link) {
       @apply transition-all duration-200 ease-out;
-    }
-    
-    :global(.site-title-link:hover) {
-      @apply transform scale-105;
+      text-decoration: none;
     }
     
     :global(.site-title-link:hover .headerTitle) {
-      color: var(--color-primary);
+      color: #ffffff;
     }
     
     /* 超小画面対応 (439px以下) */
@@ -111,6 +131,10 @@ const headerLinks = headerLinkOf(context);
       .headerTitle {
         @apply text-base;
         font-size: 1.2rem;
+      }
+
+      .prompt-symbol {
+        margin-right: 0.25rem;
       }
     }
     
