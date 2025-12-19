@@ -565,3 +565,42 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2025年12月19日
+
+### ✏️ Edited `BaseHead.astro` - 2025-12-19 21:15:40
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BaseHead.astro` - 2025-12-19 21:15:48
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+```
+
+**変更後**:
+```
+  <!-- Microsoft Clarity -->
+  <script is:inline>
+    (function(c,l,a,r,i,t,y){
+```
+</details>
+
+---
+
