@@ -640,3 +640,720 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `blog.ts` - 2025-12-19 22:02:42
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2025-12-19 22:02:52
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-19 22:03:00
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link } = Astro.props;
+```
+
+**変更後**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-19 22:03:08
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-19 22:03:16
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:09
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:18
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:27
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:35
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:43
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:04:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:00
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/claude-code-advanced.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-code-advanced/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/claude-code-intro.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-code-intro/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:14
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/mcp-server-tutorial.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/mcp-server-tutorial/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:20
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/ai-coding-comparison.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/ai-coding-comparison/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/claude-api-guide.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-api-guide/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:05:32
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/placeholder/python-ai-app.png",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/python-ai-app/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:06:32
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:06:42
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:08:02
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:11:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:12:28
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-code-advanced/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/55fd9175bec04a8d97934f7f9bc099bb/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2021_58_32.png",
+      width: 1536,
+      height: 1024,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:13:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+```
+
+**変更後**:
+```
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:13:32
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  const imageStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  };
+```
+
+**変更後**:
+```
+  const imageStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+  };
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:14:19
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:15:36
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:15:46
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:15:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:16:08
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2025-12-19 22:18:18
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-image {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: auto;
+  }
+```
+
+**変更後**:
+```
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2025-12-19 22:19:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+```
+
+**変更後**:
+```
+  .card-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-image {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:19:40
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .card-image-container {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+```
+
+**変更後**:
+```
+  .card-image-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-19 22:19:45
+
+**変更内容**: コードを削除
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-19 22:19:52
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  const imageContainerStyle: React.CSSProperties = {
+    width: '100%',
+    height: '180px',
+    overflow: 'hidden',
+    background: 'rgba(0, 0, 0, 0.2)',
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+  };
+```
+
+**変更後**:
+```
+  const imageContainerStyle: React.CSSProperties = {
+    width: '100%',
+    overflow: 'hidden',
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+  };
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:29:45
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/ai-coding-comparison/1200/630",
+      width: 1200,
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/1c1d87d26bbb4605a331e6fd91792a9f/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2022_25_01.png",
+      width: 1536,
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2025-12-19 22:29:52
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/1c1d87d26bbb4605a331e6fd91792a9f/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2022_25_01.png",
+      width: 1536,
+      height: 630,
+```
+
+**変更後**:
+```
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/1c1d87d26bbb4605a331e6fd91792a9f/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2022_25_01.png",
+      width: 1536,
+      height: 1024,
+```
+</details>
+
+---
+

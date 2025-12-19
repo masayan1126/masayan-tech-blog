@@ -28,38 +28,52 @@ const readingTime = calculateReadingTime(post.content);
 
 <div class="modern-blog-card-astro">
   <a href={`/blog/${post.id}/`} class="card-link">
+    {/* アイキャッチ画像 */}
+    {post.eyecatch && (
+      <div class="card-image-container">
+        <img
+          src={post.eyecatch.url}
+          width={post.eyecatch.width}
+          height={post.eyecatch.height}
+          alt={post.title}
+          class="card-image"
+          loading="lazy"
+        />
+      </div>
+    )}
+
     <div class="card-content">
-      {/* タイトル */}
-      <h2 class="card-title">{post.title}</h2>
-      
-      {/* 記事概要 */}
-      {post.description && (
-        <p class="card-description">
-          {truncateDescription(post.description, 80)}
-        </p>
-      )}
-      
-      {/* カテゴリバッジ */}
-      <div class="flex flex-wrap gap-2 mb-3">
-        {post.category.map((c) => (
-          <span class="category-badge">
-            {c.name}
-          </span>
-        ))}
-      </div>
-      
-      {/* メタ情報（公開日・読了時間） */}
-      <div class="card-meta">
-        <div class="meta-item">
-          <Icon name="ph:calendar-bold" class="meta-icon" />
-          <FormattedDate date={new Date(post.publishedAt)} />
+        {/* タイトル */}
+        <h2 class="card-title">{post.title}</h2>
+
+        {/* 記事概要 */}
+        {post.description && (
+          <p class="card-description">
+            {truncateDescription(post.description, 80)}
+          </p>
+        )}
+
+        {/* カテゴリバッジ */}
+        <div class="flex flex-wrap gap-2 mb-3">
+          {post.category.map((c) => (
+            <span class="category-badge">
+              {c.name}
+            </span>
+          ))}
         </div>
-        <div class="meta-item">
-          <Icon name="ph:clock-bold" class="meta-icon" />
-          <span>約{readingTime}分で読めます</span>
+
+        {/* メタ情報（公開日・読了時間） */}
+        <div class="card-meta">
+          <div class="meta-item">
+            <Icon name="ph:calendar-bold" class="meta-icon" />
+            <FormattedDate date={new Date(post.publishedAt)} />
+          </div>
+          <div class="meta-item">
+            <Icon name="ph:clock-bold" class="meta-icon" />
+            <span>約{readingTime}分で読めます</span>
+          </div>
         </div>
       </div>
-    </div>
   </a>
 </div>
 
@@ -73,12 +87,29 @@ const readingTime = calculateReadingTime(post.content);
     transition: all 0.2s ease;
     cursor: pointer;
   }
-  
+
   .modern-blog-card-astro:hover {
     border: 1px solid rgba(var(--color-primary-rgb), 0.4);
     background: #2f2f2f;
   }
-  
+
+  .card-image-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .modern-blog-card-astro:hover .card-image {
+    transform: scale(1.05);
+  }
+
+
   .category-badge {
     display: inline-block;
     padding: 0.25rem 0.5rem;

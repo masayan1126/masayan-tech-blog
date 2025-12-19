@@ -16,7 +16,7 @@ import { LinkCardReplacer } from "@/features/LinkCard/LinkCardReplacer";
 
 type Props = Article;
 
-const { title, description, publishedAt, revisedAt, category, youtube_link } = Astro.props;
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch } = Astro.props;
 const { slug } = Astro.params;
 
 
@@ -134,6 +134,17 @@ const breadCrumbsList = [
         <!-- デコレーションライン -->
         <div class="article-header-line"></div>
       </header>
+      {eyecatch && (
+        <div class="article-eyecatch">
+          <img
+            src={eyecatch.url}
+            width={eyecatch.width}
+            height={eyecatch.height}
+            alt={title}
+            class="eyecatch-image"
+          />
+        </div>
+      )}
       {youtube_link && (
         <>
           <p class="youtube-label">この内容はYOUTUBE動画でもご覧いただけます</p>
@@ -1139,6 +1150,23 @@ const breadCrumbsList = [
 
   .footer {
     grid-area: footer;
+  }
+
+  /* === アイキャッチ画像 === */
+  .article-eyecatch {
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .eyecatch-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 
   /* === 記事ヘッダー === */

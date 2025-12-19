@@ -28,32 +28,53 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
 
   const readingTime = calculateReadingTime(post.content);
 
+  const imageContainerStyle: React.CSSProperties = {
+    width: '100%',
+    overflow: 'hidden',
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+  };
+
   return (
     <div className="modern-blog-card-astro">
       <a href={`/blog/${post.id}/`} className="card-link">
+        {/* アイキャッチ画像 */}
+        {post.eyecatch && (
+          <div className="card-image-container" style={imageContainerStyle}>
+            <img
+              src={post.eyecatch.url}
+              alt={post.title}
+              className="card-image"
+              style={imageStyle}
+              loading="lazy"
+            />
+          </div>
+        )}
+
         <div className="card-content">
           {/* タイトル */}
           <h2 className="card-title">{post.title}</h2>
-          
+
           {/* 記事概要 */}
           {post.description && (
             <p className="card-description">
               {truncateDescription(post.description, 80)}
             </p>
           )}
-          
+
           {/* カテゴリバッジ */}
           <div className="flex flex-wrap gap-2 mb-3">
             {post.category.map((c) => (
-              <span
-                key={c.id}
-                className="category-badge"
-              >
+              <span key={c.id} className="category-badge">
                 {c.name}
               </span>
             ))}
           </div>
-          
+
           {/* メタ情報（公開日・読了時間） */}
           <div className="card-meta">
             <div className="meta-item">

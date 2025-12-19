@@ -9,11 +9,11 @@ import {
   sortedMockArticles,
 } from "./mock";
 
-// type ArticleEyecatch = {
-//   url: string;
-//   height: number;
-//   width: number;
-// };
+export type ArticleEyecatch = {
+  url: string;
+  height: number;
+  width: number;
+};
 
 export type Article = {
   id: string;
@@ -24,7 +24,7 @@ export type Article = {
   title: string;
   content: string;
   description: string;
-  // eyecatch: ArticleEyecatch;
+  eyecatch?: ArticleEyecatch;
   category: ArticleCategory[];
   youtube_link?: string; // Optional YouTube link for embedding
 };
