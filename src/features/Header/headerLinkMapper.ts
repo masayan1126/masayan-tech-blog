@@ -28,6 +28,10 @@ headerLinkMapper
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
+  .set("privacy", [
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
+  ])
   .set("404", []);
 
 export const headerLinkOf = (currentUrl: string) => {

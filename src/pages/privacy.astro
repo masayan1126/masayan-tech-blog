@@ -1,0 +1,110 @@
+---
+import {
+  PRIVACY_DESCRIPTION,
+  PRIVACY_TITLE,
+} from "@/features/Privacy/constants/meta";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Icon } from "astro-icon";
+---
+
+<BaseLayout
+  title={PRIVACY_TITLE}
+  description={PRIVACY_DESCRIPTION}
+  context={"privacy"}
+  breadCrumbsList={[]}
+>
+  <div class="privacy-container">
+    <h2 class="privacy-title">
+      <Icon name="noto:locked" class="w-6 inline-block mr-2" />{PRIVACY_TITLE}
+    </h2>
+    <section class="privacy-section">
+      <h3><Icon name="noto:clipboard" class="w-5 inline-block mr-1" />個人情報の取り扱いについて</h3>
+      <p>
+        当ブログでは、お問い合わせやコメントの際に、お名前やメールアドレス等の個人情報をご入力いただく場合がございます。取得した個人情報は、お問い合わせに対する回答や必要な情報をご連絡するために利用し、それ以外の目的では利用いたしません。
+      </p>
+    </section>
+    <section class="privacy-section">
+      <h3><Icon name="noto:cookie" class="w-5 inline-block mr-1" />Cookieについて</h3>
+      <p>
+        当ブログでは、一部のコンテンツにおいてCookieを利用しています。Cookieとは、Webサイトへのアクセス時にブラウザに保存される小さなテキストファイルです。Cookieの使用により、訪問者の利便性向上やサイト改善のための分析を行っています。ブラウザの設定によりCookieを無効にすることも可能ですが、一部機能が利用できなくなる場合があります。
+      </p>
+    </section>
+    <section class="privacy-section">
+      <h3><Icon name="noto:bar-chart" class="w-5 inline-block mr-1" />アクセス解析ツールについて</h3>
+      <p>
+        当ブログでは、Googleによるアクセス解析ツール「Google Analytics」および Microsoft による「Microsoft Clarity」を使用しています。
+      </p>
+      <h4>Google Analytics</h4>
+      <p>
+        Google Analyticsはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが可能です。詳しくは<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener noreferrer">Googleのサービスを使用するサイトやアプリから収集した情報のGoogleによる使用</a>をご覧ください。
+      </p>
+      <h4>Microsoft Clarity</h4>
+      <p>
+        Microsoft Clarityは、ユーザーの行動分析のためにセッション録画やヒートマップ機能を提供します。これにより、クリック、スクロール、マウスの動きなどのユーザー行動データを収集し、サイトの改善に活用しています。収集されたデータは匿名化されており、個人を特定するものではありません。詳しくは<a href="https://privacy.microsoft.com/ja-jp/privacystatement" target="_blank" rel="noopener noreferrer">Microsoftのプライバシーに関する声明</a>をご覧ください。
+      </p>
+    </section>
+    <section class="privacy-section">
+      <h3><Icon name="noto:newspaper" class="w-5 inline-block mr-1" />広告配信について</h3>
+      <p>
+        当ブログでは、第三者配信の広告サービス「Google Adsense」を利用しています。広告配信事業者は、ユーザーの興味に応じた広告を表示するためにCookieを使用することがあります。Google Adsenseに関する詳細は<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank" rel="noopener noreferrer">広告 - ポリシーと規約 - Google</a>をご覧ください。
+      </p>
+      <p>
+        ユーザーはGoogleの広告設定ページで、パーソナライズ広告を無効にすることができます。また、<a href="https://optout.aboutads.info/?c=2&lang=EN" target="_blank" rel="noopener noreferrer">aboutads.info</a>にアクセスすることで、パーソナライズ広告に使われる第三者配信事業者のCookieを無効にすることができます。
+      </p>
+    </section>
+    <section class="privacy-section">
+      <h3>プライバシーポリシーの変更について</h3>
+      <p>
+        本プライバシーポリシーの内容は、法令やその他の事由により予告なく変更されることがあります。変更後のプライバシーポリシーは、当ブログに掲載した時点から効力を生じるものとします。
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .privacy-container {
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    width: 90%;
+    max-width: 1400px;
+    margin: 2rem 0 3rem 0;
+  }
+  .privacy-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    letter-spacing: 0.08em;
+  }
+  .privacy-section {
+    margin-bottom: 2.2rem;
+  }
+  .privacy-section h3 {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+  }
+  .privacy-section h4 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 1rem 0 0.5rem 0;
+  }
+  .privacy-section p {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin: 0 0 0.8rem 0;
+    line-height: 1.8;
+  }
+  .privacy-section a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .privacy-section a:hover {
+    opacity: 0.8;
+  }
+</style>
