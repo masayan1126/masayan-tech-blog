@@ -1771,3 +1771,41 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `astro.config.mjs` - 2025-12-20 11:59:27
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  build: {
+    // 小さなCSSをインライン化してレンダリングブロッキングを軽減
+    inlineStylesheets: 'auto',
+  },
+```
+
+**変更後**:
+```
+  build: {
+    // 全てのCSSをインライン化してレンダリングブロッキングを解消
+    inlineStylesheets: 'always',
+  },
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseHead.astro` - 2025-12-20 12:10:20
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+

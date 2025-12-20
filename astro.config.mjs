@@ -14,8 +14,8 @@ export default defineConfig({
   adapter: vercel({ runtime: 'nodejs20.x' }),
   site: SITE_DOMAIN,
   build: {
-    // 小さなCSSをインライン化してレンダリングブロッキングを軽減
-    inlineStylesheets: 'auto',
+    // 全てのCSSをインライン化してレンダリングブロッキングを解消
+    inlineStylesheets: 'always',
   },
   integrations: [
     mdx(),
