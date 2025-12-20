@@ -13,6 +13,7 @@ import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import type { Article } from "@/libs/microcms/blog";
 import ScrollToTop from "@/components/ScrollToTop.astro";
 import { LinkCardReplacer } from "@/features/LinkCard/LinkCardReplacer";
+import { optimizeImageUrl } from "@/utils/imageOptimizer";
 
 type Props = Article;
 
@@ -136,13 +137,25 @@ const breadCrumbsList = [
       </header>
       {eyecatch && (
         <div class="article-eyecatch">
-          <img
-            src={eyecatch.url}
-            width={eyecatch.width}
-            height={eyecatch.height}
-            alt={title}
-            class="eyecatch-image"
-          />
+          <picture>
+            <source
+              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'avif', quality: 85 })}
+              type="image/avif"
+            />
+            <source
+              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'webp', quality: 85 })}
+              type="image/webp"
+            />
+            <img
+              src={optimizeImageUrl(eyecatch.url, { width: 800, quality: 85 })}
+              width={800}
+              height={Math.round(800 * eyecatch.height / eyecatch.width)}
+              alt={title}
+              class="eyecatch-image"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
       )}
       {youtube_link && (

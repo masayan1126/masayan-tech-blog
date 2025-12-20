@@ -1,6 +1,7 @@
 import type { Article } from '@/libs/microcms/blog';
 import { Icon } from '@iconify/react';
 import { PRIMARY_COLOR } from '@/constants/colors';
+import { optimizeImageUrl } from '@/utils/imageOptimizer';
 
 interface BlogCardSideProps {
   post: Article;
@@ -45,13 +46,26 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
         {/* アイキャッチ画像 */}
         {post.eyecatch && (
           <div className="card-image-container" style={imageContainerStyle}>
-            <img
-              src={post.eyecatch.url}
-              alt={post.title}
-              className="card-image"
-              style={imageStyle}
-              loading="lazy"
-            />
+            <picture>
+              <source
+                srcSet={optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'avif', quality: 80 })}
+                type="image/avif"
+              />
+              <source
+                srcSet={optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'webp', quality: 80 })}
+                type="image/webp"
+              />
+              <img
+                src={optimizeImageUrl(post.eyecatch.url, { width: 600, quality: 80 })}
+                width={600}
+                height={Math.round(600 * post.eyecatch.height / post.eyecatch.width)}
+                alt={post.title}
+                className="card-image"
+                style={imageStyle}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
         )}
 

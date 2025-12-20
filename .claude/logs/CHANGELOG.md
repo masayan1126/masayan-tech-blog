@@ -1357,3 +1357,110 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2025年12月20日
+
+### 📝 Updated `imageOptimizer.ts` - 2025-12-20 09:38:32
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/utils/imageOptimizer.ts`
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-20 09:38:51
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+import type { Article } from "@/libs/microcms/blog";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon";
+```
+
+**変更後**:
+```
+---
+import type { Article } from "@/libs/microcms/blog";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon";
+import { optimizeImageUrl } from "@/utils/imageOptimizer";
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-20 09:39:01
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-20 09:39:31
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-20 09:39:43
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-20 09:45:29
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import type { Article } from '@/libs/microcms/blog';
+import { Icon } from '@iconify/react';
+import { PRIMARY_COLOR } from '@/constants/colors';
+```
+
+**変更後**:
+```
+import type { Article } from '@/libs/microcms/blog';
+import { Icon } from '@iconify/react';
+import { PRIMARY_COLOR } from '@/constants/colors';
+import { optimizeImageUrl } from '@/utils/imageOptimizer';
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-20 09:45:39
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
