@@ -13,6 +13,10 @@ export default defineConfig({
   output: 'server',
   adapter: vercel({ runtime: 'nodejs20.x' }),
   site: SITE_DOMAIN,
+  build: {
+    // 小さなCSSをインライン化してレンダリングブロッキングを軽減
+    inlineStylesheets: 'auto',
+  },
   integrations: [
     mdx(),
     sitemap(),

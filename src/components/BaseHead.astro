@@ -22,6 +22,10 @@ const { title, description, image = '/miyabiya.webp' } = Astro.props;
   <link rel="apple-touch-icon" href="/miyabiya.webp" />
   <meta name="generator" content={Astro.generator} />
 
+  <!-- DNS Prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://images.microcms-assets.io" />
+  <link rel="preconnect" href="https://images.microcms-assets.io" crossorigin />
+
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />
 
