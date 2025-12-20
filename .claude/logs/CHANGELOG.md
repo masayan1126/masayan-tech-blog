@@ -1464,3 +1464,290 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogDetailProfileCard.astro` - 2025-12-20 10:59:30
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Blog/Detail/BlogDetailProfileCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+---
+```
+
+**変更後**:
+```
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon";
+import profileImage from "@/assets/images/miyabiya.webp";
+---
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailProfileCard.astro` - 2025-12-20 10:59:38
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/Detail/BlogDetailProfileCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+      <Image
+        src={"/miyabiya.webp"}
+        width={80}
+        height={80}
+        alt={"西垣雅矢のプロフィール画像"}
+        format="avif"
+        class="profile-avatar"
+      />
+```
+
+**変更後**:
+```
+      <Image
+        src={profileImage}
+        width={80}
+        height={80}
+        alt={"西垣雅矢のプロフィール画像"}
+        format="avif"
+        class="profile-avatar"
+      />
+```
+</details>
+
+---
+
+### ✏️ Edited `Header.astro` - 2025-12-20 10:59:47
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/Header/Header.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `Header.astro` - 2025-12-20 10:59:54
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Header/Header.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+        <Image
+          src={"/miyabiya.webp"}
+          width={32}
+          height={32}
+          alt={"西垣雅矢のプロフィール画像"}
+          format="avif"
+          class="mr-3 hidden md:block rounded-full border border-white/20"
+        />
+```
+
+**変更後**:
+```
+        <Image
+          src={profileImage}
+          width={32}
+          height={32}
+          alt={"西垣雅矢のプロフィール画像"}
+          format="avif"
+          class="mr-3 hidden md:block rounded-full border border-white/20"
+        />
+```
+</details>
+
+---
+
+### ✏️ Edited `About.astro` - 2025-12-20 11:00:06
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/features/About/About.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+import BlogContents from "./BlogContents.astro";
+import SnsAndMedia from "./SnsAndMedia.astro";
+import JobRequest from "./JobRequest.astro";
+import { SITE_TITLE } from "@/constants/meta";
+import { Image } from "astro:assets";
+---
+```
+
+**変更後**:
+```
+---
+import BlogContents from "./BlogContents.astro";
+import SnsAndMedia from "./SnsAndMedia.astro";
+import JobRequest from "./JobRequest.astro";
+import { SITE_TITLE } from "@/constants/meta";
+import { Image } from "astro:assets";
+import profileImage from "@/assets/images/miyabiya.webp";
+---
+```
+</details>
+
+---
+
+### ✏️ Edited `About.astro` - 2025-12-20 11:00:13
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/About/About.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+        <Image
+          src={"/miyabiya.webp"}
+          width={256}
+          height={256}
+          alt={"西垣雅矢のプロフィール画像"}
+          format="avif"
+          class="profile-image"
+        />
+```
+
+**変更後**:
+```
+        <Image
+          src={profileImage}
+          width={256}
+          height={256}
+          alt={"西垣雅矢のプロフィール画像"}
+          format="avif"
+          class="profile-image"
+        />
+```
+</details>
+
+---
+
+### ✏️ Edited `404.astro` - 2025-12-20 11:00:30
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/404.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `404.astro` - 2025-12-20 11:00:37
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/404.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+        <img 
+          src="/miyabiya.webp" 
+          alt="迷子のインコ" 
+          class="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full"
+        />
+```
+
+**変更後**:
+```
+        <Image
+          src={profileImage}
+          width={192}
+          height={192}
+          alt="迷子のインコ"
+          format="avif"
+          class="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full"
+        />
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-12-20 11:00:48
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-12-20 11:00:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<img src="/miyabiya.webp" alt="西垣雅矢" class="author-image" width="64" height="64" />
+```
+
+**変更後**:
+```
+<Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" />
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-20 11:01:17
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-20 11:01:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-20 11:01:47
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+

@@ -8,6 +8,8 @@ import { BlogListWithSearch } from "@/features/Blog/List/BlogListWithSearch";
 import { BlogCategoryTabs } from "@/features/Blog/List/BlogCategoryTabs";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+import { Image } from "astro:assets";
+import profileImage from "@/assets/images/miyabiya.webp";
 
 export const prerender = true;
 
@@ -50,7 +52,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
       <div class="banner-content">
         <div class="author-profile">
           <div class="author-icon-wrapper">
-            <img src="/miyabiya.webp" alt="西垣雅矢" class="author-image" width="64" height="64" />
+            <Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" />
           </div>
           <div class="author-role">Tech Lead / Full Stack Engineer</div>
         </div>

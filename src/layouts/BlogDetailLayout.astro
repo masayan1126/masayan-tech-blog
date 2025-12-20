@@ -139,15 +139,15 @@ const breadCrumbsList = [
         <div class="article-eyecatch">
           <picture>
             <source
-              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'avif', quality: 85 })}
+              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'avif', quality: 65 })}
               type="image/avif"
             />
             <source
-              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'webp', quality: 85 })}
+              srcset={optimizeImageUrl(eyecatch.url, { width: 800, format: 'webp', quality: 70 })}
               type="image/webp"
             />
             <img
-              src={optimizeImageUrl(eyecatch.url, { width: 800, quality: 85 })}
+              src={optimizeImageUrl(eyecatch.url, { width: 800, quality: 75 })}
               width={800}
               height={Math.round(800 * eyecatch.height / eyecatch.width)}
               alt={title}

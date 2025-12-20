@@ -4,6 +4,7 @@ import SnsAndMedia from "./SnsAndMedia.astro";
 import JobRequest from "./JobRequest.astro";
 import { SITE_TITLE } from "@/constants/meta";
 import { Image } from "astro:assets";
+import profileImage from "@/assets/images/miyabiya.webp";
 ---
 
 <div class="about-page">
@@ -19,7 +20,7 @@ import { Image } from "astro:assets";
       </div>
       <div class="hero-image">
         <Image
-          src={"/miyabiya.webp"}
+          src={profileImage}
           width={256}
           height={256}
           alt={"西垣雅矢のプロフィール画像"}
