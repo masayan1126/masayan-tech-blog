@@ -243,31 +243,32 @@ const headings = extractHeadings(content);
       observer.observe(heading);
     });
 
-    // 初期状態の設定（少し遅延させる）
-    setTimeout(() => {
-      // 最初に表示されている見出しを探す
-      for (let i = 0; i < headings.length; i++) {
-        const heading = headings[i];
+    // 初期状態の設定（requestAnimationFrameでバッチ処理して強制リフロー防止）
+    requestAnimationFrame(() => {
+      // まず全てのrect情報を一括で読み取り（読み取りフェーズ）
+      const headingRects: Array<{id: string; top: number}> = [];
+      const viewportHeight = window.innerHeight;
+
+      headings.forEach(heading => {
         const rect = heading.getBoundingClientRect();
-
-        // 画面内に表示されているかチェック
-        if (rect.top >= 0 && rect.top <= window.innerHeight * 0.5) {
-          const id = heading.getAttribute('id');
-          if (id) {
-            setActiveLink(id);
-            break;
-          }
+        const id = heading.getAttribute('id');
+        if (id) {
+          headingRects.push({ id, top: rect.top });
         }
-      }
+      });
 
-      // どの見出しも表示されていない場合は最初の見出しをアクティブに
-      if (!currentActiveId && headings.length > 0) {
-        const firstId = headings[0].getAttribute('id');
-        if (firstId) {
-          setActiveLink(firstId);
-        }
+      // 書き込みフェーズ（DOMの変更）
+      const visibleHeading = headingRects.find(
+        h => h.top >= 0 && h.top <= viewportHeight * 0.5
+      );
+
+      if (visibleHeading) {
+        setActiveLink(visibleHeading.id);
+      } else if (headingRects.length > 0) {
+        // どの見出しも表示されていない場合は最初の見出しをアクティブに
+        setActiveLink(headingRects[0].id);
       }
-    }, 300);
+    });
   }
 
   // Astroのビュー遷移対応

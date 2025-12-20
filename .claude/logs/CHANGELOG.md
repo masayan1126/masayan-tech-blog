@@ -1913,3 +1913,55 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `ScrollToTop.astro` - 2025-12-20 12:46:15
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/ScrollToTop.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2025-12-20 12:46:41
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-12-20 12:46:57
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" />
+```
+
+**変更後**:
+```
+<Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" loading="eager" fetchpriority="high" />
+```
+</details>
+
+---
+
+### ✏️ Edited `Header.astro` - 2025-12-20 12:47:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Header/Header.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+

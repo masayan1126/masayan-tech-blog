@@ -52,7 +52,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
       <div class="banner-content">
         <div class="author-profile">
           <div class="author-icon-wrapper">
-            <Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" />
+            <Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" loading="eager" fetchpriority="high" />
           </div>
           <div class="author-role">Tech Lead / Full Stack Engineer</div>
         </div>
