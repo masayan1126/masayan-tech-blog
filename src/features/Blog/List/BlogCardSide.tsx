@@ -48,15 +48,17 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
           <div className="card-image-container" style={imageContainerStyle}>
             <picture>
               <source
-                srcSet={optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'avif', quality: 60 })}
+                srcSet={`${optimizeImageUrl(post.eyecatch.url, { width: 400, format: 'avif', quality: 50 })} 400w, ${optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'avif', quality: 50 })} 600w`}
+                sizes="(max-width: 768px) 400px, 600px"
                 type="image/avif"
               />
               <source
-                srcSet={optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'webp', quality: 65 })}
+                srcSet={`${optimizeImageUrl(post.eyecatch.url, { width: 400, format: 'webp', quality: 55 })} 400w, ${optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'webp', quality: 55 })} 600w`}
+                sizes="(max-width: 768px) 400px, 600px"
                 type="image/webp"
               />
               <img
-                src={optimizeImageUrl(post.eyecatch.url, { width: 600, quality: 70 })}
+                src={optimizeImageUrl(post.eyecatch.url, { width: 600, quality: 60 })}
                 width={600}
                 height={Math.round(600 * post.eyecatch.height / post.eyecatch.width)}
                 alt={post.title}

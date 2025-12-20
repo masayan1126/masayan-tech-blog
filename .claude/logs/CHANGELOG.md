@@ -1965,3 +1965,23 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogCardSide.astro` - 2025-12-20 12:59:11
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2025-12-20 12:59:29
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
