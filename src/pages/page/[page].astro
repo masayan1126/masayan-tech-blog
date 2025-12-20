@@ -74,7 +74,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
     categories={categoriesWithCount}
     totalArticles={allArticles.length}
     currentCategoryId={null}
-    client:load
+    client:idle
   />
 
   <!-- 検索機能付きブログリスト -->
@@ -85,7 +85,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
     totalPages={page.lastPage}
     totalArticles={page.total}
     pageSize={page.size}
-    client:load
+    client:idle
   />
 </BlogListLayout>
 

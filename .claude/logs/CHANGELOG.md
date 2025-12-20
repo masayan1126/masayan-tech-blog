@@ -1809,3 +1809,107 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BaseHead.astro` - 2025-12-20 12:26:25
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2025-12-20 12:26:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+```
+
+**変更後**:
+```
+    partytown({
+      config: {
+        forward: ["dataLayer.push", "clarity", "adsbygoogle.push"],
+      },
+    }),
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-12-20 12:27:07
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[page].astro` - 2025-12-20 12:27:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <BlogCategoryTabs
+    categories={categoriesWithCount}
+    totalArticles={allArticles.length}
+    currentCategoryId={categoryId}
+    client:load
+  />
+```
+
+**変更後**:
+```
+  <BlogCategoryTabs
+    categories={categoriesWithCount}
+    totalArticles={allArticles.length}
+    currentCategoryId={categoryId}
+    client:idle
+  />
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2025-12-20 12:27:33
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<LinkCardReplacer client:load />
+```
+
+**変更後**:
+```
+<LinkCardReplacer client:idle />
+```
+</details>
+
+---
+
