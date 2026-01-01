@@ -1996,3 +1996,32 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2026年01月01日
+
+### ✏️ Edited `index.astro` - 2026-01-01 12:50:44
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/categories/index.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+import { getCategories } from "@/libs/microcms/category";
+```
+
+**変更後**:
+```
+---
+export const prerender = true;
+
+import { getCategories } from "@/libs/microcms/category";
+```
+</details>
+
+---
+
