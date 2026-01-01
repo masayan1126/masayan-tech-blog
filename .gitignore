@@ -1,5 +1,8 @@
 # build output
 dist/
+
+# build cache (microCMS data cache for code-only deploys)
+.cache/
 # generated types
 .astro/
 

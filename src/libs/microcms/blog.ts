@@ -1,6 +1,7 @@
 import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
 import type { ArticleCategory } from "@/libs/microcms/category";
 import { client, IS_DEV_MODE } from "@/libs/microcms/config";
+import { withCache } from "@/libs/microcms/buildCache";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import {
   mockArticlesResponse,
@@ -27,6 +28,7 @@ export type Article = {
   eyecatch?: ArticleEyecatch;
   category: ArticleCategory[];
   youtube_link?: string; // Optional YouTube link for embedding
+  more_readings?: Article[]; // Optional curated reading list
 };
 
 export type ArticlesResponse = {
@@ -43,7 +45,11 @@ export const getArticles = async (
   if (IS_DEV_MODE) {
     return mockArticlesResponse;
   }
-  return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
+  // ビルドキャッシュを使用（コードpush時はAPIリクエストを節約）
+  const cacheKey = `articles-${JSON.stringify(queries)}`;
+  return await withCache(cacheKey, () =>
+    client.get<ArticlesResponse>({ endpoint: "blogs", queries })
+  );
 };
 export const getArticlesByCategory = async (filters: string) => {
   // 開発環境ではモックデータを返す
@@ -60,7 +66,11 @@ export const getArticlesByCategory = async (filters: string) => {
     };
   }
   const queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT, filters };
-  return await client.getList<Article>({ endpoint: "blogs", queries });
+  // ビルドキャッシュを使用（コードpush時はAPIリクエストを節約）
+  const cacheKey = `articles-by-category-${filters}`;
+  return await withCache(cacheKey, () =>
+    client.getList<Article>({ endpoint: "blogs", queries })
+  );
 };
 
 export const getArticleDraft = async (id: string, draftKey: string) => {

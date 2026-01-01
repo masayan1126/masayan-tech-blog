@@ -2469,3 +2469,337 @@ import { optimizeImageUrl } from "@/utils/imageOptimizer";
 
 ---
 
+### 📝 Updated `ogp.ts` - 2026-01-01 14:13:48
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/pages/api/ogp.ts`
+
+---
+
+### 📝 Updated `LinkCard.tsx` - 2026-01-01 14:14:15
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/LinkCard/LinkCard.tsx`
+
+---
+
+### 📝 Updated `LinkCardReplacer.tsx` - 2026-01-01 14:14:34
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/LinkCard/LinkCardReplacer.tsx`
+
+---
+
+### ✏️ Edited `index.astro` - 2026-01-01 14:14:47
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/draft/index.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `index.astro` - 2026-01-01 14:14:58
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/blog/draft/index.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### 📝 Updated `buildCache.ts` - 2026-01-01 14:43:49
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/buildCache.ts`
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 14:44:01
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 14:44:11
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 14:44:22
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `category.ts` - 2026-01-01 14:44:32
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/category.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
+import type { MicroCMSQueries } from "microcms-js-sdk";
+import { client, IS_DEV_MODE } from "./config";
+import { mockCategoriesResponse } from "./mock";
+```
+
+**変更後**:
+```
+import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
+import type { MicroCMSQueries } from "microcms-js-sdk";
+import { client, IS_DEV_MODE } from "./config";
+import { withCache } from "./buildCache";
+import { mockCategoriesResponse } from "./mock";
+```
+</details>
+
+---
+
+### ✏️ Edited `category.ts` - 2026-01-01 14:44:41
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/category.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `.gitignore` - 2026-01-01 14:45:03
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `.gitignore`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+# build output
+dist/
+```
+
+**変更後**:
+```
+# build output
+dist/
+
+# build cache (microCMS data cache for code-only deploys)
+.cache/
+```
+</details>
+
+---
+
+### ✏️ Edited `env.d.ts` - 2026-01-01 14:45:04
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/env.d.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 15:12:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 15:12:45
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch } = Astro.props;
+```
+
+**変更後**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 15:12:59
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 15:13:20
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .share-section,
+  .related-posts-section,
+  .author-section {
+    padding: 2rem;
+    background: var(--color-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+```
+
+**変更後**:
+```
+  .share-section,
+  .more-reading-section,
+  .related-posts-section,
+  .author-section {
+    padding: 2rem;
+    background: var(--color-bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 15:13:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    .share-section,
+    .related-posts-section,
+    .author-section {
+      padding: 1.5rem;
+    }
+```
+
+**変更後**:
+```
+    .share-section,
+    .more-reading-section,
+    .related-posts-section,
+    .author-section {
+      padding: 1.5rem;
+    }
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 15:18:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    description: "Claude Codeの応用的な機能（メモリファイル、settings.json、サブエージェント、プラグイン）をフル活用し、作業効率と生産性を最大化するための実践ガイド。Maxプランユーザーの経験に基づく解説。",
+    category: [getCategory("claude-code")],
+  },
+  {
+    id: "mock-claude-code-intro",
+```
+
+**変更後**:
+```
+    description: "Claude Codeの応用的な機能（メモリファイル、settings.json、サブエージェント、プラグイン）をフル活用し、作業効率と生産性を最大化するための実践ガイド。Maxプランユーザーの経験に基づく解説。",
+    category: [getCategory("claude-code")],
+    // more_readingsは後で参照を設定
+  },
+  {
+    id: "mock-claude-code-intro",
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 15:18:21
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 15:18:28
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    category: [getCategory("claude-code")],
+    // more_readingsは後で参照を設定
+  },
+```
+
+**変更後**:
+```
+    category: [getCategory("claude-code")],
+  },
+```
+</details>
+
+---
+

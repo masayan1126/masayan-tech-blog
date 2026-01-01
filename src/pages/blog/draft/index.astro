@@ -1,10 +1,21 @@
 ---
+/**
+ * 下書きプレビューページ
+ *
+ * microCMSの下書き記事をプレビュー表示するためのページ。
+ * URLパラメータ: ?id=<記事ID>&draftKey=<下書きキー>
+ *
+ * 注意:
+ * - LinkCardReplacerは下書きプレビュー専用のコンポーネント
+ * - 本番環境ではmicroCMS側でリンクカードが展開されるため不要
+ */
 export const prerender = false;
 import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
 import { attachHeadingIds } from "@/libs/headingIds";
 import { getArticleDraft, type Article } from "@/libs/microcms/blog";
 import TableOfContents from "@/components/TableOfContents.astro";
+import { LinkCardReplacer } from "@/features/LinkCard/LinkCardReplacer";
 
 const id = Astro.url.searchParams.get("id");
 const draftKey = Astro.url.searchParams.get("draftKey");
@@ -29,6 +40,8 @@ if (draftKey && id) {
     <!-- モバイル表示用の目次 -->
     <TableOfContents slot="toc-mobile" content={processedContent} />
     <p set:html={processedContent} />
+    <!-- 下書きプレビュー専用: span.link-cardをOGP情報付きリンクカードに変換 -->
+    <LinkCardReplacer client:load />
     <!-- microCMSプレビュー用: id と draftKey をURLクエリに付与してアクセスしてください -->
   </BlogDetailLayout>
 )}

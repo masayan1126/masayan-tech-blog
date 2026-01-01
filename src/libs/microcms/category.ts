@@ -1,6 +1,7 @@
 import { FETCH_POSTS_MAX_LIMIT } from "@/constants/article";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 import { client, IS_DEV_MODE } from "./config";
+import { withCache } from "./buildCache";
 import { mockCategoriesResponse } from "./mock";
 
 export type ArticleCategory = {
@@ -28,8 +29,12 @@ export const getCategories = async (
   if (IS_DEV_MODE) {
     return mockCategoriesResponse;
   }
-  return await client.get<CategoryResponse>({
-    endpoint: "categories",
-    queries,
-  });
+  // ビルドキャッシュを使用（コードpush時はAPIリクエストを節約）
+  const cacheKey = `categories-${JSON.stringify(queries)}`;
+  return await withCache(cacheKey, () =>
+    client.get<CategoryResponse>({
+      endpoint: "categories",
+      queries,
+    })
+  );
 };

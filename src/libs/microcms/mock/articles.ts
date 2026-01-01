@@ -1535,6 +1535,36 @@ def test_create_user():
   },
 ];
 
+// more_readings の設定（記事間の相互参照）
+const getArticleById = (id: string) => mockArticles.find((a) => a.id === id);
+
+// Claude Code応用編 → 入門編とMCP記事を参照
+const crashCourse = getArticleById("mock-claude-code-crash-course");
+if (crashCourse) {
+  crashCourse.more_readings = [
+    getArticleById("mock-claude-code-intro"),
+    getArticleById("mock-claude-code-mcp"),
+  ].filter((a): a is Article => a !== undefined);
+}
+
+// MCP入門 → MCPベストプラクティスとClaude Code MCP記事を参照
+const mcpTutorial = getArticleById("mock-mcp-server-tutorial");
+if (mcpTutorial) {
+  mcpTutorial.more_readings = [
+    getArticleById("mock-mcp-best-practices"),
+    getArticleById("mock-claude-code-mcp"),
+  ].filter((a): a is Article => a !== undefined);
+}
+
+// AIコーディングアシスタント比較 → Claude Code入門とCursor入門を参照
+const aiCodingAssistants = getArticleById("mock-ai-coding-assistants");
+if (aiCodingAssistants) {
+  aiCodingAssistants.more_readings = [
+    getArticleById("mock-claude-code-intro"),
+    getArticleById("mock-cursor-intro"),
+  ].filter((a): a is Article => a !== undefined);
+}
+
 // 公開日の新しい順にソート
 export const sortedMockArticles = [...mockArticles].sort(
   (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

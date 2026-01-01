@@ -16,7 +16,7 @@ import { optimizeImageUrl } from "@/utils/imageOptimizer";
 
 type Props = Article;
 
-const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch } = Astro.props;
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings } = Astro.props;
 const { slug } = Astro.params;
 
 
@@ -255,6 +255,38 @@ const breadCrumbsList = [
             </a>
           </div>
         </div>
+
+        <!-- もっと読みたい（キュレーション記事） -->
+        {more_readings && more_readings.length > 0 && (
+          <div class="more-reading-section">
+            <div class="section-header">
+              <Icon name="ph:book-open-bold" class="section-header-icon" />
+              <h2 class="section-title">MORE READING</h2>
+              <span class="section-subtitle">もっと読みたい</span>
+            </div>
+            <div class="related-posts-grid">
+              {more_readings.map((post) => (
+                <a href={`/blog/${post.id}/`} class="related-post-card">
+                  <div class="related-post-content">
+                    <div class="related-post-categories">
+                      {post.category.slice(0, 2).map((c) => (
+                        <span class="related-post-category">{c.name}</span>
+                      ))}
+                    </div>
+                    <h3 class="related-post-title">{post.title}</h3>
+                    <div class="related-post-meta">
+                      <Icon name="ph:calendar-bold" class="related-meta-icon" />
+                      <FormattedDate date={new Date(post.publishedAt)} />
+                    </div>
+                  </div>
+                  <div class="related-post-arrow">
+                    <Icon name="ph:arrow-right-bold" class="arrow-icon" />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
         <!-- 関連記事 -->
         <div class="related-posts-section">
@@ -1292,6 +1324,7 @@ const breadCrumbsList = [
   }
 
   .share-section,
+  .more-reading-section,
   .related-posts-section,
   .author-section {
     padding: 2rem;
@@ -1524,6 +1557,7 @@ const breadCrumbsList = [
     }
 
     .share-section,
+    .more-reading-section,
     .related-posts-section,
     .author-section {
       padding: 1.5rem;

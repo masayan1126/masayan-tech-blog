@@ -1,0 +1,124 @@
+/**
+ * リンクカードコンポーネント
+ *
+ * 【用途】下書きプレビュー専用
+ *
+ * このコンポーネントは、下書きプレビュー時にURLをリンクカード形式で表示するために使用されます。
+ * 本番環境では、microCMS側でリンクカードが展開されるため、このコンポーネントは使用されません。
+ *
+ * 依存:
+ * - /api/ogp エンドポイント（OGP情報取得）
+ *
+ * 使用箇所:
+ * - src/features/LinkCard/LinkCardReplacer.tsx
+ */
+import { useEffect, useState } from 'react';
+
+interface OGPData {
+  title: string;
+  description: string;
+  image: string;
+  siteName: string;
+  favicon: string;
+  url: string;
+}
+
+interface LinkCardProps {
+  url: string;
+}
+
+export const LinkCard: React.FC<LinkCardProps> = ({ url }) => {
+  const [ogpData, setOgpData] = useState<OGPData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchOGP = async () => {
+      try {
+        const response = await fetch(`/api/ogp?url=${encodeURIComponent(url)}`);
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Failed to fetch OGP data: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setOgpData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOGP();
+  }, [url]);
+
+  if (loading) {
+    return (
+      <div className="link-card-container loading">
+        <div className="link-card-skeleton">
+          <div className="skeleton-thumbnail"></div>
+          <div className="skeleton-content">
+            <div className="skeleton-title"></div>
+            <div className="skeleton-description"></div>
+            <div className="skeleton-site"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !ogpData) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="link-card-container fallback"
+      >
+        <div className="link-card-fallback">
+          <span className="fallback-icon">🔗</span>
+          <span className="fallback-url">{url}</span>
+        </div>
+      </a>
+    );
+  }
+
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="link-card-container"
+    >
+      <div className="link-card">
+        {ogpData.image && (
+          <div className="link-card-thumbnail">
+            <img src={ogpData.image} alt={ogpData.title} loading="lazy" />
+          </div>
+        )}
+        <div className="link-card-content">
+          <div className="link-card-header">
+            {ogpData.favicon && (
+              <img
+                src={ogpData.favicon}
+                alt=""
+                className="link-card-favicon"
+                onError={(e) => {
+                  // Hide favicon if it fails to load
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            )}
+            <span className="link-card-site-name">{ogpData.siteName}</span>
+          </div>
+          <h3 className="link-card-title">{ogpData.title}</h3>
+          {ogpData.description && (
+            <p className="link-card-description">{ogpData.description}</p>
+          )}
+        </div>
+      </div>
+    </a>
+  );
+};
