@@ -2421,3 +2421,51 @@ type Props = ArticlePagination;
 
 ---
 
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 13:09:34
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import ScrollToTop from "@/components/ScrollToTop.astro";
+import { LinkCardReplacer } from "@/features/LinkCard/LinkCardReplacer";
+import { optimizeImageUrl } from "@/utils/imageOptimizer";
+```
+
+**変更後**:
+```
+import ScrollToTop from "@/components/ScrollToTop.astro";
+import { optimizeImageUrl } from "@/utils/imageOptimizer";
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-01 13:09:44
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+      <LinkCardReplacer client:idle />
+      <ScrollToTop />
+```
+
+**変更後**:
+```
+      <ScrollToTop />
+```
+</details>
+
+---
+
