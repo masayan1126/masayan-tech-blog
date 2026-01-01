@@ -2803,3 +2803,165 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### 📝 Updated `buildCache.ts` - 2026-01-01 16:01:19
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/buildCache.ts`
+
+---
+
+### ✏️ Edited `env.d.ts` - 2026-01-01 16:01:30
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/env.d.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+interface ImportMetaEnv {
+  readonly MICRO_CMS_SERVICE_DOMAIN: string;
+  readonly MICRO_CMS_API_KEY: string;
+  /**
+   * コンテンツ更新ビルドかどうか
+   * - "true": microCMS webhookからのトリガー（APIから最新データ取得）
+   * - 未設定: GitHub pushからのトリガー（キャッシュ使用）
+   */
+  readonly CONTENT_UPDATE?: string;
+}
+```
+
+**変更後**:
+```
+interface ImportMetaEnv {
+  readonly MICRO_CMS_SERVICE_DOMAIN: string;
+  readonly MICRO_CMS_API_KEY: string;
+  /**
+   * コンテンツ取得をスキップするかどうか
+   * - "true": キャッシュを使用（コードのみの変更時）
+   * - 未設定（デフォルト）: APIから最新データを取得
+   */
+  readonly SKIP_CONTENT_FETCH?: string;
+}
+```
+</details>
+
+---
+
+### 📝 Updated `deploy-code-only.yml` - 2026-01-01 16:06:33
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `.github/workflows/deploy-code-only.yml`
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 16:12:05
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 16:12:16
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `blog.ts` - 2026-01-01 16:12:27
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/libs/microcms/blog.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `category.ts` - 2026-01-01 16:13:53
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/category.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `env.d.ts` - 2026-01-01 16:13:54
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/env.d.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+interface ImportMetaEnv {
+  readonly MICRO_CMS_SERVICE_DOMAIN: string;
+  readonly MICRO_CMS_API_KEY: string;
+  /**
+   * コンテンツ取得をスキップするかどうか
+   * - "true": キャッシュを使用（コードのみの変更時）
+   * - 未設定（デフォルト）: APIから最新データを取得
+   */
+  readonly SKIP_CONTENT_FETCH?: string;
+}
+```
+
+**変更後**:
+```
+interface ImportMetaEnv {
+  readonly MICRO_CMS_SERVICE_DOMAIN: string;
+  readonly MICRO_CMS_API_KEY: string;
+}
+```
+</details>
+
+---
+
+### ✏️ Edited `.gitignore` - 2026-01-01 16:13:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `.gitignore`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+# build output
+dist/
+
+# build cache (microCMS data cache for code-only deploys)
+.cache/
+# generated types
+.astro/
+```
+
+**変更後**:
+```
+# build output
+dist/
+
+# generated types
+.astro/
+```
+</details>
+
+---
+

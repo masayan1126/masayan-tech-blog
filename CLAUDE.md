@@ -50,6 +50,8 @@ npm run build    # 本番ビルド
 npm run test     # テスト実行
 ```
 
+ローカルではmicroCMSへのAPIリクエストをしたくないので、npm bun buildは必ず実行しないこと
+
 ### 環境変数
 
 `.env` に microCMS の API キーを設定（`.env.example` 参照）
