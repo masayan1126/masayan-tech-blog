@@ -11,8 +11,6 @@ import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
 import { Image } from "astro:assets";
 import profileImage from "@/assets/images/miyabiya.webp";
 
-export const prerender = true;
-
 type Props = ArticlePagination;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {

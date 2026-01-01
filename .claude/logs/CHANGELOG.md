@@ -2025,3 +2025,135 @@ import { getCategories } from "@/libs/microcms/category";
 
 ---
 
+### ✏️ Edited `astro.config.mjs` - 2026-01-01 12:57:21
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+output: 'server',
+```
+
+**変更後**:
+```
+output: 'hybrid',
+```
+</details>
+
+---
+
+### ✏️ Edited `index.astro` - 2026-01-01 13:00:04
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/categories/index.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+export const prerender = true;
+
+import { getCategories }
+```
+
+**変更後**:
+```
+---
+import { getCategories }
+```
+</details>
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2026-01-01 13:00:18
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+export const prerender = true;
+
+type Props = Article;
+```
+
+**変更後**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+type Props = Article;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:00:19
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:00:20
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+

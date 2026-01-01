@@ -9,8 +9,6 @@ import { BlogCategoryTabs } from "@/features/Blog/List/BlogCategoryTabs";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
 
-export const prerender = true;
-
 type Props = ArticlePagination;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
