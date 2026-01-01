@@ -2157,3 +2157,267 @@ type Props = ArticlePagination;
 
 ---
 
+### ✏️ Edited `astro.config.mjs` - 2026-01-01 13:03:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+output: 'hybrid',
+```
+
+**変更後**:
+```
+output: 'server',
+```
+</details>
+
+---
+
+### ✏️ Edited `index.astro` - 2026-01-01 13:03:07
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/categories/index.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+import { getCategories }
+```
+
+**変更後**:
+```
+---
+export const prerender = true;
+
+import { getCategories }
+```
+</details>
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2026-01-01 13:03:24
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+type Props = Article;
+```
+
+**変更後**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+export const prerender = true;
+
+type Props = Article;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:03:25
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:03:26
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2026-01-01 13:04:58
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+output: 'server',
+```
+
+**変更後**:
+```
+output: 'static',
+```
+</details>
+
+---
+
+### ✏️ Edited `index.astro` - 2026-01-01 13:05:11
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/categories/index.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+---
+export const prerender = true;
+
+import { getCategories }
+```
+
+**変更後**:
+```
+---
+import { getCategories }
+```
+</details>
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2026-01-01 13:05:29
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+export const prerender = true;
+
+type Props = Article;
+```
+
+**変更後**:
+```
+import TableOfContents from "@/components/TableOfContents.astro";
+
+type Props = Article;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:05:30
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-01 13:05:31
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+export const prerender = true;
+
+type Props = ArticlePagination;
+```
+
+**変更後**:
+```
+import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
+
+type Props = ArticlePagination;
+```
+</details>
+
+---
+
