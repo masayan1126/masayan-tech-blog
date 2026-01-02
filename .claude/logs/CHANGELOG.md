@@ -3634,3 +3634,41 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:27:57
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+.related-post-category {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+```
+
+**変更後**:
+```
+.related-post-category {
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb), 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+```
+</details>
+
+---
+
