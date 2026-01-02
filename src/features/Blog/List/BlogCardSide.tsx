@@ -44,8 +44,8 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
     <div className="modern-blog-card-astro">
       <a href={`/blog/${post.id}/`} className="card-link">
         {/* アイキャッチ画像 */}
-        {post.eyecatch && (
-          <div className="card-image-container" style={imageContainerStyle}>
+        <div className="card-image-container" style={imageContainerStyle}>
+          {post.eyecatch ? (
             <picture>
               <source
                 srcSet={`${optimizeImageUrl(post.eyecatch.url, { width: 400, format: 'avif', quality: 50 })} 400w, ${optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'avif', quality: 50 })} 600w`}
@@ -68,8 +68,12 @@ export const BlogCardSide = ({ post }: BlogCardSideProps) => {
                 decoding="async"
               />
             </picture>
-          </div>
-        )}
+          ) : (
+            <div className="placeholder-image">
+              <span className="placeholder-title">{post.title}</span>
+            </div>
+          )}
+        </div>
 
         <div className="card-content">
           {/* タイトル */}

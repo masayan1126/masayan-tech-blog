@@ -3672,3 +3672,119 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogCardSide.astro` - 2026-01-02 18:52:27
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2026-01-02 18:52:38
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2026-01-02 18:52:48
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2026-01-02 18:52:59
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogCardSide.astro` - 2026-01-02 18:59:18
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .placeholder-title {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+```
+
+**変更後**:
+```
+  .placeholder-title {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCard.astro` - 2026-01-02 18:59:19
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .placeholder-title {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+```
+
+**変更後**:
+```
+  .placeholder-title {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogCardSide.tsx` - 2026-01-02 18:59:20
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Blog/List/BlogCardSide.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `global.css` - 2026-01-02 19:00:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/styles/global.css`
+
+_※ 変更内容が大きいため省略_
+
+---
+

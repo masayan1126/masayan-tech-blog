@@ -30,8 +30,8 @@ const readingTime = calculateReadingTime(post.content);
 <div class="modern-blog-card-astro">
   <a href={`/blog/${post.id}/`} class="card-link">
     {/* アイキャッチ画像 */}
-    {post.eyecatch && (
-      <div class="card-image-container">
+    <div class="card-image-container">
+      {post.eyecatch ? (
         <picture>
           <source
             srcset={`${optimizeImageUrl(post.eyecatch.url, { width: 400, format: 'avif', quality: 50 })} 400w, ${optimizeImageUrl(post.eyecatch.url, { width: 600, format: 'avif', quality: 50 })} 600w`}
@@ -53,8 +53,12 @@ const readingTime = calculateReadingTime(post.content);
             decoding="async"
           />
         </picture>
-      </div>
-    )}
+      ) : (
+        <div class="placeholder-image">
+          <span class="placeholder-title">{post.title}</span>
+        </div>
+      )}
+    </div>
 
     <div class="card-content">
         {/* タイトル */}
@@ -117,6 +121,29 @@ const readingTime = calculateReadingTime(post.content);
     height: auto;
     display: block;
     transition: transform 0.3s ease;
+  }
+
+  .placeholder-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+  }
+
+  .placeholder-title {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .modern-blog-card-astro:hover .card-image {
