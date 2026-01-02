@@ -13,10 +13,11 @@ import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import type { Article } from "@/libs/microcms/blog";
 import ScrollToTop from "@/components/ScrollToTop.astro";
 import { optimizeImageUrl } from "@/utils/imageOptimizer";
+import CopyMarkdownButton from "@/components/CopyMarkdownButton";
 
 type Props = Article;
 
-const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings } = Astro.props;
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings, content } = Astro.props;
 const { slug } = Astro.params;
 
 
@@ -113,25 +114,32 @@ const breadCrumbsList = [
           {title}
         </h1>
         
-        <!-- メタ情報 -->
-        <div class="article-meta">
-          <div class="meta-item">
-            <span class="meta-icon-wrapper">
-              <Icon name="ph:calendar-bold" class="meta-icon" />
-            </span>
-            <span class="meta-label">公開</span>
-            <span class="meta-value"><FormattedDate date={new Date(publishedAt)} /></span>
+        <!-- メタ情報とアクション -->
+        <div class="article-meta-actions">
+          <div class="article-meta">
+            <div class="meta-item">
+              <span class="meta-icon-wrapper">
+                <Icon name="ph:calendar-bold" class="meta-icon" />
+              </span>
+              <span class="meta-label">公開</span>
+              <span class="meta-value"><FormattedDate date={new Date(publishedAt)} /></span>
+            </div>
+            <span class="meta-divider">|</span>
+            <div class="meta-item">
+              <span class="meta-icon-wrapper">
+                <Icon name="ph:pencil-simple-bold" class="meta-icon" />
+              </span>
+              <span class="meta-label">更新</span>
+              <span class="meta-value"><FormattedDate date={new Date(revisedAt)} /></span>
+            </div>
           </div>
-          <span class="meta-divider">|</span>
-          <div class="meta-item">
-            <span class="meta-icon-wrapper">
-              <Icon name="ph:pencil-simple-bold" class="meta-icon" />
-            </span>
-            <span class="meta-label">更新</span>
-            <span class="meta-value"><FormattedDate date={new Date(revisedAt)} /></span>
-          </div>
+          <CopyMarkdownButton
+            client:only="react"
+            htmlContent={content}
+            title={title}
+          />
         </div>
-        
+
         <!-- デコレーションライン -->
         <div class="article-header-line"></div>
       </header>
@@ -1256,12 +1264,20 @@ const breadCrumbsList = [
     border-radius: 50%;
   }
 
+  .article-meta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
   .article-meta {
     display: flex;
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
   }
 
   .article-meta .meta-item {
@@ -1410,6 +1426,43 @@ const breadCrumbsList = [
   .share-linkedin:hover { color: #0A66C2; }
   .share-pocket:hover { color: #EF4056; }
 
+  /* === マークダウンコピーボタン === */
+  :global(.copy-markdown-button) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  :global(.copy-markdown-button:hover) {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  :global(.copy-markdown-button .copy-icon) {
+    width: 18px;
+    height: 18px;
+  }
+
+  :global(.copy-markdown-button .copy-label) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    :global(.copy-markdown-button .copy-label) {
+      display: none;
+    }
+  }
+
   /* === 関連記事 === */
   .related-posts-grid {
     display: grid;
@@ -1545,6 +1598,12 @@ const breadCrumbsList = [
   @media (max-width: 640px) {
     .article-header {
       margin-bottom: 2rem;
+    }
+
+    .article-meta-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
     .article-meta {

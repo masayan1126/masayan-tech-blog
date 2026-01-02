@@ -3362,3 +3362,187 @@ const { title, description, context, breadCrumbsList, image } = Astro.props;
 
 ---
 
+### 📝 Updated `CopyMarkdownButton.tsx` - 2026-01-02 13:11:17
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/components/CopyMarkdownButton.tsx`
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:12:07
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:12:14
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings } = Astro.props;
+```
+
+**変更後**:
+```
+const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings, content } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:12:25
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:12:38
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:13:45
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+:global(.copy-markdown-button .copy-label) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+```
+
+**変更後**:
+```
+:global(.copy-markdown-button .copy-label) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    :global(.copy-markdown-button .copy-label) {
+      display: none;
+    }
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `CopyMarkdownButton.tsx` - 2026-01-02 13:16:13
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/components/CopyMarkdownButton.tsx`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### 📝 Updated `turndown-plugin-gfm.d.ts` - 2026-01-02 13:16:26
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/types/turndown-plugin-gfm.d.ts`
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:21:12
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:21:19
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:21:27
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+```
+
+**変更後**:
+```
+.article-meta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:21:37
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
