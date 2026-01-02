@@ -3546,3 +3546,91 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:24:01
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:24:38
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:24:53
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:25:15
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+.related-posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+```
+
+**変更後**:
+```
+.related-posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related-post-thumbnail {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 640px) {
+```
+</details>
+
+---
+
+### ✏️ Edited `CopyMarkdownButton.tsx` - 2026-01-02 13:26:42
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/CopyMarkdownButton.tsx`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<span className="copy-label">Markdown</span>
+```
+
+**変更後**:
+```
+<span className="copy-label">マークダウンでコピー</span>
+```
+</details>
+
+---
+
