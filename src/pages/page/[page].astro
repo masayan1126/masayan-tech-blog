@@ -9,7 +9,7 @@ import { BlogCategoryTabs } from "@/features/Blog/List/BlogCategoryTabs";
 import type { Pagination as ArticlePagination } from "@/types/pagination";
 import { CATEGORY_LIST } from "@/features/Blog/List/constants/categories";
 import { Image } from "astro:assets";
-import profileImage from "@/assets/images/miyabiya.webp";
+import profileImage from "@/assets/images/bird-pc.webp";
 
 type Props = ArticlePagination;
 
@@ -49,18 +49,17 @@ const newArrivalPosts = [...articles].sort((a, b) => {
       <div class="banner-badge">Concept</div>
       <div class="banner-content">
         <div class="author-profile">
-          <div class="author-icon-wrapper">
-            <Image src={profileImage} width={64} height={64} alt="西垣雅矢" format="avif" class="author-image" loading="eager" fetchpriority="high" />
-          </div>
+          <Image src={profileImage} width={256} height={256} alt="西垣雅矢 (AVIF)" format="avif" quality={100} class="author-image" loading="eager" fetchpriority="high" />
+        
           <div class="author-role">Tech Lead / Full Stack Engineer</div>
         </div>
         <div class="text-content">
           <h3 class="banner-title">
-            <span class="highlight">『AIよりも深く掘り下げて』</span><br class="mobile-break" />
+            <span class="highlight">『AI生成よりも深く掘り下げて』</span><br class="mobile-break" />
             <span class="highlight">『公式ドキュメントよりもわかりやすく』</span>
           </h3>
           <p class="banner-description">
-            AI生成の薄っぺらい記事ではなく、実務で培った<span class="text-accent">深い知見</span>をもとに、<br class="desktop-break" />
+            AI生成の薄くて浅い記事ではなく<span class="text-accent">実務や実体験</span>をもとに、<br class="desktop-break" />
             公式ドキュメントの<span class="text-accent">難解さをわかりやすい言葉</span>で届けます。
           </p>
         </div>
@@ -144,21 +143,9 @@ const newArrivalPosts = [...articles].sort((a, b) => {
     min-width: 120px;
   }
 
-  .author-icon-wrapper {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    padding: 4px;
-    border: 1px solid rgba(243, 188, 69, 0.5);
-    border-radius: 50%;
-  }
-
   .author-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    filter: grayscale(20%);
   }
 
   .author-role {

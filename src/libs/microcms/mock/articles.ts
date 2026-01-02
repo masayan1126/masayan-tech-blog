@@ -23,9 +23,9 @@ export const mockArticles: Article[] = [
     revisedAt: createDate(1),
     title: "Claude Code クラッシュコース【応用編】メモリ・サブエージェント・プラグイン完全ガイド",
     eyecatch: {
-      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/55fd9175bec04a8d97934f7f9bc099bb/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2021_58_32.png",
-      width: 1536,
-      height: 1024,
+      url: "/thum-sample/1.png",
+      width: 1200,
+      height: 630,
     },
     content: `<h2>Claude Code クラッシュコース全シリーズ</h2>
 <p>「Maxプランユーザーが教える」ユースケース紹介編</p>
@@ -162,7 +162,7 @@ model: sonnet
     revisedAt: createDate(5),
     title: "Claude Code クラッシュコース【入門編】インストールから基本操作まで",
     eyecatch: {
-      url: "https://picsum.photos/seed/claude-code-intro/1200/630",
+      url: "/thum-sample/1.png",
       width: 1200,
       height: 630,
     },
@@ -349,7 +349,7 @@ await server.connect(transport);</code></pre>
     revisedAt: createDate(3),
     title: "MCPサーバーの作り方入門【TypeScriptで実装】",
     eyecatch: {
-      url: "https://picsum.photos/seed/mcp-server-tutorial/1200/630",
+      url: "/thum-sample/1.png",
       width: 1200,
       height: 630,
     },
@@ -590,9 +590,9 @@ describe("hello_world tool", () => {
     revisedAt: createDate(2),
     title: "AIコーディングアシスタント徹底比較【2024年版】Claude Code vs Cursor vs GitHub Copilot",
     eyecatch: {
-      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/1c1d87d26bbb4605a331e6fd91792a9f/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2022_25_01.png",
-      width: 1536,
-      height: 1024,
+      url: "/thum-sample/1.png",
+      width: 1200,
+      height: 630,
     },
     content: `<h2>はじめに</h2>
 <p>AIコーディングアシスタントが急速に普及しています。本記事では、主要な3つのツール（Claude Code、Cursor、GitHub Copilot）を実際に使い比べた結果をまとめます。</p>
@@ -777,7 +777,7 @@ function getUserById(userId: string): Promise&lt;User | null&gt; {
     revisedAt: createDate(4),
     title: "Claude API完全ガイド【TypeScript/Python対応】",
     eyecatch: {
-      url: "https://picsum.photos/seed/claude-api-guide/1200/630",
+      url: "/thum-sample/1.png",
       width: 1200,
       height: 630,
     },
@@ -1292,7 +1292,7 @@ You are an expert TypeScript developer.
     revisedAt: createDate(14),
     title: "PythonでAIアプリを作る【Claude API + Streamlit】",
     eyecatch: {
-      url: "https://picsum.photos/seed/python-ai-app/1200/630",
+      url: "/thum-sample/1.png",
       width: 1200,
       height: 630,
     },

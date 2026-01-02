@@ -102,7 +102,7 @@ export const GET: APIRoute = async ({ request }) => {
 
         // Default to /favicon.ico
         const baseUrl = new URL(targetUrl);
-        return `${baseUrl.origin}/favicon.ico`;
+        return `${baseUrl.origin}/3d-bird/favicon.ico`;
       })(),
       url: targetUrl,
     };

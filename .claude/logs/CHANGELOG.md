@@ -2965,3 +2965,286 @@ dist/
 
 ---
 
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/55fd9175bec04a8d97934f7f9bc099bb/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2021_58_32.png",
+      width: 1536,
+      height: 1024,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:27
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-code-intro/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:28
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/mcp-server-tutorial/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:29
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://images.microcms-assets.io/assets/c8f47cd9ef654a2d9ca6b6e579be433f/1c1d87d26bbb4605a331e6fd91792a9f/ChatGPT%20Image%202025%E5%B9%B412%E6%9C%8819%E6%97%A5%2022_25_01.png",
+      width: 1536,
+      height: 1024,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:30
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/claude-api-guide/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-01-01 18:31:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    eyecatch: {
+      url: "https://picsum.photos/seed/python-ai-app/1200/630",
+      width: 1200,
+      height: 630,
+    },
+```
+
+**変更後**:
+```
+    eyecatch: {
+      url: "/images/サムネ1.png",
+      width: 1200,
+      height: 630,
+    },
+```
+</details>
+
+---
+
+### ✏️ Edited `imageOptimizer.ts` - 2026-01-01 18:32:13
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/utils/imageOptimizer.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export function optimizeImageUrl(
+  url: string,
+  options: ImageOptimizeOptions
+): string {
+  const urlObj = new URL(url);
+```
+
+**変更後**:
+```
+export function optimizeImageUrl(
+  url: string,
+  options: ImageOptimizeOptions
+): string {
+  // ローカル画像（相対パス）の場合はそのまま返す
+  if (url.startsWith("/")) {
+    return url;
+  }
+
+  const urlObj = new URL(url);
+```
+</details>
+
+---
+
+
+## 2026年01月02日
+
+### ✏️ Edited `[page].astro` - 2026-01-02 09:26:34
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<Image src={profileImage} width={200} height={200} alt="西垣雅矢" format="avif" class="author-image" loading="eager" fetchpriority="high" />
+```
+
+**変更後**:
+```
+<Image src={profileImage} width={200} height={200} alt="西垣雅矢" format="avif" quality={80} class="author-image" loading="eager" fetchpriority="high" />
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-02 09:27:35
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+```
+
+**変更後**:
+```
+import profileImage from "@/assets/images/miyabiya.webp";
+import profileImagePng from "@/assets/images/miyabiya.png";
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-02 09:27:49
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-02 09:39:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+

@@ -26,6 +26,11 @@ export function optimizeImageUrl(
   url: string,
   options: ImageOptimizeOptions
 ): string {
+  // ローカル画像（相対パス）の場合はそのまま返す
+  if (url.startsWith("/")) {
+    return url;
+  }
+
   const urlObj = new URL(url);
 
   if (options.width) {

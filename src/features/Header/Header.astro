@@ -3,10 +3,8 @@ import HeaderLink from "@/features/Header/HeaderLink.astro";
 import Link from "@/components/Link/Link.astro";
 
 import { headerLinkOf } from "./headerLinkMapper";
-import { Image } from "astro:assets";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import { SITE_TITLE } from "@/constants/meta";
-import profileImage from "@/assets/images/miyabiya.webp";
 
 interface Props {
   context: string;
@@ -20,23 +18,11 @@ const headerLinks = headerLinkOf(context);
 <header class="mx-auto py-3 lg:pt-3 lg:px-0 fixed top-0 left-0 w-full z-50 bg-[#1a1a1a] border-b border-white/10">
   <div class="flex justify-between items-center">
     <Link href={ARTICLES_PATH} class="site-title-link">
-      <div class="flex items-center logo-container">
-        <Image
-          src={profileImage}
-          width={32}
-          height={32}
-          alt={"西垣雅矢のプロフィール画像"}
-          format="avif"
-          class="mr-3 hidden md:block rounded-full border border-white/20"
-          loading="eager"
-          fetchpriority="high"
-        />
         <h2 class="headerTitle">
           <span class="prompt-symbol">&gt;</span>
           <span id="typing-text" class="typing-text" data-text={SITE_TITLE}></span>
           <span class="typing-cursor"></span>
         </h2>
-      </div>
     </Link>
 
     <nav class="hidden md:flex items-center space-x-3">
