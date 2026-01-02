@@ -3248,3 +3248,117 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `layout.d.ts` - 2026-01-02 13:00:05
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/layout.d.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export interface BaseLayoutProps extends BasicLayoutProps {
+  context: string;
+  heroImage?: string;
+  breadCrumbsList: {
+    name: string;
+    path: string;
+  }[];
+}
+```
+
+**変更後**:
+```
+export interface BaseLayoutProps extends BasicLayoutProps {
+  context: string;
+  heroImage?: string;
+  image?: string;
+  breadCrumbsList: {
+    name: string;
+    path: string;
+  }[];
+}
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseLayout.astro` - 2026-01-02 13:00:06
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BaseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { title, description, context, breadCrumbsList } = Astro.props;
+```
+
+**変更後**:
+```
+const { title, description, context, breadCrumbsList, image } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseLayout.astro` - 2026-01-02 13:00:07
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BaseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<BaseHead {title} {description} />
+```
+
+**変更後**:
+```
+<BaseHead {title} {description} {image} />
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-01-02 13:00:16
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<BaseLayout
+  {title}
+  {description}
+  context={"blog"}
+  {breadCrumbsList}
+>
+```
+
+**変更後**:
+```
+<BaseLayout
+  {title}
+  {description}
+  context={"blog"}
+  {breadCrumbsList}
+  image={eyecatch?.url}
+>
+```
+</details>
+
+---
+
