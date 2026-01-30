@@ -27,7 +27,7 @@ export default defineConfig({
     tailwind(),
     partytown({
       config: {
-        forward: ["dataLayer.push", "clarity", "adsbygoogle.push"],
+        forward: ["dataLayer.push", "clarity"],
       },
     }),
   ],

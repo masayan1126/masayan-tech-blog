@@ -3788,3 +3788,59 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2026年01月30日
+
+### ✏️ Edited `BaseHead.astro` - 2026-01-30 22:49:48
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <!-- AdSense (via Partytown - runs in Web Worker) -->
+  <script
+    type="text/partytown"
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
+    crossorigin="anonymous"></script>
+```
+
+**変更後**:
+```
+  <!-- AdSense (メインスレッドで実行) -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9818131389918786"
+    crossorigin="anonymous"></script>
+```
+</details>
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2026-01-30 22:49:48
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+forward: ["dataLayer.push", "clarity", "adsbygoogle.push"],
+```
+
+**変更後**:
+```
+forward: ["dataLayer.push", "clarity"],
+```
+</details>
+
+---
+
