@@ -8,27 +8,38 @@ const headerLinkMapper = new Map<
 // Phosphor Iconsを使用したおしゃれなアイコン
 headerLinkMapper
   .set("home", [
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
 
   .set("blog", [
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("about", [
     { href: ARTICLES_PATH, text: "Home", iconName: "ph:house-bold" },
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
   ])
   .set("categories", [
     { href: ARTICLES_PATH, text: "Home", iconName: "ph:house-bold" },
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
+    { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
+  ])
+  .set("courses", [
+    { href: ARTICLES_PATH, text: "Home", iconName: "ph:house-bold" },
+    { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("disclaimer", [
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])
   .set("privacy", [
+    { href: "/courses", text: "Courses", iconName: "ph:graduation-cap-bold" },
     { href: "/categories", text: "Categories", iconName: "ph:squares-four-bold" },
     { href: "/about", text: "About", iconName: "ph:user-circle-bold" },
   ])

@@ -1,0 +1,132 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCourses } from "@/libs/microcms/course";
+import CourseCard from "@/features/Course/CourseCard.astro";
+import { Icon } from "astro-icon";
+
+const res = await getCourses();
+const courses = res.contents;
+
+const breadCrumbsList = [
+  { name: "ホーム", path: "/" },
+  { name: "コース一覧", path: "/courses/" },
+];
+---
+
+<BaseLayout
+  title="コース一覧 | まあさブログ"
+  description="体系的に学べるコース一覧です。入門から応用まで、ステップバイステップで学習を進められます。"
+  context="courses"
+  {breadCrumbsList}
+>
+  <div class="courses-page">
+    <header class="courses-header">
+      <div class="courses-header-badge">
+        <Icon name="ph:graduation-cap-bold" class="header-badge-icon" />
+        <span>COURSES</span>
+      </div>
+      <h1 class="courses-title">コース一覧</h1>
+      <p class="courses-subtitle">
+        体系的に学べるコースを用意しました。<br />
+        ステップバイステップで学習を進められます。
+      </p>
+    </header>
+
+    {courses.length > 0 ? (
+      <div class="courses-grid">
+        {courses.map((course) => (
+          <CourseCard {course} />
+        ))}
+      </div>
+    ) : (
+      <div class="courses-empty">
+        <Icon name="ph:book-open-bold" class="empty-icon" />
+        <p>現在公開中のコースはありません。</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  .courses-page {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .courses-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .courses-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    background: rgba(var(--color-primary-rgb), 0.15);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.3);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+  }
+
+  .header-badge-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .courses-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .courses-subtitle {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .courses-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--color-text-muted);
+  }
+
+  .empty-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .courses-title {
+      font-size: 1.75rem;
+    }
+
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .courses-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>

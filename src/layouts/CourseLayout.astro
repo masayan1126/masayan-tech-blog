@@ -1,0 +1,97 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { Course } from "@/libs/microcms/course";
+
+interface Props {
+  course: Course;
+  currentLesson?: number;
+  title: string;
+  description: string;
+}
+
+const { course, currentLesson, title, description } = Astro.props;
+
+const breadCrumbsList = [
+  { name: "ホーム", path: "/" },
+  { name: "コース一覧", path: "/courses/" },
+  { name: course.title, path: `/courses/${course.id}/` },
+  ...(currentLesson !== undefined
+    ? [{ name: `レッスン ${currentLesson}`, path: `/courses/${course.id}/lessons/${currentLesson}/` }]
+    : []),
+];
+---
+
+<BaseLayout
+  {title}
+  {description}
+  context="courses"
+  {breadCrumbsList}
+  image={course.eyecatch?.url}
+>
+  <div class="course-layout-wrapper">
+    <div class="course-main">
+      <slot />
+    </div>
+    <aside class="course-aside">
+      <slot name="sidebar" />
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .course-layout-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template:
+      "center right" 1fr
+      / 1fr 320px;
+    grid-gap: 10px 80px;
+  }
+
+  .course-main {
+    grid-area: center;
+  }
+
+  .course-aside {
+    grid-area: right;
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .course-aside::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .course-aside::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .course-aside::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-primary-rgb), 0.3);
+    border-radius: 2px;
+  }
+
+  .course-aside::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--color-primary-rgb), 0.5);
+  }
+
+  @media (max-width: 1024px) {
+    .course-layout-wrapper {
+      grid-template:
+        "center" 1fr
+        / 1fr;
+      grid-gap: 10px 0;
+    }
+
+    .course-aside {
+      display: none;
+    }
+  }
+</style>

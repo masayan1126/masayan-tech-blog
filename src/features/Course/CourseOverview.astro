@@ -1,0 +1,201 @@
+---
+import type { Course } from "@/libs/microcms/course";
+import { Icon } from "astro-icon";
+import { optimizeImageUrl } from "@/utils/imageOptimizer";
+
+type Props = {
+  course: Course;
+};
+
+const { course } = Astro.props;
+
+const totalMinutes = course.lessons.reduce(
+  (sum, lesson) => sum + (lesson.estimated_minutes || 0),
+  0
+);
+---
+
+<header class="course-overview">
+  {course.eyecatch && (
+    <div class="course-eyecatch">
+      <picture>
+        <source
+          srcset={optimizeImageUrl(course.eyecatch.url, { width: 800, format: "avif", quality: 65 })}
+          type="image/avif"
+        />
+        <source
+          srcset={optimizeImageUrl(course.eyecatch.url, { width: 800, format: "webp", quality: 70 })}
+          type="image/webp"
+        />
+        <img
+          src={optimizeImageUrl(course.eyecatch.url, { width: 800, quality: 75 })}
+          width={800}
+          height={Math.round(800 * course.eyecatch.height / course.eyecatch.width)}
+          alt={course.title}
+          class="eyecatch-image"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
+    </div>
+  )}
+
+  <div class="course-overview-content">
+    <h1 class="course-title">{course.title}</h1>
+    <p class="course-description">{course.description}</p>
+
+    <div class="course-stats">
+      <div class="stat-item">
+        <Icon name="ph:book-open-bold" class="stat-icon" />
+        <span class="stat-value">{course.lessons.length}</span>
+        <span class="stat-label">レッスン</span>
+      </div>
+      {totalMinutes > 0 && (
+        <div class="stat-item">
+          <Icon name="ph:timer-bold" class="stat-icon" />
+          <span class="stat-value">{totalMinutes}</span>
+          <span class="stat-label">分（合計）</span>
+        </div>
+      )}
+    </div>
+
+    <a href={`/courses/${course.id}/lessons/1/`} class="start-course-btn">
+      <Icon name="ph:play-circle-bold" class="btn-icon" />
+      コースを始める
+    </a>
+  </div>
+
+  <div class="overview-header-line"></div>
+</header>
+
+<style>
+  .course-overview {
+    margin-bottom: 3rem;
+  }
+
+  .course-eyecatch {
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .eyecatch-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .course-overview-content {
+    padding-bottom: 2rem;
+  }
+
+  .course-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .course-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .course-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+  }
+
+  .stat-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--color-primary);
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .start-course-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .start-course-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.4);
+  }
+
+  .btn-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .overview-header-line {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      rgba(var(--color-primary-rgb), 0.3),
+      transparent
+    );
+  }
+
+  @media (max-width: 768px) {
+    .course-title {
+      font-size: 1.625rem;
+    }
+
+    .course-stats {
+      gap: 0.75rem;
+    }
+
+    .stat-item {
+      padding: 0.5rem 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .course-title {
+      font-size: 1.375rem;
+      line-height: 1.5;
+    }
+  }
+</style>

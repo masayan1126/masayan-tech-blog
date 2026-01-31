@@ -1,0 +1,183 @@
+---
+import type { Course } from "@/libs/microcms/course";
+import { Icon } from "astro-icon";
+
+type Props = {
+  course: Course;
+  currentLesson: number;
+};
+
+const { course, currentLesson } = Astro.props;
+
+const prevLesson = currentLesson > 1 ? course.lessons[currentLesson - 2] : null;
+const nextLesson = currentLesson < course.lessons.length ? course.lessons[currentLesson] : null;
+const prevNum = currentLesson - 1;
+const nextNum = currentLesson + 1;
+---
+
+<nav class="lesson-nav" aria-label="レッスンナビゲーション">
+  {prevLesson ? (
+    <a href={`/courses/${course.id}/lessons/${prevNum}/`} class="lesson-nav-card prev">
+      <div class="nav-direction">
+        <Icon name="ph:caret-left-bold" class="nav-arrow" />
+        <span class="nav-label">前のレッスン</span>
+      </div>
+      <div class="nav-content">
+        <span class="nav-number">Lesson {String(prevNum).padStart(2, "0")}</span>
+        <span class="nav-title">{prevLesson.lesson_title}</span>
+      </div>
+    </a>
+  ) : (
+    <a href={`/courses/${course.id}/`} class="lesson-nav-card prev">
+      <div class="nav-direction">
+        <Icon name="ph:caret-left-bold" class="nav-arrow" />
+        <span class="nav-label">コース概要</span>
+      </div>
+      <div class="nav-content">
+        <span class="nav-title">{course.title}</span>
+      </div>
+    </a>
+  )}
+
+  {nextLesson ? (
+    <a href={`/courses/${course.id}/lessons/${nextNum}/`} class="lesson-nav-card next">
+      <div class="nav-direction">
+        <span class="nav-label">次のレッスン</span>
+        <Icon name="ph:caret-right-bold" class="nav-arrow" />
+      </div>
+      <div class="nav-content">
+        <span class="nav-number">Lesson {String(nextNum).padStart(2, "0")}</span>
+        <span class="nav-title">{nextLesson.lesson_title}</span>
+      </div>
+    </a>
+  ) : (
+    <a href={`/courses/${course.id}/`} class="lesson-nav-card next">
+      <div class="nav-direction">
+        <span class="nav-label">コース完了</span>
+        <Icon name="ph:check-circle-bold" class="nav-arrow" />
+      </div>
+      <div class="nav-content">
+        <span class="nav-title">コース概要に戻る</span>
+      </div>
+    </a>
+  )}
+</nav>
+
+<style>
+  .lesson-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .lesson-nav-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .lesson-nav-card:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-bg-tertiary);
+  }
+
+  .lesson-nav-card:hover .nav-title {
+    color: var(--color-primary);
+  }
+
+  .lesson-nav-card:hover .nav-arrow {
+    color: var(--color-primary);
+  }
+
+  .lesson-nav-card.prev .nav-direction,
+  .lesson-nav-card.prev .nav-content {
+    text-align: left;
+  }
+
+  .lesson-nav-card.next .nav-direction,
+  .lesson-nav-card.next .nav-content {
+    text-align: right;
+  }
+
+  .nav-direction {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .lesson-nav-card.next .nav-direction {
+    justify-content: flex-end;
+  }
+
+  .nav-arrow {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+  }
+
+  .lesson-nav-card.prev:hover .nav-arrow {
+    transform: translateX(-4px);
+  }
+
+  .lesson-nav-card.next:hover .nav-arrow {
+    transform: translateX(4px);
+  }
+
+  .nav-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+  }
+
+  .nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .nav-number {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .nav-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.5;
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .lesson-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .lesson-nav-card.next .nav-direction,
+    .lesson-nav-card.next .nav-content {
+      text-align: left;
+    }
+
+    .lesson-nav-card.next .nav-direction {
+      justify-content: flex-start;
+    }
+  }
+</style>

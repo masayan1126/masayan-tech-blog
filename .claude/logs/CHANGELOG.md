@@ -3844,3 +3844,416 @@ forward: ["dataLayer.push", "clarity"],
 
 ---
 
+
+## 2026年01月31日
+
+### 📝 Updated `course.ts` - 2026-01-31 19:40:27
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/course.ts`
+
+---
+
+### 📝 Updated `courses.ts` - 2026-01-31 19:40:49
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/microcms/mock/courses.ts`
+
+---
+
+### ✏️ Edited `index.ts` - 2026-01-31 19:41:00
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/mock/index.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### 📝 Updated `headerLinkMapper.ts` - 2026-01-31 19:41:16
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Header/headerLinkMapper.ts`
+
+---
+
+### ✏️ Edited `BottomNav.astro` - 2026-01-31 19:41:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Header/BottomNav.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### 📝 Updated `CourseLayout.astro` - 2026-01-31 19:41:41
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/layouts/CourseLayout.astro`
+
+---
+
+### ✏️ Edited `CourseLayout.astro` - 2026-01-31 19:41:57
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/CourseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+interface Props {
+  course: Course;
+  currentLesson?: number;
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+}
+
+const { course, currentLesson, title, description, canonicalUrl } = Astro.props;
+```
+
+**変更後**:
+```
+interface Props {
+  course: Course;
+  currentLesson?: number;
+  title: string;
+  description: string;
+}
+
+const { course, currentLesson, title, description } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `CourseLayout.astro` - 2026-01-31 19:42:01
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/CourseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  {canonicalUrl && (
+    <Fragment slot="head">
+      <link rel="canonical" href={canonicalUrl} />
+    </Fragment>
+  )}
+  <div class="course-layout-wrapper">
+```
+
+**変更後**:
+```
+  <div class="course-layout-wrapper">
+```
+</details>
+
+---
+
+### 📝 Updated `CourseCard.astro` - 2026-01-31 19:42:34
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+---
+
+### 📝 Updated `CourseOverview.astro` - 2026-01-31 19:42:56
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+---
+
+### 📝 Updated `CourseLessonList.astro` - 2026-01-31 19:43:17
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseLessonList.astro`
+
+---
+
+### 📝 Updated `CourseLessonNav.astro` - 2026-01-31 19:43:37
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseLessonNav.astro`
+
+---
+
+### 📝 Updated `CourseProgress.tsx` - 2026-01-31 19:43:50
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseProgress.tsx`
+
+---
+
+### 📝 Updated `CourseSidebar.tsx` - 2026-01-31 19:44:03
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/features/Course/CourseSidebar.tsx`
+
+---
+
+### 📝 Updated `index.astro` - 2026-01-31 19:45:34
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/pages/courses/index.astro`
+
+---
+
+### 📝 Updated `index.astro` - 2026-01-31 19:45:53
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/pages/courses/[courseId]/index.astro`
+
+---
+
+### 📝 Updated `[lessonNum].astro` - 2026-01-31 19:46:53
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+---
+
+### ✏️ Edited `course.ts` - 2026-01-31 20:04:44
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/course.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  eyecatch?: ArticleEyecatch;
+  difficulty: "beginner" | "intermediate" | "advanced";
+  estimated_hours?: number;
+  lessons: CourseLesson[];
+```
+
+**変更後**:
+```
+  eyecatch?: ArticleEyecatch;
+  lessons: CourseLesson[];
+```
+</details>
+
+---
+
+### ✏️ Edited `courses.ts` - 2026-01-31 20:04:46
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/courses.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    difficulty: "beginner",
+    estimated_hours: 5,
+    lessons: [
+```
+
+**変更後**:
+```
+    lessons: [
+```
+</details>
+
+---
+
+### ✏️ Edited `courses.ts` - 2026-01-31 20:04:49
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/courses.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    difficulty: "intermediate",
+    estimated_hours: 4,
+    lessons: [
+```
+
+**変更後**:
+```
+    lessons: [
+```
+</details>
+
+---
+
+### ✏️ Edited `CourseCard.astro` - 2026-01-31 20:04:55
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { course } = Astro.props;
+
+const difficultyLabel: Record<string, string> = {
+  beginner: "初級",
+  intermediate: "中級",
+  advanced: "上級",
+};
+
+const difficultyColor: Record<string, string> = {
+  beginner: "#22c55e",
+  intermediate: "#f59e0b",
+  advanced: "#ef4444",
+};
+---
+```
+
+**変更後**:
+```
+const { course } = Astro.props;
+---
+```
+</details>
+
+---
+
+### ✏️ Edited `CourseCard.astro` - 2026-01-31 20:04:58
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+      )}
+      <span
+        class="difficulty-badge"
+        style={`--badge-color: ${difficultyColor[course.difficulty]}`}
+      >
+        {difficultyLabel[course.difficulty]}
+      </span>
+    </div>
+```
+
+**変更後**:
+```
+      )}
+    </div>
+```
+</details>
+
+---
+
+### ✏️ Edited `CourseCard.astro` - 2026-01-31 20:05:04
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseCard.astro` - 2026-01-31 20:05:09
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseOverview.astro` - 2026-01-31 20:05:14
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseOverview.astro` - 2026-01-31 20:05:18
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <div class="course-overview-content">
+    <span
+      class="difficulty-badge"
+      style={`--badge-color: ${difficultyColor[course.difficulty]}`}
+    >
+      <span class="badge-dot"></span>
+      {difficultyLabel[course.difficulty]}
+    </span>
+
+    <h1 class="course-title">{course.title}</h1>
+```
+
+**変更後**:
+```
+  <div class="course-overview-content">
+    <h1 class="course-title">{course.title}</h1>
+```
+</details>
+
+---
+
+### ✏️ Edited `CourseOverview.astro` - 2026-01-31 20:05:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseOverview.astro` - 2026-01-31 20:05:29
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+

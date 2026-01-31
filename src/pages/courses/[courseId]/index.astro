@@ -1,0 +1,190 @@
+---
+import CourseLayout from "@/layouts/CourseLayout.astro";
+import { getCourses, getCourse } from "@/libs/microcms/course";
+import CourseOverview from "@/features/Course/CourseOverview.astro";
+import CourseLessonList from "@/features/Course/CourseLessonList.astro";
+import CourseSidebar from "@/features/Course/CourseSidebar";
+
+export async function getStaticPaths() {
+  const res = await getCourses();
+  return res.contents.map((course) => ({
+    params: { courseId: course.id },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+
+const sidebarLessons = course.lessons.map((l) => ({
+  lesson_title: l.lesson_title,
+  estimated_minutes: l.estimated_minutes,
+}));
+---
+
+<CourseLayout
+  {course}
+  title={`${course.title} | まあさブログ`}
+  description={course.description}
+>
+  <CourseOverview {course} />
+  <CourseLessonList {course} />
+
+  <CourseSidebar
+    slot="sidebar"
+    client:idle
+    courseId={course.id}
+    courseTitle={course.title}
+    lessons={sidebarLessons}
+  />
+</CourseLayout>
+
+<style is:global>
+  /* === CourseSidebar Styles === */
+  .course-sidebar {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar-course-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .sidebar-course-title:hover {
+    color: var(--color-primary);
+  }
+
+  .sidebar-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sidebar-progress-bar-container {
+    flex: 1;
+    height: 4px;
+    background: var(--color-bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .sidebar-progress-bar {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .sidebar-progress-text {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+
+  .sidebar-lessons {
+    padding: 0.5rem;
+  }
+
+  .sidebar-lesson-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: transparent;
+    border: none;
+  }
+
+  .sidebar-lesson-item {
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-lesson-item::before {
+    content: none;
+  }
+
+  .sidebar-lesson-item.current {
+    background: rgba(var(--color-primary-rgb), 0.1);
+  }
+
+  .sidebar-lesson-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+  }
+
+  .sidebar-lesson-link:hover {
+    background: var(--color-bg-tertiary);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-link:hover {
+    background: rgba(var(--color-primary-rgb), 0.15);
+  }
+
+  .sidebar-lesson-number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-bg-tertiary);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-number {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .sidebar-lesson-item.completed .sidebar-lesson-number {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .sidebar-lesson-title {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.15s ease;
+  }
+
+  .sidebar-lesson-link:hover .sidebar-lesson-title {
+    color: var(--color-primary);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-title {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+</style>

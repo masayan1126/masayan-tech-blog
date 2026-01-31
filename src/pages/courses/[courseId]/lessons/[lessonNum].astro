@@ -1,0 +1,691 @@
+---
+import CourseLayout from "@/layouts/CourseLayout.astro";
+import { getCourses } from "@/libs/microcms/course";
+import { attachCodeHighlight } from "@/libs/codeHighlight";
+import { attachLinkCards } from "@/libs/linkCard";
+import { attachHeadingIds } from "@/libs/headingIds";
+import CourseLessonNav from "@/features/Course/CourseLessonNav.astro";
+import CourseProgress from "@/features/Course/CourseProgress";
+import CourseSidebar from "@/features/Course/CourseSidebar";
+import TableOfContents from "@/components/TableOfContents.astro";
+import { Icon } from "astro-icon";
+import type { Course } from "@/libs/microcms/course";
+
+export async function getStaticPaths() {
+  const res = await getCourses();
+  const paths: { params: { courseId: string; lessonNum: string }; props: { course: Course; lessonIndex: number } }[] = [];
+
+  for (const course of res.contents) {
+    for (let i = 0; i < course.lessons.length; i++) {
+      paths.push({
+        params: {
+          courseId: course.id,
+          lessonNum: String(i + 1),
+        },
+        props: {
+          course,
+          lessonIndex: i,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { course, lessonIndex } = Astro.props;
+const lessonNum = lessonIndex + 1;
+const lesson = course.lessons[lessonIndex];
+const article = lesson.article;
+
+// コンテンツ処理パイプライン（既存と同じ順序）
+let processedContent = attachHeadingIds(article.content);
+processedContent = attachCodeHighlight(processedContent);
+processedContent = await attachLinkCards(processedContent);
+
+const sidebarLessons = course.lessons.map((l) => ({
+  lesson_title: l.lesson_title,
+  estimated_minutes: l.estimated_minutes,
+}));
+---
+
+<CourseLayout
+  {course}
+  currentLesson={lessonNum}
+  title={`${lesson.lesson_title} - ${course.title} | まあさブログ`}
+  description={article.description}
+>
+  <div class="lesson-page">
+    <!-- レッスンヘッダー -->
+    <header class="lesson-header">
+      <a href={`/courses/${course.id}/`} class="lesson-course-link">
+        <Icon name="ph:graduation-cap-bold" class="course-link-icon" />
+        {course.title}
+      </a>
+
+      <div class="lesson-meta">
+        <span class="lesson-number-badge">
+          Lesson {String(lessonNum).padStart(2, "0")}
+        </span>
+        {lesson.estimated_minutes && (
+          <span class="lesson-duration">
+            <Icon name="ph:clock-bold" class="duration-icon" />
+            {lesson.estimated_minutes}分
+          </span>
+        )}
+      </div>
+
+      <h1 class="lesson-title">{lesson.lesson_title}</h1>
+
+      <div class="lesson-header-line"></div>
+    </header>
+
+    <!-- 進捗バー -->
+    <CourseProgress
+      client:idle
+      courseId={course.id}
+      totalLessons={course.lessons.length}
+      currentLesson={lessonNum}
+    />
+
+    <!-- モバイル用目次 -->
+    <div class="toc-mobile-lesson">
+      <TableOfContents content={processedContent} />
+    </div>
+
+    <!-- 記事コンテンツ -->
+    <article>
+      <p set:html={processedContent} />
+    </article>
+
+    <!-- レッスンナビ -->
+    <CourseLessonNav {course} currentLesson={lessonNum} />
+  </div>
+
+  <!-- サイドバー -->
+  <Fragment slot="sidebar">
+    <CourseSidebar
+      client:idle
+      courseId={course.id}
+      courseTitle={course.title}
+      lessons={sidebarLessons}
+      currentLesson={lessonNum}
+    />
+    <!-- PC表示用目次 -->
+    <TableOfContents content={processedContent} />
+  </Fragment>
+</CourseLayout>
+
+<!-- レッスンページ固有のスタイル + article用のグローバルスタイル -->
+<style is:global>
+  /* === レッスンページ === */
+  .lesson-page {
+    width: 100%;
+  }
+
+  .lesson-header {
+    margin-bottom: 2rem;
+    padding-bottom: 0;
+  }
+
+  .lesson-course-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .lesson-course-link:hover {
+    opacity: 0.8;
+  }
+
+  .course-link-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .lesson-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lesson-number-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(var(--color-primary-rgb), 0.15);
+    padding: 0.25rem 0.625rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .lesson-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .lesson-duration .duration-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .lesson-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  .lesson-header-line {
+    margin-top: 1.5rem;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      rgba(var(--color-primary-rgb), 0.3),
+      transparent
+    );
+  }
+
+  /* === 進捗コンポーネント === */
+  .course-progress-wrapper {
+    margin: 1.5rem 0 2rem;
+    padding: 1.25rem;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .progress-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .progress-count {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background: var(--color-bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+  }
+
+  .progress-percentage {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .complete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .complete-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .complete-btn.completed {
+    background: rgba(var(--color-primary-rgb), 0.15);
+    border-color: rgba(var(--color-primary-rgb), 0.3);
+    color: var(--color-primary);
+  }
+
+  /* === 目次（モバイル用 レッスンページ） === */
+  .toc-mobile-lesson {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 1025px) {
+    .toc-mobile-lesson {
+      display: none;
+    }
+  }
+
+  /* === 記事スタイル（レッスンページ用） === */
+  .lesson-page article {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  .lesson-page article h1::before {
+    content: "";
+  }
+
+  .lesson-page article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 3.5rem 0 1.5rem;
+    padding: 0.75rem 0 0.75rem 1rem;
+    border-left: 4px solid var(--color-primary);
+    border-bottom: none;
+    background: rgba(var(--color-primary-rgb), 0.05);
+    color: var(--color-text);
+  }
+
+  .lesson-page article h2::before {
+    content: none;
+  }
+
+  .lesson-page article h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding: 0 0 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .lesson-page article h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+    padding: 0;
+    border-bottom: none;
+    color: var(--color-text);
+  }
+
+  .lesson-page article p {
+    margin: 0 0 1.5rem;
+    line-height: 1.9;
+    color: var(--color-text);
+  }
+
+  .lesson-page article img {
+    margin: 2rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    max-width: 100%;
+    height: auto;
+  }
+
+  .lesson-page article ul {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    list-style: none;
+    background: var(--color-bg-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+  }
+
+  .lesson-page article ul li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .lesson-page article ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  .lesson-page article ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+
+  .lesson-page article ol {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    list-style: none;
+    counter-reset: item;
+    background: var(--color-bg-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+  }
+
+  .lesson-page article ol li {
+    position: relative;
+    padding-left: 2.25rem;
+    margin-bottom: 0.75rem;
+    counter-increment: item;
+    line-height: 1.7;
+  }
+
+  .lesson-page article ol li:last-child {
+    margin-bottom: 0;
+  }
+
+  .lesson-page article ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-bg);
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+  }
+
+  .lesson-page article pre {
+    margin: 2rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    overflow-x: auto;
+    background: #0d0d0d !important;
+    position: relative;
+  }
+
+  .lesson-page article pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .lesson-page article pre code {
+    background: transparent !important;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+
+  .lesson-page article code:not(pre code) {
+    background: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+    font-family: var(--font-mono);
+    border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+  }
+
+  .lesson-page article blockquote {
+    background: var(--color-bg-secondary);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 6px 6px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .lesson-page article blockquote p {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  .lesson-page article a:not(.link-card) {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.3);
+    transition: border-color 0.2s ease;
+  }
+
+  .lesson-page article a:not(.link-card):hover {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .lesson-page article table {
+    margin: 2rem 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-secondary);
+    width: 100%;
+  }
+
+  .lesson-page article th {
+    background: var(--color-bg-tertiary);
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 700;
+    text-align: left;
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lesson-page article td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-size: 0.9rem;
+  }
+
+  .lesson-page article tbody tr {
+    transition: background 0.2s ease;
+  }
+
+  .lesson-page article tbody tr:hover {
+    background: var(--color-bg-tertiary);
+  }
+
+  .lesson-page article tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* CourseSidebar スタイル */
+  .course-sidebar {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar-course-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  .sidebar-course-title:hover {
+    color: var(--color-primary);
+  }
+
+  .sidebar-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sidebar-progress-bar-container {
+    flex: 1;
+    height: 4px;
+    background: var(--color-bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .sidebar-progress-bar {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .sidebar-progress-text {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+  }
+
+  .sidebar-lessons {
+    padding: 0.5rem;
+  }
+
+  .sidebar-lesson-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background: transparent;
+    border: none;
+  }
+
+  .sidebar-lesson-item {
+    border-radius: 4px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-lesson-item::before {
+    content: none;
+  }
+
+  .sidebar-lesson-item.current {
+    background: rgba(var(--color-primary-rgb), 0.1);
+  }
+
+  .sidebar-lesson-link {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.625rem 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+  }
+
+  .sidebar-lesson-link:hover {
+    background: var(--color-bg-tertiary);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-link:hover {
+    background: rgba(var(--color-primary-rgb), 0.15);
+  }
+
+  .sidebar-lesson-number {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-bg-tertiary);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-number {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .sidebar-lesson-item.completed .sidebar-lesson-number {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+
+  .sidebar-lesson-title {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.15s ease;
+  }
+
+  .sidebar-lesson-link:hover .sidebar-lesson-title {
+    color: var(--color-primary);
+  }
+
+  .sidebar-lesson-item.current .sidebar-lesson-title {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .lesson-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .lesson-title {
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+  }
+</style>
