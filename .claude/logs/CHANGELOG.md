@@ -4257,3 +4257,59 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `[page].astro` - 2026-01-31 20:57:43
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-01-31 20:57:56
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  .author-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 120px;
+  }
+
+  .author-image {
+    width: 100%;
+    height: 100%;
+  }
+```
+
+**変更後**:
+```
+  .author-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+    width: 160px;
+  }
+
+  .author-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+```
+</details>
+
+---
+

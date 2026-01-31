@@ -49,9 +49,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
       <div class="banner-badge">Concept</div>
       <div class="banner-content">
         <div class="author-profile">
-          <!-- <Image src={profileImage} width={256} height={256} alt="西垣雅矢 (AVIF)" format="avif" quality={100} class="author-image" loading="eager" fetchpriority="high" /> -->
-        
-          <!-- <div class="author-role">Tech Lead / Full Stack Engineer</div> -->
+          <Image src={profileImage} width={256} height={256} alt="maasaablog.com マスコットキャラクター" format="avif" quality={100} class="author-image" loading="eager" fetchpriority="high" />
         </div>
         <div class="text-content">
           <h3 class="banner-title">
@@ -140,12 +138,14 @@ const newArrivalPosts = [...articles].sort((a, b) => {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    min-width: 120px;
+    flex-shrink: 0;
+    width: 160px;
   }
 
   .author-image {
     width: 100%;
-    height: 100%;
+    height: auto;
+    border-radius: 8px;
   }
 
   .author-role {
