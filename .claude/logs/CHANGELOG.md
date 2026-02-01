@@ -4313,3 +4313,38 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2026年02月01日
+
+### ✏️ Edited `global.css` - 2026-02-01 20:09:39
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/styles/global.css`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+.banner-content > .google-auto-placed {
+  display: none !important;
+}
+```
+
+**変更後**:
+```
+.banner-content > .google-auto-placed {
+  display: none !important;
+}
+
+.author-section .google-auto-placed,
+.profile-card .google-auto-placed,
+.profile-header .google-auto-placed {
+  display: none !important;
+}
+```
+</details>
+
+---
+

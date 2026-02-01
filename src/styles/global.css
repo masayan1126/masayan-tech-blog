@@ -372,3 +372,9 @@ blockquote {
 .banner-content > .google-auto-placed {
   display: none !important;
 }
+
+.author-section .google-auto-placed,
+.profile-card .google-auto-placed,
+.profile-header .google-auto-placed {
+  display: none !important;
+}
