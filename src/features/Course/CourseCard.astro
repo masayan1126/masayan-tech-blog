@@ -203,5 +203,45 @@ const { course } = Astro.props;
     .course-card:hover .course-card-image {
       transform: scale(1.03);
     }
+
+    .course-card-body {
+      padding: 1rem;
+    }
+
+    .course-card-title {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .course-card {
+      border-radius: 8px;
+    }
+
+    .course-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .course-card-body {
+      padding: 0.875rem;
+    }
+
+    .course-card-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .course-card-description {
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-card-meta {
+      padding-top: 0.625rem;
+    }
+
+    .meta-item {
+      font-size: 0.75rem;
+    }
   }
 </style>

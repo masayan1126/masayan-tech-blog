@@ -115,18 +115,40 @@ const breadCrumbsList = [
   }
 
   @media (max-width: 768px) {
+    .courses-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+    }
+
     .courses-title {
       font-size: 1.75rem;
     }
 
+    .courses-subtitle {
+      font-size: 0.9rem;
+    }
+
     .courses-grid {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
   }
 
   @media (max-width: 480px) {
     .courses-title {
       font-size: 1.5rem;
+    }
+
+    .courses-subtitle br {
+      display: none;
+    }
+
+    .courses-grid {
+      gap: 1rem;
+    }
+
+    .courses-empty {
+      padding: 3rem 1.5rem;
     }
   }
 </style>

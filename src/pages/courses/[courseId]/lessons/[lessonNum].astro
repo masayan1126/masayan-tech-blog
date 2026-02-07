@@ -677,8 +677,69 @@ const sidebarLessons = course.lessons.map((l) => ({
   }
 
   @media (max-width: 768px) {
+    .lesson-header {
+      margin-bottom: 1.5rem;
+    }
+
     .lesson-title {
       font-size: 1.5rem;
+    }
+
+    .lesson-page article h2 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 1.25rem;
+    }
+
+    .lesson-page article h3 {
+      font-size: 1.125rem;
+      margin: 2rem 0 0.875rem;
+    }
+
+    .lesson-page article ul,
+    .lesson-page article ol {
+      padding: 0.875rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .lesson-page article pre {
+      margin: 1.5rem -0.5rem;
+      border-radius: 6px;
+    }
+
+    .lesson-page article img {
+      margin: 1.5rem 0;
+    }
+
+    .lesson-page article blockquote {
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .lesson-page article th,
+    .lesson-page article td {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .progress-footer {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .progress-percentage {
+      text-align: center;
+    }
+
+    .complete-btn {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .course-progress-wrapper {
+      padding: 1rem;
     }
   }
 
@@ -686,6 +747,32 @@ const sidebarLessons = course.lessons.map((l) => ({
     .lesson-title {
       font-size: 1.25rem;
       line-height: 1.5;
+    }
+
+    .lesson-course-link {
+      font-size: 0.75rem;
+    }
+
+    .lesson-meta {
+      gap: 0.5rem;
+    }
+
+    .lesson-number-badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+    }
+
+    .lesson-page article h2 {
+      font-size: 1.175rem;
+      padding: 0.625rem 0 0.625rem 0.75rem;
+    }
+
+    .lesson-page article h3 {
+      font-size: 1.05rem;
+    }
+
+    .lesson-page article pre code {
+      font-size: 0.8rem;
     }
   }
 </style>

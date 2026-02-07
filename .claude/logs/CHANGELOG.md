@@ -4348,3 +4348,76 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+
+## 2026年02月08日
+
+### ✏️ Edited `CourseLayout.astro` - 2026-02-08 00:33:28
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/CourseLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:33:45
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseOverview.astro` - 2026-02-08 00:33:57
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseOverview.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseLessonList.astro` - 2026-02-08 00:34:05
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseLessonList.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseLessonNav.astro` - 2026-02-08 00:34:13
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseLessonNav.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `index.astro` - 2026-02-08 00:34:22
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/index.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `CourseCard.astro` - 2026-02-08 00:34:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/features/Course/CourseCard.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
