@@ -3,6 +3,7 @@ import BlogDetailLayout from "@/layouts/BlogDetailLayout.astro";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
 import { attachLinkCards } from "@/libs/linkCard";
 import { attachHeadingIds } from "@/libs/headingIds";
+import { attachTableWrapper } from "@/libs/tableWrapper";
 import { getArticles, type Article } from "@/libs/microcms/blog";
 import TableOfContents from "@/components/TableOfContents.astro";
 
@@ -24,6 +25,7 @@ const article = Astro.props;
 let processedContent = attachHeadingIds(article.content);
 processedContent = attachCodeHighlight(processedContent);
 processedContent = await attachLinkCards(processedContent);
+processedContent = attachTableWrapper(processedContent);
 ---
 
 <BlogDetailLayout {...article}>

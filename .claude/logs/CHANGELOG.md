@@ -4421,3 +4421,217 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### 📝 Updated `tableWrapper.ts` - 2026-02-08 00:53:42
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `src/libs/tableWrapper.ts`
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:53:46
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { attachHeadingIds } from "@/libs/headingIds";
+```
+
+**変更後**:
+```
+import { attachHeadingIds } from "@/libs/headingIds";
+import { attachTableWrapper } from "@/libs/tableWrapper";
+```
+</details>
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:53:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+// コンテンツ処理パイプライン（既存と同じ順序）
+let processedContent = attachHeadingIds(article.content);
+processedContent = attachCodeHighlight(processedContent);
+processedContent = await attachLinkCards(processedContent);
+```
+
+**変更後**:
+```
+// コンテンツ処理パイプライン（既存と同じ順序）
+let processedContent = attachHeadingIds(article.content);
+processedContent = attachCodeHighlight(processedContent);
+processedContent = await attachLinkCards(processedContent);
+processedContent = attachTableWrapper(processedContent);
+```
+</details>
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:53:58
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:54:03
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:54:13
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  /* テーブルスクロールラッパー */
+  .lesson-page article .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+    border-radius: 6px;
+    border: 1px solid var(--color-border);
+  }
+```
+
+**変更後**:
+```
+  /* テーブルスクロールラッパー */
+  .lesson-page article .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+  }
+```
+</details>
+
+---
+
+### ✏️ Edited `[lessonNum].astro` - 2026-02-08 00:54:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/courses/[courseId]/lessons/[lessonNum].astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2026-02-08 00:54:34
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import { attachHeadingIds } from "@/libs/headingIds";
+```
+
+**変更後**:
+```
+import { attachHeadingIds } from "@/libs/headingIds";
+import { attachTableWrapper } from "@/libs/tableWrapper";
+```
+</details>
+
+---
+
+### ✏️ Edited `[...slug].astro` - 2026-02-08 00:54:37
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/blog/[...slug].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+processedContent = await attachLinkCards(processedContent);
+---
+```
+
+**変更後**:
+```
+processedContent = await attachLinkCards(processedContent);
+processedContent = attachTableWrapper(processedContent);
+---
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-02-08 00:54:49
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  article {
+    width: 100%;
+    overflow-x: scroll;
+  }
+```
+
+**変更後**:
+```
+  article {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /* テーブルスクロールラッパー */
+  article .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
+  }
+
+  article .table-scroll-wrapper table {
+    margin: 0;
+  }
+```
+</details>
+
+---
+

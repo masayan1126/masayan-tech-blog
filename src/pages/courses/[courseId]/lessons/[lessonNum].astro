@@ -4,6 +4,7 @@ import { getCourses } from "@/libs/microcms/course";
 import { attachCodeHighlight } from "@/libs/codeHighlight";
 import { attachLinkCards } from "@/libs/linkCard";
 import { attachHeadingIds } from "@/libs/headingIds";
+import { attachTableWrapper } from "@/libs/tableWrapper";
 import CourseLessonNav from "@/features/Course/CourseLessonNav.astro";
 import CourseProgress from "@/features/Course/CourseProgress";
 import CourseSidebar from "@/features/Course/CourseSidebar";
@@ -42,6 +43,7 @@ const article = lesson.article;
 let processedContent = attachHeadingIds(article.content);
 processedContent = attachCodeHighlight(processedContent);
 processedContent = await attachLinkCards(processedContent);
+processedContent = attachTableWrapper(processedContent);
 
 const sidebarLessons = course.lessons.map((l) => ({
   lesson_title: l.lesson_title,
@@ -299,7 +301,15 @@ const sidebarLessons = course.lessons.map((l) => ({
   /* === 記事スタイル（レッスンページ用） === */
   .lesson-page article {
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
+  }
+
+  /* テーブルスクロールラッパー */
+  .lesson-page article .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 2rem 0;
   }
 
   .lesson-page article h1::before {
@@ -494,6 +504,11 @@ const sidebarLessons = course.lessons.map((l) => ({
     border: 1px solid var(--color-border);
     background: var(--color-bg-secondary);
     width: 100%;
+  }
+
+  /* ラッパー内のテーブルはマージン不要（ラッパーがマージンを持つ） */
+  .lesson-page article .table-scroll-wrapper table {
+    margin: 0;
   }
 
   .lesson-page article th {
