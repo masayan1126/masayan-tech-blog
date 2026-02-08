@@ -1,4 +1,4 @@
-import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
+import { BlogCategoryBadgeGroup } from "@/features/Blog/BlogCategoryBadgeGroup";
 import { ARTICLES_PATH } from "@/features/Blog/List/constants/path";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

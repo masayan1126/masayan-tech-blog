@@ -5036,3 +5036,58 @@ console.log(youtube_link);
 
 ---
 
+### 📝 Updated `vite.config.ts` - 2026-02-08 13:13:10
+
+**変更内容**: ファイルを更新
+
+**ファイルパス**: `vite.config.ts`
+
+---
+
+### ✏️ Edited `BlogCategoryBadgeGroup.test.tsx` - 2026-02-08 13:13:37
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `tests/components/BlogCategoryBadgeGroup.test.tsx`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+import BlogCategoryBadgeGroup from "@/features/Blog/BlogCategoryBadgeGroup";
+```
+
+**変更後**:
+```
+import { BlogCategoryBadgeGroup } from "@/features/Blog/BlogCategoryBadgeGroup";
+```
+</details>
+
+---
+
+### ✏️ Edited `package.json` - 2026-02-08 13:17:11
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `package.json`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  "devDependencies": {
+```
+
+**変更後**:
+```
+  "overrides": {
+    "path-to-regexp": "6.3.0"
+  },
+  "devDependencies": {
+```
+</details>
+
+---
+

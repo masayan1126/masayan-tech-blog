@@ -1,5 +1,4 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import path from "path";
 
 export default defineConfig({
@@ -9,11 +8,11 @@ export default defineConfig({
     setupFiles: ["./tests/setup.ts"],
     reporters: ["default", "html"],
     coverage: {
-      provider: "c8",
+      provider: "v8",
     },
     alias: {
       "@": path.join(__dirname, "/src"),
     },
-    include: ["tests/**/*.test.ts"],
+    include: ["tests/**/*.test.{ts,tsx}"],
   },
 });
