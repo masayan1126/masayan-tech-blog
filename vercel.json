@@ -1,5 +1,11 @@
 {
   "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.maasaablog.com" }],
+      "destination": "https://maasaablog.com/:path",
+      "permanent": true
+    },
     { "source": "/", "destination": "/page/1", "permanent": true }
   ]
 }

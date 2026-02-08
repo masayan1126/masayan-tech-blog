@@ -10,9 +10,10 @@ interface Props {
   title?: string;
   description?: string;
   breadCrumbsList?: BreadCrumb[];
+  noindex?: boolean;
 }
 
-const { 
+const {
   title = "ブログ記事一覧",
   description = "記事一覧です",
   breadCrumbsList = [
@@ -24,7 +25,8 @@ const {
       name: "ブログ記事一覧",
       path: `/page/1/`,
     },
-  ]
+  ],
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -33,6 +35,7 @@ const {
   {description}
   context={"home"}
   {breadCrumbsList}
+  {noindex}
   heroImage="/top-page-ogp-thum.jpg"
 >
   <slot name="banner" slot="banner" />

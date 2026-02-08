@@ -42,7 +42,7 @@ const newArrivalPosts = [...articles].sort((a, b) => {
 });
 ---
 
-<BlogListLayout>
+<BlogListLayout noindex={page.currentPage > 1}>
   <!-- 信頼性メッセージバナー -->
   <div slot="banner" class="quality-banner">
     <div class="quality-banner-inner">

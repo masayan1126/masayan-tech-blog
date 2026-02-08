@@ -63,10 +63,11 @@ const breadCrumbsList = [
 ];
 ---
 
-<BlogListLayout 
+<BlogListLayout
   title={`${category_of_this_page?.name || "カテゴリ"} - ブログ記事一覧`}
   description={`${category_of_this_page?.name || "カテゴリ"}に関する記事一覧です`}
   {breadCrumbsList}
+  noindex={page.currentPage > 1}
 >
   <BlogCategoryTabs
     categories={categoriesWithCount}

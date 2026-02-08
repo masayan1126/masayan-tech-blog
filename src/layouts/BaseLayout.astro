@@ -8,11 +8,11 @@ import type { BaseLayoutProps } from "@/layouts/layout";
 
 interface Props extends BaseLayoutProps {}
 
-const { title, description, context, breadCrumbsList, image } = Astro.props;
+const { title, description, context, breadCrumbsList, image, noindex } = Astro.props;
 ---
 
 <html lang="ja">
-  <BaseHead {title} {description} {image} />
+  <BaseHead {title} {description} {image} {noindex} />
 
   <body class="mx-auto">
     <!-- ページ読み込みプログレスバー -->

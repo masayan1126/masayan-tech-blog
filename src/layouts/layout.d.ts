@@ -7,6 +7,7 @@ export interface BaseLayoutProps extends BasicLayoutProps {
   context: string;
   heroImage?: string;
   image?: string;
+  noindex?: boolean;
   breadCrumbsList: {
     name: string;
     path: string;

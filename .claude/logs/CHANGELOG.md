@@ -4635,3 +4635,308 @@ processedContent = attachTableWrapper(processedContent);
 
 ---
 
+### ✏️ Edited `BaseHead.astro` - 2026-02-08 12:44:30
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, image: ogp_image = '/ogp-default-image/bird-pc.png' } = Astro.props;
+```
+
+**変更後**:
+```
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const { title, description, image: ogp_image = '/ogp-default-image/bird-pc.png', noindex = false } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseHead.astro` - 2026-02-08 12:44:33
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/BaseHead.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+```
+
+**変更後**:
+```
+  <!-- Primary Meta Tags -->
+  {noindex && <meta name="robots" content="noindex, follow" />}
+  <title>{title}</title>
+```
+</details>
+
+---
+
+### ✏️ Edited `layout.d.ts` - 2026-02-08 12:44:40
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/layout.d.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+export interface BaseLayoutProps extends BasicLayoutProps {
+  context: string;
+  heroImage?: string;
+  image?: string;
+  breadCrumbsList: {
+    name: string;
+    path: string;
+  }[];
+}
+```
+
+**変更後**:
+```
+export interface BaseLayoutProps extends BasicLayoutProps {
+  context: string;
+  heroImage?: string;
+  image?: string;
+  noindex?: boolean;
+  breadCrumbsList: {
+    name: string;
+    path: string;
+  }[];
+}
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseLayout.astro` - 2026-02-08 12:44:47
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BaseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { title, description, context, breadCrumbsList, image } = Astro.props;
+```
+
+**変更後**:
+```
+const { title, description, context, breadCrumbsList, image, noindex } = Astro.props;
+```
+</details>
+
+---
+
+### ✏️ Edited `BaseLayout.astro` - 2026-02-08 12:44:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BaseLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  <BaseHead {title} {description} {image} />
+```
+
+**変更後**:
+```
+  <BaseHead {title} {description} {image} {noindex} />
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogListLayout.astro` - 2026-02-08 12:45:00
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogListLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `BlogListLayout.astro` - 2026-02-08 12:45:05
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogListLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<BaseLayout
+  {title}
+  {description}
+  context={"home"}
+  {breadCrumbsList}
+  heroImage="/top-page-ogp-thum.jpg"
+>
+```
+
+**変更後**:
+```
+<BaseLayout
+  {title}
+  {description}
+  context={"home"}
+  {breadCrumbsList}
+  {noindex}
+  heroImage="/top-page-ogp-thum.jpg"
+>
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-02-08 12:45:14
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<BlogListLayout>
+```
+
+**変更後**:
+```
+<BlogListLayout noindex={page.currentPage > 1}>
+```
+</details>
+
+---
+
+### ✏️ Edited `[page].astro` - 2026-02-08 12:45:24
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/pages/category/[categoryId]/page/[page].astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<BlogListLayout 
+  title={`${category_of_this_page?.name || "カテゴリ"} - ブログ記事一覧`}
+  description={`${category_of_this_page?.name || "カテゴリ"}に関する記事一覧です`}
+  {breadCrumbsList}
+>
+```
+
+**変更後**:
+```
+<BlogListLayout
+  title={`${category_of_this_page?.name || "カテゴリ"} - ブログ記事一覧`}
+  description={`${category_of_this_page?.name || "カテゴリ"}に関する記事一覧です`}
+  {breadCrumbsList}
+  noindex={page.currentPage > 1}
+>
+```
+</details>
+
+---
+
+### ✏️ Edited `astro.config.mjs` - 2026-02-08 12:45:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `astro.config.mjs`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    sitemap(),
+```
+
+**変更後**:
+```
+    sitemap({
+      filter: (page) => !page.match(/\/page\/([2-9]|\d{2,})\//),
+    }),
+```
+</details>
+
+---
+
+### ✏️ Edited `vercel.json` - 2026-02-08 12:45:42
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `vercel.json`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+{
+  "redirects": [
+    { "source": "/", "destination": "/page/1", "permanent": true }
+  ]
+}
+```
+
+**変更後**:
+```
+{
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [{ "type": "host", "value": "www.maasaablog.com" }],
+      "destination": "https://maasaablog.com/:path",
+      "permanent": true
+    },
+    { "source": "/", "destination": "/page/1", "permanent": true }
+  ]
+}
+```
+</details>
+
+---
+

@@ -19,7 +19,9 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.match(/\/page\/([2-9]|\d{2,})\//),
+    }),
     react({
       include: ['**/*.{jsx,tsx}'],
       experimentalReactChildren: true,
