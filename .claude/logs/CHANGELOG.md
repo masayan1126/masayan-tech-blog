@@ -5091,3 +5091,32 @@ import { BlogCategoryBadgeGroup } from "@/features/Blog/BlogCategoryBadgeGroup";
 
 ---
 
+### ✏️ Edited `vercel.json` - 2026-02-08 13:34:54
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `vercel.json`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    { "source": "/", "destination": "/page/1", "permanent": true }
+  ]
+```
+
+**変更後**:
+```
+    { "source": "/", "destination": "/page/1", "permanent": true },
+    {
+      "source": "/blog/a9v1v4dnc/:path*",
+      "destination": "/blog/claude-md-best-practices-guide/",
+      "permanent": true
+    }
+  ]
+```
+</details>
+
+---
+

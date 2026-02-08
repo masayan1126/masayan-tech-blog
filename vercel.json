@@ -6,6 +6,11 @@
       "destination": "https://maasaablog.com/:path",
       "permanent": true
     },
-    { "source": "/", "destination": "/page/1", "permanent": true }
+    { "source": "/", "destination": "/page/1", "permanent": true },
+    {
+      "source": "/blog/a9v1v4dnc/:path*",
+      "destination": "/blog/claude-md-best-practices-guide/",
+      "permanent": true
+    }
   ]
 }
