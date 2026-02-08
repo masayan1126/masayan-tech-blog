@@ -20,17 +20,12 @@ type Props = Article;
 const { title, description, publishedAt, revisedAt, category, youtube_link, eyecatch, more_readings, content } = Astro.props;
 const { slug } = Astro.params;
 
-
-
-
 const catetoryIds = category.map(({ id }) => id);
 const filter = buildFilter("categoryId", catetoryIds);
 const relatedPostsRes = await getArticlesByCategory(filter);
 const relatedRandomPosts = [...relatedPostsRes.contents].sort(() => {
   return Math.random() - 0.5;
 });
-
-console.log(youtube_link);
 
 // YouTube URLからVideo IDを抽出
 function extractVideoId(youtubeUrl: string): string | null {

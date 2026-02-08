@@ -4940,3 +4940,99 @@ _※ 変更内容が大きいため省略_
 
 ---
 
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-02-08 13:03:31
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+const { slug } = Astro.params;
+```
+
+**変更後**:
+```
+const { slug } = Astro.params;
+```
+</details>
+
+---
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-02-08 13:03:34
+
+**変更内容**: console.logを削除
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+console.log(youtube_link);
+
+// YouTube URLからVideo IDを抽出
+```
+
+**変更後**:
+```
+// YouTube URLからVideo IDを抽出
+```
+</details>
+
+---
+
+### ✏️ Edited `linkCard.ts` - 2026-02-08 13:03:44
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/linkCard.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    if (error) {
+      console.error(`[LinkCard] Failed to fetch metadata for ${url}:`, error);
+      return null;
+    }
+```
+
+**変更後**:
+```
+    if (error) {
+      console.warn(`[LinkCard] Failed to fetch metadata: ${url} - ${result?.error || 'Unknown error'}`);
+      return null;
+    }
+```
+</details>
+
+---
+
+### ✏️ Edited `linkCard.ts` - 2026-02-08 13:03:48
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/linkCard.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    console.error(`[LinkCard] Exception while fetching metadata for ${url}:`, error);
+```
+
+**変更後**:
+```
+    console.warn(`[LinkCard] Exception fetching metadata: ${url} - ${error instanceof Error ? error.message : String(error)}`);
+```
+</details>
+
+---
+

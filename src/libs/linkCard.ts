@@ -21,7 +21,7 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
     });
 
     if (error) {
-      console.error(`[LinkCard] Failed to fetch metadata for ${url}:`, error);
+      console.warn(`[LinkCard] Failed to fetch metadata: ${url} - ${result?.error || 'Unknown error'}`);
       return null;
     }
 
@@ -52,7 +52,7 @@ async function fetchLinkMetadata(url: string): Promise<LinkCardData | null> {
 
     return metadata;
   } catch (error) {
-    console.error(`[LinkCard] Exception while fetching metadata for ${url}:`, error);
+    console.warn(`[LinkCard] Exception fetching metadata: ${url} - ${error instanceof Error ? error.message : String(error)}`);
     return null;
   }
 }
