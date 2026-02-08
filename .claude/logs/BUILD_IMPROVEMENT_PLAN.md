@@ -47,9 +47,9 @@ Vercelビルドログの分析結果に基づく改善計画。重要度順に�
 ## 完了チェックリスト
 - [x] 1. console.log削除
 - [x] 2. LinkCardエラーログ改善
-- [x] 3. npm audit fix（安全な範囲）
+- [x] 3. npm audit fix → 19件 → 0件に完全解消
 - [ ] 4-1. microCMS: 内部リンク切れ修正（手動）
 - [ ] 4-2. microCMS: YouTube Studio URL修正（手動）
 - [ ] 4-3. 外部403エラー対応（優先度低）
-- [ ] 5. vitest メジャーアップグレード（別タスクで対応推奨）
-- [ ] 6. @astrojs/vercel メジャーアップグレード（別タスクで対応推奨）
+- [x] 5. vitest v0.33 → v4.0.18 アップグレード完了
+- [x] 6. @astrojs/react v3 → v4 + path-to-regexp overrides で脆弱性解消
