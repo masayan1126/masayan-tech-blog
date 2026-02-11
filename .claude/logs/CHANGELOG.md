@@ -5120,3 +5120,937 @@ import { BlogCategoryBadgeGroup } from "@/features/Blog/BlogCategoryBadgeGroup";
 
 ---
 
+
+## 2026年02月11日
+
+### ✏️ Edited `BlogDetailLayout.astro` - 2026-02-11 12:41:13
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/layouts/BlogDetailLayout.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `headingIds.ts` - 2026-02-11 12:41:21
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/headingIds.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+  // H2タグのみを対象にIDを付与
+  $('h2').each((index, element) => {
+    const $element = $(element);
+    let id = $element.attr('id');
+    const text = $element.text().trim();
+    
+    // IDが無い場合は自動生成
+    if (!id && text) {
+      id = generateId(text, index);
+      $element.attr('id', id);
+    }
+  });
+```
+
+**変更後**:
+```
+  // H2・H3タグを対象にIDを付与
+  $('h2, h3').each((index, element) => {
+    const $element = $(element);
+    let id = $element.attr('id');
+    const text = $element.text().trim();
+
+    // IDが無い場合は自動生成
+    if (!id && text) {
+      id = generateId(text, index);
+      $element.attr('id', id);
+    }
+  });
+```
+</details>
+
+---
+
+### ✏️ Edited `extractHeadings.ts` - 2026-02-11 12:41:31
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/utils/extractHeadings.ts`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2026-02-11 12:41:38
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2026-02-11 12:41:46
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2026-02-11 12:41:52
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    // H2見出しを探す（article内から）
+    let headings = document.querySelectorAll('article h2[id]');
+
+    // articleの中に見出しがない場合は、より広範囲に探す
+    if (headings.length === 0) {
+      headings = document.querySelectorAll('h2[id]');
+    }
+```
+
+**変更後**:
+```
+    // H2・H3見出しを探す（article内から）
+    let headings = document.querySelectorAll('article h2[id], article h3[id]');
+
+    // articleの中に見出しがない場合は、より広範囲に探す
+    if (headings.length === 0) {
+      headings = document.querySelectorAll('h2[id], h3[id]');
+    }
+```
+</details>
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2026-02-11 12:41:56
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+    // 全てのH2見出しを監視
+    headings.forEach(heading => {
+```
+
+**変更後**:
+```
+    // 全てのH2・H3見出しを監視
+    headings.forEach(heading => {
+```
+</details>
+
+---
+
+### ✏️ Edited `headingIds.ts` - 2026-02-11 12:42:00
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/headingIds.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+ * HTMLコンテンツ内のH2タグにIDを自動付与する
+```
+
+**変更後**:
+```
+ * HTMLコンテンツ内のH2・H3タグにIDを自動付与する
+```
+</details>
+
+---
+
+### ✏️ Edited `TableOfContents.astro` - 2026-02-11 12:47:59
+
+**変更内容**: 関数を修正
+
+**ファイルパス**: `src/components/TableOfContents.astro`
+
+_※ 変更内容が大きいため省略_
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:51:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>入門編</h3>
+<p><a href="/blog/mock-claude-code-intro">Claude Code入門編はこちら</a></p>
+
+<h3>基礎編</h3>
+<p><a href="/blog/mock-claude-code-basic">Claude Code基礎編はこちら</a></p>
+```
+
+**変更後**:
+```
+<h3>入門編</h3>
+<h4>対象読者</h4>
+<p>Claude Codeを初めて使う方、ターミナル操作に不慣れな方向け。</p>
+<p><a href="/blog/mock-claude-code-intro">Claude Code入門編はこちら</a></p>
+
+<h3>基礎編</h3>
+<h4>学べる内容</h4>
+<p>プロンプトの書き方、ファイル操作、Git連携など基本的なワークフロー。</p>
+<p><a href="/blog/mock-claude-code-basic">Claude Code基礎編はこちら</a></p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:51:56
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>メモリファイルの役割</h3>
+<p><code>claude</code>と入力し、セッションが開始してから終了するまでの間に指定できる追加のコンテキスト</p>
+```
+
+**変更後**:
+```
+<h3>メモリファイルの役割</h3>
+<h4>コンテキストの自動読み込み</h4>
+<p><code>claude</code>と入力し、セッションが開始してから終了するまでの間に指定できる追加のコンテキスト</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:02
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>サブエージェントのメリット</h3>
+<ul>
+<li><strong>コンテキストの効率化</strong>：サブエージェントではそれぞれ独立したコンテキストウィンドウを持つ</li>
+```
+
+**変更後**:
+```
+<h3>サブエージェントのメリット</h3>
+<h4>なぜサブエージェントが有効なのか</h4>
+<ul>
+<li><strong>コンテキストの効率化</strong>：サブエージェントではそれぞれ独立したコンテキストウィンドウを持つ</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:07
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>前提条件</h3>
+<ul>
+<li>Node.js v18以上</li>
+<li>npm または yarn</li>
+</ul>
+
+<h3>インストールコマンド</h3>
+```
+
+**変更後**:
+```
+<h3>前提条件</h3>
+<h4>必要なソフトウェア</h4>
+<ul>
+<li>Node.js v18以上</li>
+<li>npm または yarn</li>
+</ul>
+
+<h3>インストールコマンド</h3>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:12
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>よく使うコマンド</h3>
+<table>
+<thead>
+<tr><th>コマンド</th><th>説明</th></tr>
+```
+
+**変更後**:
+```
+<h3>よく使うコマンド</h3>
+<h4>スラッシュコマンド一覧</h4>
+<table>
+<thead>
+<tr><th>コマンド</th><th>説明</th></tr>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:16
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>設定ファイルの場所</h3>
+<p>MCPサーバーの設定は以下のいずれかに記述します：</p>
+```
+
+**変更後**:
+```
+<h3>設定ファイルの場所</h3>
+<h4>プロジェクト設定とグローバル設定</h4>
+<p>MCPサーバーの設定は以下のいずれかに記述します：</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:20
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>MCPサーバーが認識されない場合</h3>
+<ol>
+```
+
+**変更後**:
+```
+<h3>MCPサーバーが認識されない場合</h3>
+<h4>確認手順</h4>
+<ol>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:26
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>tsconfig.json</h3>
+<pre><code class="language-json">{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}</code></pre>
+
+<h2>基本的なサーバー実装</h2>
+```
+
+**変更後**:
+```
+<h3>tsconfig.json</h3>
+<h4>推奨設定</h4>
+<pre><code class="language-json">{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}</code></pre>
+
+<h2>基本的なサーバー実装</h2>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:32
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>入力値のバリデーション</h3>
+<p>ツールに渡される引数は必ずバリデーションを行いましょう：</p>
+```
+
+**変更後**:
+```
+<h3>入力値のバリデーション</h3>
+<h4>Zodを使ったバリデーション例</h4>
+<p>ツールに渡される引数は必ずバリデーションを行いましょう：</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:36
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>キャッシュの活用</h3>
+<pre><code class="language-typescript">const cache = new Map
+```
+
+**変更後**:
+```
+<h3>キャッシュの活用</h3>
+<h4>TTLベースのキャッシュ実装</h4>
+<pre><code class="language-typescript">const cache = new Map
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:41
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>特徴</h3>
+<ul>
+<li>ターミナルネイティブで軽量</li>
+<li>MCPによる拡張性</li>
+```
+
+**変更後**:
+```
+<h3>特徴</h3>
+<h4>主な強み</h4>
+<ul>
+<li>ターミナルネイティブで軽量</li>
+<li>MCPによる拡張性</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:45
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>基本的な使い方</h3>
+<pre><code class="language-text">> 最新のコミットをレビューして
+```
+
+**変更後**:
+```
+<h3>基本的な使い方</h3>
+<h4>レビューの依頼方法</h4>
+<pre><code class="language-text">> 最新のコミットをレビューして
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:50
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>1. コード品質</h3>
+<ul>
+<li>可読性（命名、コメント、構造）</li>
+```
+
+**変更後**:
+```
+<h3>1. コード品質</h3>
+<h4>チェックポイント</h4>
+<ul>
+<li>可読性（命名、コメント、構造）</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:52:55
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>インストール</h3>
+<pre><code class="language-bash">npm install @anthropic-ai/sdk</code></pre>
+
+<h3>基本的な使い方</h3>
+<pre><code class="language-typescript">import Anthropic from "@anthropic-ai/sdk";
+```
+
+**変更後**:
+```
+<h3>インストール</h3>
+<h4>SDKのセットアップ</h4>
+<pre><code class="language-bash">npm install @anthropic-ai/sdk</code></pre>
+
+<h3>基本的な使い方</h3>
+<h4>メッセージの送信</h4>
+<pre><code class="language-typescript">import Anthropic from "@anthropic-ai/sdk";
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:00
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>1. コーディング能力の向上</h3>
+<ul>
+<li>複雑なアルゴリズムの実装精度が向上</li>
+```
+
+**変更後**:
+```
+<h3>1. コーディング能力の向上</h3>
+<h4>具体的な改善ポイント</h4>
+<ul>
+<li>複雑なアルゴリズムの実装精度が向上</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:04
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>リファクタリング</h3>
+<pre><code class="language-text">> このファイルをTypeScriptに変換して、
+```
+
+**変更後**:
+```
+<h3>リファクタリング</h3>
+<h4>型変換の具体例</h4>
+<pre><code class="language-text">> このファイルをTypeScriptに変換して、
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:09
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>1. ESLint</h3>
+<p>JavaScriptとTypeScriptのリンター。コード品質を維持するために必須。</p>
+```
+
+**変更後**:
+```
+<h3>1. ESLint</h3>
+<h4>設定のポイント</h4>
+<p>JavaScriptとTypeScriptのリンター。コード品質を維持するために必須。</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:13
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>1. Node.jsのインストール</h3>
+<pre><code class="language-bash"># nvmを使用する場合
+```
+
+**変更後**:
+```
+<h3>1. Node.jsのインストール</h3>
+<h4>nvmを使ったバージョン管理</h4>
+<pre><code class="language-bash"># nvmを使用する場合
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:17
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>ワークスペース設定</h3>
+<pre><code class="language-json">// .vscode/settings.json
+```
+
+**変更後**:
+```
+<h3>ワークスペース設定</h3>
+<h4>保存時の自動フォーマット</h4>
+<pre><code class="language-json">// .vscode/settings.json
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:23
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>AIチャット（Cmd+L / Ctrl+L）</h3>
+<p>サイドパネルでAIと対話。コードの説明、生成、修正を依頼できます。</p>
+```
+
+**変更後**:
+```
+<h3>AIチャット（Cmd+L / Ctrl+L）</h3>
+<h4>対話の例</h4>
+<p>サイドパネルでAIと対話。コードの説明、生成、修正を依頼できます。</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:28
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>インライン編集（Cmd+K / Ctrl+K）</h3>
+<p>コード上で直接AIに指示を出せます。</p>
+```
+
+**変更後**:
+```
+<h3>インライン編集（Cmd+K / Ctrl+K）</h3>
+<h4>操作手順</h4>
+<p>コード上で直接AIに指示を出せます。</p>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:33
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>使い方</h3>
+<ol>
+<li>Cmd+I（Ctrl+I）でComposerを開く</li>
+```
+
+**変更後**:
+```
+<h3>使い方</h3>
+<h4>Composerの基本フロー</h4>
+<ol>
+<li>Cmd+I（Ctrl+I）でComposerを開く</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:37
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>段階的なアプローチ</h3>
+<ol>
+<li>まず計画を立ててもらう</li>
+```
+
+**変更後**:
+```
+<h3>段階的なアプローチ</h3>
+<h4>推奨ワークフロー</h4>
+<ol>
+<li>まず計画を立ててもらう</li>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:42
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>必要なもの</h3>
+<ul>
+<li>Python 3.9以上</li>
+<li>Anthropic APIキー</li>
+</ul>
+
+<h3>セットアップ</h3>
+```
+
+**変更後**:
+```
+<h3>必要なもの</h3>
+<h4>動作環境</h4>
+<ul>
+<li>Python 3.9以上</li>
+<li>Anthropic APIキー</li>
+</ul>
+
+<h3>セットアップ</h3>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:47
+
+**変更内容**: コードを修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h3>環境変数の設定</h3>
+<pre><code class="language-bash"># .env
+ANTHROPIC_API_KEY=your-api-key-here</code></pre>
+```
+
+**変更後**:
+```
+<h3>環境変数の設定</h3>
+<h4>.envファイルの作成</h4>
+<pre><code class="language-bash"># .env
+ANTHROPIC_API_KEY=your-api-key-here</code></pre>
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:52
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h2>基本的なAPI</h2>
+<pre><code class="language-python"># main.py
+from fastapi import FastAPI, HTTPException
+```
+
+**変更後**:
+```
+<h2>基本的なAPI</h2>
+<h3>モデル定義とエンドポイント</h3>
+<h4>Pydanticモデルの活用</h4>
+<pre><code class="language-python"># main.py
+from fastapi import FastAPI, HTTPException
+```
+</details>
+
+---
+
+### ✏️ Edited `articles.ts` - 2026-02-11 12:53:57
+
+**変更内容**: import文を修正
+
+**ファイルパス**: `src/libs/microcms/mock/articles.ts`
+
+<details>
+<summary>変更の詳細を表示</summary>
+
+**変更前**:
+```
+<h2>依存性注入</h2>
+<pre><code class="language-python">from fastapi import Depends
+```
+
+**変更後**:
+```
+<h2>依存性注入</h2>
+<h3>Dependsパターン</h3>
+<h4>データベース接続の管理</h4>
+<pre><code class="language-python">from fastapi import Depends
+```
+</details>
+
+---
+

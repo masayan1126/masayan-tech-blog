@@ -32,9 +32,13 @@ export const mockArticles: Article[] = [
 <p>準備中。近日中に公開予定</p>
 
 <h3>入門編</h3>
+<h4>対象読者</h4>
+<p>Claude Codeを初めて使う方、ターミナル操作に不慣れな方向け。</p>
 <p><a href="/blog/mock-claude-code-intro">Claude Code入門編はこちら</a></p>
 
 <h3>基礎編</h3>
+<h4>学べる内容</h4>
+<p>プロンプトの書き方、ファイル操作、Git連携など基本的なワークフロー。</p>
 <p><a href="/blog/mock-claude-code-basic">Claude Code基礎編はこちら</a></p>
 
 <h3>応用編（本記事）</h3>
@@ -74,6 +78,7 @@ export const mockArticles: Article[] = [
 <p>「Claude Code」がプロジェクト固有の文脈を理解するために読み込む特別なMarkdownファイル</p>
 
 <h3>メモリファイルの役割</h3>
+<h4>コンテキストの自動読み込み</h4>
 <p><code>claude</code>と入力し、セッションが開始してから終了するまでの間に指定できる追加のコンテキスト</p>
 <p>例えば、AIの応答スタイルとして、「日本語でコミュニケーションを行うこと」であったり、GitHubでコード管理しているプロジェクトであれば、「コミットメッセージはConventional Commitsで生成すること」のような、毎回指示する内容をメモリファイルに含めておくことで、自動的にコンテキストに含めてくれる</p>
 
@@ -121,6 +126,7 @@ export const mockArticles: Article[] = [
 <p>単一のエージェントに色々な内容を実行させるのはなく、特定の分野に特化したサブエージェントを複数作成してタスクを実行させることで精度を向上させることができる機能</p>
 
 <h3>サブエージェントのメリット</h3>
+<h4>なぜサブエージェントが有効なのか</h4>
 <ul>
 <li><strong>コンテキストの効率化</strong>：サブエージェントではそれぞれ独立したコンテキストウィンドウを持つ</li>
 <li><strong>専門性の向上</strong>：責務の分離</li>
@@ -180,6 +186,7 @@ model: sonnet
 
 <h2>インストール</h2>
 <h3>前提条件</h3>
+<h4>必要なソフトウェア</h4>
 <ul>
 <li>Node.js v18以上</li>
 <li>npm または yarn</li>
@@ -202,6 +209,7 @@ cd your-project
 claude</code></pre>
 
 <h3>よく使うコマンド</h3>
+<h4>スラッシュコマンド一覧</h4>
 <table>
 <thead>
 <tr><th>コマンド</th><th>説明</th></tr>
@@ -253,6 +261,7 @@ Claude: README.mdを読み込んで要約します...
 
 <h2>MCPサーバーの設定</h2>
 <h3>設定ファイルの場所</h3>
+<h4>プロジェクト設定とグローバル設定</h4>
 <p>MCPサーバーの設定は以下のいずれかに記述します：</p>
 <ul>
 <li><code>.claude/mcp.json</code> - プロジェクト固有の設定</li>
@@ -331,6 +340,7 @@ await server.connect(transport);</code></pre>
 
 <h2>トラブルシューティング</h2>
 <h3>MCPサーバーが認識されない場合</h3>
+<h4>確認手順</h4>
 <ol>
 <li>設定ファイルのパスを確認</li>
 <li>JSONの構文エラーをチェック</li>
@@ -375,6 +385,7 @@ npm install @modelcontextprotocol/sdk
 npm install -D typescript @types/node</code></pre>
 
 <h3>tsconfig.json</h3>
+<h4>推奨設定</h4>
 <pre><code class="language-json">{
   "compilerOptions": {
     "target": "ES2022",
@@ -505,6 +516,7 @@ node dist/index.js</code></pre>
 
 <h2>セキュリティ</h2>
 <h3>入力値のバリデーション</h3>
+<h4>Zodを使ったバリデーション例</h4>
 <p>ツールに渡される引数は必ずバリデーションを行いましょう：</p>
 <pre><code class="language-typescript">import { z } from "zod";
 
@@ -544,6 +556,7 @@ const inputSchema = z.object({
 
 <h2>パフォーマンス最適化</h2>
 <h3>キャッシュの活用</h3>
+<h4>TTLベースのキャッシュ実装</h4>
 <pre><code class="language-typescript">const cache = new Map&lt;string, { data: any; timestamp: number }&gt;();
 const CACHE_TTL = 60000; // 1分
 
@@ -614,6 +627,7 @@ describe("hello_world tool", () => {
 
 <h2>Claude Code</h2>
 <h3>特徴</h3>
+<h4>主な強み</h4>
 <ul>
 <li>ターミナルネイティブで軽量</li>
 <li>MCPによる拡張性</li>
@@ -691,6 +705,7 @@ describe("hello_world tool", () => {
 
 <h2>Claude Codeでのコードレビュー</h2>
 <h3>基本的な使い方</h3>
+<h4>レビューの依頼方法</h4>
 <pre><code class="language-text">> 最新のコミットをレビューして
 
 Claude: git diffを確認し、以下の点をレビューします：
@@ -725,6 +740,7 @@ tools:
 
 <h2>レビュー観点の詳細</h2>
 <h3>1. コード品質</h3>
+<h4>チェックポイント</h4>
 <ul>
 <li>可読性（命名、コメント、構造）</li>
 <li>保守性（モジュール化、依存関係）</li>
@@ -793,9 +809,11 @@ function getUserById(userId: string): Promise&lt;User | null&gt; {
 
 <h2>TypeScriptでの使用</h2>
 <h3>インストール</h3>
+<h4>SDKのセットアップ</h4>
 <pre><code class="language-bash">npm install @anthropic-ai/sdk</code></pre>
 
 <h3>基本的な使い方</h3>
+<h4>メッセージの送信</h4>
 <pre><code class="language-typescript">import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -880,6 +898,7 @@ print(message.content[0].text)</code></pre>
 
 <h2>主な改善点</h2>
 <h3>1. コーディング能力の向上</h3>
+<h4>具体的な改善ポイント</h4>
 <ul>
 <li>複雑なアルゴリズムの実装精度が向上</li>
 <li>コードの文脈理解が改善</li>
@@ -920,6 +939,7 @@ print(message.content[0].text)</code></pre>
 
 <h2>実践的な活用シーン</h2>
 <h3>リファクタリング</h3>
+<h4>型変換の具体例</h4>
 <pre><code class="language-text">> このファイルをTypeScriptに変換して、
 > 型安全性を高めてください
 
@@ -954,6 +974,7 @@ Claude: コンポーネントを分析し、以下のテストケースを生成
 
 <h2>必須級の拡張機能</h2>
 <h3>1. ESLint</h3>
+<h4>設定のポイント</h4>
 <p>JavaScriptとTypeScriptのリンター。コード品質を維持するために必須。</p>
 <pre><code class="language-json">// settings.json
 {
@@ -1026,6 +1047,7 @@ Claude: コンポーネントを分析し、以下のテストケースを生成
 
 <h2>プロジェクトの初期設定</h2>
 <h3>1. Node.jsのインストール</h3>
+<h4>nvmを使ったバージョン管理</h4>
 <pre><code class="language-bash"># nvmを使用する場合
 nvm install --lts
 nvm use --lts</code></pre>
@@ -1057,6 +1079,7 @@ npm install -D typescript @types/node</code></pre>
 
 <h2>VS Codeの設定</h2>
 <h3>ワークスペース設定</h3>
+<h4>保存時の自動フォーマット</h4>
 <pre><code class="language-json">// .vscode/settings.json
 {
   "typescript.preferences.importModuleSpecifier": "relative",
@@ -1142,6 +1165,7 @@ export default tseslint.config(
 
 <h2>基本的な使い方</h2>
 <h3>AIチャット（Cmd+L / Ctrl+L）</h3>
+<h4>対話の例</h4>
 <p>サイドパネルでAIと対話。コードの説明、生成、修正を依頼できます。</p>
 <pre><code class="language-text">User: この関数の動作を説明して
 AI: この関数は...
@@ -1150,6 +1174,7 @@ User: エラーハンドリングを追加して
 AI: [コード提案]</code></pre>
 
 <h3>インライン編集（Cmd+K / Ctrl+K）</h3>
+<h4>操作手順</h4>
 <p>コード上で直接AIに指示を出せます。</p>
 <ol>
 <li>編集したいコードを選択</li>
@@ -1205,6 +1230,7 @@ AI: [コード提案]</code></pre>
 <p>複数ファイルにまたがる変更を一括で行える強力な機能です。</p>
 
 <h3>使い方</h3>
+<h4>Composerの基本フロー</h4>
 <ol>
 <li>Cmd+I（Ctrl+I）でComposerを開く</li>
 <li>実現したいことを自然言語で説明</li>
@@ -1264,6 +1290,7 @@ You are an expert TypeScript developer.
 
 <h2>実践Tips</h2>
 <h3>段階的なアプローチ</h3>
+<h4>推奨ワークフロー</h4>
 <ol>
 <li>まず計画を立ててもらう</li>
 <li>計画をレビュー・調整</li>
@@ -1301,6 +1328,7 @@ You are an expert TypeScript developer.
 
 <h2>環境構築</h2>
 <h3>必要なもの</h3>
+<h4>動作環境</h4>
 <ul>
 <li>Python 3.9以上</li>
 <li>Anthropic APIキー</li>
@@ -1315,6 +1343,7 @@ source venv/bin/activate  # Windows: venv\\Scripts\\activate
 pip install anthropic streamlit python-dotenv</code></pre>
 
 <h3>環境変数の設定</h3>
+<h4>.envファイルの作成</h4>
 <pre><code class="language-bash"># .env
 ANTHROPIC_API_KEY=your-api-key-here</code></pre>
 
@@ -1426,6 +1455,8 @@ source venv/bin/activate
 pip install fastapi uvicorn pydantic</code></pre>
 
 <h2>基本的なAPI</h2>
+<h3>モデル定義とエンドポイント</h3>
+<h4>Pydanticモデルの活用</h4>
 <pre><code class="language-python"># main.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -1476,6 +1507,8 @@ async def create_user(user: UserCreate):
 </ul>
 
 <h2>依存性注入</h2>
+<h3>Dependsパターン</h3>
+<h4>データベース接続の管理</h4>
 <pre><code class="language-python">from fastapi import Depends
 
 async def get_db():

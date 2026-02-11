@@ -32,7 +32,7 @@ const generateId = (text: string, index: number): string => {
 };
 
 /**
- * HTMLコンテンツ内のH2タグにIDを自動付与する
+ * HTMLコンテンツ内のH2・H3タグにIDを自動付与する
  * @param content - HTML形式のコンテンツ
  * @returns IDが付与されたHTMLコンテンツ
  */
@@ -43,12 +43,12 @@ export const attachHeadingIds = (content: string): string => {
   
   const $ = load(content);
   
-  // H2タグのみを対象にIDを付与
-  $('h2').each((index, element) => {
+  // H2・H3タグを対象にIDを付与
+  $('h2, h3').each((index, element) => {
     const $element = $(element);
     let id = $element.attr('id');
     const text = $element.text().trim();
-    
+
     // IDが無い場合は自動生成
     if (!id && text) {
       id = generateId(text, index);

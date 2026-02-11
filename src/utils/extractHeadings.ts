@@ -38,7 +38,7 @@ const generateId = (text: string, index: number): string => {
 };
 
 /**
- * HTMLコンテンツからh2タグを抽出して見出し一覧を生成
+ * HTMLコンテンツからh2・h3タグを抽出して見出し一覧を生成
  * @param htmlContent - microCMSから取得したHTML形式のコンテンツ
  * @returns 見出しの配列
  */
@@ -46,22 +46,24 @@ export const extractHeadings = (htmlContent: string): Heading[] => {
   const $ = load(htmlContent);
   const headings: Heading[] = [];
 
-  // h2タグのみを対象に抽出
-  $('h2').each((index, element) => {
+  // h2・h3タグを対象に抽出（DOM順で取得）
+  $('h2, h3').each((index, element) => {
     const $element = $(element);
+    const tagName = element.tagName?.toLowerCase() || (element as any).name?.toLowerCase();
     let id = $element.attr('id');
     const text = $element.text().trim();
-    
+    const level = tagName === 'h3' ? 3 : 2;
+
     if (text) {
       // IDが無い場合は自動生成（extractHeadings用）
       if (!id) {
         id = generateId(text, index);
       }
-      
+
       headings.push({
         id,
         text,
-        level: 2
+        level,
       });
     }
   });

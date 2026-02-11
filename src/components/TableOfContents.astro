@@ -8,9 +8,18 @@ interface Props {
 
 const { content } = Astro.props;
 const headings = extractHeadings(content);
+
+// h2の連番を事前計算
+let h2Counter = 0;
+const headingsWithIndex = headings.map((heading) => {
+  if (heading.level === 2) {
+    h2Counter++;
+  }
+  return { ...heading, h2Index: h2Counter };
+});
 ---
 
-{headings.length > 0 && (
+{headingsWithIndex.length > 0 && (
   <div class="table-of-contents">
     <div class="toc-header">
       <Icon name="ph:list-bullets-bold" class="toc-header-icon" />
@@ -19,10 +28,12 @@ const headings = extractHeadings(content);
     </div>
     <nav class="toc-nav">
       <ul class="toc-list">
-        {headings.map((heading, index) => (
-          <li class="toc-item">
-            <a href={`#${heading.id}`} class="toc-link">
-              <span class="toc-number">{String(index + 1).padStart(2, '0')}</span>
+        {headingsWithIndex.map((heading) => (
+          <li class={`toc-item ${heading.level === 3 ? 'toc-item-h3' : ''}`}>
+            <a href={`#${heading.id}`} class={`toc-link ${heading.level === 3 ? 'toc-link-h3' : ''}`} data-level={heading.level}>
+              {heading.level === 2 && (
+                <span class="toc-number">{String(heading.h2Index).padStart(2, '0')}</span>
+              )}
               <span class="toc-text">{heading.text}</span>
             </a>
           </li>
@@ -126,6 +137,35 @@ const headings = extractHeadings(content);
     overflow: hidden;
   }
 
+  /* h3 の階層表示 */
+  .toc-item-h3 {
+    margin: 0;
+  }
+
+  .toc-link-h3 {
+    padding-left: 2.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    opacity: 0.85;
+    border-left: 2px solid transparent;
+  }
+
+  .toc-link-h3::before {
+    content: '└';
+    margin-right: 0.4rem;
+    color: var(--color-text-muted);
+    opacity: 0.4;
+    font-size: 0.7rem;
+  }
+
+  .toc-link-h3:hover {
+    opacity: 1;
+  }
+
+  .toc-link-h3.active {
+    opacity: 1;
+  }
+
   /* アクティブ状態（スクロール連動） */
   .toc-link.active {
     background: rgba(var(--color-primary-rgb), 0.1) !important;
@@ -166,12 +206,12 @@ const headings = extractHeadings(content);
     // 全ての目次リンクを取得（PC用とモバイル用の両方）
     const tocLinks = document.querySelectorAll('.toc-link');
 
-    // H2見出しを探す（article内から）
-    let headings = document.querySelectorAll('article h2[id]');
+    // H2・H3見出しを探す（article内から）
+    let headings = document.querySelectorAll('article h2[id], article h3[id]');
 
     // articleの中に見出しがない場合は、より広範囲に探す
     if (headings.length === 0) {
-      headings = document.querySelectorAll('h2[id]');
+      headings = document.querySelectorAll('h2[id], h3[id]');
     }
 
     if (tocLinks.length === 0 || headings.length === 0) {
@@ -238,7 +278,7 @@ const headings = extractHeadings(content);
     // Observerを作成
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // 全てのH2見出しを監視
+    // 全てのH2・H3見出しを監視
     headings.forEach(heading => {
       observer.observe(heading);
     });
