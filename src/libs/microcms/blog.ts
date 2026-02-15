@@ -39,13 +39,16 @@ export type ArticlesResponse = {
 
 const BATCH_SIZE = 50;
 
-export const getArticles = async (
-  queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
-): Promise<ArticlesResponse> => {
-  // 開発環境ではモックデータを返す
-  if (IS_DEV_MODE) {
-    return mockArticlesResponse;
-  }
+// ビルド内メモ化: 同一クエリの結果をキャッシュしてAPI呼び出しを削減
+const buildCache = new Map<string, ArticlesResponse>();
+
+function getCacheKey(queries: MicroCMSQueries): string {
+  return JSON.stringify(queries);
+}
+
+async function fetchArticlesWithPagination(
+  queries: MicroCMSQueries
+): Promise<ArticlesResponse> {
   const maxLimit = queries.limit || FETCH_POSTS_MAX_LIMIT;
 
   // 小さいリクエストはそのまま取得
@@ -75,7 +78,36 @@ export const getArticles = async (
     limit: maxLimit,
     contents: allContents,
   };
+}
+
+export const getArticles = async (
+  queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
+): Promise<ArticlesResponse> => {
+  // 開発環境ではモックデータを返す
+  if (IS_DEV_MODE) {
+    return mockArticlesResponse;
+  }
+
+  const cacheKey = getCacheKey(queries);
+  const cached = buildCache.get(cacheKey);
+  if (cached) return cached;
+
+  const result = await fetchArticlesWithPagination(queries);
+  buildCache.set(cacheKey, result);
+  return result;
 };
+
+// contentフィールドを除外した軽量版（一覧・集計用）
+const META_FIELDS =
+  "id,title,description,publishedAt,revisedAt,updatedAt,createdAt,eyecatch,category,youtube_link";
+
+export const getArticlesMeta = async (): Promise<ArticlesResponse> => {
+  return getArticles({
+    limit: FETCH_POSTS_MAX_LIMIT,
+    fields: META_FIELDS,
+  });
+};
+
 export const getArticlesByCategory = async (filters: string) => {
   // 開発環境ではモックデータを返す
   if (IS_DEV_MODE) {

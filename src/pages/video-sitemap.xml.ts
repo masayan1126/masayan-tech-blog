@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getArticles } from '@/libs/microcms/blog';
+import { getArticlesMeta } from '@/libs/microcms/blog';
 
 const SITE_URL = 'https://maasaablog.com';
 
@@ -29,7 +29,7 @@ function getThumbnailUrl(videoId: string): string {
 export const GET: APIRoute = async () => {
   try {
     // 全記事を取得
-    const response = await getArticles();
+    const response = await getArticlesMeta();
     const articles = response.contents;
 
     // YouTube動画を持つ記事のみフィルタリング

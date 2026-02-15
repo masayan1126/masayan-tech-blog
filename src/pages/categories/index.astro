@@ -1,6 +1,6 @@
 ---
 import { getCategories } from "@/libs/microcms/category";
-import { getArticles } from "@/libs/microcms/blog";
+import { getArticlesMeta } from "@/libs/microcms/blog";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const title = "カテゴリー一覧";
@@ -21,7 +21,7 @@ const categoriesRes = await getCategories();
 const categories = categoriesRes.contents;
 
 // 全記事を取得してカテゴリごとの記事数をカウント
-const allArticlesRes = await getArticles();
+const allArticlesRes = await getArticlesMeta();
 const allArticles = allArticlesRes.contents;
 
 // カテゴリーごとの記事数を計算

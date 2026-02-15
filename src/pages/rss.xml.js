@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../constants/meta";
-import { getArticles } from "../libs/microcms/blog";
+import { getArticlesMeta } from "../libs/microcms/blog";
 
 export async function GET(context) {
-  const postRes = await getArticles();
+  const postRes = await getArticlesMeta();
   const posts = postRes.contents;
   const sanitizeForXml = (value) => {
     if (!value) return "";
