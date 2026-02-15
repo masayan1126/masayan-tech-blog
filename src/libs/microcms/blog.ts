@@ -37,14 +37,44 @@ export type ArticlesResponse = {
   contents: Article[];
 };
 
+const BATCH_SIZE = 50;
+
 export const getArticles = async (
   queries: MicroCMSQueries = { limit: FETCH_POSTS_MAX_LIMIT }
-) => {
+): Promise<ArticlesResponse> => {
   // 開発環境ではモックデータを返す
   if (IS_DEV_MODE) {
     return mockArticlesResponse;
   }
-  return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
+  const maxLimit = queries.limit || FETCH_POSTS_MAX_LIMIT;
+
+  // 小さいリクエストはそのまま取得
+  if (maxLimit <= BATCH_SIZE) {
+    return await client.get<ArticlesResponse>({ endpoint: "blogs", queries });
+  }
+
+  // 大量取得時はページネーションで分割取得
+  let allContents: Article[] = [];
+  let offset = queries.offset || 0;
+  let totalCount = 0;
+
+  do {
+    const batchLimit = Math.min(BATCH_SIZE, maxLimit - allContents.length);
+    const res = await client.get<ArticlesResponse>({
+      endpoint: "blogs",
+      queries: { ...queries, limit: batchLimit, offset },
+    });
+    totalCount = res.totalCount;
+    allContents = allContents.concat(res.contents);
+    offset += batchLimit;
+  } while (allContents.length < totalCount && allContents.length < maxLimit);
+
+  return {
+    totalCount,
+    offset: 0,
+    limit: maxLimit,
+    contents: allContents,
+  };
 };
 export const getArticlesByCategory = async (filters: string) => {
   // 開発環境ではモックデータを返す
